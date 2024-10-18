@@ -1,4 +1,4 @@
-![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/current/Github/banner.png)
+![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/release/Github/banner.png)
 # TEBOWY DZIEŃ
 
 ## Zmiany
