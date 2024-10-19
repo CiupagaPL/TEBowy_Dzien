@@ -17,3 +17,8 @@
 
 ## Have a Nice and Happy Day!
 - Ciupaga >_o
+
+## Good Job
+- Bardzo dobrze idziemy w dobrym kierunku,
+- Jutro do południa podam jeszcze kilka funkcjonalności jakie możemy wykorzystać w grze.
+> Jestem pod bardzo pozytywnym wrażeniem! :)
