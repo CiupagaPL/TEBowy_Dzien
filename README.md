@@ -27,3 +27,12 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 Dzięki za miłe słowa :- )
 Dzisiaj trochę mniejsza aktualizacja jako iż dużo czasu mnie nie było w domu i musiałem przepisać kod paru rzeczy.
 Jutro skupię się na przejściach między poziomami i zacznę pracę nad graczem i grawitacją.
+
+## SUGESTIE
+Międzi poziomami warto zrobić scenę dzięki ktorej gracz dowie się kilka informacji o swoim przeciwniku jakimś nauczycielu który będzie na planszy myślę ze max 2 do 3 nauczycieli na poziom. 
+Dodatkowo przygotujemy w plikach png postaci nauczycieli. Napisz mi proszę w jakich rozmiarach w pixelach mają być pliki. Postać będzie wpisana w kwadrat lub prostokąt tylko potrzebuję wymiary tej grafiki.
+
+Pomyślalem, też o takiej funkcjonalności że każdy nauczyciel zadaje 20pkt obrażeń (i jest informacja "-20 pkt do zachowania!") Na końcu na ostatnim poziomie będzie przeciwnikiem dyrekcja i wtedy obrażenia wynoszą -50pkt do zachowania. Pani Dyrektor zadaje -100pkt do zachowania :)
+
+## Have a Nice and Happy Day!
+- Tom2edu :D
