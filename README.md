@@ -2,14 +2,6 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Dodałem obiekt myszy (na innej zasadzie niż w UP),
-- Dodałem kolizję między obiektami,
-- Dodałem możliwość wykrycia najechania kursorem i kliknięcia na objekt (znacznie lepiej niż w UP),
-- Zaprojektowałem proste menu,
-- Dodałem dwustronne animacje dla menu,
-- Naprawiłem skalowanie czcionek na różnych rozdzielczościach,
-- Ulepszyłem animację startową.
-
 - Przeprogramowałem animacje dwustronne,
 - Dodałem obsługę kilkuliniowych tekstów,
 - Utworzyłem funkcje mające na celu ułatwić dalszą pracę (i znacznie skrócić kod),
