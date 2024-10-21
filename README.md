@@ -36,3 +36,6 @@ Pomyślalem, też o takiej funkcjonalności że każdy nauczyciel zadaje 20pkt o
 
 ## Have a Nice and Happy Day!
 - Tom2edu :D
+
+## Opisy nauczycieli
+- w katalogu głównym wgrałem opisy nauczycieli w dokumencie pdf do wykorzystania w grze.
