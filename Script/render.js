@@ -35,9 +35,13 @@ window.updateValue=function(){
 
   _background.width=_currentResolution.width;
   _background.height=_currentResolution.height;
+  _background.x=0;
+  _background.y=0;
 
   _change.width=_currentResolution.width;
   _change.height=_currentResolution.height;
+  _change.x=0;
+  _change.y=0;
 
   _versionText.x=32*scale;
   _versionText.y=48*scale;
@@ -186,15 +190,67 @@ window.updateValue=function(){
   _clipboardAbout1.size=Math.ceil(12*scale);
   _clipboardAbout1.debug=_clipboardAbout1.size+"px "+_clipboardAbout1.font;
 
+  _gameUI.width=_currentResolution.width;
+  _gameUI.height=24*scale;
+  _gameUI.x=0;
+  _gameUI.y=0;
+  _gameLevel.x=_currentResolution.width-78*scale;
+  _gameLevel.y=18*scale;
+  _gameLevel.size=Math.ceil(20*scale);
+  _gameLevel.debug=_gameLevel.size+"px "+_gameLevel.font;
+  _gameHP1.width=16*scale;
+  _gameHP1.height=16*scale;
+  _gameHP1.x=_currentResolution.width-138*scale;
+  _gameHP1.y=4*scale;
+  _gameHP2.width=16*scale;
+  _gameHP2.height=16*scale;
+  _gameHP2.x=_currentResolution.width-120*scale;
+  _gameHP2.y=4*scale;
+  _gameHP3.width=16*scale;
+  _gameHP3.height=16*scale;
+  _gameHP3.x=_currentResolution.width-102*scale;
+  _gameHP3.y=4*scale;
   _gamePause.width=16*scale;
   _gamePause.height=16*scale;
   _gamePause.x=4*scale;
   _gamePause.y=4*scale;
+  _gameScore.x=24*scale;
+  _gameScore.y=18*scale;
+  _gameScore.size=Math.ceil(20*scale);
+  _gameScore.debug=_gameScore.size+"px "+_gameScore.font;
 
   _player.width=48*scale;
-  _player.height=81*scale;
+  _player.height=96*scale;
   _player.x=_render.width/2-_player.width/2;
   _player.y=_render.height/2-_player.height/2;
+  _player.gravity=0.5*scale;
+  _player.initialvy=-16*scale;
+  _playerTop.width=36*scale;
+  _playerTop.height=12*scale;
+  _playerTop.x=_player.x+16*scale+_player.vx;
+  _playerTop.y=_player.y+_player.vy;
+  _playerBottom.width=36*scale;
+  _playerBottom.height=12*scale;
+  _playerBottom.x=_player.x+16*scale+_player.vx;
+  _playerBottom.y=_player.y+84*scale+_player.vy;
+  _playerLeft.width=12*scale;
+  _playerLeft.height=96*scale;
+  _playerLeft.x=_player.x+_player.vx;
+  _playerLeft.y=_player.y+_player.vy;
+  _playerRight.width=12*scale;
+  _playerRight.height=96*scale;
+  _playerRight.x=_player.x+84*scale+_player.vx;
+  _playerRight.y=_player.y+_player.vy;
+
+  _platform.width=_currentResolution.width;
+  _platform.height=16*scale;
+  _platform.x=0;
+  _platform.y=_currentResolution.height-16*scale;
+
+  _spike.width=32*scale;
+  _spike.height=32*scale;
+  _spike.x=0;
+  _spike.y=_currentResolution.height-32*scale;
 }
 
 // window.defaultValue=function(){

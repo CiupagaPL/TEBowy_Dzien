@@ -2,20 +2,20 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Od teraz spamienie w przyciski nie powinno ich zepsuć,
-- Dodałem przejście między poziomami,
-- Dodałem możliwość zapauzowania gry z elementami z menu,
-- Dodałem przycisk menu pozwalający do niego powrócić,
-- Naprawiłem błędy międzyscenowe z przyciskami,
-- Utworzyłem schemat kodu każdego poziomu,
-- Od teraz przycisk zmieniające scenę minimalizują najpierw panel boczny,
-- Kontynuowałem wczorajsze skracanie kodu,
-- Oraz wprowadziłem kilka mniejszych poprawek.
+- Dodałem całkowicie nowe UI na górze ekranu,
+- Dodałem licznik poziomu, etapu, żyć i wyniku,
+- Opracowałem wczesną wersję mechanik gracza,
+- Dodałem proste sterowanie dla gracza,
+- Stworzyłem prosty generator poziomów,
+- Od teraz można zapauzować i odpauzować grę za pomocą ESC,
+- Dodałem możliwość likwidacji gracza (i zrestartowania poziomu),
+- Dodałem nowe tymczasowe tło dla menu i gry,
+- Oraz wprowadziłem kilka poprawek.
 > Uwaga! Zmiana rozdzielczości ekranu jest niedopracowana i na 100% będzie zbugowana O.o (naprawię to gdy ukończę pracę nad scenami)
 
 ## Status
-> Newest Version: **Test 4**;
-> Last Updated: **21-10-2024**;
+> Newest Version: **Test 5**;
+> Last Updated: **22-10-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -25,7 +25,7 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
-Bardzo podoba mi się pomysł z punktami ujemnymi i napewno go wykorzystamy :- )
-Sprite'y gracza i nauczycieli powinny wynosić 32x54 (zeskalowane przez grę do 48x81), rozmiar ten ukazany jest na przykładowym ludziku w grze (przypominam tylko że gra symulowana jest w oknie 640x360).
-Plik z opisem nauczycieli już sobie zapisałem.
-Jeżeli chodzi o sam motyw oraz koncept gry dogadamy się jutro na zajęciach (i wymienimy się wspólnymi pomysłami).
+O ile w tym momencie jest to jeszcze niegrywalne napisałem dzisiaj 3/4 kodu które potrzebuje do podstaw gry.
+Większość kodu wzorowałem starszymi budowami UP (jeszcze tymi ze skakaniem i wczesnym generatorem).
+Oczywiście wersja prezentacyjna będzie gotowa jutro (prawie niemożliwe było bym ogarnął wszystko w jeden dzień).
+Wszystkie pliki mam pobrane i zamieszcze je w projekcie wraz z ich poprawkami (wiadomo chodzi o skalowanie obrazków nauczycieli).

@@ -15,6 +15,29 @@ document.addEventListener("keyup",function(_event){
       break;
     case 1:
       break;
+    case 2:
+      if(_event.key=="Escape"&&canClick&&pauseOn){
+        if(_clipboard.on){
+          if(_menuSetting.on){
+            _menuSetting.animation=true;
+            _clipboard.close=true;
+            canClick=false;
+          } if(_menuAbout.on){
+            _menuAbout.animation=true;
+            _clipboard.close=true;
+            canClick=false;
+          }
+        } else if(!_clipboard.on){
+          pauseChange=true;
+          canClick=false;
+        }
+      }
+      if(_event.key=="Escape"&&canClick&&!pauseOn){ pauseOn=true; pauseChange=true; }
+      if(_event.key=="a"&&!pauseOn&&hp!=0||_event.key=="ArrowLeft"&&!pauseOn&&hp!=0){ _player.side=2; }
+      if(_event.key=="d"&&!pauseOn&&hp!=0||_event.key=="ArrowRight"&&!pauseOn&&hp!=0){ _player.side=1; }
+      if(_event.key=="s"&&!pauseOn&&hp!=0||_event.key=="ArrowDown"&&!pauseOn&&hp!=0){ _player.side=0; }
+      if(_event.key==" "&&!pauseOn&&hp!=0&&_player.grounded||_event.key=="ArrowUp"&&!pauseOn&&hp!=0&&_player.grounded){ _player.jumped=true; _player.vy=_player.initialvy; }
+      break;
   }
 });
 
@@ -35,9 +58,6 @@ document.addEventListener("mousemove",function(_event){
 
   if(window.detectcollision(_clipboardBack,_mouse)){ _clipboardBack.hover=true; }
   else if(!window.detectcollision(_clipboardBack,_mouse)){ _clipboardBack.hover=false; }
-
-  if(window.detectcollision(_gamePause,_mouse)&&!pauseOn){ _gamePause.hover=true; }
-  else if(!window.detectcollision(_gamePause,_mouse)){ _gamePause.hover=false; }
 });
 
 window.addEventListener("click",function(_event){

@@ -14,6 +14,7 @@ let canStart=false,canClick=true,changeScene=false;
 let scene=0,sceneTimer=0,changeTimer=0,nextScene=0;
 let sfxOn=true,musicOn=false,fullscreenOn=false;
 let pauseOn=false,pauseChange=false,pauseAnimation=false;
+let hp=6,globalMove=0,round=0,score=0,dead=false;
 
 let _html=document.getElementById("html");
 
@@ -50,10 +51,14 @@ let _render={
 
 let _context=_render.base.getContext("2d");
 
+let _currentPlatform;
+
 let _background={
   width:640,height:360,
 
   x:0,y:0,
+
+  img:new Image(),
 
   color0:"#002f6d",
   color1:"#03a188",
@@ -77,7 +82,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 4",
+  value:"Test 5",
 
   size:36,
   on:false,
@@ -408,28 +413,146 @@ let _clipboardAbout1={
   x:0,y:0,
 };
 
+let _gameUI={
+  width:640,
+  height:24,
+
+  x:0,y:0,
+
+  color:"rgba(0,0,0,0.50)",
+};
 let _gamePause={
   width:16,height:16,
 
   x:0,y:0,
 
-  hover:false,
-
   img:new Image(),
-  imgOn:new Image(),
+};
+let _gameLevel={
+  value:"Poziom: "+Number(scene-1)+"-"+round,
+
+  size:20,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+let _gameHP1={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _gameHP2={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _gameHP3={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _gameScore={
+  value:"Wynik: "+score,
+
+  size:20,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
 };
 
 let _player={
-  width:32,height:54,
+  width:48,height:96,
+
+  x:0,y:0,
+  vx:0,vy:0,
+  initialvy:-16,
+
+  img:new Image(),
+
+  gravity:0.5,
+  side:0,
+  fallentimer:0,
+
+  touched:false,
+  grounded:false,
+  checked:false,
+  checkTimer:false,
+  jumped:false,
+};
+let _playerTop={
+  w:36,h:12,
+
+  x:0,y:0,
+};
+let _playerBottom={
+  w:36,h:12,
+
+  x:0,y:0,
+};
+let _playerLeft={
+  w:12,h:96,
+
+  x:0,y:0,
+};
+let _playerRight={
+  w:12,h:96,
+
+  x:0,y:0,
+};
+
+let _platform={
+  array:[],
+
+  w:128,h:16,
 
   x:0,y:0,
 
   img:new Image(),
+  lenght:-1,
+  currentlenght:0,
+  load:24,
+  currentload:0,
+  level:0,
+  lastlevel:0,
+  highestposition:0,
+  random:0,
+  main:false,
+
+  color:"white",
+};
+
+let _spike={
+  w:32,h:32,
+
+  x:0,y:0,
+
+  color:"red",
 };
 
 _audio.load1.load();
 _audio.load2.load();
 _audio.load3.load();
+
+_background.img.src="Source/background.png";
 
 _change.img1.src="Source/UI/Transition/1.png";
 _change.img2.src="Source/UI/Transition/2.png";
@@ -478,7 +601,16 @@ _clipboardSetting2.imgOn.src="Source/UI/X.png";
 _clipboardSetting3.img.src="Source/UI/O.png";
 _clipboardSetting3.imgOn.src="Source/UI/X.png";
 
-_gamePause.img.src="Source/UI/Button/pause.png";
-_gamePause.imgOn.src="Source/UI/Button/pauseOn.png";
+_gameHP1.img1.src="Source/UI/Heart/heart.png";
+_gameHP1.img2.src="Source/UI/Heart/half.png";
+_gameHP1.img3.src="Source/UI/Heart/empty.png";
+_gameHP2.img1.src="Source/UI/Heart/heart.png";
+_gameHP2.img2.src="Source/UI/Heart/half.png";
+_gameHP2.img3.src="Source/UI/Heart/empty.png";
+_gameHP3.img1.src="Source/UI/Heart/heart.png";
+_gameHP3.img2.src="Source/UI/Heart/half.png";
+_gameHP3.img3.src="Source/UI/Heart/empty.png";
+
+_gamePause.img.src="Source/UI/pause.png";
 
 _player.img.src="Source/Player/test.png";
