@@ -36,7 +36,7 @@ scene1=function(){
   animatemenu();
   animateclipboard();
 
-  _context.drawShortImage(_background.img,_background);
+  _context.drawShortImage(_background.img0,_background);
   _html.style.backgroundColor=_background.color0;
 
   _context.drawShortImage(_menuTitle.img,_menuTitle);

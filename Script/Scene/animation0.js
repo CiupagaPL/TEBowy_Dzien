@@ -27,7 +27,7 @@ animateloading=function(){
 
       _context.drawShortImage(_startTEB.img1,_startTEB);
 
-      _audio.load2.play();
+      _audio.load1.play();
     } if(sceneTimer>10&&sceneTimer<=20){
       _context.fillShortRect(_background.color2,_background);
 
@@ -35,48 +35,40 @@ animateloading=function(){
 
       _context.drawShortImage(_startTEB.img2,_startTEB);
 
-      _audio.load1.play();
+      _audio.load2.play();
     } if(sceneTimer>20&&sceneTimer<=30){
-      _context.fillShortRect(_background.color3,_background);
+      _context.fillShortRect(_background.color1,_background);
 
-      _html.style.backgroundColor=_background.color3;
+      _html.style.backgroundColor=_background.color1;
 
-      _context.drawShortImage(_startTEB.img3,_startTEB);
+      _context.drawShortImage(_startTEB.img1,_startTEB);
+
+      _audio.load1.play();
+    } if(sceneTimer>30&&sceneTimer<=40){
+      _context.fillShortRect(_background.color2,_background);
+
+      _html.style.backgroundColor=_background.color2;
+
+      _context.drawShortImage(_startTEB.img2,_startTEB);
 
       _audio.load2.play();
-    } if(sceneTimer>30&&sceneTimer<=40){
-      _context.fillShortRect(_background.color4,_background);
-
-      _html.style.backgroundColor=_background.color4;
-
-      _context.drawShortImage(_startTEB.img4,_startTEB);
-
-      _audio.load1.play();
     }
     if(sceneTimer>40&&sceneTimer<=50){
-      _context.fillShortRect(_background.color5,_background);
+      _context.fillShortRect(_background.color1,_background);
 
-      _html.style.backgroundColor=_background.color5;
+      _html.style.backgroundColor=_background.color1;
 
-      _context.drawShortImage(_startTEB.img5,_startTEB);
-
-      _audio.load2.play();
-    } if(sceneTimer>50&&sceneTimer<=60){
-      _context.fillShortRect(_background.color6,_background);
-
-      _html.style.backgroundColor=_background.color6;
-
-      _context.drawShortImage(_startTEB.img6,_startTEB);
+      _context.drawShortImage(_startTEB.img1,_startTEB);
 
       _audio.load1.play();
-    } if(sceneTimer>60&&sceneTimer<=70){
-      _context.fillShortRect(_background.color7,_background);
+    } if(sceneTimer>50&&sceneTimer<=60){
+      _context.fillShortRect(_background.color2,_background);
 
-      _html.style.backgroundColor=_background.color7;
+      _html.style.backgroundColor=_background.color2;
 
-      _context.drawShortImage(_startTEB.img7,_startTEB);
+      _context.drawShortImage(_startTEB.img2,_startTEB);
 
       _audio.load2.play();
-    } if(sceneTimer>70){ nextScene=1; _audio.load3.play(); }
+    } if(sceneTimer>60){ nextScene=1; _audio.load3.play(); }
   }
 }

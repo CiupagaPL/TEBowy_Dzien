@@ -220,37 +220,54 @@ window.updateValue=function(){
   _gameScore.debug=_gameScore.size+"px "+_gameScore.font;
 
   _player.width=48*scale;
-  _player.height=96*scale;
+  _player.height=81*scale;
   _player.x=_render.width/2-_player.width/2;
-  _player.y=_render.height/2-_player.height/2;
+  _player.y=_render.height-12*scale-_player.height;
+  _player.initialvy=-12*scale;
   _player.gravity=0.5*scale;
-  _player.initialvy=-16*scale;
-  _playerTop.width=36*scale;
+  _playerTop.width=24*scale;
   _playerTop.height=12*scale;
-  _playerTop.x=_player.x+16*scale+_player.vx;
-  _playerTop.y=_player.y+_player.vy;
-  _playerBottom.width=36*scale;
+  _playerTop.x=0;
+  _playerTop.y=0;
+  _playerBottom.width=24*scale;
   _playerBottom.height=12*scale;
-  _playerBottom.x=_player.x+16*scale+_player.vx;
-  _playerBottom.y=_player.y+84*scale+_player.vy;
+  _playerBottom.x=0;
+  _playerBottom.y=0;
   _playerLeft.width=12*scale;
-  _playerLeft.height=96*scale;
-  _playerLeft.x=_player.x+_player.vx;
-  _playerLeft.y=_player.y+_player.vy;
+  _playerLeft.height=81*scale;
+  _playerLeft.x=0;
+  _playerLeft.y=0;
   _playerRight.width=12*scale;
-  _playerRight.height=96*scale;
-  _playerRight.x=_player.x+84*scale+_player.vx;
-  _playerRight.y=_player.y+_player.vy;
+  _playerRight.height=81*scale;
+  _playerRight.x=0;
+  _playerRight.y=0;
+  _playerCheckTop.width=24*scale;
+  _playerCheckTop.height=24*scale;
+  _playerCheckTop.x=0;
+  _playerCheckTop.y=0;
+  _playerCheckBottom.width=24*scale;
+  _playerCheckBottom.height=24*scale;
+  _playerCheckBottom.x=0;
+  _playerCheckBottom.y=0;
 
-  _platform.width=_currentResolution.width;
-  _platform.height=16*scale;
-  _platform.x=0;
-  _platform.y=_currentResolution.height-16*scale;
+  _platform.width=0;
+  _platform.height=12*scale;
 
-  _spike.width=32*scale;
-  _spike.height=32*scale;
+  _spike.width=16*scale;
+  _spike.height=16*scale;
   _spike.x=0;
-  _spike.y=_currentResolution.height-32*scale;
+  _spike.y=0;
+
+  _boss.width=64*scale;
+  _boss.height=108*scale;
+  _boss.x=_render.height*2;
+  _boss.y=0;
+
+  _tebulinek.width=64*scale;
+  _tebulinek.height=32*scale;
+  _tebulinek.x=-_tebulinek.width;
+  _tebulinek.y=-_tebulinek.height;
+  _tebulinek.gravity=0.25*scale;
 }
 
 // window.defaultValue=function(){

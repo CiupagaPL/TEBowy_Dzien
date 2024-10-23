@@ -51,23 +51,26 @@ let _render={
 
 let _context=_render.base.getContext("2d");
 
-let _currentPlatform;
+let _keyState={
+  a:false,
+  d:false,
+  left:false,
+  right:false
+};
+
+let _currentPlatform,_currentSpike;
 
 let _background={
   width:640,height:360,
 
   x:0,y:0,
 
-  img:new Image(),
+  img0:new Image(),
+  img1:new Image(),
 
   color0:"#002f6d",
-  color1:"#03a188",
-  color2:"#ed7900",
-  color3:"#e40002",
-  color4:"#037aa2",
-  color5:"#50aa2e",
-  color6:"#515a61",
-  color7:"#601373",
+  color1:"#e40002",
+  color2:"#037aa2",
 };
 
 let _change={
@@ -82,7 +85,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 5",
+  value:"Test 6",
 
   size:36,
   on:false,
@@ -113,11 +116,6 @@ let _startTEB={
   img0:new Image(),
   img1:new Image(),
   img2:new Image(),
-  img3:new Image(),
-  img4:new Image(),
-  img5:new Image(),
-  img6:new Image(),
-  img7:new Image(),
 };
 
 let _menuTitle={
@@ -444,9 +442,9 @@ let _gameHP1={
 
   x:0,y:0,
 
+  img0:new Image(),
   img1:new Image(),
   img2:new Image(),
-  img3:new Image(),
 };
 let _gameHP2={
   width:16,
@@ -454,9 +452,9 @@ let _gameHP2={
 
   x:0,y:0,
 
+  img0:new Image(),
   img1:new Image(),
   img2:new Image(),
-  img3:new Image(),
 };
 let _gameHP3={
   width:16,
@@ -464,9 +462,9 @@ let _gameHP3={
 
   x:0,y:0,
 
+  img0:new Image(),
   img1:new Image(),
   img2:new Image(),
-  img3:new Image(),
 };
 let _gameScore={
   value:"Wynik: "+score,
@@ -480,79 +478,133 @@ let _gameScore={
 };
 
 let _player={
-  width:48,height:96,
+  width:48,height:81,
 
   x:0,y:0,
   vx:0,vy:0,
-  initialvy:-16,
+  initialvy:-12,
 
   img:new Image(),
 
   gravity:0.5,
-  side:0,
   fallentimer:0,
+  checkTimer:0,
+  upTimer:0,
 
   touched:false,
+  stay:false,
   grounded:false,
   checked:false,
-  checkTimer:false,
   jumped:false,
 };
 let _playerTop={
-  w:36,h:12,
+  w:24,h:12,
 
   x:0,y:0,
+
+  color:"green",
 };
 let _playerBottom={
-  w:36,h:12,
+  w:24,h:12,
 
   x:0,y:0,
+
+  color:"green",
 };
 let _playerLeft={
-  w:12,h:96,
+  w:12,h:105,
 
   x:0,y:0,
+
+  color:"red",
 };
 let _playerRight={
-  w:12,h:96,
+  w:12,h:105,
 
   x:0,y:0,
+
+  color:"red",
+};
+let _playerCheckTop={
+  w:24,h:24,
+
+  x:0,y:0,
+
+  color:"blue",
+};
+let _playerCheckBottom={
+  w:24,h:24,
+
+  x:0,y:0,
+
+  color:"white",
 };
 
 let _platform={
   array:[],
 
-  w:128,h:16,
+  w:128,h:8,
 
   x:0,y:0,
 
-  img:new Image(),
   lenght:-1,
   currentlenght:0,
-  load:24,
+  load:35,
   currentload:0,
   level:0,
   lastlevel:0,
   highestposition:0,
   random:0,
+  lastx:0,
+
   main:false,
 
   color:"white",
 };
 
 let _spike={
-  w:32,h:32,
+  array:[],
+
+  w:16,h:16,
+
+  x:0,y:0,
+  lenght:-1,
+  currentlenght:0,
+  random1:0,
+  random2:0,
+
+  color:"red",
+};
+
+let _boss={
+  w:64,h:108,
 
   x:0,y:0,
 
-  color:"red",
+  timer:0,
+
+  load:false,
+
+  img0:new Image(),
+};
+
+let _tebulinek={
+  w:64,h:32,
+
+  x:0,y:0,
+  vy:0,
+
+  gravity:0.25,
+
+  img:new Image(),
 };
 
 _audio.load1.load();
 _audio.load2.load();
 _audio.load3.load();
 
-_background.img.src="Source/background.png";
+_background.img0.src="Source/background.png";
+_background.img1.src="Source/gameground.png";
 
 _change.img1.src="Source/UI/Transition/1.png";
 _change.img2.src="Source/UI/Transition/2.png";
@@ -562,11 +614,6 @@ _change.img4.src="Source/UI/Transition/4.png";
 _startTEB.img0.src="Source/TEB/teb0.png";
 _startTEB.img1.src="Source/TEB/teb1.png";
 _startTEB.img2.src="Source/TEB/teb2.png";
-_startTEB.img3.src="Source/TEB/teb3.png";
-_startTEB.img4.src="Source/TEB/teb4.png";
-_startTEB.img5.src="Source/TEB/teb5.png";
-_startTEB.img6.src="Source/TEB/teb6.png";
-_startTEB.img7.src="Source/TEB/teb7.png";
 
 _menuTitle.img.src="Source/title.png";
 
@@ -601,16 +648,20 @@ _clipboardSetting2.imgOn.src="Source/UI/X.png";
 _clipboardSetting3.img.src="Source/UI/O.png";
 _clipboardSetting3.imgOn.src="Source/UI/X.png";
 
-_gameHP1.img1.src="Source/UI/Heart/heart.png";
-_gameHP1.img2.src="Source/UI/Heart/half.png";
-_gameHP1.img3.src="Source/UI/Heart/empty.png";
-_gameHP2.img1.src="Source/UI/Heart/heart.png";
-_gameHP2.img2.src="Source/UI/Heart/half.png";
-_gameHP2.img3.src="Source/UI/Heart/empty.png";
-_gameHP3.img1.src="Source/UI/Heart/heart.png";
-_gameHP3.img2.src="Source/UI/Heart/half.png";
-_gameHP3.img3.src="Source/UI/Heart/empty.png";
+_gameHP1.img0.src="Source/UI/Heart/heart.png";
+_gameHP1.img1.src="Source/UI/Heart/half.png";
+_gameHP1.img2.src="Source/UI/Heart/empty.png";
+_gameHP2.img0.src="Source/UI/Heart/heart.png";
+_gameHP2.img1.src="Source/UI/Heart/half.png";
+_gameHP2.img2.src="Source/UI/Heart/empty.png";
+_gameHP3.img0.src="Source/UI/Heart/heart.png";
+_gameHP3.img1.src="Source/UI/Heart/half.png";
+_gameHP3.img2.src="Source/UI/Heart/empty.png";
 
 _gamePause.img.src="Source/UI/pause.png";
 
 _player.img.src="Source/Player/test.png";
+
+_boss.img0.src="Source/People/TS.png";
+
+_tebulinek.img.src="Source/Attack/tebulinek.png";

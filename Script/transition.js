@@ -39,6 +39,7 @@ transitionOff=function(){
     changeTimer=0;
     changeScene=false;
     dead=false;
+    canClick=true;
   }
 }
 
@@ -90,7 +91,7 @@ transitionShortOn=function(){
     score=0;
     round=0;
     _player.x=_render.width/2-_player.width/2;
-    _player.y=_render.height/2-_player.height/2;
+    _player.y=_render.height-12*scale-_player.height;
     hp=6;
 
     if(nextScene!=scene){
@@ -113,7 +114,7 @@ transitionDead=function(){
     score=0;
     round=0;
     _player.x=_render.width/2-_player.width/2;
-    _player.y=_render.height/2-_player.height/2;
+    _player.y=_render.height-12*scale-_player.height;
     hp=6;
 
     canClick=true;

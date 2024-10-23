@@ -23,10 +23,14 @@ level=function(){
 
   _clipboardAbout1.x=_clipboard.x+18*scale;
 
-  _context.drawShortImage(_background.img,_background);
+  _context.drawShortImage(_background.img1,_background);
   _html.style.backgroundColor=_background.color0;
 
   handlePlayer();
+
+  if(score==24){
+    handleBoss();
+  }
 
   _context.fillShortRect(_gameUI.color,_gameUI);
   _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;
@@ -35,15 +39,15 @@ level=function(){
   _gameScore.value="Wynik: "+score;
   _gameScore.debug=_gameScore.size+"px "+_gameScore.font;
   _context.fillSingleText(_gameScore);
-  if(hp>=2){ _context.drawShortImage(_gameHP1.img1,_gameHP1); }
-  if(hp==1){ _context.drawShortImage(_gameHP1.img2,_gameHP1); }
-  if(hp==0){ _context.drawShortImage(_gameHP1.img3,_gameHP1); }
-  if(hp>=4){ _context.drawShortImage(_gameHP2.img1,_gameHP2); }
-  if(hp==3){ _context.drawShortImage(_gameHP2.img2,_gameHP2); }
-  if(hp<=2){ _context.drawShortImage(_gameHP2.img3,_gameHP2); }
-  if(hp==6){ _context.drawShortImage(_gameHP3.img1,_gameHP3); }
-  if(hp==5){ _context.drawShortImage(_gameHP3.img2,_gameHP3); }
-  if(hp<=4){ _context.drawShortImage(_gameHP3.img3,_gameHP3); }
+  if(hp>=2){ _context.drawShortImage(_gameHP1.img0,_gameHP1); }
+  if(hp==1){ _context.drawShortImage(_gameHP1.img1,_gameHP1); }
+  if(hp==0){ _context.drawShortImage(_gameHP1.img2,_gameHP1); }
+  if(hp>=4){ _context.drawShortImage(_gameHP2.img0,_gameHP2); }
+  if(hp==3){ _context.drawShortImage(_gameHP2.img1,_gameHP2); }
+  if(hp<=2){ _context.drawShortImage(_gameHP2.img2,_gameHP2); }
+  if(hp==6){ _context.drawShortImage(_gameHP3.img0,_gameHP3); }
+  if(hp==5){ _context.drawShortImage(_gameHP3.img1,_gameHP3); }
+  if(hp<=4){ _context.drawShortImage(_gameHP3.img2,_gameHP3); }
   _context.drawShortImage(_gamePause.img,_gamePause);
 
   if(hp==0){ dead=true; }

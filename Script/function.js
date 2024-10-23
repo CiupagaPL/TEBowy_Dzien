@@ -32,9 +32,7 @@ _context.fillSingleText=function(_text){
   _context.fillText(_text.value,_text.x,_text.y);
 }
 
-_context.drawShortImage=function(_img,_object){
-  _context.drawImage(_img,_object.x,_object.y,_object.width,_object.height);
-}
+_context.drawShortImage=function(_img,_object){ _context.drawImage(_img,_object.x,_object.y,_object.width,_object.height); }
 
 _context.fillShortRect=function(_color,_object){
   _context.fillStyle=_color;

@@ -8,12 +8,24 @@
     || |-_\__   /
    ((_/`(____,-' */
 
+document.addEventListener("keydown",function(_event){
+  if(!pauseOn&&hp!=0){
+    if(_event.key=="a"||_event.key=="ArrowLeft"){
+      _keyState.a=true;
+      _keyState.left=_event.key==="ArrowLeft";
+      _player.vx=-4*scale; 
+    } if(_event.key=="d"||_event.key=="ArrowRight"){
+      _keyState.d=true;
+      _keyState.right=_event.key==="ArrowRight";
+      _player.vx=4*scale; 
+    }
+  }
+});
+
 document.addEventListener("keyup",function(_event){
   switch(scene){
     case 0:
       if(_event.key=="Enter"&&!canStart){ canStart=true; sceneTimer=0; }
-      break;
-    case 1:
       break;
     case 2:
       if(_event.key=="Escape"&&canClick&&pauseOn){
@@ -33,9 +45,23 @@ document.addEventListener("keyup",function(_event){
         }
       }
       if(_event.key=="Escape"&&canClick&&!pauseOn){ pauseOn=true; pauseChange=true; }
-      if(_event.key=="a"&&!pauseOn&&hp!=0||_event.key=="ArrowLeft"&&!pauseOn&&hp!=0){ _player.side=2; }
-      if(_event.key=="d"&&!pauseOn&&hp!=0||_event.key=="ArrowRight"&&!pauseOn&&hp!=0){ _player.side=1; }
-      if(_event.key=="s"&&!pauseOn&&hp!=0||_event.key=="ArrowDown"&&!pauseOn&&hp!=0){ _player.side=0; }
+      if(!pauseOn&&hp!=0){
+        if(_event.key=="a"||_event.key=="ArrowLeft"){
+          _keyState.a=_keyState.left=false;
+          if(!_keyState.d&&!_keyState.right){
+            _player.vx=0;
+          } else if(_keyState.d||_keyState.right){
+            _player.vx =4*scale;
+          }
+        } if(_event.key=="d"||_event.key=="ArrowRight"){
+          _keyState.d=_keyState.right=false;
+          if(!_keyState.a&&!_keyState.left){
+            _player.vx=0;
+          } else if(_keyState.a||_keyState.left){
+            _player.vx=-4*scale;
+          }
+        }
+      }
       if(_event.key==" "&&!pauseOn&&hp!=0&&_player.grounded||_event.key=="ArrowUp"&&!pauseOn&&hp!=0&&_player.grounded){ _player.jumped=true; _player.vy=_player.initialvy; }
       break;
   }
