@@ -13,6 +13,7 @@ generatelevel=function(){
     mainplatformgenerator();
     platformgenerator();
     spikegenerator();
+    cornergenerator();
 
     _platform.currentload+=1;
   }
@@ -20,7 +21,11 @@ generatelevel=function(){
 
 resetlevel=function(){
   _platform.array=[];
-  _platform.lenght=-1;
+  _platform.lenght=0;
+  _corner.array=[];
+  _corner.lenght=-1;
+  _spike.array=[];
+  _spike.lenght=-1;
   _platform.currentload=0;
 }
 
@@ -28,49 +33,63 @@ mainplatformgenerator=function(){
   _currentPlatform={
     x:0,y:_currentResolution.height-12*scale,
 
-    width:_currentResolution.width,
-    height:_platform.height,
+    width:_currentResolution.width,height:_platform.height,
 
-    main:true,
-
-    color:_platform.color,
+    level:0,
   };
 
-  _platform.array.push(_currentPlatform);
+  _platform.array[0]=_currentPlatform;
   _platform.loop+=1;
   _platform.currentcount+=1;
   _platform.lenght+=1;
 }
 
 spikegenerator=function(){
-  _spike.random1=Math.floor(Math.random()*336*scale-_platform.random)+_currentPlatform.x+16*scale;
-  _spike.random2=Math.floor(Math.random()*_platform.random)+16*scale;
+  _spike.random=Math.floor(Math.random()*_platform.random*3/5)-_spike.width;
 
   _currentSpike={
-    x:_spike.random1,
-    y:_currentPlatform.y-_spike.height,
+    x:_spike.random,y:_currentPlatform.y-_spike.height,
 
-    w:_spike.w,h:_spike.h,
-
-    color:_spike.color,
+    width:_spike.width,height:_spike.height,
   };
 
   _spike.array.push(_currentSpike);
   _spike.lenght+=1;
 
+  _spike.random=Math.floor(Math.random()*(_currentResolution.width-_platform.random+128*scale)*3/5)+_platform.random+128*scale-_spike.width;
+  
   _currentSpike={
-    x:_spike.random2,
-    y:_currentPlatform.y-_spike.height,
+    x:_spike.random,y:_currentPlatform.y-_spike.height,
 
-    w:_spike.w,h:_spike.h,
-
-    color:_spike.color,
+    width:_spike.width,height:_spike.height,
   };
-
-  console.log(_currentSpike.y);
 
   _spike.array.push(_currentSpike);
   _spike.lenght+=1;
+}
+
+cornergenerator=function(){
+  _currentCorner={
+    x:_platform.random-_corner.width,y:_currentPlatform.y,
+
+    width:_corner.width,height:_corner.height,
+
+    left:false,
+  };
+
+  _corner.array.push(_currentCorner);
+  _corner.lenght+=1;
+
+  _currentCorner={
+    x:_platform.random+128*scale,y:_currentPlatform.y,
+
+    width:_corner.width,height:_corner.height,
+
+    left:true,
+  };
+
+  _corner.array.push(_currentCorner);
+  _corner.lenght+=1;
 }
 
 platformgenerator=function(){
@@ -86,12 +105,7 @@ platformgenerator=function(){
     width:_platform.random,height:_platform.height,
 
     level:_platform.currentload,
-    main:false,
-
-    color:_platform.color,
   };
-
-  if(_currentPlatform.y<=_platform.highestposition){ _platform.highestposition=_currentPlatform.y; }
 
   _platform.array.push(_currentPlatform);
 
@@ -101,9 +115,6 @@ platformgenerator=function(){
     width:_currentResolution.width-_platform.random+128*scale,height:_platform.height,
 
     level:_platform.currentload,
-    main:false,
-
-    color:_platform.color,
   };
 
   _platform.array.push(_currentPlatform);

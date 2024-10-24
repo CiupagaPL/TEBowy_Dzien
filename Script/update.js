@@ -67,11 +67,18 @@ window.loop=function(){
       scene1();
       break;
     case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
       level();
       break;
   }
 
-  _context.fillStyle=_versionText.color;
-  _context.font=_versionText.debug;
-  _context.fillText(_versionText.value,_versionText.x,_versionText.y);
+  console.log(scene,nextScene,autoScene,nextAutoScene);
+
+  _context.fillSingleText(_versionText);
 }

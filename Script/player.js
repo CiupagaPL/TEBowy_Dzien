@@ -9,7 +9,7 @@
    ((_/`(____,-' */
 
 handlePlayer=function(){
-  _context.drawShortImage(_player.img,_player);
+  drawplayer();
 
   // _context.fillShortRect(_playerTop.color,_playerTop);
   // _context.fillShortRect(_playerBottom.color,_playerBottom);
@@ -46,13 +46,14 @@ handlePlayer=function(){
 
   window.generatelevel();
   _platform.currentlenght=0;
+  _corner.currentlenght=0;
   _spike.currentlenght=0;
 
   while(_platform.lenght>=_platform.currentlenght){
     _currentPlatform=_platform.array[_platform.currentlenght];
-    _context.fillShortRect(_currentPlatform.color,_currentPlatform);
+    _context.drawShortImage(_platform.img,_currentPlatform);
 
-    if(_player.y<=_currentPlatform.y&&_currentPlatform.level+1>score){ score+=1; }
+    _currentPlatform.y+=globalMove;
 
     if(window.detectcollision(_currentPlatform,_playerCheckTop)&&!_player.touched){
       _player.upTimer++;
@@ -64,6 +65,8 @@ handlePlayer=function(){
       }
       _player.touched=true;
     } if(window.detectcollision(_currentPlatform,_playerBottom)&&!_player.touched){
+      if(_player.y<=_currentPlatform.y&&_currentPlatform.level+1>score){ score+=1; }
+
       _player.vy=globalMove;
       _player.touched=true;
     } if(window.detectcollision(_currentPlatform,_playerLeft)&&!_player.touched){
@@ -76,27 +79,32 @@ handlePlayer=function(){
 
     if(_player.checkTimer>=4&&window.detectcollision(_currentPlatform,_playerCheckBottom)){ _player.stay=true; }
 
-    _currentPlatform.y+=globalMove;
-
     _platform.currentlenght+=1;
     _player.touched=false;
   }
 
-  // while(_spike.lenght>=_spike.currentlenght){
-  //   _currentSpike=_spike.array[_spike.currentlenght];
-  //   _context.fillShortRect(_currentSpike.color,_currentSpike);
+  while(_corner.lenght>=_corner.currentlenght){
+    _currentCorner=_corner.array[_corner.currentlenght];
+    if(_currentCorner.left){ _context.drawShortImage(_corner.img0,_currentCorner); }
+    else if(!_currentCorner.left){ _context.drawShortImage(_corner.img1,_currentCorner); }
 
-  //   if(window.detectcollision(_currentSpike,_player)){
-  //     hp=0;
-  //     _player.vx=0;
-  //   }
+    _currentCorner.y+=globalMove;
 
-  //   _currentSpike.y+=globalMove;
+    _corner.currentlenght+=1;
+  }
 
-  //   _spike.currentlenght+=1;
-  // }
+  while(_spike.lenght>=_spike.currentlenght){
+    _currentSpike=_spike.array[_spike.currentlenght];
+    _context.drawShortImage(_spike.img,_currentSpike);
 
-  if(window.detectcollision(_tebulinek,_player)){ hp=0; _player.vx=0; }
+    if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0){ hp-=1; _player.invisible=1; }
+
+    _currentSpike.y+=globalMove;
+
+    _spike.currentlenght+=1;
+  }
+
+  if(window.detectcollision(_tebulinek,_player)&&_player.invisible==0){ hp-=1; _player.invisible=1; }
 
   if(_player.x<=0){ _player.x+=4*scale; }
   if(_player.x>=_currentResolution.width-_player.width){ _player.x-=4*scale; }

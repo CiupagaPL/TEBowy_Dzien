@@ -2,23 +2,20 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Usunąłem niepotrzebne loga TEBu,
-- Znacznie poprawiłem kolizcje gracza,
-- Dodałem możliwość przybliżenia gracza do górnych platform (w celu wyminięcia przyszłych obiektów),
-- Wszystkie wielkości zostały dostosowane,
-- Od teraz gracz przemieszcza się tylko przy przytrzymaniu klawiszy,
-- Oraz oczywiście dodałem taką możliwość przytrzymania klawisza,
-- Generator platform od teraz jest w pełni funkcjonalny,
-- Od teraz kamera porusza się w górę i dół,
-- Dodałem bardzo prosty bossfight (na ten moment Pan atakuje gracza tebulinkiem, a gracza zadaniem jest go wymijać),
-- Przygotowałem kilka sprite'ów na przyszłość,
-- Napisałem prawie działający generator kolców (upubliczniony zostanie jutro),
-- Oraz dużo niewykorzystanego jeszcze kodu.
-> Uwaga! Gra w tym momencie zawiera dużo błędów i jutro postaram się je prawić. Z tego powodu najpewniej wyjdą jutro dwie budowy.
+- Naprawiłem **masę błędów** (*nie będę ich wymieniać bo do jutra się nie wyrobię*),
+- Dodałem możliwość automatycznego załadowania gry Enterem (*w menu*),
+- Oraz podobną możliwość ukrycia bocznej sekcji za pomocą Escape,
+- Od teraz przyciski które zamykają panele będą automatycznie również wykonywać swoje działanie,
+- Można zagrać w każdy poziom (*o ile wszystkie są identyczne*),
+- Platformy mają od teraz swoją teksturę (*oczywiście kolce i rogi również*),
+- Kontynuowałem dalszą pracę nad kolcami oraz napisałem pełen generator rogów,
+- Poprawiłem generator platform (w trakcie generowania powstawało ok. 50 platform dolnych),
+- Oraz naprawiłem dużo błędów logicznych w kodzie.
+> Oczywiście dalej będą występować pojedyncze błędy
 
 ## Status
-> Newest Version: **Test 6**;
-> Last Updated: **23-10-2024**;
+> Newest Version: **Test 7**;
+> Last Updated: **24-10-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -28,9 +25,9 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
-Jestem w dużym stopniu z siebie zadowolony patrząc na to że 3/4 mechanik gry napisałem w 2 dni :- ).
-Na ten moment bossfight jest niedokończony i lekko zbugowany jeżeli chodzi o kamerę (wystarczy podskakiwać w górę by ten się podwyższył).
-Miał być na dziś już gotowy generator kolców lecz nie generował się za dobrze + jest już późno.
-Wracając do walki oczywiście jest ona tylko tymczasowa (z resztą moim pomysłem jest to aby tebelinek zamiast eleminować gracza pomagał mu w pokonaniu przeciwnika).
-Tak samo z samym nauczycielem, nie będzie on tylko lewitował w powietrzu i teleportował się co sekundę.
-Mam na dzieję że mój dzisiejszy progress był wystarczający i na prezentację nada się idealnie.
+Miały być dzisiaj dwie budowy ale jako iż długo mnie nie było w domu postanowiłem połączyć je w jedną dużą.
+Generator kolców nadal jest zbugowany ale nie powinien on mi zająć dużo czasu do naprawy.
+Podobnie generator platform (*wszystko z nimi dobrze oprócz dostosowania prawej strony*).
+Mam pomysł na stworzenie dodatkowych 1-2 obiektów ale to w najbliższych dniach.
+Również na dniach powinny się pojawić dźwięki.
+Jak na razie wszystko jest pod kontrolą chociaż zaczynam się powoli wypalać :- P

@@ -94,7 +94,6 @@ scene1=function(){
     _context.fillMultiText(_clipboardAbout1);
   }
 
-  if(changeScene){
-    transitionOn();
-  }
+  if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
+  if(changeScene){ transitionOn(); }
 }

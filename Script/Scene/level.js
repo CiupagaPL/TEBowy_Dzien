@@ -28,9 +28,7 @@ level=function(){
 
   handlePlayer();
 
-  if(score==24){
-    handleBoss();
-  }
+  if(score==24){ handleBoss(); }
 
   _context.fillShortRect(_gameUI.color,_gameUI);
   _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;
@@ -59,9 +57,9 @@ level=function(){
     }
   }
 
-  if(nextScene!=scene){
-    transitionShortOn();
-  }
+  if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
+  if(autoUnpause&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ pauseChange=true; canClick=false; }
+  if(nextScene!=scene){ transitionShortOn(); }
 
   if(pauseChange){
     if(!pauseAnimation){

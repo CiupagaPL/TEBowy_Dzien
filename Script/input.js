@@ -9,7 +9,7 @@
    ((_/`(____,-' */
 
 document.addEventListener("keydown",function(_event){
-  if(!pauseOn&&hp!=0){
+  if(!pauseOn&&hp!=0&&scene>=2){
     if(_event.key=="a"||_event.key=="ArrowLeft"){
       _keyState.a=true;
       _keyState.left=_event.key==="ArrowLeft";
@@ -27,9 +27,49 @@ document.addEventListener("keyup",function(_event){
     case 0:
       if(_event.key=="Enter"&&!canStart){ canStart=true; sceneTimer=0; }
       break;
+    case 1:
+      if(_event.key=="Enter"&&canClick){
+        if(_clipboard.on){
+        autoScene=true;
+        nextAutoScene=2;
+          if(_menuLevel.on){
+            _menuLevel.animation=true;
+            _clipboard.close=true;
+            canClick=false;
+          } if(_menuSetting.on){
+            _menuSetting.animation=true;
+            _clipboard.close=true;
+            canClick=false;
+          } if(_menuAbout.on){
+            _menuAbout.animation=true;
+            _clipboard.close=true;
+            canClick=false;
+          }
+        } else if(!_clipboard.on){
+          canClick=false;
+          nextScene=2;
+          changeScene=true;
+        }
+      }
+      if(_event.key=="Escape"&&canClick&&_clipboard.on){
+        _clipboard.close=true;
+        if(_menuLevel.on){ _menuLevel.animation=true; }
+        if(_menuSetting.on){ _menuSetting.animation=true; }
+        if(_menuAbout.on){ _menuAbout.animation=true; }
+        canClick=false;
+      }
+      break;
     case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
       if(_event.key=="Escape"&&canClick&&pauseOn){
         if(_clipboard.on){
+          autoUnpause=true;
           if(_menuSetting.on){
             _menuSetting.animation=true;
             _clipboard.close=true;
@@ -103,6 +143,8 @@ window.addEventListener("click",function(_event){
 
   if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene==1){
     if(_clipboard.on){
+      autoScene=true;
+      nextAutoScene=2;
       if(_menuLevel.on){
         _menuLevel.animation=true;
         _clipboard.close=true;
@@ -156,21 +198,149 @@ window.addEventListener("click",function(_event){
   }
 
   if(window.detectcollision(_clipboardLevel1,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=2;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel2,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=3;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel3,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=4;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel4,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=5;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel5,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=6;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel6,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=7;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel7,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=8;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   } if(window.detectcollision(_clipboardLevel8,_mouse)&&_menuLevel.on){
-  
+    autoScene=true;
+    nextAutoScene=9;
+    if(_clipboard.on){
+      if(_menuLevel.on){
+        _menuLevel.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuSetting.on){
+        _menuSetting.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      } if(_menuAbout.on){
+        _menuAbout.animation=true;
+        _clipboard.close=true;
+        canClick=false;
+      }
+    }
   }
 
   if(window.detectcollision(_clipboardSetting1,_mouse)&&_menuSetting.on){
@@ -189,6 +359,7 @@ window.addEventListener("click",function(_event){
     pauseChange=true;
   } if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene!=1&&scene!=0&&pauseOn){
     if(_clipboard.on){
+      autoUnpause=true;
       if(_menuSetting.on){
         _menuSetting.animation=true;
         _clipboard.close=true;
@@ -204,6 +375,8 @@ window.addEventListener("click",function(_event){
     }
   } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pauseOn){
     if(_clipboard.on){
+      autoScene=true;
+      nextAutoScene=0;
       if(_menuSetting.on){
         _menuSetting.animation=true;
         _clipboard.close=true;

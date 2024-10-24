@@ -252,6 +252,13 @@ window.updateValue=function(){
 
   _platform.width=0;
   _platform.height=12*scale;
+  _platform.x=0;
+  _platform.y=0;
+
+  _corner.width=12*scale;
+  _corner.height=12*scale;
+  _corner.x=0;
+  _corner.y=0;
 
   _spike.width=16*scale;
   _spike.height=16*scale;

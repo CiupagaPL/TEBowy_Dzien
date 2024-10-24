@@ -12,6 +12,7 @@ let resolutionError=false,ratio=16/9,scale=1.00;
 let fpsLimit=60,lastFrame=0;
 let canStart=false,canClick=true,changeScene=false;
 let scene=0,sceneTimer=0,changeTimer=0,nextScene=0;
+let autoScene=false,nextAutoScene=0,autoUnpause=false;
 let sfxOn=true,musicOn=false,fullscreenOn=false;
 let pauseOn=false,pauseChange=false,pauseAnimation=false;
 let hp=6,globalMove=0,round=0,score=0,dead=false;
@@ -55,10 +56,10 @@ let _keyState={
   a:false,
   d:false,
   left:false,
-  right:false
+  right:false,
 };
 
-let _currentPlatform,_currentSpike;
+let _currentPlatform,_currentSpike,_currentCorner;
 
 let _background={
   width:640,height:360,
@@ -85,7 +86,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 6",
+  value:"Test 7",
 
   size:36,
   on:false,
@@ -490,6 +491,7 @@ let _player={
   fallentimer:0,
   checkTimer:0,
   upTimer:0,
+  invisible:0,
 
   touched:false,
   stay:false,
@@ -543,23 +545,36 @@ let _playerCheckBottom={
 let _platform={
   array:[],
 
-  w:128,h:8,
+  w:128,h:12,
+
+  x:0,y:0,
+
+  lenght:0,
+  currentlenght:0,
+  load:23,
+  currentload:0,
+  level:0,
+  lastlevel:0,
+  random:0,
+  lastx:0,
+
+  img:new Image(),
+};
+
+let _corner={
+  array:[],
+
+  w:12,h:12,
 
   x:0,y:0,
 
   lenght:-1,
   currentlenght:0,
-  load:35,
-  currentload:0,
-  level:0,
-  lastlevel:0,
-  highestposition:0,
-  random:0,
-  lastx:0,
 
-  main:false,
+  left:false,
 
-  color:"white",
+  img0:new Image(),
+  img1:new Image(),
 };
 
 let _spike={
@@ -568,12 +583,12 @@ let _spike={
   w:16,h:16,
 
   x:0,y:0,
+
   lenght:-1,
   currentlenght:0,
-  random1:0,
-  random2:0,
+  random:0,
 
-  color:"red",
+  img:new Image(),
 };
 
 let _boss={
@@ -661,6 +676,13 @@ _gameHP3.img2.src="Source/UI/Heart/empty.png";
 _gamePause.img.src="Source/UI/pause.png";
 
 _player.img.src="Source/Player/test.png";
+
+_platform.img.src="Source/platform.png";
+
+_corner.img0.src="Source/Corner/left.png";
+_corner.img1.src="Source/Corner/right.png";
+
+_spike.img.src="Source/spike.png";
 
 _boss.img0.src="Source/People/TS.png";
 
