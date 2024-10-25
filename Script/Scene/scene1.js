@@ -33,7 +33,13 @@ scene1=function(){
 
   _clipboardAbout1.x=_clipboard.x+18*scale;
 
+  _blueprintGeneral1.x=_blueprint.x+16*scale;
+  _blueprintGeneral2.value=Number(skin+1)+"/4";
+  _blueprintGeneral2.debug=_blueprintGeneral2.size+"px "+_blueprintGeneral2.font;
+  _blueprintGeneral2.x=_blueprint.x+54*scale;
+
   animatemenu();
+  animateblueprint();
   animateclipboard();
 
   _context.drawShortImage(_background.img0,_background);
@@ -53,10 +59,27 @@ scene1=function(){
   if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
   else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
   _context.fillSingleText(_menuAboutText);
+  if(!_menuCustom.hover){ _context.drawShortImage(_menuCustom.img,_menuCustom); }
+  else if(_menuCustom.hover){ _context.drawShortImage(_menuCustom.imgOn,_menuCustom); } 
+  _context.fillSingleText(_menuCustomText);
 
   _context.drawShortImage(_clipboard.img,_clipboard);
   if(!_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.img,_clipboardBack); }
   else if(_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.imgOn,_clipboardBack); }
+
+  if(skin==0){ _context.drawShortImage(_blueprint.img0,_blueprint); }
+  if(skin==1){ _context.drawShortImage(_blueprint.img1,_blueprint); }
+  if(skin==2){ _context.drawShortImage(_blueprint.img2,_blueprint); }
+  if(skin==3){ _context.drawShortImage(_blueprint.img3,_blueprint); }
+  if(!_blueprintBack.hover){ _context.drawShortImage(_blueprintBack.img,_blueprintBack); }
+  else if(_blueprintBack.hover){ _context.drawShortImage(_blueprintBack.imgOn,_blueprintBack); }
+  if(!_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.img,_blueprintLeft); }
+  else if(_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.imgOn,_blueprintLeft); }
+  if(!_blueprintRight.hover){ _context.drawShortImage(_blueprintRight.img,_blueprintRight); }
+  else if(_blueprintRight.hover){ _context.drawShortImage(_blueprintRight.imgOn,_blueprintRight); }
+
+  _context.fillSingleText(_blueprintGeneral1);
+  _context.fillSingleText(_blueprintGeneral2);
 
   if(_menuLevel.animation||_menuLevel.on){
     _context.fillSingleText(_clipboardLevelText);

@@ -35,7 +35,7 @@ mainplatformgenerator=function(){
 
     width:_currentResolution.width,height:_platform.height,
 
-    level:0,
+    level:-1,
   };
 
   _platform.array[0]=_currentPlatform;

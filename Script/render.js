@@ -103,12 +103,19 @@ window.updateValue=function(){
   _menuAboutText.y=_menuAbout.y+24*scale;
   _menuAboutText.size=Math.ceil(24*scale);
   _menuAboutText.debug=_menuAboutText.size+"px "+_menuAboutText.font;
+  _menuCustom.width=32*scale;
+  _menuCustom.height=32*scale;
+  _menuCustom.x=592*scale;
+  _menuCustom.y=312*scale;
+  _menuCustomText.x=_menuCustom.x-60*scale;
+  _menuCustomText.y=_menuCustom.y+24*scale;
+  _menuCustomText.size=Math.ceil(24*scale);
+  _menuCustomText.debug=_menuCustomText.size+"px "+_menuCustomText.font;
 
   _clipboard.width=128*scale;
   _clipboard.height=184*scale;
   _clipboard.x=-280*scale;
   _clipboard.y=_render.height/2-_clipboard.height/2;
-
   _clipboardBack.width=24*scale;
   _clipboardBack.height=24*scale;
   _clipboardBack.x=_clipboard.x+4*scale;
@@ -189,6 +196,33 @@ window.updateValue=function(){
   _clipboardAbout1.y=_clipboard.y+68*scale;
   _clipboardAbout1.size=Math.ceil(12*scale);
   _clipboardAbout1.debug=_clipboardAbout1.size+"px "+_clipboardAbout1.font;
+
+  _blueprint.width=128*scale;
+  _blueprint.height=184*scale;
+  _blueprint.x=+780*scale;
+  _blueprint.y=_render.height/2-_clipboard.height/2;
+  _blueprintBack.width=24*scale;
+  _blueprintBack.height=24*scale;
+  _blueprintBack.x=_blueprint.x+92*scale;
+  _blueprintBack.y=_blueprint.y+2*scale;
+  _blueprintLeft.width=24*scale;
+  _blueprintLeft.height=24*scale;
+  _blueprintLeft.x=_blueprint.x+10*scale;
+  _blueprintLeft.y=_blueprint.y+158*scale;
+  _blueprintRight.width=24*scale;
+  _blueprintRight.height=24*scale;
+  _blueprintRight.x=_blueprint.x+92*scale;
+  _blueprintRight.y=_blueprint.y+158*scale;
+
+  _blueprintGeneral1.x=_blueprint.x+16*scale;
+  _blueprintGeneral1.y=_blueprint.y+20*scale;
+  _blueprintGeneral1.size=Math.ceil(20*scale);
+  _blueprintGeneral1.debug=_blueprintGeneral1.size+"px "+_blueprintGeneral1.font;
+  _blueprintGeneral2.x=_blueprint.x+54*scale;
+  _blueprintGeneral2.y=_blueprint.y+176*scale;
+  _blueprintGeneral2.size=Math.ceil(20*scale);
+  _blueprintGeneral2.value=Number(skin+1)+"/4";
+  _blueprintGeneral2.debug=_blueprintGeneral2.size+"px "+_blueprintGeneral2.font;
 
   _gameUI.width=_currentResolution.width;
   _gameUI.height=24*scale;

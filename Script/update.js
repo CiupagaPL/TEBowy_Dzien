@@ -78,7 +78,5 @@ window.loop=function(){
       break;
   }
 
-  console.log(scene,nextScene,autoScene,nextAutoScene);
-
   _context.fillSingleText(_versionText);
 }

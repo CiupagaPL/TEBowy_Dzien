@@ -15,7 +15,7 @@ let scene=0,sceneTimer=0,changeTimer=0,nextScene=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false;
 let sfxOn=true,musicOn=false,fullscreenOn=false;
 let pauseOn=false,pauseChange=false,pauseAnimation=false;
-let hp=6,globalMove=0,round=0,score=0,dead=false;
+let skin=0,hp=6,globalMove=0,round=0,score=0,dead=false;
 
 let _html=document.getElementById("html");
 
@@ -86,7 +86,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 7",
+  value:"Test 8",
 
   size:36,
   on:false,
@@ -228,6 +228,29 @@ let _menuAbout={
 };
 let _menuAboutText={
   value:"O grze",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+let _menuCustom={
+  width:32,height:32,
+
+  x:0,y:0,
+
+  hover:false,
+  on:false,
+  animation:false,
+  lateanimation:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _menuCustomText={
+  value:"Postać",
 
   size:24,
   font:"orangeKid",
@@ -402,12 +425,77 @@ let _clipboardSetting6={
 };
 
 let _clipboardAbout1={
-  value:"Some random game\ndescription here!",
+  value:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\nona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!",
 
   size:12,
   font:"orangeKid",
   debug:"",
   color:"black",
+
+  x:0,y:0,
+};
+
+let _blueprint={
+  width:128,height:184,
+
+  x:0,y:0,
+
+  on:false,
+  close:false,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _blueprintBack={
+  width:24,height:24,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _blueprintLeft={
+  width:24,height:24,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _blueprintRight={
+  width:24,height:24,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+
+let _blueprintGeneral1={
+  value:"Postać",
+
+  size:20,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+let _blueprintGeneral2={
+  value:Number(skin+1)+"/4",
+
+  size:20,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
 
   x:0,y:0,
 };
@@ -485,7 +573,10 @@ let _player={
   vx:0,vy:0,
   initialvy:-12,
 
-  img:new Image(),
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
 
   gravity:0.5,
   fallentimer:0,
@@ -642,6 +733,8 @@ _menuSetting.img.src="Source/UI/Button/setting.png";
 _menuSetting.imgOn.src="Source/UI/Button/settingOn.png";
 _menuAbout.img.src="Source/UI/Button/about.png";
 _menuAbout.imgOn.src="Source/UI/Button/aboutOn.png";
+_menuCustom.img.src="Source/UI/Button/custom.png";
+_menuCustom.imgOn.src="Source/UI/Button/customOn.png";
 
 _clipboard.img.src="Source/UI/clipboard.png";
 _clipboardBack.img.src="Source/UI/back.png";
@@ -655,6 +748,17 @@ _clipboardLevel5.img.src="Source/UI/Level/5.png";
 _clipboardLevel6.img.src="Source/UI/Level/6.png";
 _clipboardLevel7.img.src="Source/UI/Level/7.png";
 _clipboardLevel8.img.src="Source/UI/Level/8.png";
+
+_blueprint.img0.src="Source/UI/Blueprint/boy0.png";
+_blueprint.img1.src="Source/UI/Blueprint/boy1.png";
+_blueprint.img2.src="Source/UI/Blueprint/girl0.png";
+_blueprint.img3.src="Source/UI/Blueprint/girl1.png";
+_blueprintBack.img.src="Source/UI/right.png";
+_blueprintBack.imgOn.src="Source/UI/rightOn.png";
+_blueprintLeft.img.src="Source/UI/left.png";
+_blueprintLeft.imgOn.src="Source/UI/leftOn.png";
+_blueprintRight.img.src="Source/UI/right.png";
+_blueprintRight.imgOn.src="Source/UI/rightOn.png";
 
 _clipboardSetting1.img.src="Source/UI/O.png";
 _clipboardSetting1.imgOn.src="Source/UI/X.png";
@@ -675,7 +779,10 @@ _gameHP3.img2.src="Source/UI/Heart/empty.png";
 
 _gamePause.img.src="Source/UI/pause.png";
 
-_player.img.src="Source/Player/test.png";
+_player.img0.src="Source/Player/boy0.png";
+_player.img1.src="Source/Player/boy1.png";
+_player.img2.src="Source/Player/girl0.png";
+_player.img3.src="Source/Player/girl1.png";
 
 _platform.img.src="Source/platform.png";
 

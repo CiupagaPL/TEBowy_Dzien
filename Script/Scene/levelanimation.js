@@ -9,13 +9,21 @@
    ((_/`(____,-' */
 
 drawplayer=function(){
-  if(_player.invisible==0){ _context.drawShortImage(_player.img,_player); }
+  if(_player.invisible==0){
+    if(skin==0){ _context.drawShortImage(_player.img0,_player); }
+    if(skin==1){ _context.drawShortImage(_player.img1,_player); }
+    if(skin==2){ _context.drawShortImage(_player.img2,_player); }
+    if(skin==3){ _context.drawShortImage(_player.img3,_player); }
+  }
 
   if(_player.invisible!=0){
     if(!pauseOn&&hp!=0){ _player.invisible++; }
 
     if(_player.invisible%2==0){
-      _context.drawShortImage(_player.img,_player);
+      if(skin==0){ _context.drawShortImage(_player.img0,_player); }
+      if(skin==1){ _context.drawShortImage(_player.img1,_player); }
+      if(skin==2){ _context.drawShortImage(_player.img2,_player); }
+      if(skin==3){ _context.drawShortImage(_player.img3,_player); }
     } if(_player.invisible>=60){
       _player.invisible=0;
     }

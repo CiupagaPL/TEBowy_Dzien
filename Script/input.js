@@ -8,15 +8,21 @@
     || |-_\__   /
    ((_/`(____,-' */
 
+
+document.addEventListener("visibilitychange",function(_event){
+  pauseChange=true;
+  pauseOn=true;
+});
+
 document.addEventListener("keydown",function(_event){
   if(!pauseOn&&hp!=0&&scene>=2){
     if(_event.key=="a"||_event.key=="ArrowLeft"){
       _keyState.a=true;
-      _keyState.left=_event.key==="ArrowLeft";
+      _keyState.left=_event.key=="ArrowLeft";
       _player.vx=-4*scale; 
     } if(_event.key=="d"||_event.key=="ArrowRight"){
       _keyState.d=true;
-      _keyState.right=_event.key==="ArrowRight";
+      _keyState.right=_event.key=="ArrowRight";
       _player.vx=4*scale; 
     }
   }
@@ -32,7 +38,7 @@ document.addEventListener("keyup",function(_event){
         if(_clipboard.on){
         autoScene=true;
         nextAutoScene=2;
-          if(_menuLevel.on){
+           if(_menuLevel.on){
             _menuLevel.animation=true;
             _clipboard.close=true;
             canClick=false;
@@ -45,17 +51,23 @@ document.addEventListener("keyup",function(_event){
             _clipboard.close=true;
             canClick=false;
           }
+        } if(_blueprint.on){
+            _menuCustom.animation=true;
+            _blueprint.close=true;
+            canClick=false;
         } else if(!_clipboard.on){
           canClick=false;
           nextScene=2;
           changeScene=true;
         }
       }
-      if(_event.key=="Escape"&&canClick&&_clipboard.on){
-        _clipboard.close=true;
+      if(_event.key=="Escape"&&canClick&&_clipboard.on||_event.key=="Escape"&&canClick&&_blueprint.on){
+        if(_clipboard.on){ _clipboard.close=true; }
+        if(_blueprint.on){ _blueprint.close=true; }
         if(_menuLevel.on){ _menuLevel.animation=true; }
         if(_menuSetting.on){ _menuSetting.animation=true; }
         if(_menuAbout.on){ _menuAbout.animation=true; }
+        if(_menuCustom.on){ _menuCustom.animation=true; }
         canClick=false;
       }
       break;
@@ -121,9 +133,18 @@ document.addEventListener("mousemove",function(_event){
   else if(!window.detectcollision(_menuSetting,_mouse)){ _menuSetting.hover=false; }
   if(window.detectcollision(_menuAbout,_mouse)){ _menuAbout.hover=true; }
   else if(!window.detectcollision(_menuAbout,_mouse)){ _menuAbout.hover=false; }
+  if(window.detectcollision(_menuCustom,_mouse)){ _menuCustom.hover=true; }
+  else if(!window.detectcollision(_menuCustom,_mouse)){ _menuCustom.hover=false; }
 
   if(window.detectcollision(_clipboardBack,_mouse)){ _clipboardBack.hover=true; }
   else if(!window.detectcollision(_clipboardBack,_mouse)){ _clipboardBack.hover=false; }
+
+  if(window.detectcollision(_blueprintBack,_mouse)){ _blueprintBack.hover=true; }
+  else if(!window.detectcollision(_blueprintBack,_mouse)){ _blueprintBack.hover=false; }
+  if(window.detectcollision(_blueprintLeft,_mouse)){ _blueprintLeft.hover=true; }
+  else if(!window.detectcollision(_blueprintLeft,_mouse)){ _blueprintLeft.hover=false; }
+  if(window.detectcollision(_blueprintRight,_mouse)){ _blueprintRight.hover=true; }
+  else if(!window.detectcollision(_blueprintRight,_mouse)){ _blueprintRight.hover=false; }
 });
 
 window.addEventListener("click",function(_event){
@@ -138,6 +159,10 @@ window.addEventListener("click",function(_event){
   } if(window.detectcollision(_menuAbout,_mouse)&&_menuAbout.on&&canClick){
     _clipboard.close=true;
     _menuAbout.animation=true;
+    canClick=false;
+  } if(window.detectcollision(_menuCustom,_mouse)&&_menuCustom.on&&canClick){
+    _blueprint.close=true;
+    _menuCustom.animation=true;
     canClick=false;
   }
 
@@ -158,7 +183,11 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
-    } else if(!_clipboard.on){
+    } if(_blueprint.on){
+        _menuCustom.animation=true;
+        _blueprint.close=true;
+        canClick=false;
+      } else if(!_clipboard.on){
       canClick=false;
       nextScene=2;
       changeScene=true;
@@ -187,6 +216,13 @@ window.addEventListener("click",function(_event){
       else if(_menuLevel.on){ _menuLevel.animation=true; }
     }
     canClick=false;
+  } if(window.detectcollision(_menuCustom,_mouse)&&canClick&&scene==1){
+    if(!_menuCustom.on&&!_menuCustom.on){ _menuCustom.animation=true; }
+    else if(_menuCustom.on){
+      _menuCustom.lateanimation=true;
+      _menuSetting.animation=true;
+    }
+    canClick=false;
   }
 
   if(window.detectcollision(_clipboardBack,_mouse)){
@@ -195,6 +231,16 @@ window.addEventListener("click",function(_event){
     if(_menuSetting.on){ _menuSetting.animation=true; }
     if(_menuAbout.on){ _menuAbout.animation=true; }
     canClick=false;
+  }
+
+  if(window.detectcollision(_blueprintBack,_mouse)){
+    _blueprint.close=true;
+    _menuCustom.animation=true;
+    canClick=false;
+  } if(window.detectcollision(_blueprintLeft,_mouse)&&canClick){
+    if(skin>0){ skin--; }
+  } if(window.detectcollision(_blueprintRight,_mouse)&&canClick){
+    if(skin<3){ skin++; }
   }
 
   if(window.detectcollision(_clipboardLevel1,_mouse)&&_menuLevel.on){
@@ -214,6 +260,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel2,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -232,6 +282,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel3,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -250,6 +304,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel4,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -268,6 +326,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel5,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -286,6 +348,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel6,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -304,6 +370,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel7,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -322,6 +392,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel8,_mouse)&&_menuLevel.on){
     autoScene=true;
@@ -340,6 +414,10 @@ window.addEventListener("click",function(_event){
         _clipboard.close=true;
         canClick=false;
       }
+    } if(_blueprint.on){
+      _menuCustom.animation=true;
+      _blueprint.close=true;
+      canClick=false;
     }
   }
 
@@ -373,7 +451,7 @@ window.addEventListener("click",function(_event){
       pauseChange=true;
       canClick=false;
     }
-  } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pauseOn){
+  } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pauseOn&&scene!=1&&scene!=0){
     if(_clipboard.on){
       autoScene=true;
       nextAutoScene=0;

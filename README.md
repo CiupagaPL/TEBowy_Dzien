@@ -2,21 +2,17 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Naprawiłem **masę błędów** (*nie będę ich wymieniać bo do jutra się nie wyrobię*),
-- Dodałem możliwość automatycznego załadowania gry Enterem (*w menu*),
-- Oraz podobną możliwość ukrycia bocznej sekcji za pomocą Escape,
-- Od teraz przyciski które zamykają panele będą automatycznie również wykonywać swoje działanie,
-- Można zagrać w każdy poziom (*o ile wszystkie są identyczne*),
-- Platformy mają od teraz swoją teksturę (*oczywiście kolce i rogi również*),
-- Kontynuowałem dalszą pracę nad kolcami oraz napisałem pełen generator rogów,
-- Gracz otrzymuje pojedyncze obrażenie i nie przegrywa od razu,
-- Poprawiłem generator platform (w trakcie generowania powstawało ok. 50 platform dolnych),
-- Oraz naprawiłem dużo błędów logicznych w kodzie.
-> Oczywiście dalej będą występować pojedyncze błędy
+- Dodałem wszystkie zmiany z wersji prezentacyjnej,
+- Naprawiłem sprite gracza + dodałem jego wersje alternatywne,
+- Dodałem panel w menu zarządzający skinami oraz obiekty podporządkowane mu,
+- Napisałem animacje w menu dla nowego panelu bocznego,
+- Zintegrowałem go z mechanizmem automatycznego zamykania,
+- Oraz poprawiłem wcześniejsze animacje w menu.
+> Doszło kilka błędów lecz naprawie je jutro
 
 ## Status
-> Newest Version: **Test 7**;
-> Last Updated: **24-10-2024**;
+> Newest Version: **Test 8**;
+> Last Updated: **25-10-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -26,6 +22,7 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
+Za dużo do dodania nie mam, pozostawię wczorajszą notkę jako taką TODO listę :- )
 Miały być dzisiaj dwie budowy ale jako iż długo mnie nie było w domu postanowiłem połączyć je w jedną dużą.
 Generator kolców nadal jest zbugowany ale nie powinien on mi zająć dużo czasu do naprawy.
 Podobnie generator platform (*wszystko z nimi dobrze oprócz dostosowania prawej strony*).
