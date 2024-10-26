@@ -8,10 +8,11 @@
     || |-_\__   /
    ((_/`(____,-' */
 
-
 document.addEventListener("visibilitychange",function(_event){
-  pauseChange=true;
-  pauseOn=true;
+  if(!pauseOn&&scene!=0&&scene!=1){
+    pauseChange=true;
+    pauseOn=true;
+  }
 });
 
 document.addEventListener("keydown",function(_event){
@@ -19,22 +20,28 @@ document.addEventListener("keydown",function(_event){
     if(_event.key=="a"||_event.key=="ArrowLeft"){
       _keyState.a=true;
       _keyState.left=_event.key=="ArrowLeft";
-      _player.vx=-4*scale; 
+      _player.vx=-4*scale;
+      _player.left=true;
     } if(_event.key=="d"||_event.key=="ArrowRight"){
       _keyState.d=true;
       _keyState.right=_event.key=="ArrowRight";
-      _player.vx=4*scale; 
+      _player.vx=4*scale;
+      _player.left=false;
     }
   }
 });
 
 document.addEventListener("keyup",function(_event){
-  switch(scene){
+  if(_event.key=="F11"){
+    if(fullscreenOn){ fullscreenOn=false; }
+    else if(!fullscreenOn){ fullscreenOn=true; }
+  } switch(scene){
     case 0:
-      if(_event.key=="Enter"&&!canStart){ canStart=true; sceneTimer=0; }
+      if(_event.key=="Enter"&&!canStart&&!resolutionError){ canStart=true; sceneTimer=0; }
       break;
     case 1:
       if(_event.key=="Enter"&&canClick){
+        console.log(_blueprint.on);
         if(_clipboard.on){
         autoScene=true;
         nextAutoScene=2;
@@ -52,10 +59,12 @@ document.addEventListener("keyup",function(_event){
             canClick=false;
           }
         } if(_blueprint.on){
+            autoScene=true;
+            nextAutoScene=2;
             _menuCustom.animation=true;
             _blueprint.close=true;
             canClick=false;
-        } else if(!_clipboard.on){
+        } else if(!_clipboard.on&&!_blueprint.on){
           canClick=false;
           nextScene=2;
           changeScene=true;
@@ -103,13 +112,15 @@ document.addEventListener("keyup",function(_event){
           if(!_keyState.d&&!_keyState.right){
             _player.vx=0;
           } else if(_keyState.d||_keyState.right){
-            _player.vx =4*scale;
+            _player.left=false;
+            _player.vx=4*scale;
           }
         } if(_event.key=="d"||_event.key=="ArrowRight"){
           _keyState.d=_keyState.right=false;
           if(!_keyState.a&&!_keyState.left){
             _player.vx=0;
           } else if(_keyState.a||_keyState.left){
+            _player.left=true;
             _player.vx=-4*scale;
           }
         }
@@ -184,10 +195,12 @@ window.addEventListener("click",function(_event){
         canClick=false;
       }
     } if(_blueprint.on){
+        autoScene=true;
+        nextAutoScene=2;
         _menuCustom.animation=true;
         _blueprint.close=true;
         canClick=false;
-      } else if(!_clipboard.on){
+      } else if(!_clipboard.on&&!_blueprint.on){
       canClick=false;
       nextScene=2;
       changeScene=true;
@@ -454,7 +467,7 @@ window.addEventListener("click",function(_event){
   } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pauseOn&&scene!=1&&scene!=0){
     if(_clipboard.on){
       autoScene=true;
-      nextAutoScene=0;
+      nextAutoScene=1;
       if(_menuSetting.on){
         _menuSetting.animation=true;
         _clipboard.close=true;
@@ -466,7 +479,7 @@ window.addEventListener("click",function(_event){
       }
     } else if(!_clipboard.on){
       canClick=false;
-      nextScene=0;
+      nextScene=1;
       changeScene=true;
     }
   }

@@ -9,6 +9,19 @@
    ((_/`(____,-' */
 
 level=function(){
+  if(musicOn){
+    musicTimer++;
+    if(musicTimer==10){
+      _audio.game.play();
+    } if(musicTimer>=1135){
+      _audio.game.load();
+      musicTimer=0;
+    }
+  } else if(!musicOn){
+    _audio.game.load();
+    musicTimer=0;
+  }
+
   animateclipboard();
 
   _clipboardSettingText.x=_clipboard.x+42*scale;
@@ -51,25 +64,25 @@ level=function(){
   if(hp==0){ dead=true; }
   if(dead){
     if(hp==0){
-      transitionDead();
+      transitiondead();
     } else if(hp==6){
-      transitionOff();
+      transitionoff();
     }
   }
 
   if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
   if(autoUnpause&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ pauseChange=true; canClick=false; }
-  if(nextScene!=scene){ transitionShortOn(); }
+  if(nextScene!=scene){ transitionshorton(); }
 
   if(pauseChange){
     if(!pauseAnimation){
-      transitionPauseOn();
+      transitionPauseon();
     } else if(pauseAnimation){
-      transitionPauseOff();
+      transitionPauseoff();
     }
   }
 
-  if(pauseAnimation&&nextScene!=0){
+  if(pauseAnimation&&nextScene!=1){
     if(!pauseChange){ _context.drawShortImage(_change.img3,_change); }
 
     _context.drawShortImage(_menuTitle.img,_menuTitle);
@@ -117,7 +130,5 @@ level=function(){
     _context.fillMultiText(_clipboardAbout1);
   }
 
-  if(changeScene&&nextScene!=0){
-    transitionOff();
-  }
+  if(changeScene){ transitionoff(); }
 }

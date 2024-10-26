@@ -11,6 +11,19 @@
 scene1=function(){
   sceneTimer++;
 
+  if(musicOn){
+    musicTimer++;
+    if(musicTimer==10){
+      _audio.menu.play();
+    } if(musicTimer>=1135){
+      _audio.menu.load();
+      musicTimer=0;
+    }
+  } else if(!musicOn){
+    _audio.menu.load();
+    musicTimer=0;
+  }
+
   _clipboardLevelText.x=_clipboard.x+30*scale;
   _clipboardSettingText.x=_clipboard.x+42*scale;
   _clipboardAboutText.x=_clipboard.x+38*scale;
@@ -118,5 +131,6 @@ scene1=function(){
   }
 
   if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
-  if(changeScene){ transitionOn(); }
+  if(changeScene&&!menuLoad){ transitionon(); }
+  if(changeScene&&menuLoad){ transitionoff(); }
 }

@@ -21,20 +21,26 @@
   <link rel="icon"type="image/png"href="Source/icon.png">
   <link rel="stylesheet"type="text/css"media="screen"href="style.css">
 </head>
-<body><canvas id="render"></canvas><b id="error"></b></body>
+<body>
+  <canvas id="render"></canvas>
+  <main id="info">
+    <b id="load"><br>Ładowanie gry<br></b>
+    <b id="error"><br><br><br>Twoja rozdzielczość jest za mała! Spróbuj użyć ctrl +/- w celu dopasowania rozdzielczości.</b>
+  </main>
+</body>
 <script src="Script/variable.js"></script>
-<script src="Script/render.js"></script>
+<script src="Script/default.js"></script>
 <script src="Script/function.js"></script>
 <script src="Script/transition.js"></script>
 <script src="Script/input.js"></script>
-<script src="Script/update.js"></script>
+<script src="Script/generator.js"></script>
+<script src="Script/player.js"></script>
+<script src="Script/boss.js"></script>
 <script src="Script/Scene/scene0.js"></script>
 <script src="Script/Scene/animation0.js"></script>
 <script src="Script/Scene/scene1.js"></script>
 <script src="Script/Scene/animation1.js"></script>
 <script src="Script/Scene/level.js"></script>
 <script src="Script/Scene/levelanimation.js"></script>
-<script src="Script/generator.js"></script>
-<script src="Script/player.js"></script>
-<script src="Script/boss.js"></script>
+<script src="Script/handle.js"></script>
 </html>

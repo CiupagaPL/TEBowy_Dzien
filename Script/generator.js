@@ -11,8 +11,8 @@
 generatelevel=function(){
   while(_platform.currentload<=_platform.load){
     mainplatformgenerator();
+    if(_platform.currentload>=1){ spikegenerator(); }
     platformgenerator();
-    spikegenerator();
     cornergenerator();
 
     _platform.currentload+=1;
@@ -39,33 +39,43 @@ mainplatformgenerator=function(){
   };
 
   _platform.array[0]=_currentPlatform;
-  _platform.loop+=1;
-  _platform.currentcount+=1;
-  _platform.lenght+=1;
+  _platform.loop++;
+  _platform.currentcount++;
+  _platform.lenght++;
 }
 
 spikegenerator=function(){
-  _spike.random=Math.floor(Math.random()*_platform.random*3/5)-_spike.width;
+  if(_platform.lastx>320*scale&&_platform.currentload>=1){
+    _platform.random=Math.floor(Math.random()*150*scale)+42*scale;
+  } if(_platform.lastx<=320*scale&&_platform.currentload>=1){
+    _platform.random=Math.floor(Math.random()*150*scale)+320*scale;
+    if(_platform.random<556*scale){ _platform.random+42*scale; }
+  }
 
-  _currentSpike={
-    x:_spike.random,y:_currentPlatform.y-_spike.height,
+  while(_spike.currentcount<_spike.count){
+    _spike.random=Math.floor(Math.random()*640*scale-_spike.width);
+    while(_spike.random>=_platform.lastx-48*scale&&_spike.random<=_platform.lastx+128*scale+48*scale||
+          _spike.random>=_platform.random-48*scale&&_spike.random<=_platform.random+128*scale+48*scale||
+          _spike.currentcount==1&&_spike.random>=_spike.first-64*scale&&_spike.random<=_spike.first+64*scale||
+          _spike.currentcount==2&&_spike.random>=_spike.first-64*scale&&_spike.random<=_spike.first+64*scale&&
+          _spike.random>=_spike.second-64*scale&&_spike.random<=_spike.second+48*scale){
+      _spike.random=Math.floor(Math.random()*640*scale-_spike.width);
+    }
 
-    width:_spike.width,height:_spike.height,
-  };
+    _currentSpike={
+      x:_spike.random,y:_platform.lasty-_spike.height,
 
-  _spike.array.push(_currentSpike);
-  _spike.lenght+=1;
+      width:_spike.width,height:_spike.height,
+    };
 
-  _spike.random=Math.floor(Math.random()*(_currentResolution.width-_platform.random+128*scale)*3/5)+_platform.random+128*scale-_spike.width;
-  
-  _currentSpike={
-    x:_spike.random,y:_currentPlatform.y-_spike.height,
+    if(_spike.currentcount==0){ first=_currentSpike.x; }
+    if(_spike.currentcount==1){ second=_currentSpike.x; }
 
-    width:_spike.width,height:_spike.height,
-  };
+    _spike.array.push(_currentSpike);
 
-  _spike.array.push(_currentSpike);
-  _spike.lenght+=1;
+    _spike.lenght++;
+    _spike.currentcount++;
+  } _spike.currentcount=0;
 }
 
 cornergenerator=function(){
@@ -78,7 +88,7 @@ cornergenerator=function(){
   };
 
   _corner.array.push(_currentCorner);
-  _corner.lenght+=1;
+  _corner.lenght++;
 
   _currentCorner={
     x:_platform.random+128*scale,y:_currentPlatform.y,
@@ -89,14 +99,15 @@ cornergenerator=function(){
   };
 
   _corner.array.push(_currentCorner);
-  _corner.lenght+=1;
+  _corner.lenght++;
 }
 
 platformgenerator=function(){
-  if(_platform.lastx>240*scale){
-    _platform.random=Math.floor(Math.random()*96*scale)+16*scale;
-  } if(_platform.lastx<=240*scale){
-    _platform.random=Math.floor(Math.random()*144*scale)+256*scale;
+  if(_platform.lastx>320*scale&&_platform.currentload<1){
+    _platform.random=Math.floor(Math.random()*150*scale)+42*scale;
+  } if(_platform.lastx<=320*scale&&_platform.currentload<1){
+    _platform.random=Math.floor(Math.random()*150*scale)+320*scale;
+    if(_platform.random<556*scale){ _platform.random+42*scale; }
   }
 
   _currentPlatform={
@@ -120,7 +131,8 @@ platformgenerator=function(){
   _platform.array.push(_currentPlatform);
 
   _platform.lastx=_platform.random;
-  _platform.loop+=1;
-  _platform.currentcount+=1;
-  _platform.lenght+=1;
+  _platform.lasty=_currentPlatform.y;
+  _platform.loop++;
+  _platform.currentcount++;
+  _platform.lenght++;
 }

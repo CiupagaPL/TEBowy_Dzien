@@ -8,18 +8,22 @@
     || |-_\__   /
    ((_/`(____,-' */
 
-let resolutionError=false,ratio=16/9,scale=1.00;
-let fpsLimit=60,lastFrame=0;
+let resolutionError=false,ratio=16/9,scale=1.00,fpsLimit=60,lastFrame=0;
 let canStart=false,canClick=true,changeScene=false;
-let scene=0,sceneTimer=0,changeTimer=0,nextScene=0;
+let scene=0,sceneTimer=0,changeTimer=0,nextScene=0,musicTimer=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false;
-let sfxOn=true,musicOn=false,fullscreenOn=false;
-let pauseOn=false,pauseChange=false,pauseAnimation=false;
-let skin=0,hp=6,globalMove=0,round=0,score=0,dead=false;
+let sfxOn=true,musicOn=true,fullscreenOn=false;
+    pauseOn=false,pauseChange=false,pauseAnimation=false,menuLoad=false;
+let skin=0,hp=6,dead=false;
+let globalMove=0,round=0,score=0;
 
 let _html=document.getElementById("html");
 
+let _info=document.getElementById("info");
+
 let _error=document.getElementById("error");
+
+let _load=document.getElementById("load");
 
 let _window={
   width:window.innerWidth,
@@ -28,6 +32,10 @@ let _window={
 };
 
 let _audio={
+  menu:new Audio("Source/Music/menu.mp3"),
+  game:new Audio("Source/Music/game.mp3"),
+  boss:new Audio("Source/Music/boss.mp3"),
+
   load1:new Audio("Source/Sound/load1.mp3"),
   load2:new Audio("Source/Sound/load2.mp3"),
   load3:new Audio("Source/Sound/load3.mp3"),
@@ -86,7 +94,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 8",
+  value:"Test 9",
 
   size:36,
   on:false,
@@ -573,11 +581,6 @@ let _player={
   vx:0,vy:0,
   initialvy:-12,
 
-  img0:new Image(),
-  img1:new Image(),
-  img2:new Image(),
-  img3:new Image(),
-
   gravity:0.5,
   fallentimer:0,
   checkTimer:0,
@@ -589,6 +592,16 @@ let _player={
   grounded:false,
   checked:false,
   jumped:false,
+  left:false,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+  img0left:new Image(),
+  img1left:new Image(),
+  img2left:new Image(),
+  img3left:new Image(),
 };
 let _playerTop={
   w:24,h:12,
@@ -648,6 +661,7 @@ let _platform={
   lastlevel:0,
   random:0,
   lastx:0,
+  lasty:0,
 
   img:new Image(),
 };
@@ -678,7 +692,11 @@ let _spike={
   lenght:-1,
   currentlenght:0,
   random:0,
-
+  count:3,
+  currentcount:0,
+  first:0,
+  second:0,
+  
   img:new Image(),
 };
 
@@ -705,21 +723,28 @@ let _tebulinek={
   img:new Image(),
 };
 
+_audio.menu.load();
+_audio.game.load();
+_audio.boss.load();
+
+_audio.menu.volume=0.25;
+_audio.game.volume=0.25;
+
 _audio.load1.load();
 _audio.load2.load();
 _audio.load3.load();
 
-_background.img0.src="Source/background.png";
-_background.img1.src="Source/gameground.png";
+_background.img0.src="Source/Object/background.png";
+_background.img1.src="Source/Object/gameground.png";
 
 _change.img1.src="Source/UI/Transition/1.png";
 _change.img2.src="Source/UI/Transition/2.png";
 _change.img3.src="Source/UI/Transition/3.png";
 _change.img4.src="Source/UI/Transition/4.png";
 
-_startTEB.img0.src="Source/TEB/teb0.png";
-_startTEB.img1.src="Source/TEB/teb1.png";
-_startTEB.img2.src="Source/TEB/teb2.png";
+_startTEB.img0.src="Source/Object/TEB/teb0.png";
+_startTEB.img1.src="Source/Object/TEB/teb1.png";
+_startTEB.img2.src="Source/Object/TEB/teb2.png";
 
 _menuTitle.img.src="Source/title.png";
 
@@ -779,18 +804,22 @@ _gameHP3.img2.src="Source/UI/Heart/empty.png";
 
 _gamePause.img.src="Source/UI/pause.png";
 
-_player.img0.src="Source/Player/boy0.png";
-_player.img1.src="Source/Player/boy1.png";
-_player.img2.src="Source/Player/girl0.png";
-_player.img3.src="Source/Player/girl1.png";
+_player.img0.src="Source/Object/Player/boy0.png";
+_player.img1.src="Source/Object/Player/boy1.png";
+_player.img2.src="Source/Object/Player/girl0.png";
+_player.img3.src="Source/Object/Player/girl1.png";
+_player.img0left.src="Source/Object/Player/boy0left.png";
+_player.img1left.src="Source/Object/Player/boy1left.png";
+_player.img2left.src="Source/Object/Player/girl0left.png";
+_player.img3left.src="Source/Object/Player/girl1left.png";
 
-_platform.img.src="Source/platform.png";
+_platform.img.src="Source/Object/platform.png";
 
-_corner.img0.src="Source/Corner/left.png";
-_corner.img1.src="Source/Corner/right.png";
+_corner.img0.src="Source/Object/Corner/left.png";
+_corner.img1.src="Source/Object/Corner/right.png";
 
-_spike.img.src="Source/spike.png";
+_spike.img.src="Source/Object/spike.png";
 
-_boss.img0.src="Source/People/TS.png";
+_boss.img0.src="Source/Object/People/TS.png";
 
-_tebulinek.img.src="Source/Attack/tebulinek.png";
+_tebulinek.img.src="Source/Object/Attack/tebulinek.png";
