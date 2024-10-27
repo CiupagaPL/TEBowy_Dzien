@@ -3,7 +3,7 @@
 
 ## Zmiany
 - Dodałem efekty dźwiękowe (**ponownie specjalne pozdrowienia dla was chłopaki**),
-- Dodałem możliwość zmiany głośności dźwięku/muzyki,
+- Dodałem możliwość zmiany głośności w kodzie (*w celu dopasowania dźwięków*),
 - Przepracowałem gracza i wszystkie zmienne go opisujące,
 - Zmieniłem obiekty kolizyjne i naprawiłem zepsutą grawitację postaci,
 - Dokończyłem generator kolców oraz przygotowałem go pod różne poziomy trudności,
