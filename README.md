@@ -2,17 +2,20 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Dodałem efekty dźwiękowe (**ponownie specjalne pozdrowienia dla was chłopaki**),
-- Dodałem możliwość zmiany głośności w kodzie (*w celu dopasowania dźwięków*),
-- Przepracowałem gracza i wszystkie zmienne go opisujące,
-- Zmieniłem obiekty kolizyjne i naprawiłem zepsutą grawitację postaci,
-- Dokończyłem generator kolców oraz przygotowałem go pod różne poziomy trudności,
-- Stworzyłem lasery, ich pełen generator oraz wiadomo ich źródło ataku,
-- Oraz zacząłem przygotowywać kod na rework walki z nauczycielem.
+- Poprawiłem generator platform (*niektóre z nich miały za duże wymiary poza ekranem*),
+- Zmiejszyłem długość poziomów (*24->14*),
+- Naprawiłem wczorajsze błędy przez które niektóre dźwięki grały gdy powinny być wyłączone,
+- Od teraz życia gracza nie będą już się psuć,
+- Dodałem znaki ozdobno-pomocnicze (*czy coś w tym desen*),
+- Zmieniłem działanie wyniku (*zmiejsza się gdy wracamy na wcześniejsze platformy*),
+- Od teraz bossfight odbywa się w specjalnym do niego miejscu,
+- Dodałem system życia dla nauczycieli,
+- Od teraz etapy mają prawidłową wartość oraz jeden etap następuje po drugim,
+- Ogólnie wszystkie poziomy są zapętlone (*zmiennym poziomem trudności jeszcze się zajmę*).
 
 ## Status
-> Newest Version: **Test 10**;
-> Last Updated: **27-10-2024**;
+> Newest Version: **Test 11**;
+> Last Updated: **28-10-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -22,8 +25,6 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
-Generatory wszystkich obiektów są przygotowane pod zmienne wartości w trakcie gry.
-Moim pomysłem byłoby aby każdy poziom rozpoczynał się podobnie i wraz z każdym etapem stawał się po woli trudniejszy.
-Oczywiście obecne ustawienie jest jedym z trudniejszych.
-Jeżeli chodzi o bossa mam już w miarę opracowany plan i pomysł dlatego zabieram się jutro do pracy.
-C 🔥
+Prawidłowo każdy poziom powinien się ładować po poprzednim i etap wtedy powinien się resetować (*oczywiście każdy poziom na 7 etapów*).
+Gdy poziom jest ostatni wtedy powinno załadować się menu.
+Zupełnie nie mam sił i czasu na przetestowanie tego, więc poproszę **was o drobną pomoc** :- )

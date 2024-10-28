@@ -41,7 +41,7 @@ level=function(){
 
   handlePlayer();
 
-  // if(score==24){ handleBoss(); }
+  if(boss){ handleBoss(); }
 
   _context.fillShortRect(_gameUI.color,_gameUI);
   _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;
@@ -59,9 +59,30 @@ level=function(){
   if(hp==6){ _context.drawShortImage(_gameHP3.img0,_gameHP3); }
   if(hp==5){ _context.drawShortImage(_gameHP3.img1,_gameHP3); }
   if(hp<=4){ _context.drawShortImage(_gameHP3.img2,_gameHP3); }
+  if(boss){
+    if(bossHp>=2){ _context.drawShortImage(_gameBossHP1.img0,_gameBossHP1); }
+    if(bossHp==1){ _context.drawShortImage(_gameBossHP1.img1,_gameBossHP1); }
+    if(bossHp==0){ _context.drawShortImage(_gameBossHP1.img2,_gameBossHP1); }
+    if(bossHp>=4){ _context.drawShortImage(_gameBossHP2.img0,_gameBossHP2); }
+    if(bossHp==3){ _context.drawShortImage(_gameBossHP2.img1,_gameBossHP2); }
+    if(bossHp<=2){ _context.drawShortImage(_gameBossHP2.img2,_gameBossHP2); }
+    if(bossHp>=6){ _context.drawShortImage(_gameBossHP3.img0,_gameBossHP3); }
+    if(bossHp==5){ _context.drawShortImage(_gameBossHP3.img1,_gameBossHP3); }
+    if(bossHp<=4){ _context.drawShortImage(_gameBossHP3.img2,_gameBossHP3); }
+    if(bossHp>=8){ _context.drawShortImage(_gameBossHP4.img0,_gameBossHP4); }
+    if(bossHp==7){ _context.drawShortImage(_gameBossHP4.img1,_gameBossHP4); }
+    if(bossHp<=6){ _context.drawShortImage(_gameBossHP4.img2,_gameBossHP4); }
+    if(bossHp==10){ _context.drawShortImage(_gameBossHP5.img0,_gameBossHP5); }
+    if(bossHp==9){ _context.drawShortImage(_gameBossHP5.img1,_gameBossHP5); }
+    if(bossHp<=8){ _context.drawShortImage(_gameBossHP5.img2,_gameBossHP5); }
+  }
   _context.drawShortImage(_gamePause.img,_gamePause);
 
-  if(hp==0){ dead=true; _audio.die.play(); }
+  if(hp<0){ hp=0; }
+  if(hp==0){ dead=true; if(sfxOn){ _audio.die.play(); } }
+  if(bossHp<0){ bossHp=0; }
+  if(bossHp==0){ boss=false; defeat=true; }
+
   if(dead){
     if(hp==0){
       transitiondead();
@@ -131,4 +152,7 @@ level=function(){
   }
 
   if(changeScene){ transitionoff(); }
+  if(defeat&&round!=7){ transitiondead(); }
+  if(defeat&&round==7&&scene!=9){ nextScene=scene+1; round=1; transitionmenu(); }
+  if(defeat&&round==7&&scene==9){ nextScene=1; round=1; transitionmenu(); }
 }

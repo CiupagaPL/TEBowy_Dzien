@@ -19,6 +19,8 @@ handleBoss=function(){
     _tebulinek.vy+=_tebulinek.gravity+globalMove/8;
   }
 
+  if(window.detectcollision(_player,_tebulinek)){ bossHp=0; }
+
   if(!pauseOn&&hp!=0){ _boss.timer++; }
   if(_boss.timer>=60||!_boss.load){
     _boss.x=Math.floor(Math.random()*416*scale)+64*scale;

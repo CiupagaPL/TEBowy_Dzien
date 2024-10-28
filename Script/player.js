@@ -20,15 +20,10 @@ handlePlayer=function(){
   _playerBottom.x=_player.x+4*scale+_player.vx;
   _playerBottom.y=_player.y+81*scale+_player.vy;
 
-  if(!pauseOn&&hp!=0){ _player.checkTimer+=1; }
-
-  if(!pauseOn&&_player.hp!=0&&_player.y<_currentResolution.height*3/8){ globalMove=3*scale; }
-  if(!pauseOn&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
-  else if(pauseOn||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height){ globalMove=0; }
-
   if(!pauseOn&&hp!=0){
     _player.y+=_player.vy;
     if(!_player.grounded){ _player.y+=globalMove; }
+    _player.x+=localMove;
     _player.x+=_player.vx;
     _player.vy+=_player.gravity;
   }
@@ -39,19 +34,19 @@ handlePlayer=function(){
   _laser.currentlenght=0;
   _light.currentlenght=0;
   _spike.currentlenght=0;
+  _sign.currentlenght=0;
 
   while(_platform.lenght>=_platform.currentlenght){
     _currentPlatform=_platform.array[_platform.currentlenght];
     _context.drawShortImage(_platform.img,_currentPlatform);
 
     _currentPlatform.y+=globalMove;
+    _currentPlatform.x+=localMove;
 
     if(window.detectcollision(_currentPlatform,_playerTop)&&!_player.touched){
       _player.fly=true;
       _player.touched=true;
-      if(_player.upTimer<12){
-        _player.y=_currentPlatform.y+8*scale;
-      }
+      if(_player.upTimer<12){ _player.y=_currentPlatform.y+8*scale; }
     }
     if(window.detectcollision(_currentPlatform,_playerBottom)&&!_player.touched){
       if(_player.y<=_currentPlatform.y){ score=_currentPlatform.level+1; }
@@ -78,8 +73,20 @@ handlePlayer=function(){
     else if(!_currentCorner.left){ _context.drawShortImage(_corner.img1,_currentCorner); }
 
     _currentCorner.y+=globalMove;
+    _currentCorner.x+=localMove;
 
     _corner.currentlenght+=1;
+  }
+
+  while(_sign.lenght>=_sign.currentlenght){
+    _currentSign=_sign.array[_sign.currentlenght];
+    if(_currentSign.boss){ _context.drawShortImage(_sign.img1,_currentSign); }
+    else if(!_currentSign.boss){ _context.drawShortImage(_sign.img0,_currentSign); }
+
+    _currentSign.y+=globalMove;
+    _currentSign.x+=localMove;
+
+    _sign.currentlenght+=1;
   }
 
   while(_laser.lenght>=_laser.currentlenght){
@@ -88,10 +95,11 @@ handlePlayer=function(){
     else if(!_currentLaser.left){ _context.drawShortImage(_laser.img0,_currentLaser); }
 
     _currentLaser.y+=globalMove;
+    _currentLaser.x+=localMove;
 
     if(!pauseOn&&hp!=0){ _laser.timer=_laser.timer+1/_laser.lenght; }
 
-    if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+3&&!pauseOn&&hp!=0){ _audio.laser.play(); }
+    if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+3&&!pauseOn&&hp!=0&&sfxOn){ _audio.laser.play(); }
     if(_laser.timer>=_laser.max+20){ _laser.timer=0; }
 
     _laser.currentlenght+=1;
@@ -103,8 +111,7 @@ handlePlayer=function(){
       _context.fillShortRect(_light.color,_currentLight);
 
       if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!_player.touched){ 
-        if(hp<=1){ hp-=1; }
-        if(hp>=2){ hp-=2; }
+        hp-=2;
         _player.invisible=1;
         _player.touched=true;
         if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
@@ -112,6 +119,7 @@ handlePlayer=function(){
     }
 
     _currentLight.y+=globalMove;
+    _currentLight.x+=localMove;
 
     _light.currentlenght+=1;
   }
@@ -127,12 +135,19 @@ handlePlayer=function(){
     }
 
     _currentSpike.y+=globalMove;
+    _currentSpike.x+=localMove;
 
     _spike.currentlenght+=1;
   }
 
+  if(!pauseOn&&_player.hp!=0&&_player.y<_currentResolution.height*3/8){ globalMove=+3*scale; }
+  if(!pauseOn&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
+  else if(pauseOn||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height){ globalMove=0; }
+
   if(_player.x<=0){ _player.x+=4*scale; }
-  if(_player.x>=_currentResolution.width-_player.width){ _player.x-=4*scale; }
+  if(_player.x>=_currentResolution.width-_player.width&&score!=14||_player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; }
+  if(_player.x>=_currentResolution.width&&score==14&&!boss){ localMove-=_render.width; _currentPlatform.y=_render.height-_platform.height; _player.y=_currentPlatform.y-_player.height; boss=true; }
+  else if(_player.x<_currentResolution.width&&score==14&&boss){ localMove=0; }
 
   if(_player.active){
     _player.grounded=true;
@@ -153,6 +168,7 @@ handlePlayer=function(){
     _player.upTimer=0;
     _player.gravity=0.5*scale;
   }
+
   _player.active=false;
   _player.fly=false;
   _player.touched=false;

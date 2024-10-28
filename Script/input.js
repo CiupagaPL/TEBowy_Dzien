@@ -37,7 +37,7 @@ document.addEventListener("keyup",function(_event){
     else if(!fullscreenOn){ fullscreenOn=true; }
   } switch(scene){
     case 0:
-      if(_event.key=="Enter"&&!canStart&&!resolutionError){ canStart=true; sceneTimer=0; }
+      if(_event.key=="Enter"&&!canStart&&!resolutionError){ canStart=true; sceneTimer=0; round=1; }
       break;
     case 1:
       if(_event.key=="Enter"&&canClick){
@@ -214,7 +214,8 @@ window.addEventListener("click",function(_event){
         _menuCustom.animation=true;
         _blueprint.close=true;
         canClick=false;
-      } else if(!_clipboard.on&&!_blueprint.on){
+    } else if(!_clipboard.on&&!_blueprint.on){
+      round=1;
       canClick=false;
       nextScene=2;
       changeScene=true;
@@ -300,6 +301,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel2,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -323,6 +325,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel3,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -346,6 +349,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel4,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -369,6 +373,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel5,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -392,6 +397,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel6,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -415,6 +421,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel7,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -438,6 +445,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   } if(window.detectcollision(_clipboardLevel8,_mouse)&&_menuLevel.on){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
@@ -461,6 +469,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       _blueprint.close=true;
       canClick=false;
+      round=1;
     }
   }
 

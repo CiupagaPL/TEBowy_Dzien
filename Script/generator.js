@@ -14,6 +14,7 @@ generatelevel=function(){
     if(_platform.currentload>=1){ spikegenerator(); }
     platformgenerator();
     cornergenerator();
+    signgenerator();
     lasergenerator();
     lightgenerator();
 
@@ -32,6 +33,8 @@ resetlevel=function(){
   _light.lenght=-1;
   _spike.array=[];
   _spike.lenght=-1;
+  _sign.array=[];
+  _sign.lenght=-1;
   _platform.currentload=0;
 }
 
@@ -48,6 +51,30 @@ mainplatformgenerator=function(){
   _platform.loop++;
   _platform.currentcount++;
   _platform.lenght++;
+}
+
+signgenerator=function(){
+  _currentSign={
+    x:16*scale,y:_render.height-12*scale-_sign.height,
+
+    width:_sign.width,height:_sign.height,
+  
+    boss:false,
+  };
+
+  _sign.array[0]=_currentSign;
+
+  _currentSign={
+    x:16*scale,y:_platform.besty-_sign.height,
+
+    width:_sign.width,height:_sign.height,
+  
+    boss:true,
+  };
+
+  _sign.array[1]=_currentSign;
+
+  _sign.lenght=1;
 }
 
 cornergenerator=function(){
@@ -130,12 +157,15 @@ platformgenerator=function(){
   _currentPlatform={
     x:_platform.random+128*scale,y:_currentResolution.height-128*scale*_platform.currentload-144*scale,
 
-    width:_currentResolution.width-_platform.random+128*scale,height:_platform.height,
+    width:_currentResolution.width-_platform.random-128*scale,height:_platform.height,
 
     level:_platform.currentload,
   };
+  if(_currentPlatform.level==13){ _currentPlatform.width+=_currentResolution.width; }
 
   _platform.array.push(_currentPlatform);
+
+  if(_currentPlatform.y<=_platform.besty){ _platform.besty=_currentPlatform.y; }
 
   _platform.lastx=_platform.random;
   _platform.lasty=_currentPlatform.y;

@@ -14,8 +14,8 @@ let scene=0,sceneTimer=0,changeTimer=0,nextScene=0,musicTimer=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false;
 let sfxOn=true,musicOn=true,fullscreenOn=false;
     pauseOn=false,pauseChange=false,pauseAnimation=false,menuLoad=false;
-let skin=0,hp=6,dead=false;
-let globalMove=0,round=0,score=0;
+let skin=0,hp=6,dead=false,bossHp=10;
+let globalMove=0,localMove=0,round=0,score=0,boss=false,defeat=false;
 
 let _html=document.getElementById("html");
 
@@ -74,7 +74,7 @@ let _keyState={
   right:false,
 };
 
-let _currentPlatform,_currentSpike,_currentCorner,_currentLaser,_currentLight;
+let _currentPlatform,_currentSpike,_currentCorner,_currentLaser,_currentLight,_currentSign;
 
 let _background={
   width:640,height:360,
@@ -101,7 +101,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 10",
+  value:"Test 11",
 
   size:36,
   on:false,
@@ -580,6 +580,56 @@ let _gameScore={
 
   x:0,y:0,
 };
+let _gameBossHP1={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+};
+let _gameBossHP2={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+};
+let _gameBossHP3={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+};
+let _gameBossHP4={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+};
+let _gameBossHP5={
+  width:16,
+  height:16,
+
+  x:0,y:0,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+};
 
 let _player={
   width:48,height:81,
@@ -640,13 +690,14 @@ let _platform={
 
   lenght:0,
   currentlenght:0,
-  load:23,
+  load:13,
   currentload:0,
   level:0,
   lastlevel:0,
   random:0,
   lastx:0,
   lasty:0,
+  besty:0,
 
   img:new Image(),
 };
@@ -713,6 +764,22 @@ let _spike={
   detected:false,
   
   img:new Image(),
+};
+
+let _sign={
+  array:[],
+
+  w:64,h:64,
+
+  x:0,y:0,
+
+  lenght:-1,
+  currentlenght:0,
+
+  boss:false,
+  
+  img0:new Image(),
+  img1:new Image(),
 };
 
 let _boss={
@@ -837,6 +904,22 @@ _gameHP3.img2.src="Source/UI/Heart/empty.png";
 
 _gamePause.img.src="Source/UI/pause.png";
 
+_gameBossHP1.img0.src="Source/UI/Heart/bossHeart.png";
+_gameBossHP1.img1.src="Source/UI/Heart/bossHalf.png";
+_gameBossHP1.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP2.img0.src="Source/UI/Heart/bossHeart.png";
+_gameBossHP2.img1.src="Source/UI/Heart/bossHalf.png";
+_gameBossHP2.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP3.img0.src="Source/UI/Heart/bossHeart.png";
+_gameBossHP3.img1.src="Source/UI/Heart/bossHalf.png";
+_gameBossHP3.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP4.img0.src="Source/UI/Heart/bossHeart.png";
+_gameBossHP4.img1.src="Source/UI/Heart/bossHalf.png";
+_gameBossHP4.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP5.img0.src="Source/UI/Heart/bossHeart.png";
+_gameBossHP5.img1.src="Source/UI/Heart/bossHalf.png";
+_gameBossHP5.img2.src="Source/UI/Heart/bossEmpty.png";
+
 _player.img0.src="Source/Object/Player/boy0.png";
 _player.img1.src="Source/Object/Player/boy1.png";
 _player.img2.src="Source/Object/Player/girl0.png";
@@ -855,6 +938,9 @@ _laser.img0.src="Source/Object/Laser/left.png";
 _laser.img1.src="Source/Object/Laser/right.png";
 
 _spike.img.src="Source/Object/spike.png";
+
+_sign.img0.src="Source/Object/next.png";
+_sign.img1.src="Source/Object/boss.png";
 
 _boss.img0.src="Source/Object/People/TS.png";
 
