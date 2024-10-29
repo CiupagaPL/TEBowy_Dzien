@@ -110,7 +110,7 @@ handlePlayer=function(){
     if(_laser.timer>=_laser.max){
       _context.fillShortRect(_light.color,_currentLight);
 
-      if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!_player.touched){ 
+      if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!_player.touched&&!boss){ 
         hp-=2;
         _player.invisible=1;
         _player.touched=true;
@@ -128,7 +128,7 @@ handlePlayer=function(){
     _currentSpike=_spike.array[_spike.currentlenght];
     _context.drawShortImage(_spike.img,_currentSpike);
 
-    if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0){
+    if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0&&!boss){
       hp-=1;
       _player.invisible=1;
       if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
@@ -140,13 +140,16 @@ handlePlayer=function(){
     _spike.currentlenght+=1;
   }
 
-  if(!pauseOn&&_player.hp!=0&&_player.y<_currentResolution.height*3/8){ globalMove=+3*scale; }
+  if(!pauseOn&&_player.hp!=0&&_player.y<_currentResolution.height*3/8&&_platform.array[_platform.lenght].y<0){ globalMove=+3*scale; }
   if(!pauseOn&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
-  else if(pauseOn||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height){ globalMove=0; }
+  else if(pauseOn||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height||_platform.array[_platform.lenght].y>0){ globalMove=0; }
 
   if(_player.x<=0){ _player.x+=4*scale; }
   if(_player.x>=_currentResolution.width-_player.width&&score!=14||_player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; }
-  if(_player.x>=_currentResolution.width&&score==14&&!boss){ localMove-=_render.width; _currentPlatform.y=_render.height-_platform.height; _player.y=_currentPlatform.y-_player.height; boss=true; }
+  if(_player.x>=_currentResolution.width&&score==14&&!boss){ localMove-=_render.width;
+    _platform.array[_platform.lenght-1].y=_render.height-_platform.height;
+    _player.y=_platform.array[_platform.lenght-1].y-_player.height;
+    boss=true; }
   else if(_player.x<_currentResolution.width&&score==14&&boss){ localMove=0; }
 
   if(_player.active){

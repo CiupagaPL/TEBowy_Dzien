@@ -101,7 +101,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 11",
+  value:"Test 12",
 
   size:36,
   on:false,
@@ -642,7 +642,7 @@ let _player={
   fallentimer:0,
   upTimer:0,
   invisible:0,
-  max:90,
+  max:60,
 
   touched:false,
   active:false,
@@ -759,6 +759,7 @@ let _spike={
   lenght:-1,
   currentlenght:0,
   random:0,
+  count:0,
 
   checked:false,
   detected:false,

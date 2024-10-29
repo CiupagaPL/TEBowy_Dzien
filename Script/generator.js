@@ -17,6 +17,7 @@ generatelevel=function(){
     signgenerator();
     lasergenerator();
     lightgenerator();
+    lastplatformgenerator();
 
     _platform.currentload+=1;
   }
@@ -48,6 +49,23 @@ mainplatformgenerator=function(){
   };
 
   _platform.array[0]=_currentPlatform;
+
+  _platform.loop++;
+  _platform.currentcount++;
+  _platform.lenght++;
+}
+
+lastplatformgenerator=function(){
+  _currentPlatform={
+    x:0,y:_platform.besty-128*scale,
+
+    width:_currentResolution.width,height:_platform.height,
+
+    level:14,
+  };
+
+  _platform.array[_platform.lenght+1]=_currentPlatform;
+
   _platform.loop++;
   _platform.currentcount++;
   _platform.lenght++;
@@ -55,7 +73,7 @@ mainplatformgenerator=function(){
 
 signgenerator=function(){
   _currentSign={
-    x:16*scale,y:_render.height-12*scale-_sign.height,
+    x:0,y:_render.height-12*scale-_sign.height,
 
     width:_sign.width,height:_sign.height,
   
@@ -65,7 +83,7 @@ signgenerator=function(){
   _sign.array[0]=_currentSign;
 
   _currentSign={
-    x:16*scale,y:_platform.besty-_sign.height,
+    x:_render.width-_sign.width,y:_platform.besty-_sign.height,
 
     width:_sign.width,height:_sign.height,
   
@@ -183,77 +201,81 @@ spikegenerator=function(){
   }
 
   if(_platform.lastx>_platform.random-128*scale){
-    _spike.random=Math.floor(Math.random()*_platform.random);
-    if(_spike.random+_spike.width>_platform.random){ _spike.random=_platform.random-_spike.width; }
+    if(_spike.count>=2){
+      _spike.random=Math.floor(Math.random()*_platform.random);
+      if(_spike.random+_spike.width>_platform.random){ _spike.random=_platform.random-_spike.width; }
 
-    _currentSpike={
-      x:_spike.random,y:_platform.lasty-_spike.height,
+      _currentSpike={
+        x:_spike.random,y:_platform.lasty-_spike.height,
 
-      width:_spike.width,height:_spike.height,
-    };
+        width:_spike.width,height:_spike.height,
+      };
 
-    _spike.array.push(_currentSpike);
-    _spike.lenght++;
+      _spike.array.push(_currentSpike);
+      _spike.lenght++;
+    } if(_spike.count>=1){
+      _spike.random=Math.floor(Math.random()*(_platform.lastx-(_platform.random+128*scale)))+_platform.random+128*scale;
+      if(_spike.random+_spike.width*3>_platform.lastx){ _spike.random=_platform.lastx-_spike.width*4; }
 
-    _spike.random=Math.floor(Math.random()*(_platform.lastx-(_platform.random+128*scale)))+_platform.random+128*scale;
-    if(_spike.random+_spike.width*3>_platform.lastx){ _spike.random=_platform.lastx-_spike.width*4; }
+      _currentSpike={
+        x:_spike.random,y:_platform.lasty-_spike.height,
 
-    _currentSpike={
-      x:_spike.random,y:_platform.lasty-_spike.height,
+        width:_spike.width,height:_spike.height,
+      };
 
-      width:_spike.width,height:_spike.height,
-    };
+      _spike.array.push(_currentSpike);
+      _spike.lenght++;
+    } if(_spike.count>=3){
+      _spike.random=Math.floor(Math.random()*(_render.width-(_platform.lastx+128*scale)))+_platform.lastx+128*scale;
+      if(_spike.random+_spike.width>_render.width){ _spike.random=_render.width-_spike.width; }
 
-    _spike.array.push(_currentSpike);
-    _spike.lenght++;
+      _currentSpike={
+        x:_spike.random,y:_platform.lasty-_spike.height,
 
-    _spike.random=Math.floor(Math.random()*(_render.width-(_platform.lastx+128*scale)))+_platform.lastx+128*scale;
-    if(_spike.random+_spike.width>_render.width){ _spike.random=_render.width-_spike.width; }
+        width:_spike.width,height:_spike.height,
+      };
 
-    _currentSpike={
-      x:_spike.random,y:_platform.lasty-_spike.height,
-
-      width:_spike.width,height:_spike.height,
-    };
-
-    _spike.array.push(_currentSpike);
-    _spike.lenght++;
+      _spike.array.push(_currentSpike);
+      _spike.lenght++;
+    }
   } else if(_platform.lastx<=_platform.random-128*scale){
-    _spike.random=Math.floor(Math.random()*_platform.lastx);
-    if(_spike.random+_spike.width>_platform.lastx){ _spike.random=_platform.lastx-_spike.width; }
+    if(_spike.count>=2){
+      _spike.random=Math.floor(Math.random()*_platform.lastx);
+      if(_spike.random+_spike.width>_platform.lastx){ _spike.random=_platform.lastx-_spike.width; }
 
-    _currentSpike={
-      x:_spike.random,y:_platform.lasty-_spike.height,
+      _currentSpike={
+        x:_spike.random,y:_platform.lasty-_spike.height,
 
-      width:_spike.width,height:_spike.height,
-    };
+        width:_spike.width,height:_spike.height,
+      };
 
-    _spike.array.push(_currentSpike);
-    _spike.lenght++;
+      _spike.array.push(_currentSpike);
+      _spike.lenght++;
+    } if(_spike.count>=1){
+      _spike.random=Math.floor(Math.random()*(_platform.random-(_platform.lastx+128*scale)))+_platform.lastx+128*scale;
+      if(_spike.random+_spike.width>_platform.random){ _spike.random=_platform.random-_spike.width; }
+      if(_spike.random+_spike.width*3>_platform.lastx+128*scale){ _spike.random=_platform.lastx+128*scale+_spike.width*4; }
 
-    _spike.random=Math.floor(Math.random()*(_platform.random-(_platform.lastx+128*scale)))+_platform.lastx+128*scale;
-    if(_spike.random+_spike.width>_platform.random){ _spike.random=_platform.random-_spike.width; }
-    if(_spike.random+_spike.width*3>_platform.lastx+128*scale){ _spike.random=_platform.lastx+128*scale+_spike.width*4; }
+      _currentSpike={
+        x:_spike.random,y:_platform.lasty-_spike.height,
 
-    _currentSpike={
-      x:_spike.random,y:_platform.lasty-_spike.height,
+        width:_spike.width,height:_spike.height,
+      };
 
-      width:_spike.width,height:_spike.height,
-    };
+      _spike.array.push(_currentSpike);
+      _spike.lenght++;
+    } if(_spike.count>=3){
+      _spike.random=Math.floor(Math.random()*(_render.width-(_platform.random+128*scale)))+_platform.random+128*scale;
+      if(_spike.random+_spike.width>_render.width){ _spike.random=_render.width-_spike.width; }
 
-    _spike.array.push(_currentSpike);
-    _spike.lenght++;
+      _currentSpike={
+        x:_spike.random,y:_platform.lasty-_spike.height,
 
-    _spike.random=Math.floor(Math.random()*(_render.width-(_platform.random+128*scale)))+_platform.random+128*scale;
-    if(_spike.random+_spike.width>_render.width){ _spike.random=_render.width-_spike.width; }
+        width:_spike.width,height:_spike.height,
+      };
 
-    _currentSpike={
-      x:_spike.random,y:_platform.lasty-_spike.height,
-
-      width:_spike.width,height:_spike.height,
-    };
-
-    _spike.array.push(_currentSpike);
-    _spike.lenght++;
+      _spike.array.push(_currentSpike);
+      _spike.lenght++;
+    }
   }
 }

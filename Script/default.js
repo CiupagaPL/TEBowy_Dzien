@@ -251,7 +251,7 @@ window.defaultvalue=function(){
 
   _player.width=48*scale;
   _player.height=81*scale;
-  _player.x=_render.width/2-_player.width/2;
+  _player.x=64*scale;
   _player.y=_render.height-12*scale-_player.height;
   _player.initialvy=-12*scale;
   _player.gravity=0.5*scale;
