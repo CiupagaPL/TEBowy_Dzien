@@ -304,11 +304,15 @@ window.defaultvalue=function(){
 
   _boss.width=64*scale;
   _boss.height=108*scale;
-  _boss.x=_render.height*2;
+  _boss.x=32*scale;
   _boss.y=0;
+  _cloud.width=64*scale;
+  _cloud.height=48*scale;
+  _cloud.x=32*scale;
+  _cloud.y=0;
 
   _tebulinek.width=64*scale;
-  _tebulinek.height=32*scale;
+  _tebulinek.height=64*scale;
   _tebulinek.x=-_tebulinek.width;
   _tebulinek.y=-_tebulinek.height;
   _tebulinek.gravity=0.25*scale;

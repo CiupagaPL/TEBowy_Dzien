@@ -39,9 +39,9 @@ level=function(){
   _context.drawShortImage(_background.img1,_background);
   _html.style.backgroundColor=_background.color0;
 
-  handlePlayer();
-
   if(boss){ handleBoss(); }
+
+  handlePlayer();
 
   _context.fillShortRect(_gameUI.color,_gameUI);
   _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;

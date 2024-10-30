@@ -101,7 +101,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 12",
+  value:"Test 13",
 
   size:36,
   on:false,
@@ -788,22 +788,33 @@ let _boss={
 
   x:0,y:0,
 
-  timer:0,
-
   load:false,
 
   img0:new Image(),
 };
+let _cloud={
+  w:64,h:48,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
 
 let _tebulinek={
-  w:64,h:32,
+  w:64,h:64,
 
   x:0,y:0,
   vy:0,
 
   gravity:0.25,
+  timer:0,
 
-  img:new Image(),
+  unused:true,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
 };
 
 _audio.menu.load();
@@ -945,4 +956,9 @@ _sign.img1.src="Source/Object/boss.png";
 
 _boss.img0.src="Source/Object/People/TS.png";
 
-_tebulinek.img.src="Source/Object/Attack/tebulinek.png";
+_cloud.img.src="Source/Object/cloud.png";
+
+_tebulinek.img0.src="Source/Object/Attack/Tebulinek/0.png";
+_tebulinek.img1.src="Source/Object/Attack/Tebulinek/90.png";
+_tebulinek.img2.src="Source/Object/Attack/Tebulinek/180.png";
+_tebulinek.img3.src="Source/Object/Attack/Tebulinek/270.png";

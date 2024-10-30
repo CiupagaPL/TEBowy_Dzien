@@ -35,3 +35,17 @@ drawplayer=function(){
     }
   }
 }
+
+drawattack=function(_object){
+  if(!pauseOn&&hp!=0){ _object.timer++; }
+  
+  if(_object.timer<10){
+    _context.drawShortImage(_object.img0,_object);
+  } if(_object.timer>=10&&_object.timer<20){
+    _context.drawShortImage(_object.img1,_object);
+  } if(_object.timer>=20&&_object.timer<30){
+    _context.drawShortImage(_object.img2,_object);
+  } if(_object.timer>=30&&_object.timer<40){
+    _context.drawShortImage(_object.img3,_object);
+  } if(_object.timer>=40){ _context.drawShortImage(_object.img0,_object); _object.timer=0; }
+}

@@ -2,13 +2,13 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Od teraz gracz nie dostaje losowych obrażeń gdy rozpoczyna walkę,
-- Generowana jest dodatkowa platforma która blokuje dalszy ruch kamery,
-- Znaki są od teraz lepiej ustawione (*podobnie zmieniła się pozycja gracza*),
-- Naprawiłem kilka błędów z przejściami,
-- Dodałem zmienną trudność poziomu w zależności od etapu (*zmieniają się: czas między obrażeniami, ilość kolców i czas między laserami*),
-- Dostosowałem generator kolców pod zmienną trudność poziomów,
-- Oraz naprawiłem kilka mniejszych błędów.
+Tak na prawdę cały czas skupiony jestem na bossie więc zmiany dotyczą wyłącznie niego.
+
+## TODO
+Jeżeli chodzi o sam gameplay brakuje krótkiego tutorialu oraz "punktów ujemnych".
+Boss potrzebuje trochę więcej animacji oraz oczywiście inne obiekty do rzucania.
+Muszę nadrobić muzykę dla bossa oraz dodać mu dźwięki.
+Dźwięk jest zbugowany po minimalizacji okna i musze się tym zająć.
 
 ## Status
 > Newest Version: **Test 12**;
@@ -22,7 +22,6 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
-Dzisiaj była lekko mniejsza budowa jako iż miałem trochę roboty.
-Od jutra biore się w pełni za nauczycieli (*każdy inny aspekt gry jest praktycznie skończony*).
-Pozostaje jedno ważne pytanie - na jaką licencję i na kogo przepisujemy ten projekt?
-Tak nie mam w sumie nic do dodania, w dobrym tępie projekt skończę w trzy dni.
+Wracamy do wczorajszych pytań.
+Na jaką licencję i na kogo przepisujemy ten projekt?
+Kiedy otrzymam pozostałe sprite'y nauczycieli?

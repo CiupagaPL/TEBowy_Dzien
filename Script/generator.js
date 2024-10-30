@@ -155,11 +155,11 @@ lightgenerator=function(){
 }
 
 platformgenerator=function(){
-  if(_platform.lastx>320*scale&&_platform.currentload<1){
-    _platform.random=Math.floor(Math.random()*150*scale)+42*scale;
-  } if(_platform.lastx<=320*scale&&_platform.currentload<1){
-    _platform.random=Math.floor(Math.random()*150*scale)+320*scale;
-    if(_platform.random<556*scale){ _platform.random+42*scale; }
+  if(_platform.lastx>_render.width-_platform.lastx-128*scale&&_platform.currentload<1){
+    _platform.random=Math.floor(Math.random()*125*scale)+42*scale+25*scale;
+  } if(_platform.lastx<=_render.width-_platform.lastx-128*scale&&_platform.currentload<1){
+    _platform.random=Math.floor(Math.random()*125*scale)+320*scale+25*scale;
+    if(_platform.random+128*scale>_render.width-170*scale){ _platform.random=_render.width-170*scale; }
   }
 
   _currentPlatform={
