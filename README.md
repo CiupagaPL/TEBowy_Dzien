@@ -11,8 +11,8 @@ Muszę nadrobić muzykę dla bossa oraz dodać mu dźwięki.
 Dźwięk jest zbugowany po minimalizacji okna i musze się tym zająć.
 
 ## Status
-> Newest Version: **Test 12**;
-> Last Updated: **29-10-2024**;
+> Newest Version: **Test 13**;
+> Last Updated: **30-10-2024**;
 
 ## License
 For now this project doesn't have any license.
