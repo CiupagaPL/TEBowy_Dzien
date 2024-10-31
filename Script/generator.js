@@ -9,9 +9,9 @@
    ((_/`(____,-' */
 
 generatelevel=function(){
-  while(_platform.currentload<=_platform.load){
+  while(_platform.currentLoad<=_platform.load){
     mainplatformgenerator();
-    if(_platform.currentload>=1){ spikegenerator(); }
+    if(_platform.currentLoad>=1){ spikegenerator(); }
     platformgenerator();
     cornergenerator();
     signgenerator();
@@ -19,7 +19,7 @@ generatelevel=function(){
     lightgenerator();
     lastplatformgenerator();
 
-    _platform.currentload+=1;
+    _platform.currentLoad+=1;
   }
 }
 
@@ -36,7 +36,7 @@ resetlevel=function(){
   _spike.lenght=-1;
   _sign.array=[];
   _sign.lenght=-1;
-  _platform.currentload=0;
+  _platform.currentLoad=0;
 }
 
 mainplatformgenerator=function(){
@@ -51,7 +51,7 @@ mainplatformgenerator=function(){
   _platform.array[0]=_currentPlatform;
 
   _platform.loop++;
-  _platform.currentcount++;
+  _platform.currentCount++;
   _platform.lenght++;
 }
 
@@ -67,7 +67,7 @@ lastplatformgenerator=function(){
   _platform.array[_platform.lenght+1]=_currentPlatform;
 
   _platform.loop++;
-  _platform.currentcount++;
+  _platform.currentCount++;
   _platform.lenght++;
 }
 
@@ -155,29 +155,29 @@ lightgenerator=function(){
 }
 
 platformgenerator=function(){
-  if(_platform.lastx>_render.width-_platform.lastx-128*scale&&_platform.currentload<1){
+  if(_platform.lastx>_render.width-_platform.lastx-128*scale&&_platform.currentLoad<1){
     _platform.random=Math.floor(Math.random()*125*scale)+42*scale+25*scale;
-  } if(_platform.lastx<=_render.width-_platform.lastx-128*scale&&_platform.currentload<1){
+  } if(_platform.lastx<=_render.width-_platform.lastx-128*scale&&_platform.currentLoad<1){
     _platform.random=Math.floor(Math.random()*125*scale)+320*scale+25*scale;
     if(_platform.random+128*scale>_render.width-170*scale){ _platform.random=_render.width-170*scale; }
   }
 
   _currentPlatform={
-    x:0,y:_currentResolution.height-128*scale*_platform.currentload-144*scale,
+    x:0,y:_currentResolution.height-128*scale*_platform.currentLoad-144*scale,
 
     width:_platform.random,height:_platform.height,
 
-    level:_platform.currentload,
+    level:_platform.currentLoad,
   };
 
   _platform.array.push(_currentPlatform);
 
   _currentPlatform={
-    x:_platform.random+128*scale,y:_currentResolution.height-128*scale*_platform.currentload-144*scale,
+    x:_platform.random+128*scale,y:_currentResolution.height-128*scale*_platform.currentLoad-144*scale,
 
     width:_currentResolution.width-_platform.random-128*scale,height:_platform.height,
 
-    level:_platform.currentload,
+    level:_platform.currentLoad,
   };
   if(_currentPlatform.level==13){ _currentPlatform.width+=_currentResolution.width; }
 
@@ -188,14 +188,14 @@ platformgenerator=function(){
   _platform.lastx=_platform.random;
   _platform.lasty=_currentPlatform.y;
   _platform.loop++;
-  _platform.currentcount++;
+  _platform.currentCount++;
   _platform.lenght++;
 }
 
 spikegenerator=function(){
-  if(_platform.lastx>320*scale&&_platform.currentload>=1){
+  if(_platform.lastx>320*scale&&_platform.currentLoad>=1){
     _platform.random=Math.floor(Math.random()*150*scale)+42*scale;
-  } if(_platform.lastx<=320*scale&&_platform.currentload>=1){
+  } if(_platform.lastx<=320*scale&&_platform.currentLoad>=1){
     _platform.random=Math.floor(Math.random()*150*scale)+320*scale;
     if(_platform.random<556*scale){ _platform.random+42*scale; }
   }

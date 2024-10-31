@@ -12,10 +12,11 @@ let resolutionError=false,ratio=16/9,scale=1.00,fpsLimit=60,lastFrame=0;
 let canStart=false,canClick=true,changeScene=false;
 let scene=0,sceneTimer=0,changeTimer=0,nextScene=0,musicTimer=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false;
-let sfxOn=true,musicOn=true,fullscreenOn=false;
+let sfxOn=true,musicOn=true,fullscreenOn=false,tempSfxOn=true,tempMusicOn=true;
     pauseOn=false,pauseChange=false,pauseAnimation=false,menuLoad=false;
 let skin=0,hp=6,dead=false,bossHp=10;
 let globalMove=0,localMove=0,round=0,score=0,boss=false,defeat=false;
+let tutorial=true;
 
 let _html=document.getElementById("html");
 
@@ -28,7 +29,6 @@ let _load=document.getElementById("load");
 let _window={
   width:window.innerWidth,
   height:window.innerHeight,
-  ratio:window.innerWidth/window.innerHeight,
 };
 
 let _audio={
@@ -46,6 +46,10 @@ let _audio={
   jump:new Audio("Source/Sound/jump.wav"),
   laser:new Audio("Source/Sound/laser.wav"),
   paper:new Audio("Source/Sound/paper.wav"),
+
+  bossDie:new Audio("Source/Sound/bossDie.wav"),
+  bossHit:new Audio("Source/Sound/bossHit.wav"),
+  bossStart:new Audio("Source/Sound/bossStart.wav"),
 };
 
 let _mouse={
@@ -68,8 +72,6 @@ let _render={
 let _context=_render.base.getContext("2d");
 
 let _keyState={
-  a:false,
-  d:false,
   left:false,
   right:false,
 };
@@ -101,7 +103,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 13",
+  value:"Test 14",
 
   size:36,
   on:false,
@@ -630,6 +632,44 @@ let _gameBossHP5={
   img1:new Image(),
   img2:new Image(),
 };
+let _wideClipboard={
+  width:184,height:184,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _wideClipboardForward={
+  width:24,height:24,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _tutorialTitle={
+  value:"Poradnik",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _tutorialText={
+  value:"Poruszaj się za pomocą [a] i [d] lub\n[<-] i [->]. Podskakuj za pomocą [w],\n[^] lub [_]. Twoim celem jest dostać się\nna górę poziomu i pokonać danego\n"+
+        "nauczyciela. Po drodze musisz omijać\nprzeszkody w postaci kolców i laserów.\nW trudnej sytuacji użyj Tebulinka.\n\nŻyczymy szczęścia!",
+
+  size:12,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
 
 let _player={
   width:48,height:81,
@@ -639,7 +679,6 @@ let _player={
   initialvy:-12,
 
   gravity:0.5,
-  fallentimer:0,
   upTimer:0,
   invisible:0,
   max:60,
@@ -659,6 +698,19 @@ let _player={
   img1left:new Image(),
   img2left:new Image(),
   img3left:new Image(),
+};
+let _playerText={
+  value:"-0 puntków\nz zachowania",
+
+  size:12,
+  font:"orangeKid",
+  debug:"",
+  color0:"rgba(225,0,0,1)",
+  color1:"rgba(225,0,0,0.75)",
+  color2:"rgba(225,0,0,0.5)",
+  color3:"rgba(225,0,0,0.25)",
+
+  x:0,y:0,
 };
 let _playerTop={
   w:40,h:4,
@@ -689,11 +741,12 @@ let _platform={
   x:0,y:0,
 
   lenght:0,
-  currentlenght:0,
+  currentLenght:0,
   load:13,
-  currentload:0,
+  currentLoad:0,
+  currentCount:0,
   level:0,
-  lastlevel:0,
+  lastLevel:0,
   random:0,
   lastx:0,
   lasty:0,
@@ -710,7 +763,7 @@ let _corner={
   x:0,y:0,
 
   lenght:-1,
-  currentlenght:0,
+  currentLenght:0,
 
   left:false,
 
@@ -726,7 +779,7 @@ let _laser={
   x:0,y:0,
 
   lenght:-1,
-  currentlenght:0,
+  currentLenght:0,
   timer:0,
   max:60,
 
@@ -744,9 +797,11 @@ let _light={
   x:0,y:0,
 
   lenght:-1,
-  currentlenght:0,
+  currentLenght:0,
 
-  color:"white",
+  color0:"rgba(255,255,255,1)",
+  color1:"rgba(255,255,255,0.5)",
+  color2:"rgba(255,255,255,0.15)",
 };
 
 let _spike={
@@ -757,7 +812,7 @@ let _spike={
   x:0,y:0,
 
   lenght:-1,
-  currentlenght:0,
+  currentLenght:0,
   random:0,
   count:0,
 
@@ -775,7 +830,7 @@ let _sign={
   x:0,y:0,
 
   lenght:-1,
-  currentlenght:0,
+  currentLenght:0,
 
   boss:false,
   
@@ -788,19 +843,93 @@ let _boss={
 
   x:0,y:0,
 
+  invisible:0,
+  random:0,
+  max:30,
+  id:0,
+
   load:false,
+  left:false,
 
   img0:new Image(),
+  img1:new Image(),
 };
 let _cloud={
   w:64,h:48,
 
   x:0,y:0,
 
+  left:false,
+
   img:new Image(),
 };
 
 let _tebulinek={
+  w:64,h:64,
+
+  x:0,y:0,
+  vy:0,
+
+  gravity:0.25,
+  timer:0,
+
+  unused:true,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+
+let _computer={
+  w:64,h:64,
+
+  x:0,y:0,
+  vy:0,
+
+  gravity:0.25,
+  timer:0,
+
+  unused:true,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _keyboard={
+  w:64,h:64,
+
+  x:0,y:0,
+  vy:0,
+
+  gravity:0.25,
+  timer:0,
+
+  unused:true,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _coffe={
+  w:64,h:64,
+
+  x:0,y:0,
+  vy:0,
+
+  gravity:0.25,
+  timer:0,
+
+  unused:true,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+};
+let _dove={
   w:64,h:64,
 
   x:0,y:0,
@@ -823,6 +952,7 @@ _audio.boss.load();
 
 _audio.menu.volume=0.25;
 _audio.game.volume=0.25;
+_audio.boss.volume=0.25;
 
 _audio.load1.load();
 _audio.load2.load();
@@ -842,9 +972,17 @@ _audio.paper.load();
 _audio.click.volume=1;
 _audio.die.volume=0.25;
 _audio.hit.volume=0.25;
-_audio.jump.volume=0.5;
+_audio.jump.volume=0.25;
 _audio.laser.volume=0.25;
 _audio.paper.volume=0.25;
+
+_audio.bossDie.load();
+_audio.bossHit.load();
+_audio.bossStart.load();
+
+_audio.bossDie.volume=0.25;
+_audio.bossHit.volume=0.25;
+_audio.bossStart.volume=0.25;
 
 _background.img0.src="Source/Object/background.png";
 _background.img1.src="Source/Object/gameground.png";
@@ -932,6 +1070,10 @@ _gameBossHP5.img0.src="Source/UI/Heart/bossHeart.png";
 _gameBossHP5.img1.src="Source/UI/Heart/bossHalf.png";
 _gameBossHP5.img2.src="Source/UI/Heart/bossEmpty.png";
 
+_wideClipboard.img.src="Source/UI/wideClipboard.png";
+_wideClipboardForward.img.src="Source/UI/forward.png";
+_wideClipboardForward.imgOn.src="Source/UI/forwardOn.png";
+
 _player.img0.src="Source/Object/Player/boy0.png";
 _player.img1.src="Source/Object/Player/boy1.png";
 _player.img2.src="Source/Object/Player/girl0.png";
@@ -955,10 +1097,28 @@ _sign.img0.src="Source/Object/next.png";
 _sign.img1.src="Source/Object/boss.png";
 
 _boss.img0.src="Source/Object/People/TS.png";
+_boss.img1.src="Source/Object/People/TSLeft.png";
 
-_cloud.img.src="Source/Object/cloud.png";
+_cloud.img.src="Source/Object/Cloud/cloud.png";
 
 _tebulinek.img0.src="Source/Object/Attack/Tebulinek/0.png";
 _tebulinek.img1.src="Source/Object/Attack/Tebulinek/90.png";
 _tebulinek.img2.src="Source/Object/Attack/Tebulinek/180.png";
 _tebulinek.img3.src="Source/Object/Attack/Tebulinek/270.png";
+
+_computer.img0.src="Source/Object/Attack/Computer/0.png";
+_computer.img1.src="Source/Object/Attack/Computer/90.png";
+_computer.img2.src="Source/Object/Attack/Computer/180.png";
+_computer.img3.src="Source/Object/Attack/Computer/270.png";
+_keyboard.img0.src="Source/Object/Attack/Keyboard/0.png";
+_keyboard.img1.src="Source/Object/Attack/Keyboard/90.png";
+_keyboard.img2.src="Source/Object/Attack/Keyboard/180.png";
+_keyboard.img3.src="Source/Object/Attack/Keyboard/270.png";
+_coffe.img0.src="Source/Object/Attack/Coffe/0.png";
+_coffe.img1.src="Source/Object/Attack/Coffe/90.png";
+_coffe.img2.src="Source/Object/Attack/Coffe/180.png";
+_coffe.img3.src="Source/Object/Attack/Coffe/270.png";
+_dove.img0.src="Source/Object/Attack/Dove/0.png";
+_dove.img1.src="Source/Object/Attack/Dove/90.png";
+_dove.img2.src="Source/Object/Attack/Dove/180.png";
+_dove.img3.src="Source/Object/Attack/Dove/270.png";

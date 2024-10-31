@@ -18,9 +18,10 @@ transitionon=function(){
   if(changeTimer>=20){
     _context.drawShortImage(_change.img4,_change);
 
-    _audio.menu.volume=0.25;
-    _audio.menu.load();
-    musicTimer=0;
+    if(musicOn){
+      _audio.menu.volume=0.25;
+      _audio.menu.load();
+    } musicTimer=0;
 
     canClick=false;
     changeTimer=0;
@@ -63,8 +64,6 @@ transitionoff=function(){
     hp=6;
     autoScene=false;
     nextAutoScene=0;
-    _keyState.a=false;
-    _keyState.d=false;
     _keyState.left=false;
     _keyState.right=false;
     _player.vx=0;
@@ -73,6 +72,8 @@ transitionoff=function(){
     _laser.timer=0;
     boss=false;
     bossHp=10;
+    musicTimer=0;
+    sceneTimer=0;
   }
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img3,_change); }
   if(changeTimer>=10&&changeTimer<15){ _context.drawShortImage(_change.img2,_change); }
@@ -82,6 +83,7 @@ transitionoff=function(){
     changeScene=false;
     canClick=true;
     menuLoad=false;
+    if(tutorial){ pauseOn=true; pauseChange=true; }
   }
 }
 
@@ -94,10 +96,13 @@ transitionPauseon=function(){
   if(changeTimer>=15){
     _context.drawShortImage(_change.img3,_change);
 
+    _audio.game.volume=0;
+    _audio.boss.volume=0;
     changeTimer=0;
     canClick=true;
     pauseChange=false;
     pauseAnimation=true;
+    musicTimer=0;
   }
 }
 
@@ -108,12 +113,18 @@ transitionPauseoff=function(){
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
   if(changeTimer>=10&&changeTimer<15){ _context.drawShortImage(_change.img1,_change); }
   if(changeTimer>=15){
+    if(musicOn){
+      _audio.game.volume=0.25;
+      _audio.boss.volume=0.25;
+    }
     pauseOn=false;
     pauseAnimation=false;
     changeTimer=0;
     canClick=true;
     pauseChange=false;
     autoUnpause=false;
+    musicTimer=0;
+    tutorial=false;
   }
 }
 
@@ -124,9 +135,10 @@ transitionshorton=function(){
   if(changeTimer>=10){
     _context.drawShortImage(_change.img4,_change);
 
-    _audio.game.volume=0.25;
-    _audio.game.load();
-    musicTimer=0;
+    if(musicOn){
+      _audio.game.volume=0.25;
+      _audio.game.load();
+    } musicTimer=0;
 
     canClick=false;
     changeTimer=0;
@@ -137,6 +149,7 @@ transitionshorton=function(){
     autoScene=false;
     menuLoad=true;
     round=1;
+    tutorial=false;
 
     if(nextScene!=scene){
       scene=nextScene;
@@ -155,9 +168,10 @@ transitiondead=function(){
   if(changeTimer>=25){
     _context.drawShortImage(_change.img4,_change);
 
-    _audio.game.volume=0.25;
-    _audio.game.load();
-    musicTimer=0;
+    if(musicOn){
+      _audio.game.volume=0.25;
+      _audio.game.load();
+    } musicTimer=0;
 
     if(defeat){ round++; defeat=false; }
 
@@ -184,8 +198,6 @@ transitiondead=function(){
     hp=6;
     autoScene=false;
     nextAutoScene=0;
-    _keyState.a=false;
-    _keyState.d=false;
     _keyState.left=false;
     _keyState.right=false;
     _player.vx=0;
@@ -195,6 +207,7 @@ transitiondead=function(){
     changeScene=true;
     boss=false;
     bossHp=10;
+    sceneTimer=0;
 
     canClick=true;
     changeTimer=0;
@@ -211,9 +224,10 @@ transitionmenu=function(){
   if(changeTimer>=25){
     _context.drawShortImage(_change.img4,_change);
 
-    _audio.game.volume=0.25;
-    _audio.game.load();
-    musicTimer=0;
+    if(musicOn){
+      _audio.game.volume=0.25;
+      _audio.game.load();
+    } musicTimer=0;
 
     if(nextScene!=scene){
       scene=nextScene;

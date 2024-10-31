@@ -8,6 +8,24 @@
     || |-_\__   /
    ((_/`(____,-' */
 
+_context.fillShortText=function(_color,_text){
+  let lines=_text.value.split("\n");
+
+  _context.fillStyle=_color;
+  _context.font=_text.debug;
+
+  lines.forEach((line,c)=>{
+    _context.fillText(line,_text.x,_text.y+(c*_text.size),_currentResolution.width);
+  });
+}
+
+_context.drawShortImage=function(_img,_object){ _context.drawImage(_img,_object.x,_object.y,_object.width,_object.height); }
+
+_context.fillShortRect=function(_color,_object){
+  _context.fillStyle=_color;
+  _context.fillRect(_object.x,_object.y,_object.width,_object.height);
+}
+
 window.defaultvalue=function(){
   _background.width=_currentResolution.width;
   _background.height=_currentResolution.height;
@@ -249,12 +267,33 @@ window.defaultvalue=function(){
   _gameBossHP5.x=162*scale;
   _gameBossHP5.y=4*scale;
 
+  _wideClipboard.width=184*scale;
+  _wideClipboard.height=184*scale;
+  _wideClipboard.x=_render.width/2-_wideClipboard.width/2;
+  _wideClipboard.y=172*scale;
+  _wideClipboardForward.width=24*scale;
+  _wideClipboardForward.height=24*scale;
+  _wideClipboardForward.x=_wideClipboard.x+156*scale;
+  _wideClipboardForward.y=_wideClipboard.y+3*scale;
+  _tutorialTitle.x=_wideClipboard.x+58*scale;
+  _tutorialTitle.y=_wideClipboard.y+48*scale;
+  _tutorialTitle.size=Math.ceil(24*scale);
+  _tutorialTitle.debug=_tutorialTitle.size+"px "+_tutorialTitle.font;
+  _tutorialText.x=_wideClipboard.x+14*scale;
+  _tutorialText.y=_wideClipboard.y+68*scale;
+  _tutorialText.size=Math.ceil(12*scale);
+  _tutorialText.debug=_tutorialText.size+"px "+_tutorialText.font;
+
   _player.width=48*scale;
   _player.height=81*scale;
   _player.x=64*scale;
   _player.y=_render.height-12*scale-_player.height;
   _player.initialvy=-12*scale;
   _player.gravity=0.5*scale;
+  _playerText.x=0;
+  _playerText.y=0;
+  _playerText.size=Math.ceil(12*scale);
+  _playerText.debug=_playerText.size+"px "+_playerText.font;
   _playerTop.width=40*scale;
   _playerTop.height=4*scale;
   _playerTop.x=0;
@@ -316,4 +355,25 @@ window.defaultvalue=function(){
   _tebulinek.x=-_tebulinek.width;
   _tebulinek.y=-_tebulinek.height;
   _tebulinek.gravity=0.25*scale;
+
+  _computer.width=64*scale;
+  _computer.height=64*scale;
+  _computer.x=-_tebulinek.width;
+  _computer.y=-_tebulinek.height;
+  _computer.gravity=0.25*scale;
+  _keyboard.width=64*scale;
+  _keyboard.height=64*scale;
+  _keyboard.x=-_tebulinek.width;
+  _keyboard.y=-_tebulinek.height;
+  _keyboard.gravity=0.25*scale;
+  _coffe.width=64*scale;
+  _coffe.height=64*scale;
+  _coffe.x=-_tebulinek.width;
+  _coffe.y=-_tebulinek.height;
+  _coffe.gravity=0.25*scale;
+  _dove.width=64*scale;
+  _dove.height=64*scale;
+  _dove.x=-_tebulinek.width;
+  _dove.y=-_tebulinek.height;
+  _dove.gravity=0.25*scale;
 }

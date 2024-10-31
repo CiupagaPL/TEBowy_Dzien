@@ -112,6 +112,13 @@ window.resolution=function(){
   window.defaultvalue();
 }
 
+window.detectcollision=function(_object1,_object2){
+  return _object1.x<_object2.x+_object2.width&&
+         _object1.x+_object1.width>_object2.x&&
+         _object1.y<_object2.y+_object2.height&&
+         _object1.y+_object1.height>_object2.y;
+}
+
 window.onupdate=function(timeStamp){
   if(timeStamp-lastFrame>=1000/fpsLimit){
     lastFrame=timeStamp;
@@ -143,5 +150,5 @@ window.loop=function(){
       break;
   }
 
-  _context.fillSingleText(_versionText);
+  _context.fillShortText(_versionText.color,_versionText);
 }

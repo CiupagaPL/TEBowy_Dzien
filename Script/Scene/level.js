@@ -9,16 +9,31 @@
    ((_/`(____,-' */
 
 level=function(){
-  if(musicOn){
-    musicTimer++;
-    if(musicTimer==10){
-      _audio.game.play();
-    } if(musicTimer>=1135){
+  if(musicOn&&!tutorial){
+    if(sceneTimer<60){
+      musicTimer++;
+      _audio.boss.load();
+      if(musicTimer>=1&&musicTimer<2){
+        _audio.game.load();
+        _audio.game.play();
+      } if(musicTimer>=1148){
+        musicTimer=0;
+      }
+    } if(sceneTimer>=60&&sceneTimer<80){
       _audio.game.load();
       musicTimer=0;
+    } if(sceneTimer>=80){
+      musicTimer++;
+      if(musicTimer>=1&&musicTimer<2){
+        _audio.boss.load();
+        _audio.boss.play();
+      } if(musicTimer>=1148){
+        musicTimer=0;
+      }
     }
   } else if(!musicOn){
     _audio.game.load();
+    _audio.boss.load();
     musicTimer=0;
   }
 
@@ -36,20 +51,25 @@ level=function(){
 
   _clipboardAbout1.x=_clipboard.x+18*scale;
 
+  _menuTitle.y=-32*scale;
+  _menuStart.y=_render.height-168*scale;
+  _menuLevel.y=_render.height-128*scale;
+  _menuSetting.y=_render.height-88*scale;
+  _menuAbout.y=_render.height-48*scale;
+  _menuCustom.y=312*scale;
+
   _context.drawShortImage(_background.img1,_background);
   _html.style.backgroundColor=_background.color0;
 
-  if(boss){ handleBoss(); }
+  if(boss){ handleboss(); }
 
   handlePlayer();
 
   _context.fillShortRect(_gameUI.color,_gameUI);
   _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;
-  _gameLevel.debug=_gameLevel.size+"px "+_gameLevel.font;
-  _context.fillSingleText(_gameLevel);
+  _context.fillShortText(_gameLevel.color,_gameLevel);
   _gameScore.value="Wynik: "+score;
-  _gameScore.debug=_gameScore.size+"px "+_gameScore.font;
-  _context.fillSingleText(_gameScore);
+  _context.fillShortText(_gameScore.color,_gameScore);
   if(hp>=2){ _context.drawShortImage(_gameHP1.img0,_gameHP1); }
   if(hp==1){ _context.drawShortImage(_gameHP1.img1,_gameHP1); }
   if(hp==0){ _context.drawShortImage(_gameHP1.img2,_gameHP1); }
@@ -108,26 +128,35 @@ level=function(){
 
     _context.drawShortImage(_menuTitle.img,_menuTitle);
 
-    _context.drawShortImage(_clipboard.img,_clipboard);
-    if(!_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.img,_clipboardBack); }
-    else if(_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.imgOn,_clipboardBack); }
+    if(!tutorial){
+      _context.drawShortImage(_clipboard.img,_clipboard);
+      if(!_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.img,_clipboardBack); }
+      else if(_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.imgOn,_clipboardBack); }
 
-    if(!_menuStart.hover){ _context.drawShortImage(_menuStart.img,_menuStart); }
-    else if(_menuStart.hover){ _context.drawShortImage(_menuStart.imgOn,_menuStart); } 
-    _context.fillSingleText(_menuStartText);
-    if(!_menuMenu.hover){ _context.drawShortImage(_menuMenu.img,_menuMenu); }
-    else if(_menuMenu.hover){ _context.drawShortImage(_menuMenu.imgOn,_menuMenu); } 
-    _context.fillSingleText(_menuMenuText);
-    if(!_menuSetting.hover){ _context.drawShortImage(_menuSetting.img,_menuSetting); }
-    else if(_menuSetting.hover){ _context.drawShortImage(_menuSetting.imgOn,_menuSetting); } 
-    _context.fillSingleText(_menuSettingText);
-    if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
-    else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
-    _context.fillSingleText(_menuAboutText);
+      if(!_menuStart.hover){ _context.drawShortImage(_menuStart.img,_menuStart); }
+      else if(_menuStart.hover){ _context.drawShortImage(_menuStart.imgOn,_menuStart); } 
+      _context.fillShortText(_menuStartText.color,_menuStartText);
+      if(!_menuMenu.hover){ _context.drawShortImage(_menuMenu.img,_menuMenu); }
+      else if(_menuMenu.hover){ _context.drawShortImage(_menuMenu.imgOn,_menuMenu); } 
+      _context.fillShortText(_menuMenuText.color,_menuMenuText);
+      if(!_menuSetting.hover){ _context.drawShortImage(_menuSetting.img,_menuSetting); }
+      else if(_menuSetting.hover){ _context.drawShortImage(_menuSetting.imgOn,_menuSetting); } 
+      _context.fillShortText(_menuSettingText.color,_menuSettingText);
+      if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
+      else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
+      _context.fillShortText(_menuAboutText.color,_menuAboutText);
+    } else if(tutorial){
+      _context.drawShortImage(_wideClipboard.img,_wideClipboard);
+      if(!_wideClipboardForward.hover){ _context.drawShortImage(_wideClipboardForward.img,_wideClipboardForward); }
+      else if(_wideClipboardForward.hover){ _context.drawShortImage(_wideClipboardForward.imgOn,_wideClipboardForward); }
+
+      _context.fillShortText(_tutorialTitle.color,_tutorialTitle);
+      _context.fillShortText(_tutorialText.color,_tutorialText);
+    }
   }
 
   if(_menuSetting.animation||_menuSetting.on){
-    _context.fillSingleText(_clipboardSettingText);
+    _context.fillShortText(_clipboardSettingText.color,_clipboardSettingText);
 
     if(!sfxOn){
       _context.drawShortImage(_clipboardSetting1.img,_clipboardSetting1);
@@ -142,13 +171,13 @@ level=function(){
     } else if(fullscreenOn){
       _context.drawShortImage(_clipboardSetting3.imgOn,_clipboardSetting3);
     }
-    _context.fillSingleText(_clipboardSetting4);
-    _context.fillSingleText(_clipboardSetting5);
-    _context.fillSingleText(_clipboardSetting6);
+    _context.fillShortText(_clipboardSetting4.color,_clipboardSetting4);
+    _context.fillShortText(_clipboardSetting5.color,_clipboardSetting5);
+    _context.fillShortText(_clipboardSetting6.color,_clipboardSetting6);
   } if(_menuAbout.animation||_menuAbout.on){
-    _context.fillSingleText(_clipboardAboutText);
+    _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText);
 
-    _context.fillMultiText(_clipboardAbout1);
+    _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1);
   }
 
   if(changeScene){ transitionoff(); }
