@@ -2,29 +2,22 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-Widać że wczoraj nie chciało mi się wypisywać changelogu :- )
-Dlatego wypiszę wszystkie wczorajsze wraz z dzisiejszymi.
-- Zmieniłem funkcje dla rysowania tekstu,
-- Przepisałem część kodu i usunąłem jego nielogiczne fragmenty,
-- Zmieniłem oraz dodałem kilka dźwięków (**już trzecie pozdrowienia dla ekipy dźwiękowej**),
-- Dodałem muzykę dla bossa,
-- Naprawiłem problem buggujących się dźwięków gdy gra była zminimalizowana,
-- Zmieniłem działanie muzyki w grze,
-- Dodałem animację laseru,
-- Dodałem ozdobny tekst mówiący o obrażeniach w punktach ujemnych,
-- Dodałem możliwość zanimowania tekstu,
-- Wprowadziłem drobne zmiany do układu obiektów,
-- Od teraz boss zmienia pozycję animacją,
-- Od teraz boss otrzymuje normalne obrażenia jak gracz i ma czas nieśmiertelności,
-- Dodałem 4 nowe obiekty dla bossa,
-- Wszystkie obiekty bossa są zanimowane,
-- Dodałem chmurkę na której unosi się boss,
-- Dodałem krótki tekstowy tutorial wraz z pierwszym załadowaniem poziomu,
-- Oraz wiele innych rzeczy.
+- Od teraz nie możliwe jest zbugowanie platformy od bossfightu,
+- Usunąłem mały odstęp od najwyższej platformy,
+- Ponownie ulepszyłem system renderowania tekstu,
+- Doszedł i zmienił się po jeden dźwięk (**do 4 razy sztuka dźwiękowa ekipo**),
+- Dodałem opis nauczyciela przez każdym bossfightem,
+- Od teraz chmurka jest również naszym przeciwnikiem,
+- Dodałem jej animacje oraz atak, czyli piorun,
+- Zmieniłem lekko system życia nauczyciela,
+- Boss posiada swój tekst obrażeń,
+- Od teraz nauczyciel rzuca 2-3 obiektami na raz,
+- Naprawiłem 90% błędów związanych z bossfightem,
+- Oraz wiele innych.
 
 ## Status
-> Newest Version: **Test 14**;
-> Last Updated: **31-10-2024**;
+> Newest Version: **Test 15**;
+> Last Updated: **01-11-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -34,9 +27,6 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
-Po dwóch dniach luźniejszej pracy wracam pełną głową do roboty :- )
-Jutro bossfight powinien być skończony oraz powinienem zacząć dodawać kolejnych nauczycieli i nowe obiekty.
-Wracamy do przedwczorajszych pytań.
-Na jaką licencję i na kogo przepisujemy ten projekt?
-Kiedy otrzymam pozostałe sprite'y nauczycieli?
-Do kiedy dokładnie projekt ma zostać zakończony?
+Bossfight o ile może wydawać się trudny na pierwszy rzut oka, jest banalny i wystarczy zapamiętać dobre pozycje na omijanie obiektów wroga.
+Tak na prawdę cała gra (*oprócz wymaganych poprawek*) jest skończona i czekam na kolejne sprite'y nauczycieli.
+Również nie wiem jak licenciujemy ten projekt oraz do kiedy oficjalnie mam czas O.o

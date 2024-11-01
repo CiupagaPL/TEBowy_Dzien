@@ -150,5 +150,5 @@ window.loop=function(){
       break;
   }
 
-  _context.fillShortText(_versionText.color,_versionText);
+  _context.fillShortText(_versionText.color,_versionText,_versionText.value);
 }

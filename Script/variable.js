@@ -16,7 +16,7 @@ let sfxOn=true,musicOn=true,fullscreenOn=false,tempSfxOn=true,tempMusicOn=true;
     pauseOn=false,pauseChange=false,pauseAnimation=false,menuLoad=false;
 let skin=0,hp=6,dead=false,bossHp=10;
 let globalMove=0,localMove=0,round=0,score=0,boss=false,defeat=false;
-let tutorial=true;
+let tutorial=true,teacher=false;
 
 let _html=document.getElementById("html");
 
@@ -46,10 +46,11 @@ let _audio={
   jump:new Audio("Source/Sound/jump.wav"),
   laser:new Audio("Source/Sound/laser.wav"),
   paper:new Audio("Source/Sound/paper.wav"),
+  lightning:new Audio("Source/Sound/lightning.mp3"),
 
   bossDie:new Audio("Source/Sound/bossDie.wav"),
   bossHit:new Audio("Source/Sound/bossHit.wav"),
-  bossStart:new Audio("Source/Sound/bossStart.wav"),
+  bossStart:new Audio("Source/Sound/bossStart.mp3"),
 };
 
 let _mouse={
@@ -103,7 +104,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 14",
+  value:"Test 15",
 
   size:36,
   on:false,
@@ -671,6 +672,45 @@ let _tutorialText={
   x:0,y:0,
 };
 
+let _wideBlueprint={
+  width:184,height:184,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _wideBlueprintForward={
+  width:24,height:24,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _bossTitle={
+  value0:"Tomasz Staniszewski",
+
+  size:20,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+let _bossDescription={
+  value0:"Nauczyciel z pasją, zwany często\nPanem Gołębiem. Twórca Twojej\nplatformówki. "+
+         "Dzięki niemu poznasz\nwszystkie tajniki aplikacji webowych,\ndesktopowych i mobilnych.",
+
+  size:12,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+
 let _player={
   width:48,height:81,
 
@@ -844,8 +884,10 @@ let _boss={
   x:0,y:0,
 
   invisible:0,
-  random:0,
-  max:30,
+  random1:0,
+  random2:0,
+  random3:0,
+  max:60,
   id:0,
 
   load:false,
@@ -854,24 +896,56 @@ let _boss={
   img0:new Image(),
   img1:new Image(),
 };
+let _bossText={
+  value:"-0 puntków\nz zachowania",
+
+  size:12,
+  font:"orangeKid",
+  debug:"",
+  color0:"rgba(225,0,0,1)",
+  color1:"rgba(225,0,0,0.75)",
+  color2:"rgba(225,0,0,0.5)",
+  color3:"rgba(225,0,0,0.25)",
+
+  x:0,y:0,
+};
 let _cloud={
-  w:64,h:48,
+  w:96,h:64,
 
   x:0,y:0,
 
-  left:false,
+  timer:0,
+  random:0,
 
-  img:new Image(),
+  attack:false,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img0left:new Image(),
+  img1left:new Image(),
+  img2left:new Image(),
+};
+let _lightning={
+  w:4,h:240,
+
+  x:0,y:0,
+
+  unused:true,
+
+  color0:"rgba(255,255,0,1)",
+  color1:"rgba(255,255,0,0.5)",
 };
 
 let _tebulinek={
   w:64,h:64,
 
   x:0,y:0,
-  vy:0,
+  vx:0,vy:0,
 
   gravity:0.25,
   timer:0,
+  side:0,
 
   unused:true,
 
@@ -882,13 +956,14 @@ let _tebulinek={
 };
 
 let _computer={
-  w:64,h:64,
+  w:48,h:48,
 
   x:0,y:0,
-  vy:0,
+  vx:0,vy:0,
 
   gravity:0.25,
   timer:0,
+  side:0,
 
   unused:true,
 
@@ -898,13 +973,14 @@ let _computer={
   img3:new Image(),
 };
 let _keyboard={
-  w:64,h:64,
+  w:48,h:48,
 
   x:0,y:0,
-  vy:0,
+  vx:0,vy:0,
 
   gravity:0.25,
   timer:0,
+  side:0,
 
   unused:true,
 
@@ -914,13 +990,14 @@ let _keyboard={
   img3:new Image(),
 };
 let _coffe={
-  w:64,h:64,
+  w:48,h:48,
 
   x:0,y:0,
-  vy:0,
+  vx:0,vy:0,
 
   gravity:0.25,
   timer:0,
+  side:0,
 
   unused:true,
 
@@ -930,13 +1007,14 @@ let _coffe={
   img3:new Image(),
 };
 let _dove={
-  w:64,h:64,
+  w:48,h:48,
 
   x:0,y:0,
-  vy:0,
+  vx:0,vy:0,
 
   gravity:0.25,
   timer:0,
+  side:0,
 
   unused:true,
 
@@ -968,6 +1046,7 @@ _audio.hit.load();
 _audio.jump.load();
 _audio.laser.load();
 _audio.paper.load();
+_audio.lightning.load();
 
 _audio.click.volume=1;
 _audio.die.volume=0.25;
@@ -975,6 +1054,7 @@ _audio.hit.volume=0.25;
 _audio.jump.volume=0.25;
 _audio.laser.volume=0.25;
 _audio.paper.volume=0.25;
+_audio.lightning.volume=0.25;
 
 _audio.bossDie.load();
 _audio.bossHit.load();
@@ -1074,6 +1154,10 @@ _wideClipboard.img.src="Source/UI/wideClipboard.png";
 _wideClipboardForward.img.src="Source/UI/forward.png";
 _wideClipboardForward.imgOn.src="Source/UI/forwardOn.png";
 
+_wideBlueprint.img.src="Source/UI/wideBlueprint.png";
+_wideBlueprintForward.img.src="Source/UI/right.png";
+_wideBlueprintForward.imgOn.src="Source/UI/rightOn.png";
+
 _player.img0.src="Source/Object/Player/boy0.png";
 _player.img1.src="Source/Object/Player/boy1.png";
 _player.img2.src="Source/Object/Player/girl0.png";
@@ -1099,7 +1183,12 @@ _sign.img1.src="Source/Object/boss.png";
 _boss.img0.src="Source/Object/People/TS.png";
 _boss.img1.src="Source/Object/People/TSLeft.png";
 
-_cloud.img.src="Source/Object/Cloud/cloud.png";
+_cloud.img0.src="Source/Object/Cloud/0Left.png";
+_cloud.img1.src="Source/Object/Cloud/1Left.png";
+_cloud.img2.src="Source/Object/Cloud/2Left.png";
+_cloud.img0left.src="Source/Object/Cloud/0.png";
+_cloud.img1left.src="Source/Object/Cloud/1.png";
+_cloud.img2left.src="Source/Object/Cloud/2.png";
 
 _tebulinek.img0.src="Source/Object/Attack/Tebulinek/0.png";
 _tebulinek.img1.src="Source/Object/Attack/Tebulinek/90.png";

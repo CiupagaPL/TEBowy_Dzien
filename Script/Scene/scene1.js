@@ -16,7 +16,7 @@ scene1=function(){
     if(musicTimer>=1&&musicTimer<2){
       _audio.menu.load();
       _audio.menu.play();
-    } if(musicTimer>=1132){
+    } if(musicTimer>=1107){
       musicTimer=0;
     }
   } else if(!musicOn){
@@ -62,19 +62,19 @@ scene1=function(){
 
   if(!_menuStart.hover){ _context.drawShortImage(_menuStart.img,_menuStart); }
   else if(_menuStart.hover){ _context.drawShortImage(_menuStart.imgOn,_menuStart); } 
-  _context.fillShortText(_menuStartText.color,_menuStartText);
+  _context.fillShortText(_menuStartText.color,_menuStartText,_menuStartText.value);
   if(!_menuLevel.hover){ _context.drawShortImage(_menuLevel.img,_menuLevel); }
   else if(_menuLevel.hover){ _context.drawShortImage(_menuLevel.imgOn,_menuLevel); } 
-  _context.fillShortText(_menuLevelText.color,_menuLevelText);
+  _context.fillShortText(_menuLevelText.color,_menuLevelText,_menuLevelText.value);
   if(!_menuSetting.hover){ _context.drawShortImage(_menuSetting.img,_menuSetting); }
   else if(_menuSetting.hover){ _context.drawShortImage(_menuSetting.imgOn,_menuSetting); } 
-  _context.fillShortText(_menuSettingText.color,_menuSettingText);
+  _context.fillShortText(_menuSettingText.color,_menuSettingText,_menuSettingText.value);
   if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
   else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
-  _context.fillShortText(_menuAboutText.color,_menuAboutText);
+  _context.fillShortText(_menuAboutText.color,_menuAboutText,_menuAboutText.value);
   if(!_menuCustom.hover){ _context.drawShortImage(_menuCustom.img,_menuCustom); }
   else if(_menuCustom.hover){ _context.drawShortImage(_menuCustom.imgOn,_menuCustom); } 
-  _context.fillShortText(_menuCustomText.color,_menuCustomText);
+  _context.fillShortText(_menuCustomText.color,_menuCustomText,_menuCustomText.value);
 
   _context.drawShortImage(_clipboard.img,_clipboard);
   if(!_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.img,_clipboardBack); }
@@ -91,11 +91,11 @@ scene1=function(){
   if(!_blueprintRight.hover){ _context.drawShortImage(_blueprintRight.img,_blueprintRight); }
   else if(_blueprintRight.hover){ _context.drawShortImage(_blueprintRight.imgOn,_blueprintRight); }
 
-  _context.fillShortText(_blueprintGeneral1.color,_blueprintGeneral1);
-  _context.fillShortText(_blueprintGeneral2.color,_blueprintGeneral2);
+  _context.fillShortText(_blueprintGeneral1.color,_blueprintGeneral1,_blueprintGeneral1.value);
+  _context.fillShortText(_blueprintGeneral2.color,_blueprintGeneral2,_blueprintGeneral2.value);
 
   if(_menuLevel.animation||_menuLevel.on){
-    _context.fillShortText(_clipboardLevelText.color,_clipboardLevelText);
+    _context.fillShortText(_clipboardLevelText.color,_clipboardLevelText,_clipboardLevelText.value);
 
     _context.drawShortImage(_clipboardLevel1.img,_clipboardLevel1);
     _context.drawShortImage(_clipboardLevel2.img,_clipboardLevel2);
@@ -106,7 +106,7 @@ scene1=function(){
     _context.drawShortImage(_clipboardLevel7.img,_clipboardLevel7);
     _context.drawShortImage(_clipboardLevel8.img,_clipboardLevel8);
   } if(_menuSetting.animation||_menuSetting.on){
-    _context.fillShortText(_clipboardSettingText.color,_clipboardSettingText);
+    _context.fillShortText(_clipboardSettingText.color,_clipboardSettingText,_clipboardSettingText.value);
 
     if(!sfxOn){
       _context.drawShortImage(_clipboardSetting1.img,_clipboardSetting1);
@@ -121,13 +121,13 @@ scene1=function(){
     } else if(fullscreenOn){
       _context.drawShortImage(_clipboardSetting3.imgOn,_clipboardSetting3);
     }
-    _context.fillShortText(_clipboardSetting4.color,_clipboardSetting4);
-    _context.fillShortText(_clipboardSetting5.color,_clipboardSetting5);
-    _context.fillShortText(_clipboardSetting6.color,_clipboardSetting6);
+    _context.fillShortText(_clipboardSetting4.color,_clipboardSetting4,_clipboardSetting4.value);
+    _context.fillShortText(_clipboardSetting5.color,_clipboardSetting5,_clipboardSetting5.value);
+    _context.fillShortText(_clipboardSetting6.color,_clipboardSetting6,_clipboardSetting6.value);
   } if(_menuAbout.animation||_menuAbout.on){
-    _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText);
+    _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText,_clipboardAboutText.value);
 
-    _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1);
+    _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
   }
 
   if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }

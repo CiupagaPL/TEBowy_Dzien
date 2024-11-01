@@ -8,8 +8,8 @@
     || |-_\__   /
    ((_/`(____,-' */
 
-_context.fillShortText=function(_color,_text){
-  let lines=_text.value.split("\n");
+_context.fillShortText=function(_color,_text,value){
+  let lines=value.split("\n");
 
   _context.fillStyle=_color;
   _context.font=_text.debug;
@@ -284,6 +284,23 @@ window.defaultvalue=function(){
   _tutorialText.size=Math.ceil(12*scale);
   _tutorialText.debug=_tutorialText.size+"px "+_tutorialText.font;
 
+  _wideBlueprint.width=184*scale;
+  _wideBlueprint.height=184*scale;
+  _wideBlueprint.x=_render.width/2-_wideClipboard.width/2;
+  _wideBlueprint.y=172*scale;
+  _wideBlueprintForward.width=24*scale;
+  _wideBlueprintForward.height=24*scale;
+  _wideBlueprintForward.x=_wideBlueprint.x+146*scale;
+  _wideBlueprintForward.y=_wideBlueprint.y+158*scale;
+  _bossTitle.x=_wideBlueprint.x+12*scale;
+  _bossTitle.y=_wideBlueprint.y+20*scale;
+  _bossTitle.size=Math.ceil(20*scale);
+  _bossTitle.debug=_bossTitle.size+"px "+_bossTitle.font;
+  _bossDescription.x=_wideClipboard.x+14*scale;
+  _bossDescription.y=_wideClipboard.y+42*scale;
+  _bossDescription.size=Math.ceil(12*scale);
+  _bossDescription.debug=_bossDescription.size+"px "+_bossDescription.font;
+
   _player.width=48*scale;
   _player.height=81*scale;
   _player.x=64*scale;
@@ -342,38 +359,56 @@ window.defaultvalue=function(){
   _sign.y=0;
 
   _boss.width=64*scale;
-  _boss.height=108*scale;
+  _boss.height=98*scale;
   _boss.x=32*scale;
   _boss.y=0;
-  _cloud.width=64*scale;
-  _cloud.height=48*scale;
-  _cloud.x=32*scale;
+  _bossText.x=0;
+  _bossText.y=0;
+  _bossText.size=Math.ceil(12*scale);
+  _bossText.debug=_bossText.size+"px "+_bossText.font;
+  _cloud.width=96*scale;
+  _cloud.height=54*scale;
+  _cloud.x=16*scale;
   _cloud.y=0;
+  _lightning.width=4*scale;
+  _lightning.height=240*scale;
+  _lightning.x=0;
+  _lightning.y=0;
 
   _tebulinek.width=64*scale;
   _tebulinek.height=64*scale;
   _tebulinek.x=-_tebulinek.width;
   _tebulinek.y=-_tebulinek.height;
+  _tebulinek.vx=0;
+  _tebulinek.vy=0;
   _tebulinek.gravity=0.25*scale;
 
-  _computer.width=64*scale;
-  _computer.height=64*scale;
-  _computer.x=-_tebulinek.width;
-  _computer.y=-_tebulinek.height;
+  _computer.width=48*scale;
+  _computer.height=48*scale;
+  _computer.x=-_computer.width;
+  _computer.y=-_computer.height;
+  _computer.vx=0;
+  _computer.vy=0;
   _computer.gravity=0.25*scale;
-  _keyboard.width=64*scale;
-  _keyboard.height=64*scale;
-  _keyboard.x=-_tebulinek.width;
-  _keyboard.y=-_tebulinek.height;
+  _keyboard.width=48*scale;
+  _keyboard.height=48*scale;
+  _keyboard.x=-_keyboard.width;
+  _keyboard.y=-_keyboard.height;
+  _keyboard.vx=0;
+  _keyboard.vy=0;
   _keyboard.gravity=0.25*scale;
-  _coffe.width=64*scale;
-  _coffe.height=64*scale;
-  _coffe.x=-_tebulinek.width;
-  _coffe.y=-_tebulinek.height;
+  _coffe.width=48*scale;
+  _coffe.height=48*scale;
+  _coffe.x=-_coffe.width;
+  _coffe.y=-_coffe.height;
+  _coffe.vx=0;
+  _coffe.vy=0;
   _coffe.gravity=0.25*scale;
-  _dove.width=64*scale;
-  _dove.height=64*scale;
-  _dove.x=-_tebulinek.width;
-  _dove.y=-_tebulinek.height;
+  _dove.width=48*scale;
+  _dove.height=48*scale;
+  _dove.x=-_dove.width;
+  _dove.y=-_dove.height;
+  _dove.vx=0;
+  _dove.vy=0;
   _dove.gravity=0.25*scale;
 }

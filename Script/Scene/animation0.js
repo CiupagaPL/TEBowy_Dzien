@@ -15,7 +15,7 @@ animateloading=function(){
     _context.drawShortImage(_startTEB.img0,_startTEB);
 
     if(sceneTimer<=15){
-      _context.fillShortText(_startText.color,_startText);
+      _context.fillShortText(_startText.color,_startText,_startText.value);
     } if(sceneTimer>30){
       sceneTimer=0;
     }

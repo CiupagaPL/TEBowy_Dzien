@@ -173,6 +173,9 @@ document.addEventListener("mousemove",function(_event){
 
   if(window.detectcollision(_wideClipboardForward,_mouse)){ _wideClipboardForward.hover=true; }
   else if(!window.detectcollision(_wideClipboardForward,_mouse)){ _wideClipboardForward.hover=false; }
+
+  if(window.detectcollision(_wideBlueprintForward,_mouse)){ _wideBlueprintForward.hover=true; }
+  else if(!window.detectcollision(_wideBlueprintForward,_mouse)){ _wideBlueprintForward.hover=false; }
 });
 
 window.addEventListener("click",function(_event){
@@ -290,7 +293,11 @@ window.addEventListener("click",function(_event){
   if(window.detectcollision(_wideClipboardForward,_mouse)){
     if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     pauseChange=true;
-    pauseOn=false;
+  }
+
+  if(window.detectcollision(_wideBlueprintForward,_mouse)){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
+    pauseChange=true;
   }
 
   if(window.detectcollision(_clipboardLevel1,_mouse)&&_menuLevel.on){
