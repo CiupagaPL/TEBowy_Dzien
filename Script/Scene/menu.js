@@ -294,40 +294,20 @@ menu=function(){
       }
     }
     
-    if(_menuSetting.animation||_menuSetting.on){
-      _context.fillShortText(_clipboardSettingText.color,_clipboardSettingText,_clipboardSettingText.value);
-      
-      if(!sfxOn){ _context.drawShortImage(_clipboardSetting1.img,_clipboardSetting1); }
-      else if(sfxOn){ _context.drawShortImage(_clipboardSetting1.imgOn,_clipboardSetting1); }
-      if(!musicOn){ _context.drawShortImage(_clipboardSetting2.img,_clipboardSetting2); }
-      else if(musicOn){ _context.drawShortImage(_clipboardSetting2.imgOn,_clipboardSetting2); }
-      if(!tutorialOn){ _context.drawShortImage(_clipboardSetting3.img,_clipboardSetting3); }
-      else if(tutorialOn){ _context.drawShortImage(_clipboardSetting3.imgOn,_clipboardSetting3); }
-      if(!teacherOn){ _context.drawShortImage(_clipboardSetting4.img,_clipboardSetting4); }
-      else if(teacherOn){ _context.drawShortImage(_clipboardSetting4.imgOn,_clipboardSetting4); }
-      if(!addonOn){ _context.drawShortImage(_clipboardSetting5.img,_clipboardSetting5); }
-      else if(addonOn){ _context.drawShortImage(_clipboardSetting5.imgOn,_clipboardSetting5); }
-      
-      _context.fillShortText(_clipboardSetting6.color,_clipboardSetting6,_clipboardSetting6.value);
-      _context.fillShortText(_clipboardSetting7.color,_clipboardSetting7,_clipboardSetting7.value);
-      _context.fillShortText(_clipboardSetting8.color,_clipboardSetting8,_clipboardSetting8.value);
-      _context.fillShortText(_clipboardSetting9.color,_clipboardSetting9,_clipboardSetting9.value);
-      _context.fillShortText(_clipboardSetting10.color,_clipboardSetting10,_clipboardSetting10.value);
-    } if(_menuAbout.animation||_menuAbout.on){
-      _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText,_clipboardAboutText.value);
-      _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
-    }
-    
-    if(changeScene){ sceneon(); }
-    if(restart||hp==0){ sceneoff(); }
-    if(defeat&&scene!=11){
-      nextScene=scene+1;
-      sceneoff();
-    } if(defeat&&scene==11){
-      nextScene=1;
-      sceneoff();
-    }
-  }
+  if(_menuLevel.animation||_menuLevel.on){
+    _context.fillShortText(_blueprintLevelText.color,_blueprintLevelText,_blueprintLevelText.value);
+
+    _context.drawShortImage(_blueprintLevel1.img,_blueprintLevel1);
+    _context.drawShortImage(_blueprintLevel2.img,_blueprintLevel2);
+    _context.drawShortImage(_blueprintLevel3.img,_blueprintLevel3);
+    _context.drawShortImage(_blueprintLevel4.img,_blueprintLevel4);
+    _context.drawShortImage(_blueprintLevel5.img,_blueprintLevel5);
+    _context.drawShortImage(_blueprintLevel6.img,_blueprintLevel6);
+    _context.drawShortImage(_blueprintLevel7.img,_blueprintLevel7);
+    _context.drawShortImage(_blueprintLevel8.img,_blueprintLevel8);
+    _context.drawShortImage(_blueprintLevel9.img,_blueprintLevel9);
+    _context.drawShortImage(_blueprintLevel10.img,_blueprintLevel10);
+  } 
   if(_menuSetting.animation||_menuSetting.on){
     _context.fillShortText(_clipboardSettingText.color,_clipboardSettingText,_clipboardSettingText.value);
 
