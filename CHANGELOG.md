@@ -22,7 +22,7 @@
 ## Changelog: Alpha 1.01
 
 ### Ogólny
-- Naprawiłem Alpha 1.0 - 8 (#9),
+- Naprawiłem Alpha 1.0 - 8 (#9) oraz początkowy błąd z brakiem spacji przy tutorialu,
 - Przepisałem i znacznie skróciłem <i>window.js</i>.
 
 ## Changelog: Alpha 1.00

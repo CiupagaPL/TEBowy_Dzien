@@ -775,8 +775,8 @@ let _tutorialTitle={
   x:0,y:0,
 };
 let _tutorialText={
-  value:"Poruszaj się za pomocą [a]|[d]\nlub [<-]|[->]. Podskakuj za pomocą\n[w]|[^]|[_]. Twoim celem jest\ndostać się na górę poziomu\ni pokonać danego"+
-        "nauczyciela.\nPo drodze musisz omijać\nprzeszkody w postaci kolców\ni laserów. W trudnej sytuacji użyj\nTebulinka. Życzymy szczęścia!",
+  value:"Poruszaj się za pomocą [a]|[d]\nlub [<-]|[->]. Podskakuj za pomocą\n[w]|[^]|[_]. Twoim celem jest\ndostać się na górę poziomu\n"+
+        "i pokonać danego nauczyciela.\nPo drodze musisz omijać\nprzeszkody w postaci kolców\ni laserów. W trudnej sytuacji użyj\nTebulinka. Życzymy szczęścia!",
 
   size:12,
   font:"orangeKid",
