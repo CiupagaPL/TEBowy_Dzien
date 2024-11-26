@@ -117,7 +117,8 @@ window.onupdate=function(timeStamp){
 
     window.onloop();
   } requestAnimationFrame(window.onupdate);
-} requestAnimationFrame(window.onupdate);
+}
+requestAnimationFrame(window.onupdate);
 
 window.onloop=function(){
   _context.clearRect(0,0,_render.width,_render.height);
