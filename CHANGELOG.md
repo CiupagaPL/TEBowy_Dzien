@@ -19,6 +19,10 @@
 > [!NOTE]
 > Będę tu zamieszczał progress trwającego od pierwszej alphy przepisywania skryptów.
 
+## Changelog Alpha 1.03
+- Naprawiłem krytyczną Alpha 1.0 - 12 (#13),
+- Naprawiłem Alpha 1.0 - 5 (#6).
+
 ## Changelog: Alpha 1.02
 - Poprawiłem resztę błędów z poprzedniego patcha,
 - Poprawiłem kilka sprite'ów,

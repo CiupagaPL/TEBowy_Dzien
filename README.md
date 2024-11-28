@@ -32,8 +32,8 @@ Wszystko opisane będzie w przykładowym problemie.
 > Wszystkie informacje o testowaniu zapisane są we wcześniej wymienionej zakładce.
 
 ## Status
-> Newest Version: **Alpha 1.02**;
-> Last Updated: **27-11-2024**;
+> Newest Version: **Alpha 1.03**;
+> Last Updated: **28-11-2024**;
 
 ## Have a Nice and Happy Day!
 - Ciupaga and probably all the devs >_o

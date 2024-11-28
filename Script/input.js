@@ -409,7 +409,6 @@ window.addEventListener("click",function(_event){
     if(skin>0){
       skin--;
       _blueprintCustom1.value=Number(skin+1)+"/4";
-      _blueprintCustom1.debug=_blueprintCustomText.size+"px "+_blueprintCustomText.font;
     }
   }
   if(window.detectcollision(_blueprintRight,_mouse)&&canClick){
@@ -421,7 +420,6 @@ window.addEventListener("click",function(_event){
     if(skin<3){
       skin++;
       _blueprintCustom1.value=Number(skin+1)+"/4";
-      _blueprintCustom1.debug=_blueprintCustomText.size+"px "+_blueprintCustomText.font;
     }
   }
   if(window.detectcollision(_wideClipboardForward,_mouse)&&canClick){

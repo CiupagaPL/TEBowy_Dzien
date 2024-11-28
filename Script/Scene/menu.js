@@ -90,7 +90,7 @@ menu=function(){
     if(skin==0){ _context.drawShortImage(_blueprintSkin.img0,_blueprintSkin); }
     if(skin==1){ _context.drawShortImage(_blueprintSkin.img1,_blueprintSkin); }
     if(skin==2){ _context.drawShortImage(_blueprintSkin.img2,_blueprintSkin); }
-    if(skin==3){ _context.drawShortImage(_blueprintSkin.img3_blueprintSkin); }
+    if(skin==3){ _context.drawShortImage(_blueprintSkin.img3,_blueprintSkin); }
 
     if(!_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.img,_blueprintLeft); }
     else if(_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.imgOn,_blueprintLeft); }
