@@ -57,14 +57,16 @@ mainplatformgenerator=function(){
 
 lastplatformgenerator=function(){
   _currentPlatform={
-    x:0,y:_platform.besty-128*scale,
+    x:0,y:-(128*scale*(_platform.load-1))-36*scale,
 
     width:_currentResolution.width,height:_platform.height,
 
-    level:14,
+    level:load+1,
   };
 
   _platform.array[_platform.lenght+1]=_currentPlatform;
+
+  signgenerator();
 
   _platform.loop++;
   _platform.currentCount++;
@@ -83,7 +85,7 @@ signgenerator=function(){
   _sign.array[0]=_currentSign;
 
   _currentSign={
-    x:_render.width-_sign.width,y:_platform.besty-_sign.height+(1*scale),
+    x:_render.width-_sign.width,y:-(128*scale*(_platform.load-1))-8*scale+_sign.height+1*scale,
 
     width:_sign.width,height:_sign.height,
   
@@ -179,11 +181,9 @@ platformgenerator=function(){
 
     level:_platform.currentLoad,
   };
-  if(_currentPlatform.level==13){ _currentPlatform.width+=_currentResolution.width; }
+  if(_currentPlatform.level==_platform.load){ _currentPlatform.width+=_currentResolution.width; }
 
   _platform.array.push(_currentPlatform);
-
-  if(_currentPlatform.y<=_platform.besty){ _platform.besty=_currentPlatform.y; }
 
   _platform.lastx=_platform.random;
   _platform.lasty=_currentPlatform.y;

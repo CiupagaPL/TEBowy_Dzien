@@ -10,11 +10,13 @@
 
 animateloading=function(){
   if(!canStart){
-    _context.fillShortRect(_background.color0a,_background);
-    _html.style.backgroundColor=_background.color0a;
-    _about.style.backgroundColor=_background.color0b;
+    _context.fillShortRect(_background.color0,_background);
+    _html.style.backgroundColor=_background.color0;
 
     _context.drawShortImage(_startTEB.img0,_startTEB);
+
+    if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+    else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
     if(sceneTimer<20){
       _context.fillShortText(_startText.color0,_startText,_startText.value);
@@ -34,24 +36,26 @@ animateloading=function(){
     }
   } else if(canStart){
     if(sceneTimer>0&&sceneTimer<=20){
-      _context.fillShortRect(_background.color1a,_background);
-      _html.style.backgroundColor=_background.color1a;
-      _about.style.backgroundColor=_background.color1b;
+      _context.fillShortRect(_background.color1,_background);
+      _html.style.backgroundColor=_background.color1;
 
       _context.drawShortImage(_startTEB.img1,_startTEB);
+
+      if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+      else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
       if(sceneTimer>=2&&sceneTimer<3){
         _audio.load1.load();
         _audio.load1.play();
       }
     } if(sceneTimer>20&&sceneTimer<=40){
-      _context.fillShortRect(_background.color2a,_background);
-      _html.style.backgroundColor=_background.color2a;
-      _about.style.backgroundColor=_background.color2b;
-
+      _context.fillShortRect(_background.color2,_background);
       _html.style.backgroundColor=_background.color2;
 
       _context.drawShortImage(_startTEB.img2,_startTEB);
+
+      if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+      else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
       if(sceneTimer>=22&&sceneTimer<23){
         _audio.load2.load();
@@ -120,6 +124,9 @@ animatemenu=function(){
   _menuAbout.y=_render.height-(128*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
 
+  _menuVersion.y=_render.height-(64*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
+
   _menuCustom.y=_render.height-(64*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
   } if(sceneTimer>=10&&sceneTimer<20){
@@ -136,6 +143,9 @@ animatemenu=function(){
 
   _menuAbout.y=_render.height-(130*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
+
+  _menuVersion.y=_render.height-(66*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
 
   _menuCustom.y=_render.height-(66*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
@@ -154,6 +164,9 @@ animatemenu=function(){
   _menuAbout.y=_render.height-(132*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
 
+  _menuVersion.y=_render.height-(68*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
+
   _menuCustom.y=_render.height-(68*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
   } if(sceneTimer>=30&&sceneTimer<40){
@@ -170,6 +183,9 @@ animatemenu=function(){
 
   _menuAbout.y=_render.height-(130*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
+
+  _menuVersion.y=_render.height-(66*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
 
   _menuCustom.y=_render.height-(66*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
@@ -188,6 +204,9 @@ animatemenu=function(){
   _menuAbout.y=_render.height-(128*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
 
+  _menuVersion.y=_render.height-(64*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
+
   _menuCustom.y=_render.height-(64*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
   } if(sceneTimer>=50&&sceneTimer<60){
@@ -204,6 +223,9 @@ animatemenu=function(){
 
   _menuAbout.y=_render.height-(126*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
+
+  _menuVersion.y=_render.height-(62*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
 
   _menuCustom.y=_render.height-(62*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
@@ -222,6 +244,9 @@ animatemenu=function(){
   _menuAbout.y=_render.height-(124*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
 
+  _menuVersion.y=_render.height-(60*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
+
   _menuCustom.y=_render.height-(60*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
   } if(sceneTimer>=70&&sceneTimer<80){
@@ -238,6 +263,9 @@ animatemenu=function(){
 
   _menuAbout.y=_render.height-(126*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
+
+  _menuVersion.y=_render.height-(62*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
 
   _menuCustom.y=_render.height-(62*scale);
   _menuCustomText.y=_menuCustom.y+(30*scale);
@@ -366,7 +394,7 @@ animateblueprint=function(){
 }
 
 animateclipboard=function(){
-  if(_menuSetting.animation||_menuAbout.animation){
+  if(_menuSetting.animation||_menuAbout.animation||_menuVersion.animation){
     if(_clipboard.on&&_clipboard.close){
       if(_clipboard.x<(_render.width+_clipboard.width)){
         _clipboard.x+=20*scale;
@@ -374,6 +402,7 @@ animateclipboard=function(){
 
         _clipboardSettingText.x+=20*scale;
         _clipboardAboutText.x+=20*scale;
+        _clipboardVersionText.x+=20*scale;
 
         _clipboardSetting1.x+=20*scale;
         _clipboardSetting2.x+=20*scale;
@@ -387,12 +416,15 @@ animateclipboard=function(){
         _clipboardSetting10.x+=20*scale;
 
         _clipboardAbout1.x+=20*scale;
+
+        _clipboardVersion1.x+=20*scale;
       } else if(_clipboard.x>=(_render.width+_clipboard.width)){
         _clipboard.x=_render.width+_clipboard.width;
         _clipboardBack.x=_clipboard.x+(_clipboard.width-(36*scale));
 
         _clipboardSettingText.x=_clipboard.x+54*scale;
-        _clipboardAboutText.x=_clipboard.x+50*scale;
+        _clipboardAboutText.x=_clipboard.x+60*scale;
+        _clipboardVersionText.x=_clipboard.x+46*scale;
 
         _clipboardSetting1.x=_clipboard.x+24*scale;
         _clipboardSetting2.x=_clipboard.x+24*scale;
@@ -407,6 +439,8 @@ animateclipboard=function(){
 
         _clipboardAbout1.x=_clipboard.x+24*scale;
 
+        _clipboardVersion1.x=_clipboard.x+24*scale;
+
         _clipboard.on=false;
         _clipboard.close=false;
         canClick=true;
@@ -417,6 +451,9 @@ animateclipboard=function(){
         } if(_menuAbout.animation){
           _menuAbout.animation=false;
           _menuAbout.on=false;
+        } if(_menuVersion.animation){
+          _menuVersion.animation=false;
+          _menuVersion.on=false;
         }
 
         if(_clipboard.change){
@@ -428,14 +465,20 @@ animateclipboard=function(){
       if(_menuSetting.animation){
         _menuAbout.on=false;
         _menuSetting.on=true;
-        _menuAbout.animation=false;
-        _menuSetting.animation=false;
-      } else if(_menuAbout.animation){
+        _menuVersion.on=false;
+      } if(_menuAbout.animation){
         _menuAbout.on=true;
         _menuSetting.on=false;
-        _menuAbout.animation=false;
-        _menuSetting.animation=false;
+        _menuVersion.on=false;
+      } if(_menuVersion.animation){
+        _menuAbout.on=false;
+        _menuSetting.on=false;
+        _menuVersion.on=true;
       }
+
+      _menuAbout.animation=false;
+      _menuSetting.animation=false;
+      _menuVersion.animation=false;
       canClick=true;
     } if(!_clipboard.on&&!_clipboard.close){
         if(_clipboard.x>(_render.width-_clipboard.width)-(32*scale)){
@@ -444,6 +487,7 @@ animateclipboard=function(){
 
         _clipboardSettingText.x-=20*scale;
         _clipboardAboutText.x-=20*scale;
+        _clipboardVersionText.x-=20*scale;
 
         _clipboardSetting1.x-=20*scale;
         _clipboardSetting2.x-=20*scale;
@@ -457,6 +501,8 @@ animateclipboard=function(){
         _clipboardSetting10.x-=20*scale;
 
         _clipboardAbout1.x-=20*scale;
+
+        _clipboardVersion1.x-=20*scale;
       } else if(_clipboard.x<=(_render.width-_clipboard.width)-(32*scale)){
         _clipboard.on=true;
         canClick=true;
@@ -467,6 +513,9 @@ animateclipboard=function(){
         } if(_menuAbout.animation){
           _menuAbout.animation=false;
           _menuAbout.on=true;
+        } if(_menuVersion.animation){
+          _menuVersion.animation=false;
+          _menuVersion.on=true;
         }
       }
     }

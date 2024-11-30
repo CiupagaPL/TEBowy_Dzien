@@ -27,8 +27,11 @@ _context.fillShortRect=function(_color,_object){
 }
 
 window.defaultgame=function(){
+  if(scene!=11){ _platform.load=13; }
+  else if(scene==11){ _platform.load=3; }
+
   dead=false;
-  hp=6;
+  _player.hp=150;
   score=0;
   sceneTimer=0;
 
@@ -39,6 +42,15 @@ window.defaultgame=function(){
   _player.vy=0;
   _player.move=true;
   _player.cloud=false;
+
+  _playerGun.x=_player.x+(36*scale);
+  _playerGun.y=_player.y+(40*scale);
+  _playerGun.on=false;
+  _playerGun.power=false;
+  _playerGun.timer=0;
+
+  _playerAmmo.unused=true;
+  _playerAmmo.power=false
 
   autoScene=false;
 
@@ -57,20 +69,18 @@ window.defaultgame=function(){
   _backgroundTopRight.y=-_render.height;
 
   _tebulinek.unused=true;
-  _computer.unused=true;
-  _keyboard.unused=true;
-  _coffe.unused=true;
-  _dove.unused=true;
+  _attack1.unused=true;
+  _attack2.unused=true;
 
   boss=false;
-  bossHp=10;
+  _boss.hp=250;
   _boss.timer=0;
   _boss.y=104*scale;
   _boss.x=_render.width+_boss.width+(32*scale);
+  _boss.round=0;
 
   _bossCloud.y=174*scale;
   _bossCloud.x=_render.width+_boss.width+(16*scale);
-  _boss.left=false;
 
   teacher=false;
   _laser.timer=0;
@@ -91,6 +101,9 @@ window.defaultgame=function(){
 }
 
 window.defaultvalue=function(){
+  _mouse.width=4*scale;
+  _mouse.height=4*scale;
+
   _background.width=_currentResolution.width;
   _background.height=_currentResolution.height;
   _background.x=0;
@@ -112,9 +125,13 @@ window.defaultvalue=function(){
   _change.height=_currentResolution.height;
   _change.x=0;
   _change.y=0;
+  _changeText.x=96*scale;
+  _changeText.y=(_render.height/2)+8*scale;
+  _changeText.size=Math.ceil(42*scale);
+  _changeText.debug=_changeText.size+"px "+_changeText.font;
 
   _startText.x=(_render.width/2)-116*scale;
-  _startText.y=_background.height-32*scale;
+  _startText.y=_render.height-32*scale;
   _startText.size=Math.ceil(24*scale);
   _startText.debug=_startText.size+"px "+_startText.font;
 
@@ -133,8 +150,10 @@ window.defaultvalue=function(){
   _menuUI.x=_menuTitle.x-(16*scale);
   _menuUI.y=0;
 
-  _mouse.width=4*scale;
-  _mouse.height=4*scale;
+  _menuResolution.x=_render.width-(24*scale);
+  _menuResolution.y=_render.height-(24*scale);
+  _menuResolution.width=(16*scale);
+  _menuResolution.height=(16*scale);
 
   _menuStart.width=42*scale;
   _menuStart.height=42*scale;
@@ -170,12 +189,20 @@ window.defaultvalue=function(){
   _menuSettingText.debug=_menuSettingText.size+"px "+_menuSettingText.font;
   _menuAbout.width=42*scale;
   _menuAbout.height=42*scale;
-  _menuAbout.x=(_menuTitle.x+_menuTitle.width)-_menuSetting.width
+  _menuAbout.x=(_menuTitle.x+_menuTitle.width)-_menuAbout.width;
   _menuAbout.y=_render.height-(128*scale);
-  _menuAboutText.x=_menuAbout.x-(72*scale);
+  _menuAboutText.x=_menuAbout.x-(50*scale);
   _menuAboutText.y=_menuAbout.y+(30*scale);
   _menuAboutText.size=Math.ceil(32*scale);
   _menuAboutText.debug=_menuAboutText.size+"px "+_menuAboutText.font;
+  _menuVersion.width=42*scale;
+  _menuVersion.height=42*scale;
+  _menuVersion.x=(_menuTitle.x+_menuTitle.width)-_menuVersion.width;
+  _menuVersion.y=_render.height-(64*scale);
+  _menuVersionText.x=_menuVersion.x-(60*scale);
+  _menuVersionText.y=_menuVersion.y+(18*scale);
+  _menuVersionText.size=Math.ceil(16*scale);
+  _menuVersionText.debug=_menuVersionText.size+"px "+_menuVersionText.font;
   _menuCustom.width=42*scale;
   _menuCustom.height=42*scale;
   _menuCustom.x=_menuTitle.x;
@@ -206,10 +233,14 @@ window.defaultvalue=function(){
   _clipboardSettingText.y=_clipboard.y+60*scale;
   _clipboardSettingText.size=Math.ceil(28*scale);
   _clipboardSettingText.debug=_clipboardSettingText.size+"px "+_clipboardSettingText.font;
-  _clipboardAboutText.x=_clipboard.x+50*scale;
+  _clipboardAboutText.x=_clipboard.x+60*scale;
   _clipboardAboutText.y=_clipboard.y+60*scale;
   _clipboardAboutText.size=Math.ceil(28*scale);
   _clipboardAboutText.debug=_clipboardAboutText.size+"px "+_clipboardAboutText.font;
+  _clipboardVersionText.x=_clipboard.x+46*scale;
+  _clipboardVersionText.y=_clipboard.y+60*scale;
+  _clipboardVersionText.size=Math.ceil(28*scale);
+  _clipboardVersionText.debug=_clipboardVersionText.size+"px "+_clipboardVersionText.font;
 
   _clipboardSetting1.width=16*scale;
   _clipboardSetting1.height=16*scale;
@@ -256,6 +287,11 @@ window.defaultvalue=function(){
   _clipboardAbout1.y=_clipboard.y+88*scale;
   _clipboardAbout1.size=Math.ceil(15*scale);
   _clipboardAbout1.debug=_clipboardAbout1.size+"px "+_clipboardAbout1.font;
+
+  _clipboardVersion1.x=_clipboard.x+24*scale;
+  _clipboardVersion1.y=_clipboard.y+88*scale;
+  _clipboardVersion1.size=Math.ceil(15*scale);
+  _clipboardVersion1.debug=_clipboardVersion1.size+"px "+_clipboardVersion1.font;
 
   _blueprint.width=160*scale;
   _blueprint.height=240*scale;
@@ -331,7 +367,7 @@ window.defaultvalue=function(){
   _blueprintCustom1.x=_blueprint.x+68*scale;;
   _blueprintCustom1.y=_blueprint.y+200*scale;
   _blueprintCustom1.size=Math.ceil(20*scale);
-  _blueprintCustom1.value=Number(skin+1)+"/4";
+  _blueprintCustom1.value=Number(_player.skin+1)+"/4";
   _blueprintCustom1.debug=_blueprintCustom1.size+"px "+_blueprintCustom1.font;
 
   _gameUI.width=_currentResolution.width;
@@ -382,16 +418,20 @@ window.defaultvalue=function(){
   _gameBossHP5.height=16*scale;
   _gameBossHP5.x=162*scale;
   _gameBossHP5.y=4*scale;
+  _gameWater.width=16*scale;
+  _gameWater.height=16*scale;
+  _gameWater.x=_currentResolution.width-156*scale;
+  _gameWater.y=4*scale;
 
-  _wideClipboard.width=184*scale;
+  _wideClipboard.width=264*scale;
   _wideClipboard.height=184*scale;
   _wideClipboard.x=_menuTitle.x-(2*scale);
   _wideClipboard.y=152*scale;
   _wideClipboardForward.width=24*scale;
   _wideClipboardForward.height=24*scale;
-  _wideClipboardForward.x=_wideClipboard.x+153*scale;
-  _wideClipboardForward.y=_wideClipboard.y+0*scale;
-  _tutorialTitle.x=_wideClipboard.x+44*scale;
+  _wideClipboardForward.x=_wideClipboard.x+234*scale;
+  _wideClipboardForward.y=_wideClipboard.y;
+  _tutorialTitle.x=_wideClipboard.x+82*scale;
   _tutorialTitle.y=_wideClipboard.y+32*scale;
   _tutorialTitle.size=Math.ceil(28*scale);
   _tutorialTitle.debug=_tutorialTitle.size+"px "+_tutorialTitle.font;
@@ -400,13 +440,13 @@ window.defaultvalue=function(){
   _tutorialText.size=Math.ceil(12*scale);
   _tutorialText.debug=_tutorialText.size+"px "+_tutorialText.font;
 
-  _wideBlueprint.width=184*scale;
+  _wideBlueprint.width=264*scale;
   _wideBlueprint.height=184*scale;
   _wideBlueprint.x=_menuTitle.x-(2*scale);
-  _wideBlueprint.y=172*scale;
+  _wideBlueprint.y=152*scale;
   _wideBlueprintForward.width=24*scale;
   _wideBlueprintForward.height=24*scale;
-  _wideBlueprintForward.x=_wideBlueprint.x+154*scale;
+  _wideBlueprintForward.x=_wideBlueprint.x+238*scale;
   _wideBlueprintForward.y=_wideBlueprint.y+158*scale;
   _bossTitle.x=_wideBlueprint.x+12*scale;
   _bossTitle.y=_wideBlueprint.y+24*scale;
@@ -431,6 +471,14 @@ window.defaultvalue=function(){
   _playerCloud.height=48*scale;
   _playerCloud.x=16*scale;
   _playerCloud.y=0;
+  _playerGun.width=20*scale;
+  _playerGun.height=20*scale;
+  _playerGun.x=36*scale;
+  _playerGun.y=40*scale;
+  _playerAmmo.width=16*scale;
+  _playerAmmo.height=16*scale;
+  _playerAmmo.x=36*scale;
+  _playerAmmo.y=40*scale;
   _playerTop.width=40*scale;
   _playerTop.height=4*scale;
   _playerTop.x=0;
@@ -499,32 +547,12 @@ window.defaultvalue=function(){
   _tebulinek.vy=0;
   _tebulinek.gravity=0.25*scale;
 
-  _computer.width=48*scale;
-  _computer.height=48*scale;
-  _computer.x=-_computer.width;
-  _computer.y=-_computer.height;
-  _computer.vx=0;
-  _computer.vy=0;
-  _computer.gravity=0.25*scale;
-  _keyboard.width=48*scale;
-  _keyboard.height=48*scale;
-  _keyboard.x=-_keyboard.width;
-  _keyboard.y=-_keyboard.height;
-  _keyboard.vx=0;
-  _keyboard.vy=0;
-  _keyboard.gravity=0.25*scale;
-  _coffe.width=48*scale;
-  _coffe.height=48*scale;
-  _coffe.x=-_coffe.width;
-  _coffe.y=-_coffe.height;
-  _coffe.vx=0;
-  _coffe.vy=0;
-  _coffe.gravity=0.25*scale;
-  _dove.width=48*scale;
-  _dove.height=48*scale;
-  _dove.x=-_dove.width;
-  _dove.y=-_dove.height;
-  _dove.vx=0;
-  _dove.vy=0;
-  _dove.gravity=0.25*scale;
+  _attack1.width=48*scale;
+  _attack1.height=48*scale;
+  _attack1.x=-_attack1.width;
+  _attack1.y=-_attack1.height;
+  _attack2.width=48*scale;
+  _attack2.height=48*scale;
+  _attack2.x=-_attack2.width;
+  _attack2.y=-_attack2.height;
 }

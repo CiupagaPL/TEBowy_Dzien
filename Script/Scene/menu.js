@@ -29,7 +29,7 @@ menu=function(){
     } if(musicTimer>=1107){
       musicTimer=0;
     }
-  } else if(!musicOn){
+  } else if(!musicOn||changeScene){
     _audio.menu.load();
     musicTimer=0;
   }
@@ -40,17 +40,16 @@ menu=function(){
 
   animatemenubackground();
   if(!changeScene){
-    _html.style.backgroundColor=_background.color0a;
-    _about.style.backgroundColor=_background.color0b;
+    _html.style.backgroundColor=_background.color0;
     _audio.menu.volume=0.25;
   } else if(changeScene){
     _audio.menu.volume=0;
   }
 
-  if(skin==0||skin==2){
+  if(_player.skin==0||_player.skin==2){
     _blueprintSkin.height=122*scale;
     _blueprintSkin.y=_blueprint.y+58*scale;
-  } else if(skin==1||skin==3){
+  } else if(_player.skin==1||_player.skin==3){
     _blueprintSkin.height=113*scale;
     _blueprintSkin.y=_blueprint.y+67*scale;
   }
@@ -59,6 +58,9 @@ menu=function(){
 
   if(!_menuTitle.hover){ _context.drawShortImage(_menuTitle.img,_menuTitle); }
   else if(_menuTitle.hover){ _context.drawShortImage(_menuTitle.imgOn,_menuTitle); }
+
+  if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+  else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
   if(!_menuStart.hover){ _context.drawShortImage(_menuStart.img,_menuStart); }
   else if(_menuStart.hover){ _context.drawShortImage(_menuStart.imgOn,_menuStart); } 
@@ -72,6 +74,9 @@ menu=function(){
   if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
   else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
   _context.fillShortText(_menuAboutText.color,_menuAboutText,_menuAboutText.value);
+  if(!_menuVersion.hover){ _context.drawShortImage(_menuVersion.img,_menuVersion); }
+  else if(_menuVersion.hover){ _context.drawShortImage(_menuVersion.imgOn,_menuVersion); } 
+  _context.fillShortText(_menuVersionText.color,_menuVersionText,_menuVersionText.value);
   if(!_menuCustom.hover){ _context.drawShortImage(_menuCustom.img,_menuCustom); }
   else if(_menuCustom.hover){ _context.drawShortImage(_menuCustom.imgOn,_menuCustom); } 
   _context.fillShortText(_menuCustomText.color,_menuCustomText,_menuCustomText.value);
@@ -87,10 +92,10 @@ menu=function(){
   else if(_blueprintBack.hover){ _context.drawShortImage(_blueprintBack.imgOn,_blueprintBack); }
 
   if(_menuCustom.animation||_menuCustom.on){
-    if(skin==0){ _context.drawShortImage(_blueprintSkin.img0,_blueprintSkin); }
-    if(skin==1){ _context.drawShortImage(_blueprintSkin.img1,_blueprintSkin); }
-    if(skin==2){ _context.drawShortImage(_blueprintSkin.img2,_blueprintSkin); }
-    if(skin==3){ _context.drawShortImage(_blueprintSkin.img3,_blueprintSkin); }
+    if(_player.skin==0){ _context.drawShortImage(_blueprintSkin.img0,_blueprintSkin); }
+    if(_player.skin==1){ _context.drawShortImage(_blueprintSkin.img1,_blueprintSkin); }
+    if(_player.skin==2){ _context.drawShortImage(_blueprintSkin.img2,_blueprintSkin); }
+    if(_player.skin==3){ _context.drawShortImage(_blueprintSkin.img3,_blueprintSkin); }
 
     if(!_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.img,_blueprintLeft); }
     else if(_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.imgOn,_blueprintLeft); }
@@ -137,6 +142,9 @@ menu=function(){
   } if(_menuAbout.animation||_menuAbout.on){
     _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText,_clipboardAboutText.value);
     _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
+  } if(_menuVersion.animation||_menuVersion.on){
+    _context.fillShortText(_clipboardVersionText.color,_clipboardVersionText,_clipboardVersionText.value);
+    _context.fillShortText(_clipboardVersion1.color,_clipboardVersion1,_clipboardVersion1.value);
   }
 
   if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on&&!_menuCustom.on){ nextScene=nextAutoScene; autoScene=false; changeScene=true; }

@@ -23,23 +23,25 @@ document.addEventListener("visibilitychange",function(_event){
   }
 });
 
+window.addEventListener("resize",function(_event){ screenCheckTimer=0; });
+
 document.addEventListener("keydown",function(_event){
-  if(!pause&&hp!=0&&scene>=2){
-    if(_event.key=="a"||_event.key=="ArrowLeft"){
+  if(!pause&&_player.hp>0&&scene>=2){
+    if(_event.key=="a"||_event.key=="A"||_event.key=="ArrowLeft"){
       _keyState.left=true;
       _keyState.right=false;
       _player.vx=-4*scale;
       _player.left=true;
-    } if(_event.key=="d"||_event.key=="ArrowRight"){
+    } if(_event.key=="d"||_event.key=="D"||_event.key=="ArrowRight"){
       _keyState.right=true;
       _keyState.left=false;
       _player.vx=4*scale;
       _player.left=false;
-    } if(_event.key=="w"&&_player.cloud||_event.key=="ArrowUp"&&_player.cloud||_event.key==" "&&_player.cloud){
+    } if(_event.key=="w"&&_player.cloud||_event.key=="W"&&_player.cloud||_event.key=="ArrowUp"&&_player.cloud||_event.key==" "&&_player.cloud){
       _keyState.up=true;
       _keyState.down=false;
       _player.vy=-4*scale;
-    } if(_event.key=="s"&&_player.cloud||_event.key=="ArrowDown"&&_player.cloud){
+    } if(_event.key=="s"&&_player.cloud||_event.key=="S"&&_player.cloud||_event.key=="ArrowDown"&&_player.cloud){
       _keyState.down=true;
       _keyState.up=false;
       _player.vy=4*scale;
@@ -48,10 +50,7 @@ document.addEventListener("keydown",function(_event){
 });
 
 document.addEventListener("keyup",function(_event){
-  if(_event.key=="F11"){
-    if(fullscreenOn){ fullscreenOn=false; }
-    else if(!fullscreenOn){ fullscreenOn=true; }
-  } switch(scene){
+  switch(scene){
     case 0:
       if(_event.key=="Enter"&&!canStart&&!resolutionError){ canStart=true; sceneTimer=0; }
       break;
@@ -70,6 +69,7 @@ document.addEventListener("keyup",function(_event){
           canClick=false;
           if(_menuSetting.on){ _menuSetting.animation=true; }
           if(_menuAbout.on){ _menuAbout.animation=true; }
+          if(_menuVersion.on){ _menuVersion.animation=true; }
         } if(_blueprint.on){
           autoScene=true;
           nextAutoScene=2;
@@ -108,9 +108,12 @@ document.addEventListener("keyup",function(_event){
     case 10:
     case 11:
       if(_event.key=="Escape"&&canClick&&pause){
-        if(sfxOn){
+        if(sfxOn&&!_clipboard.on&&!tutorial){
           _audio.click.load();
           _audio.click.play();
+        } if(sfxOn&&_clipboard.on||sfxOn&&tutorial){
+          _audio.paper.load();
+          _audio.paper.play();
         }
 
         if(_clipboard.on){
@@ -119,6 +122,7 @@ document.addEventListener("keyup",function(_event){
           _clipboard.close=true;
           if(_menuSetting.on){ _menuSetting.animation=true; }
           if(_menuAbout.on){ _menuAbout.animation=true; }
+          if(_menuVersion.on){ _menuVersion.animation=true; }
         } else if(!_clipboard.on){
           pauseChange=true;
           pauseAnimation=false;
@@ -132,8 +136,8 @@ document.addEventListener("keyup",function(_event){
 
         pauseChange=true;
         pauseAnimation=true;
-      } if(!pause&&hp!=0){
-        if(_event.key=="a"||_event.key=="ArrowLeft"){
+      } if(!pause&&_player.hp>0){
+        if(_event.key=="a"||_event.key=="A"||_event.key=="ArrowLeft"){
           _keyState.left=false;
           if(!_keyState.right){
             _player.vx=0;
@@ -141,7 +145,7 @@ document.addEventListener("keyup",function(_event){
             _player.left=false;
             _player.vx=4*scale;
           }
-        } if(_event.key=="d"||_event.key=="ArrowRight"){
+        } if(_event.key=="d"||_event.key=="D"||_event.key=="ArrowRight"){
           _keyState.right=false;
           if(!_keyState.left){
             _player.vx=0;
@@ -149,7 +153,7 @@ document.addEventListener("keyup",function(_event){
             _player.right=false;
             _player.vx=-4*scale;
           }
-        } if(_event.key=="w"&&_player.cloud||_event.key=="ArrowUp"&&_player.cloud||_event.key==" "&&_player.cloud){
+        } if(_event.key=="w"&&_player.cloud||_event.key=="W"&&_player.cloud||_event.key=="ArrowUp"&&_player.cloud||_event.key==" "&&_player.cloud){
           _keyState.up=false;
           if(!_keyState.down){
             _player.vy=0;
@@ -157,7 +161,7 @@ document.addEventListener("keyup",function(_event){
             _player.up=false;
             _player.vy=4*scale;
           }
-        } if(_event.key=="s"&&_player.cloud||_event.key=="ArrowDown"&&_player.cloud){
+        } if(_event.key=="s"&&_player.cloud||_event.key=="S"&&_player.cloud||_event.key=="ArrowDown"&&_player.cloud){
           _keyState.down=false;
           if(!_keyState.up){
             _player.vy=0;
@@ -167,14 +171,32 @@ document.addEventListener("keyup",function(_event){
           }
         }
       }
-      if(_event.key==" "&&!pause&&hp!=0&&_player.grounded&&!_player.cloud||
-         _event.key=="ArrowUp"&&!pause&&hp!=0&&_player.grounded&&!_player.cloud||
-         _event.key=="w"&&!pause&&hp!=0&&_player.grounded&&!_player.cloud){
+      if(_event.key==" "&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud||
+         _event.key=="ArrowUp"&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud||
+         _event.key=="w"&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud||
+         _event.key=="W"&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud){
         _player.jumped=true;
         _player.vy=_player.initialvy;
         if(sfxOn){
           _audio.jump.load();
           _audio.jump.play();
+        }
+      }
+
+      if(_event.key=="Shift"&&boss&&_playerGun.on){
+        if(sfxOn){
+          _audio.laser.load();
+          _audio.laser.play();
+        }
+
+        _playerAmmo.x=_player.x+(20*scale);
+        _playerAmmo.y=_player.y+(20*scale);
+        _playerAmmo.unused=false;
+        _playerGun.timer=0;
+        _playerGun.on=false;
+        if(_playerGun.power){
+          _playerAmmo.power=true;
+          _playerGun.power=false;
         }
       }
 
@@ -184,7 +206,7 @@ document.addEventListener("keyup",function(_event){
 
 document.addEventListener("mousemove",function(_event){
   _mouse.x=_event.clientX-((_window.width-_currentResolution.width)/2);
-  _mouse.y=_event.clientY-((_window.height-_currentResolution.height)/2)+(10*scale);
+  _mouse.y=_event.clientY-((_window.height-_currentResolution.height)/2);
 
   if(window.detectcollision(_menuTitle,_mouse)){ _menuTitle.hover=true; }
   else if(!window.detectcollision(_menuTitle,_mouse)){ _menuTitle.hover=false; }
@@ -199,6 +221,8 @@ document.addEventListener("mousemove",function(_event){
   else if(!window.detectcollision(_menuSetting,_mouse)){ _menuSetting.hover=false; }
   if(window.detectcollision(_menuAbout,_mouse)){ _menuAbout.hover=true; }
   else if(!window.detectcollision(_menuAbout,_mouse)){ _menuAbout.hover=false; }
+  if(window.detectcollision(_menuVersion,_mouse)){ _menuVersion.hover=true; }
+  else if(!window.detectcollision(_menuVersion,_mouse)){ _menuVersion.hover=false; }
   if(window.detectcollision(_menuCustom,_mouse)){ _menuCustom.hover=true; }
   else if(!window.detectcollision(_menuCustom,_mouse)){ _menuCustom.hover=false; }
   if(window.detectcollision(_menuRestart,_mouse)){ _menuRestart.hover=true; }
@@ -222,8 +246,19 @@ document.addEventListener("mousemove",function(_event){
 });
 
 window.addEventListener("click",function(_event){
-  if(window.detectcollision(_menuTitle,_mouse)&&scene==1&&canClick||window.detectcollision(_menuTitle,_mouse)&&
-     scene!=0&&scene!=1&&canClick&&pause){ window.open("https://teb.pl","_blank").focus(); }
+  if(window.detectcollision(_menuTitle,_mouse)&&scene==1&&canClick||
+     window.detectcollision(_menuTitle,_mouse)&&scene!=0&&scene!=1&&canClick&&pause){ window.open("https://teb.pl","_blank").focus(); }
+
+  if(window.detectcollision(_menuResolution,_mouse)&&scene<2&&canClick||
+     window.detectcollision(_menuResolution,_mouse)&&scene!=0&&scene!=1&&canClick&&pause){
+    if(fullScreen){
+      document.exitFullscreen();
+    } else if(!fullScreen){
+      if(document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen(); }
+      else if(document.documentElement.webkitRequestFullscreen){ document.documentElement.webkitRequestFullscreen(); }
+      else if(document.documentElement.msRequestFullscreen){ document.documentElement.msRequestFullscreen(); }
+    }
+  }
 
   if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene==1){
     if(sfxOn){
@@ -238,6 +273,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
       if(_menuSetting.on){ _menuSetting.animation=true; }
       if(_menuAbout.on){ _menuAbout.animation=true; }
+      if(_menuVersion.on){ _menuVersion.animation=true; }
     } if(_blueprint.on){
       autoScene=true;
       nextAutoScene=2;
@@ -283,6 +319,26 @@ window.addEventListener("click",function(_event){
     _menuAbout.animation=true;
     canClick=false;
   }
+  if(window.detectcollision(_menuVersion,_mouse)&&_menuVersion.on&&canClick){
+    if(sfxOn){
+      _audio.click.load();
+      _audio.click.play();
+    }
+
+    _clipboard.close=true;
+    _menuVersion.animation=true;
+    canClick=false;
+  }
+  if(window.detectcollision(_menuLevel,_mouse)&&_menuLevel.on&&canClick){
+    if(sfxOn){
+      _audio.click.load();
+      _audio.click.play();
+    }
+
+    _clipboard.close=true;
+    _menuLevel.animation=true;
+    canClick=false;
+  }
   if(window.detectcollision(_menuCustom,_mouse)&&_menuCustom.on&&canClick){
     if(sfxOn){
       _audio.click.load();
@@ -311,6 +367,7 @@ window.addEventListener("click",function(_event){
       _menuLevel.animation=true;
       if(_menuSetting.on){ _menuSetting.animation=true; }
       if(_menuAbout.on){ _menuAbout.animation=true; }
+      if(_menuVersion.on){ _menuVersion.animation=true; }
     }
     canClick=false;
   }
@@ -323,8 +380,11 @@ window.addEventListener("click",function(_event){
 
     _menuAbout.on=false;
     _menuAbout.animation=false;
-    if(!_menuAbout.on&&!_blueprint.on){ _menuSetting.animation=true; }
+    _menuVersion.on=false;
+    _menuVersion.animation=false;
+    if(!_menuAbout.on&&!_menuVersion.on&&!_blueprint.on){ _menuSetting.animation=true; }
     if(_menuAbout.on){ _menuSetting.animation=true; }
+    if(_menuVersion.on){ _menuVersion.animation=true; }
     else if(_blueprint.on){
       canClick=false;
       _blueprint.close=true;
@@ -344,13 +404,40 @@ window.addEventListener("click",function(_event){
 
     _menuSetting.on=false;
     _menuSetting.animation=false;
-    if(!_menuSetting.on&&!_blueprint.on){ _menuAbout.animation=true; }
+    _menuVersion.on=false;
+    _menuVersion.animation=false;
+    if(!_menuSetting.on&&!_menuVersion.on&&!_blueprint.on){ _menuAbout.animation=true; }
     if(_menuSetting.on){ _menuSetting.animation=true; }
+    if(_menuVersion.on){ _menuVersion.animation=true; }
     else if(_blueprint.on){
       canClick=false;
       _blueprint.close=true;
       _blueprint.change=true;
       _menuAbout.animation=true;
+      if(_menuLevel.on){ _menuLevel.animation=true; }
+      if(_menuCustom.on){ _menuCustom.animation=true; }
+    }
+    canClick=false;
+  }
+  if(window.detectcollision(_menuVersion,_mouse)&&canClick&&scene==1||window.detectcollision(_menuVersion,_mouse)&&
+     scene!=1&&scene!=0&&canClick&&pause){
+    if(sfxOn){
+      _audio.click.load();
+      _audio.click.play();
+    }
+
+    _menuSetting.on=false;
+    _menuSetting.animation=false;
+    _menuAbout.on=false;
+    _menuAbout.animation=false;
+    if(!_menuSetting.on&&!_menuAbout.on&&!_blueprint.on){ _menuVersion.animation=true; }
+    if(_menuSetting.on){ _menuSetting.animation=true; }
+    if(_menuAbout.on){ _menuAbout.animation=true; }
+    else if(_blueprint.on){
+      canClick=false;
+      _blueprint.close=true;
+      _blueprint.change=true;
+      _menuVersion.animation=true;
       if(_menuLevel.on){ _menuLevel.animation=true; }
       if(_menuCustom.on){ _menuCustom.animation=true; }
     }
@@ -373,6 +460,7 @@ window.addEventListener("click",function(_event){
       _menuCustom.animation=true;
       if(_menuSetting.on){ _menuSetting.animation=true; }
       if(_menuAbout.on){ _menuAbout.animation=true; }
+      if(_menuVersion.on){ _menuVersion.animation=true; }
     }
     canClick=false;
   }
@@ -386,6 +474,7 @@ window.addEventListener("click",function(_event){
     _clipboard.close=true;
     if(_menuSetting.on){ _menuSetting.animation=true; }
     if(_menuAbout.on){ _menuAbout.animation=true; }
+    if(_menuVersion.on){ _menuVersion.animation=true; }
     canClick=false;
   }
 
@@ -406,9 +495,9 @@ window.addEventListener("click",function(_event){
       _audio.paper.play();
     }
 
-    if(skin>0){
-      skin--;
-      _blueprintCustom1.value=Number(skin+1)+"/4";
+    if(_player.skin>0){
+      _player.skin--;
+      _blueprintCustom1.value=Number(_player.skin+1)+"/4";
     }
   }
   if(window.detectcollision(_blueprintRight,_mouse)&&canClick){
@@ -417,9 +506,9 @@ window.addEventListener("click",function(_event){
       _audio.paper.play();
     }
 
-    if(skin<3){
-      skin++;
-      _blueprintCustom1.value=Number(skin+1)+"/4";
+    if(_player.skin<3){
+      _player.skin++;
+      _blueprintCustom1.value=Number(_player.skin+1)+"/4";
     }
   }
   if(window.detectcollision(_wideClipboardForward,_mouse)&&canClick){
@@ -549,6 +638,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
       if(_menuSetting.on){ _menuSetting.animation=true; }
       if(_menuAbout.on){ _menuAbout.animation=true; }
+      if(_menuVersion.on){ _menuVersion.animation=true; }
     } else if(!_clipboard.on){
       pauseChange=true;
       pauseAnimation=false;
@@ -567,6 +657,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
       if(_menuSetting.on){ _menuSetting.animation=true; } 
       if(_menuAbout.on){ _menuAbout.animation=true; }
+      if(_menuVersion.on){ _menuVersion.animation=true; }
     } else if(!_clipboard.on){
       nextScene=1;
       changeScene=true;
@@ -584,6 +675,7 @@ window.addEventListener("click",function(_event){
       _clipboard.close=true;
       if(_menuSetting.on){ _menuSetting.animation=true; }
       if(_menuAbout.on){ _menuAbout.animation=true; }
+      if(_menuVersion.on){ _menuVersion.animation=true; }
     } else if(!_clipboard.on){
       restart=true;
     }

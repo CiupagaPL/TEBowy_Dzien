@@ -8,25 +8,26 @@
     || |-_\__   /
    ((_/`(____,-' */
 
-let resolutionError=false,ratio=16/9,scale=1.00,fpsLimit=60,lastFrame=0;
+const ratio=16/9,fpsLimit=60;
+let resolutionError=false,scale=1.00,lastFrame=0,screenCheckTimer=0;
 let canStart=false,canClick=true,changeScene=false;
 let scene=0,sceneTimer=0,changeTimer=0,nextScene=0,musicTimer=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false,autoRestart=false;
 let sfxOn=true,musicOn=true,tutorialOn=true,teacherOn=true,addonOn=true,
     tempSfxOn=true,tempMusicOn=true,pause=false,pauseChange=false,
-    pauseAnimation=false,menuLoad=false,tutorial=true,teacher=true;
-let skin=0,hp=6,dead=false,restart=false,bossHp=10;
+    pauseAnimation=false,fullScreen=false,menuLoad=false;
+let tutorial=true,teacher=true,dead=false,restart=false;
 let globalMove=0,localMove=0,score=0,boss=false,defeat=false;
 
 let _html=document.getElementById("html");
-
 let _error=document.getElementById("error");
 let _load=document.getElementById("load");
-let _about=document.getElementById("about");
 
 let _window={
   width:window.innerWidth,
   height:window.innerHeight,
+  outWidth:window.outerWidth,
+  outHeight:window.outerHeight,
 };
 
 let _audio={
@@ -89,17 +90,11 @@ let _background={
   img1:new Image(),
   img2:new Image(),
 
-  color0a:"#002f6d",
-  color1a:"#e40002",
-  color2a:"#037aa2",
-  color3a:"#414141",
-  color4a:"#0a0a0a",
-
-  color0b:"#002563",
-  color1b:"#d00002",
-  color2b:"#037098",
-  color3b:"#373737",
-  color4b:"#000000",
+  color0:"#002f6d",
+  color1:"#e40002",
+  color2:"#037aa2",
+  color3:"#414141",
+  color4:"#0a0a0a",
 };
 let _backgroundTop={
   width:640,height:360,
@@ -136,7 +131,20 @@ let _change={
   img2:new Image(),
   img3:new Image(),
   img4:new Image()
-}
+};
+let _changeText={
+  value:"Menu",
+
+  size:32,
+  font:"orangeKid",
+  debug:"",
+
+  color0:"rgba(255,255,255,1)",
+  color1:"rgba(255,255,255,0.5)",
+  color2:"rgba(255,255,255,0.15)",
+
+  x:0,y:0,
+};
 
 let _startText={
   value:"Naciśnij Enter aby rozpocząć",
@@ -150,7 +158,7 @@ let _startText={
   color2:"rgba(255,255,255,0.15)",
 
   x:0,y:0,
-}
+};
 
 let _startTEB={
   width:128,height:128,
@@ -177,6 +185,15 @@ let _menuTitle={
   x:0,y:0,
 
   hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+
+let _menuResolution={
+  width:16,height:16,
+
+  x:0,y:0,
 
   img:new Image(),
   imgOn:new Image(),
@@ -282,9 +299,29 @@ let _menuAbout={
   imgOn:new Image(),
 };
 let _menuAboutText={
-  value:"O grze",
+  value:"Opis",
 
   size:32,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+let _menuVersion={
+  width:42,height:42,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _menuVersionText={
+  value:"Alpha 1.10;\n30-11-2024",
+
+  size:16,
   font:"orangeKid",
   debug:"",
   color:"white",
@@ -368,7 +405,17 @@ let _clipboardSettingText={
   x:0,y:0,
 };
 let _clipboardAboutText={
-  value:"O grze",
+  value:"Opis",
+
+  size:28,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _clipboardVersionText={
+  value:"Twórcy",
 
   size:28,
   font:"orangeKid",
@@ -472,6 +519,17 @@ let _clipboardSetting10={
 let _clipboardAbout1={
   value:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\n"+
   "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\nPozdrawiamy :-D",
+
+  size:15,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+
+let _clipboardVersion1={
+  value:"Nadzorowanie Projektu:\n- TomEDU\nPisanie Kodu:\n- Ciupaga\nDźwięk, Testowanie:\n- idk_10\nMuzyka:\n- M4RCIN-MJJ",
 
   size:15,
   font:"orangeKid",
@@ -627,7 +685,7 @@ let _blueprintCustomText={
   x:0,y:0,
 };
 let _blueprintCustom1={
-  value:Number(skin+1)+"/4",
+  value:Number(1)+"/4",
 
   size:20,
   font:"orangeKid",
@@ -652,7 +710,7 @@ let _gamePause={
   img:new Image(),
 };
 let _gameLevel={
-  value:"Poziom: "+Number(scene-1),
+  value:"Poziom: "+Number(1),
 
   size:20,
   font:"orangeKid",
@@ -746,8 +804,19 @@ let _gameBossHP5={
   img1:new Image(),
   img2:new Image(),
 };
+let _gameWater={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img0:new Image(),
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+  img4:new Image(),
+};
 let _wideClipboard={
-  width:184,height:184,
+  width:264,height:184,
 
   x:0,y:0,
 
@@ -774,8 +843,10 @@ let _tutorialTitle={
   x:0,y:0,
 };
 let _tutorialText={
-  value:"Poruszaj się za pomocą [a]|[d]\nlub [<-]|[->]. Podskakuj za pomocą\n[w]|[^]|[_]. Twoim celem jest\ndostać się na górę poziomu\n"+
-        "i pokonać danego nauczyciela.\nPo drodze musisz omijać\nprzeszkody w postaci kolców\ni laserów. W trudnej sytuacji użyj\nTebulinka. Życzymy szczęścia!",
+  value:"Poruszaj się za pomocą [A]|[D] lub [Lewo]|[Prawo].\nPodskakuj za pomocą [W]|[Góra]|[Spacja]. Będąc\n"+
+        "na chmurce do poruszania używaj [W]|[A]|[S]|[D] lub\n[Góra]|[Lewo]|[Dół]|[Prawo]. Strzelaj za pomocą\n"+
+        "[Shift]. Twoim celem jest dostać się na górę poziomu\ni pokonać danego nauczyciela. Po drodze musisz\n"+
+        "omijać przeszkody w postaci kolców i laserów.\nW trudnej sytuacji użyj Tebulinka. Życzymy szczęścia!",
 
   size:12,
   font:"orangeKid",
@@ -786,7 +857,7 @@ let _tutorialText={
 };
 
 let _wideBlueprint={
-  width:184,height:184,
+  width:264,height:184,
 
   x:0,y:0,
 
@@ -806,8 +877,14 @@ let _bossTitle={
   value0:"Tomasz Staniszewski",
   value1:"Radosław Sass",
   value2:"Paweł Kępa",
-  value3:"Anna S. Chmielewska",
+  value3:"Anna Skarbek Chmielewska",
   value4:"Marta Milde",
+  value5:"Anna Świtoń",
+  value6:"Piotr Łojek",
+  value7:"Iwo Musiałowski",
+  valueAdd0:"Iwona Bury Sierzchuła",
+  valueAdd1:"Wojciech Złotowski",
+  valueAdd2:"Anna Niklas",
 
   size:20,
   font:"orangeKid",
@@ -831,6 +908,18 @@ let _bossDescription={
   value4:"Kobieta tysiąca zawodów\ni koordynator chaosu, nie ma\ntakich zadań, z którymi by sobie\n"+
          "nie poradziła! Możesz ją spotkać\nna zajęciach z Cyfrowej Obróbki\nObrazu, Projektów, Plastyki\n"+
          "czy BiZu. Za chwilę będzie\nwychodzić nawet z lodówki! Walka\nnie będzie łatwa.",
+  value5:"Kiedy głowa ciąży od problemów,\na serduszko łamie się od zmartwień,\nlekiem na problemy jest Pani Pedagog,\n"+
+         "która zawsze znajdzie dla Ciebie czas.\nWalka nie będzie łatwa.",
+  value6:"Zwany postrachem tej szkoły. Mistrz\npoligrafii i nauczyciel w jednym. Jeśli\nmyślisz serio o przedmiotach zawodowych,\n"+
+         "może Cię potraktować ulgowo… pod\nwarunkiem, że go słuchasz! Walka\nnie będzie łatwa.",
+  value7:"To jest dopiero #nauczycielzpasją!\nNie stroni od historycznych przebieranek\n"+
+         "i inscenizacji, a jego lekcje historii\npoparte są żywym przykładem. Kolekcjoner\nuzbrojenia i mundrów. Walka nie\nbędzie łatwa.",
+  valueAdd0:"[...] To jeszcze nie koniec!",
+  valueAdd1:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
+            "Wojtek zarządza Liceum, a jednocześnie\nprzekazuje praktyczną wiedzę. To jeszcze\nnie koniec!",
+  valueAdd2:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
+            "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
+            "Daj z siebie wszystko!",
 
   size:12,
   font:"orangeKid",
@@ -851,6 +940,8 @@ let _player={
   upTimer:0,
   invisible:0,
   max:60,
+  hp:150,
+  skin:0,
 
   touched:false,
   active:false,
@@ -888,6 +979,30 @@ let _playerCloud={
 
   x:0,y:0,
 
+  img0:new Image(),
+  img1:new Image(),
+};
+let _playerGun={
+  width:20,height:20,
+
+  x:0,y:0,
+
+  timer:0,
+
+  on:false,
+  power:false,
+  
+  img0:new Image(),
+  img1:new Image(),
+};
+let _playerAmmo={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  power:false,
+  unused:true,
+  
   img0:new Image(),
   img1:new Image(),
 };
@@ -929,7 +1044,6 @@ let _platform={
   random:0,
   lastx:0,
   lasty:0,
-  besty:0,
 
   img:new Image(),
 };
@@ -1025,6 +1139,8 @@ let _boss={
   invisible:0,
   random:0,
   max:60,
+  hp:250,
+  round:0,
 
   load:false,
   attack:false,
@@ -1034,6 +1150,12 @@ let _boss={
   img2:new Image(),
   img3:new Image(),
   img4:new Image(),
+  img5:new Image(),
+  img6:new Image(),
+  img7:new Image(),
+  imgAdd0:new Image(),
+  imgAdd1:new Image(),
+  imgAdd2:new Image(),
 };
 let _bossText={
   value:"-0 puntków\nz zachowania",
@@ -1071,61 +1193,43 @@ let _tebulinek={
   img3:new Image(),
 };
 
-let _computer={
+let _attack1={
   width:48,height:48,
 
   x:0,y:0,
 
   timer:0,
+  current:0,
 
   unused:true,
 
-  img0:new Image(),
-  img1:new Image(),
-  img2:new Image(),
-  img3:new Image(),
+  imgComputer0:new Image(),
+  imgComputer1:new Image(),
+  imgComputer2:new Image(),
+  imgComputer3:new Image(),
+  imgKeyboard0:new Image(),
+  imgKeyboard1:new Image(),
+  imgKeyboard2:new Image(),
+  imgKeyboard3:new Image(),
 };
-let _keyboard={
+let _attack2={
   width:48,height:48,
 
   x:0,y:0,
 
   timer:0,
+  current:0,
 
   unused:true,
 
-  img0:new Image(),
-  img1:new Image(),
-  img2:new Image(),
-  img3:new Image(),
-};
-let _coffe={
-  width:48,height:48,
-
-  x:0,y:0,
-
-  timer:0,
-
-  unused:true,
-
-  img0:new Image(),
-  img1:new Image(),
-  img2:new Image(),
-  img3:new Image(),
-};
-let _dove={
-  width:48,height:48,
-
-  x:0,y:0,
-
-  timer:0,
-
-  unused:true,
-
-  img0:new Image(),
-  img1:new Image(),
-  img2:new Image(),
-  img3:new Image(),
+  imgCoffe0:new Image(),
+  imgCoffe1:new Image(),
+  imgCoffe2:new Image(),
+  imgCoffe3:new Image(),
+  imgDove0:new Image(),
+  imgDove1:new Image(),
+  imgDove2:new Image(),
+  imgDove3:new Image(),
 };
 
 _audio.menu.load();
@@ -1189,6 +1293,9 @@ _startTEB.img2.src="Source/Object/TEB/2.png";
 _menuTitle.img.src="Source/UI/Title/title.png";
 _menuTitle.imgOn.src="Source/UI/Title/titleOn.png";
 
+_menuResolution.img.src="Source/UI/max.png";
+_menuResolution.imgOn.src="Source/UI/min.png";
+
 _menuStart.img.src="Source/UI/Button/start.png";
 _menuStart.imgOn.src="Source/UI/Button/startOn.png";
 _menuMenu.img.src="Source/UI/Button/menu.png";
@@ -1199,6 +1306,8 @@ _menuSetting.img.src="Source/UI/Button/setting.png";
 _menuSetting.imgOn.src="Source/UI/Button/settingOn.png";
 _menuAbout.img.src="Source/UI/Button/about.png";
 _menuAbout.imgOn.src="Source/UI/Button/aboutOn.png";
+_menuVersion.img.src="Source/UI/Button/version.png";
+_menuVersion.imgOn.src="Source/UI/Button/versionOn.png";
 _menuCustom.img.src="Source/UI/Button/custom.png";
 _menuCustom.imgOn.src="Source/UI/Button/customOn.png";
 _menuRestart.img.src="Source/UI/Button/restart.png";
@@ -1257,19 +1366,24 @@ _gamePause.img.src="Source/UI/pause.png";
 
 _gameBossHP1.img0.src="Source/UI/Heart/bossHeart.png";
 _gameBossHP1.img1.src="Source/UI/Heart/bossHalf.png";
-_gameBossHP1.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP1.img2.src="Source/UI/Heart/empty.png";
 _gameBossHP2.img0.src="Source/UI/Heart/bossHeart.png";
 _gameBossHP2.img1.src="Source/UI/Heart/bossHalf.png";
-_gameBossHP2.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP2.img2.src="Source/UI/Heart/empty.png";
 _gameBossHP3.img0.src="Source/UI/Heart/bossHeart.png";
 _gameBossHP3.img1.src="Source/UI/Heart/bossHalf.png";
-_gameBossHP3.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP3.img2.src="Source/UI/Heart/empty.png";
 _gameBossHP4.img0.src="Source/UI/Heart/bossHeart.png";
 _gameBossHP4.img1.src="Source/UI/Heart/bossHalf.png";
-_gameBossHP4.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP4.img2.src="Source/UI/Heart/empty.png";
 _gameBossHP5.img0.src="Source/UI/Heart/bossHeart.png";
 _gameBossHP5.img1.src="Source/UI/Heart/bossHalf.png";
-_gameBossHP5.img2.src="Source/UI/Heart/bossEmpty.png";
+_gameBossHP5.img2.src="Source/UI/Heart/empty.png";
+_gameWater.img0.src="Source/UI/Water/water.png";
+_gameWater.img1.src="Source/UI/Water/half.png";
+_gameWater.img2.src="Source/UI/Water/empty.png";
+_gameWater.img3.src="Source/UI/Water/powerWater.png";
+_gameWater.img4.src="Source/UI/Water/powerHalf.png";
 
 _wideClipboard.img.src="Source/UI/Clipboard/wideClipboard.png";
 _wideClipboardForward.img.src="Source/UI/Clipboard/right.png";
@@ -1289,10 +1403,15 @@ _player.img2left.src="Source/Object/Player/girl0left.png";
 _player.img3left.src="Source/Object/Player/girl1left.png";
 _playerCloud.img0.src="Source/Object/Cloud/left.png";
 _playerCloud.img1.src="Source/Object/Cloud/right.png";
+_playerGun.img0.src="Source/Object/Gun/gun.png";
+_playerGun.img1.src="Source/Object/Gun/powerGun.png";
+_playerAmmo.img0.src="Source/Object/Ammo/ammo.png";
+_playerAmmo.img1.src="Source/Object/Ammo/powerAmmo.png";
 
 _platform.img.src="Source/Object/platform.png";
 
 _corner.img0.src="Source/Object/Corner/left.png";
+
 _corner.img1.src="Source/Object/Corner/right.png";
 
 _laser.img0.src="Source/Object/Laser/left.png";
@@ -1308,6 +1427,12 @@ _boss.img1.src="Source/Object/People/RS.png";
 _boss.img2.src="Source/Object/People/PK.png";
 _boss.img3.src="Source/Object/People/ASC.png";
 _boss.img4.src="Source/Object/People/MM.png";
+_boss.img5.src="Source/Object/People/AS.png";
+_boss.img6.src="Source/Object/People/PL.png";
+_boss.img7.src="Source/Object/People/IM.png";
+_boss.imgAdd0.src="Source/Object/People/IBS.png";
+_boss.imgAdd1.src="Source/Object/People/WZ.png";
+_boss.imgAdd2.src="Source/Object/People/AN.png";
 _bossCloud.img.src="Source/Object/Cloud/left.png";
 
 _tebulinek.img0.src="Source/Object/Attack/Tebulinek/0.png";
@@ -1315,19 +1440,19 @@ _tebulinek.img1.src="Source/Object/Attack/Tebulinek/90.png";
 _tebulinek.img2.src="Source/Object/Attack/Tebulinek/180.png";
 _tebulinek.img3.src="Source/Object/Attack/Tebulinek/270.png";
 
-_computer.img0.src="Source/Object/Attack/Computer/0.png";
-_computer.img1.src="Source/Object/Attack/Computer/90.png";
-_computer.img2.src="Source/Object/Attack/Computer/180.png";
-_computer.img3.src="Source/Object/Attack/Computer/270.png";
-_keyboard.img0.src="Source/Object/Attack/Keyboard/0.png";
-_keyboard.img1.src="Source/Object/Attack/Keyboard/90.png";
-_keyboard.img2.src="Source/Object/Attack/Keyboard/180.png";
-_keyboard.img3.src="Source/Object/Attack/Keyboard/270.png";
-_coffe.img0.src="Source/Object/Attack/Coffe/0.png";
-_coffe.img1.src="Source/Object/Attack/Coffe/90.png";
-_coffe.img2.src="Source/Object/Attack/Coffe/180.png";
-_coffe.img3.src="Source/Object/Attack/Coffe/270.png";
-_dove.img0.src="Source/Object/Attack/Dove/0.png";
-_dove.img1.src="Source/Object/Attack/Dove/90.png";
-_dove.img2.src="Source/Object/Attack/Dove/180.png";
-_dove.img3.src="Source/Object/Attack/Dove/270.png";
+_attack1.imgComputer0.src="Source/Object/Attack/Computer/0.png";
+_attack1.imgComputer1.src="Source/Object/Attack/Computer/90.png";
+_attack1.imgComputer2.src="Source/Object/Attack/Computer/180.png";
+_attack1.imgComputer3.src="Source/Object/Attack/Computer/270.png";
+_attack1.imgKeyboard0.src="Source/Object/Attack/Keyboard/0.png";
+_attack1.imgKeyboard1.src="Source/Object/Attack/Keyboard/90.png";
+_attack1.imgKeyboard2.src="Source/Object/Attack/Keyboard/180.png";
+_attack1.imgKeyboard3.src="Source/Object/Attack/Keyboard/270.png";
+_attack2.imgCoffe0.src="Source/Object/Attack/Coffe/0.png";
+_attack2.imgCoffe1.src="Source/Object/Attack/Coffe/90.png";
+_attack2.imgCoffe2.src="Source/Object/Attack/Coffe/180.png";
+_attack2.imgCoffe3.src="Source/Object/Attack/Coffe/270.png";
+_attack2.imgDove0.src="Source/Object/Attack/Dove/0.png";
+_attack2.imgDove1.src="Source/Object/Attack/Dove/90.png";
+_attack2.imgDove2.src="Source/Object/Attack/Dove/180.png";
+_attack2.imgDove3.src="Source/Object/Attack/Dove/270.png";

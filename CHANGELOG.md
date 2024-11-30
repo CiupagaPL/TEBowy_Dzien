@@ -19,11 +19,30 @@
 > [!NOTE]
 > Będę tu zamieszczał progress trwającego od pierwszej alphy przepisywania skryptów.
 
+## Changelog Alpha 1.10
+
+### Ogólny
+- Naprawiłem Alpha 1.0 - 1 (#2),
+- Naprawiłem Alpha 1.0 - 2 (#3),
+- Naprawiłem Alpha 1.0 - 14 (#15),
+- Naprawiłem Alpha 1.0 - 15 (#16),
+- Naprawiłem Alpha 1.0 - 17 (#18).
+> [!IMPORTANT]
+> Resztę informacji zamieszczę w następnym patchu
+
+### Techniczny
+> [!IMPORTANT]
+> Resztę informacji zamieszczę w następnym patchu
+
 ## Changelog Alpha 1.03
+
+### Ogólny
 - Naprawiłem krytyczną Alpha 1.0 - 12 (#13),
 - Naprawiłem Alpha 1.0 - 5 (#6).
 
 ## Changelog: Alpha 1.02
+
+### Ogólny
 - Poprawiłem resztę błędów z poprzedniego patcha,
 - Poprawiłem kilka sprite'ów,
 - Przepisałem <i>transition.js</i> i skróciłem go o około połowę linijek kodu,

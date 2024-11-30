@@ -31,15 +31,14 @@ level=function(){
         musicTimer=0;
       }
     }
-  } else if(!musicOn){
+  } else if(!musicOn||pause||_player.hp<=0||changeScene){
     _audio.game.load();
     _audio.boss.load();
     musicTimer=0;
   }
 
   if(!pause){
-    _html.style.backgroundColor=_background.color0a;
-    _about.style.backgroundColor=_background.color0b;
+    _html.style.backgroundColor=_background.color0;
     _audio.game.volume=0.25;
     _audio.boss.volume=0.25;
   } else if(pause){
@@ -53,8 +52,6 @@ level=function(){
   if(_background.y>=_render.height){ _background.y=_backgroundTop.y-_render.height; }
   if(_backgroundTop.y>=_render.height){ _backgroundTop.y=_background.y-_render.height; }
 
-  _html.style.backgroundColor=_background.color0;
-
   animateclipboard();
 
   handleplayer();
@@ -65,44 +62,60 @@ level=function(){
   _context.fillShortText(_gameLevel.color,_gameLevel,_gameLevel.value);
   _gameScore.value="Wynik: "+score;
   _context.fillShortText(_gameScore.color,_gameScore,_gameScore.value);
-  if(hp>=2){ _context.drawShortImage(_gameHP1.img0,_gameHP1); }
-  if(hp==1){ _context.drawShortImage(_gameHP1.img1,_gameHP1); }
-  if(hp==0){ _context.drawShortImage(_gameHP1.img2,_gameHP1); }
-  if(hp>=4){ _context.drawShortImage(_gameHP2.img0,_gameHP2); }
-  if(hp==3){ _context.drawShortImage(_gameHP2.img1,_gameHP2); }
-  if(hp<=2){ _context.drawShortImage(_gameHP2.img2,_gameHP2); }
-  if(hp==6){ _context.drawShortImage(_gameHP3.img0,_gameHP3); }
-  if(hp==5){ _context.drawShortImage(_gameHP3.img1,_gameHP3); }
-  if(hp<=4){ _context.drawShortImage(_gameHP3.img2,_gameHP3); }
+
+  if(_player.hp<=0){ _context.drawShortImage(_gameHP1.img2,_gameHP1); }
+  if(_player.hp==25){ _context.drawShortImage(_gameHP1.img1,_gameHP1); }
+  if(_player.hp>=50){ _context.drawShortImage(_gameHP1.img0,_gameHP1); }
+
+  if(_player.hp<75){ _context.drawShortImage(_gameHP2.img2,_gameHP2); }
+  if(_player.hp==75){ _context.drawShortImage(_gameHP2.img1,_gameHP2); }
+  if(_player.hp>=100){ _context.drawShortImage(_gameHP2.img0,_gameHP2); }
+
+  if(_player.hp<125){ _context.drawShortImage(_gameHP3.img2,_gameHP3); }
+  if(_player.hp==125){ _context.drawShortImage(_gameHP3.img1,_gameHP3); }
+  if(_player.hp>=150){ _context.drawShortImage(_gameHP3.img0,_gameHP3); }
+
   if(boss){
-    if(bossHp>=2){ _context.drawShortImage(_gameBossHP1.img0,_gameBossHP1); }
-    if(bossHp==1){ _context.drawShortImage(_gameBossHP1.img1,_gameBossHP1); }
-    if(bossHp==0){ _context.drawShortImage(_gameBossHP1.img2,_gameBossHP1); }
-    if(bossHp>=4){ _context.drawShortImage(_gameBossHP2.img0,_gameBossHP2); }
-    if(bossHp==3){ _context.drawShortImage(_gameBossHP2.img1,_gameBossHP2); }
-    if(bossHp<=2){ _context.drawShortImage(_gameBossHP2.img2,_gameBossHP2); }
-    if(bossHp>=6){ _context.drawShortImage(_gameBossHP3.img0,_gameBossHP3); }
-    if(bossHp==5){ _context.drawShortImage(_gameBossHP3.img1,_gameBossHP3); }
-    if(bossHp<=4){ _context.drawShortImage(_gameBossHP3.img2,_gameBossHP3); }
-    if(bossHp>=8){ _context.drawShortImage(_gameBossHP4.img0,_gameBossHP4); }
-    if(bossHp==7){ _context.drawShortImage(_gameBossHP4.img1,_gameBossHP4); }
-    if(bossHp<=6){ _context.drawShortImage(_gameBossHP4.img2,_gameBossHP4); }
-    if(bossHp==10){ _context.drawShortImage(_gameBossHP5.img0,_gameBossHP5); }
-    if(bossHp==9){ _context.drawShortImage(_gameBossHP5.img1,_gameBossHP5); }
-    if(bossHp<=8){ _context.drawShortImage(_gameBossHP5.img2,_gameBossHP5); }
+    if(_boss.hp<=0){ _context.drawShortImage(_gameBossHP1.img2,_gameBossHP1); }
+    if(_boss.hp<=25&&_boss.hp>0){ _context.drawShortImage(_gameBossHP1.img1,_gameBossHP1); }
+    if(_boss.hp>25){ _context.drawShortImage(_gameBossHP1.img0,_gameBossHP1); }
+
+    if(_boss.hp<=50){ _context.drawShortImage(_gameBossHP2.img2,_gameBossHP2); }
+    if(_boss.hp<=75&&_boss.hp>50){ _context.drawShortImage(_gameBossHP2.img1,_gameBossHP2); }
+    if(_boss.hp>75){ _context.drawShortImage(_gameBossHP2.img0,_gameBossHP2); }
+
+    if(_boss.hp<=100){ _context.drawShortImage(_gameBossHP3.img2,_gameBossHP3); }
+    if(_boss.hp<=125&&_boss.hp>100){ _context.drawShortImage(_gameBossHP3.img1,_gameBossHP3); }
+    if(_boss.hp>125){ _context.drawShortImage(_gameBossHP3.img0,_gameBossHP3); }
+
+    if(_boss.hp<=150){ _context.drawShortImage(_gameBossHP4.img2,_gameBossHP4); }
+    if(_boss.hp<=175&&_boss.hp>150){ _context.drawShortImage(_gameBossHP4.img1,_gameBossHP4); }
+    if(_boss.hp>175){ _context.drawShortImage(_gameBossHP4.img0,_gameBossHP4); }
+
+    if(_boss.hp<=200){ _context.drawShortImage(_gameBossHP5.img2,_gameBossHP5); }
+    if(_boss.hp<=225&&_boss.hp>200){ _context.drawShortImage(_gameBossHP5.img1,_gameBossHP5); }
+    if(_boss.hp>225){ _context.drawShortImage(_gameBossHP5.img0,_gameBossHP5); }
+
+    if(_playerGun.on&&!_playerGun.power){ _context.drawShortImage(_gameWater.img0,_gameWater); }
+    if(_playerGun.timer>=60&&!_playerGun.on&&!_playerGun.power){ _context.drawShortImage(_gameWater.img1,_gameWater); }
+    if(_playerGun.timer<60){ _context.drawShortImage(_gameWater.img2,_gameWater); }
+    if(_playerGun.on&&_playerGun.power){ _context.drawShortImage(_gameWater.img3,_gameWater); }
+    if(_playerGun.timer>=60&&!_playerGun.on&&_playerGun.power){ _context.drawShortImage(_gameWater.img4,_gameWater); }
   }
+
   _context.drawShortImage(_gamePause.img,_gamePause);
 
-  if(hp<0){ hp=0; }
-  if(hp==0){ dead=true; if(sfxOn){ _audio.die.play(); } }
-  if(bossHp<0){ bossHp=0; }
+  if(_player.hp<=0&&sfxOn&&!dead){ _audio.die.play(); }
+  if(_player.hp<=0){
+    _player.hp=0;
+    dead=true;
+  }
+
+  if(_boss.hp<=0){ _boss.hp=0; }
 
   if(dead){
-    if(hp==0){
-      sceneoff();
-    } else if(hp==6){
-      sceneon();
-    }
+    if(_player.hp<=0){ sceneoff(); }
+    else if(_player.hp==150){ sceneon(); }
   }
 
   if(autoScene&&!_clipboard.on){
@@ -127,6 +140,9 @@ level=function(){
     if(!_menuTitle.hover){ _context.drawShortImage(_menuTitle.img,_menuTitle); }
     else if(_menuTitle.hover){ _context.drawShortImage(_menuTitle.imgOn,_menuTitle); }
 
+    if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+    else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
+
     if(!tutorial&&!teacher){
       _context.drawShortImage(_clipboard.img,_clipboard);
       if(!_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.img,_clipboardBack); }
@@ -144,6 +160,9 @@ level=function(){
       if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
       else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
       _context.fillShortText(_menuAboutText.color,_menuAboutText,_menuAboutText.value);
+      if(!_menuVersion.hover){ _context.drawShortImage(_menuVersion.img,_menuVersion); }
+      else if(_menuVersion.hover){ _context.drawShortImage(_menuVersion.imgOn,_menuVersion); } 
+      _context.fillShortText(_menuVersionText.color,_menuVersionText,_menuVersionText.value);
       if(!_menuRestart.hover){ _context.drawShortImage(_menuRestart.img,_menuRestart); }
       else if(_menuRestart.hover){ _context.drawShortImage(_menuRestart.imgOn,_menuRestart); } 
       _context.fillShortText(_menuRestartText.color,_menuRestartText,_menuRestartText.value);
@@ -175,20 +194,28 @@ level=function(){
         _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value4);
         _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value4);
       } if(scene==7){
-        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value0);
-        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value0);
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value5);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value5);
       } if(scene==8){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value6);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value6);
+      } if(scene==9){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value7);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value7);
+      } if(scene==10){
         _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value1);
         _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value1);
-      } if(scene==9){
-        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value2);
-        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value2);
-      } if(scene==10){
-        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value3);
-        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value3);
       } if(scene==11){
-        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value4);
-        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value4);
+        if(_boss.round==0){
+          _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.valueAdd0);
+          _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.valueAdd0);
+        } if(_boss.round==1){
+          _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.valueAdd1);
+          _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.valueAdd1);
+        } else if(_boss.round==2){
+          _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.valueAdd2);
+          _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.valueAdd2);
+        }
       }
     }
   }
@@ -215,18 +242,20 @@ level=function(){
   } if(_menuAbout.animation||_menuAbout.on){
     _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText,_clipboardAboutText.value);
     _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
+  } if(_menuVersion.animation||_menuVersion.on){
+    _context.fillShortText(_clipboardVersionText.color,_clipboardVersionText,_clipboardVersionText.value);
+    _context.fillShortText(_clipboardVersion1.color,_clipboardVersion1,_clipboardVersion1.value);
   }
 
-  if(changeScene&&hp!=0&&!defeat){ sceneon(); }
+  if(changeScene&&_player.hp>0&&!defeat){ sceneon(); }
   if(defeat&&scene!=11){
     nextScene=scene+1;
-    round=1;
     changeScene=true;
     sceneoff();
   } if(defeat&&scene==11){
     nextScene=1;
     changeScene=true;
-    round=1;
+    menuLoad=true;
     sceneoff();
   }
 }

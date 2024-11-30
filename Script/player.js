@@ -17,30 +17,16 @@ handleplayer=function(){
   _playerTop.y=_player.y+_player.vy;
   _playerBottom.x=_player.x+4*scale+_player.vx;
 
-  if(skin==0||skin==2){
+  if(_player.skin==0||_player.skin==2){
     _player.height=81*scale;
     _playerLeft.height=69*scale;
     _playerRight.height=69*scale;
     _playerBottom.y=_player.y+81*scale+_player.vy;
-  } else if(skin==1||skin==3){
+  } else if(_player.skin==1||_player.skin==3){
     _player.height=75*scale;
     _playerLeft.height=63*scale;
     _playerRight.height=63*scale;
     _playerBottom.y=_player.y+75*scale+_player.vy;
-  }
-
-  if(!pause&&hp!=0){
-    _player.y+=_player.vy;
-    if(!_player.cloud){ _player.vy+=_player.gravity; }
-    if(!_player.grounded&&!_player.cloud){ _player.y+=globalMove; }
-
-    _player.x+=localMove;
-    _player.x+=_player.vx;
-
-    if(!_player.move){
-      _player.vx=0;
-      if(_player.grounded){ _player.vy=0; }
-    }
   }
 
   window.generatelevel();
@@ -62,14 +48,29 @@ handleplayer=function(){
     _laser.currentLenght+=1;
   }
 
-  if(!pause&&hp!=0){ _laser.timer++; }
+  if(!pause&&_player.hp>0){ _laser.timer++; }
 
-  if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+1&&!pause&&hp!=0&&sfxOn&&!boss&&!defeat){
+  if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+1&&!pause&&_player.hp>0&&sfxOn&&!boss&&!defeat){
     _audio.laser.load();
     _audio.laser.play();
   } if(_laser.timer>=_laser.max+25){ _laser.timer=0; }
 
   drawplayer();
+
+  if(!pause&&_player.hp>0){
+    _player.y+=_player.vy;
+    if(_player.cloud){ _playerCloud.y+=_player.vy; }
+    if(boss&&sceneTimer>=99){ _playerGun.y+=_player.vy }
+
+    if(!_player.cloud){ _player.vy+=_player.gravity; }
+
+    if(!_player.grounded&&!_player.cloud&&!boss){ _player.y+=globalMove; }
+
+    _player.x+=localMove;
+    _player.x+=_player.vx;
+    if(_player.cloud){ _playerCloud.x+=_player.vx; }
+    if(boss&&sceneTimer>=99){ _playerGun.x+=_player.vx; }
+  }
 
   while(_platform.lenght>=_platform.currentLenght){
     _currentPlatform=_platform.array[_platform.currentLenght];
@@ -122,9 +123,9 @@ handleplayer=function(){
     drawlight();
 
     if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!boss&&_laser.timer>=_laser.max&&!_player.touched){ 
-      hp-=2;
-      if(addonOn){ _playerText.value="-50 punktów\nz zachowania"; }
-      if(hp>0){ _player.invisible=1; }
+      _player.hp-=25;
+      _playerText.value="-25 punktów\nz zachowania";
+      if(_player.hp>0){ _player.invisible=1; }
       _player.touched=true;
       if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
     }
@@ -140,9 +141,9 @@ handleplayer=function(){
     _context.drawShortImage(_spike.img,_currentSpike);
 
     if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0&&!boss){
-      hp--;
-      if(addonOn){ _playerText.value="-25 punktów\nz zachowania"; }
-      if(hp>0){ _player.invisible=1; }
+      _player.hp-=25;
+      _playerText.value="-25 punktów\nz zachowania";
+      if(_player.hp>0){ _player.invisible=1; }
       if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
     }
 
@@ -165,23 +166,25 @@ handleplayer=function(){
 
   if(addonOn){ drawplayertext(); }
 
-  if(!pause&&_player.hp!=0&&_player.y<_currentResolution.height*3/8&&_platform.array[_platform.lenght].y+3*scale<0){ globalMove=+3*scale; }
-  if(!pause&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
-  else if(pause||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height||_platform.array[_platform.lenght].y+3*scale>0){ globalMove=0; }
+  if(!pause&&_player.hp>0&&_player.y<_currentResolution.height*3/8&&_platform.array[_platform.lenght].y+3*scale<0){ globalMove=+3*scale; }
+  if(!pause&&_player.hp>0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
+  else if(pause||_player._playerhp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height||_platform.array[_platform.lenght].y+3*scale>0){ globalMove=0; }
 
-  if(_player.cloud&&!pause&&hp!=0){
-    if(_player.x+_player.width>=_render.width*4/5){ _player.x-=8*scale; }
-    if(_player.y<=_render.height*1/8){ _player.y+=4*scale }
+  if(_player.cloud&&!pause&&_player.hp>0){
+    if(_player.x+_player.width>=_render.width*4/5){ _player.x-=4*scale; if(_player.cloud){ _playerCloud.x-=4*scale; } if(boss&&sceneTimer>=99){ _playerGun.x-=4*scale; } }
+    if(_player.y<=_render.height*1/16){ _player.y+=4*scale; if(_player.cloud){ _playerCloud.y+=4*scale; } if(boss&&sceneTimer>=99){ _playerGun.y+=4*scale; } }
+    if(_player.y+_player.height>=_render.height*15/16){ _player.y-=4*scale; if(_player.cloud){ _playerCloud.y-=4*scale; } if(boss&&sceneTimer>=99){ _playerGun.y-=4*scale; } }
   }
-  if(_player.x<=0){ _player.x+=4*scale; }
-  if(_player.x>=_currentResolution.width-_player.width&&score!=14||_player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; }
-  if(_player.x>=_currentResolution.width&&score==14&&!boss){
+  if(_player.x<=0){ _player.x+=4*scale; if(_player.cloud){ _playerCloud.x+=4*scale; } if(boss&&sceneTimer>=99){ _playerGun.x+=4*scale; } }
+  if(_player.x>=_currentResolution.width-_player.width&&score!=_platform.load+1||
+     _player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; if(_player.cloud){ _playerCloud.x-=4*scale; } if(boss&&sceneTimer>=99){ _playerGun.x-=4*scale; } }
+  if(_player.x>=_currentResolution.width&&score==_platform.load+1&&!boss){
     localMove-=_render.width;
     globalMove=0;
     _platform.array[_platform.lenght-1].y=_render.height-_platform.height;
     _player.y=_platform.array[_platform.lenght-1].y-_player.height;
-    boss=true; }
-  else if(_player.x<_currentResolution.width&&score==14&&boss){ localMove=0; }
+    boss=true;
+  } else if(_player.x<_currentResolution.width&&score==_platform.load+1&&boss){ localMove=0; }
 
   if(_player.active){
     _player.grounded=true;

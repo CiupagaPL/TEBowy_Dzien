@@ -4,36 +4,34 @@
 ## Notka
 
 ### Wstęp
-Wraz z najnowszą wersją przechodzimy do fazy <i>Alphy</i>.
-Aktualizacje będą większe, ale będą wychodzić wolniej.
-Za to regularnie wprowadzane będą patche naprawiające drobne błędy.
-Kod wymaga masywnej przebudowy, dlatego wiele patch'ów opierać się będzie na przepisanych funkcjach.
-Powinienem również postarać się go bardziej zoptymalizować.
-
-### Ogólny Przegląd
-Postanowiłem przerobić większość tekstur, w tym same logo.
-Zostało ono mocno zmodyfikowane, skupiłem się na pozycji i wyglądzie tekstów.
-Większość tekstur w grze od teraz będzie bardziej rozpikselowane, skupiłem się na równych proporcjach obrazków.
-Rozpocząłem pracę nad przerobieniem bossfightu i jest on na grywalnym poziomie.
-Całe UI zostało zmienione, wygląda nowocześniej i wszystkie elementy się ze sobą łączą.
-<b>Wersja ta nie zawiera wszystkich planowanych funckji, lecz zostaną one dodane w najbliższych patch'ach</b>.
-> [!WARNING]
-> Na ten moment gra zawiera wiele błędów, zostanę one naprawione wkrótce.
-
-### Github
-Doszło do wielu zmian na tej platformie.
-Od teraz zmiany wszystkich patchy i alph będą zapisywane w <i>CHANGELOG.md</i>
-Przygotowałem <i>LICENSE.md</i> o ile nie posiadamy jeszcze licencji więc jest nie ważny.
-Do repozytorium dodałem zakładkę <i>Issues</i>, która posłuży alphatesterom.
-Wszystko opisane będzie w przykładowym problemie.
-> [!NOTE]
-> Witamy Nazwę w ekipie alphatesterów! :-D
+Najnowsza wersja jest w pewien sposób wersją prezentacyjną projektu, tym razem tą oficjalną.
+Postarałem się naprawić jak najwięcej błędów psujących rozgrywkę.
+Od teraz wszystkie poziomy się czymś wyróżniają, a ostatni znacząco różni się od innych.
+Wszyscy od teraz umieszczeni jesteście w specjalnej zakładce w grze, gdzie od teraz znajdować się będzie wersja i data wydania.
 > [!IMPORTANT]
-> Wszystkie informacje o testowaniu zapisane są we wcześniej wymienionej zakładce.
+> Projekt na ten moment nie posiada jeszcze licencji.
+
+### Rozdzielczość
+Gra od teraz skupia się na jak najefektywniejszym wykorzystaniu wolnej przestrzenii.
+Dodałem przycisk maksymalizacji gry, od teraz zmaksymalizowana gra wypełnia jak najwięcej obszaru.
+Niestety różne przeglądarki nakładają wiele ograniczeń na zmianę rozdzielczości przez co może ona się psuć na różnych przeglądarkach.
+> [!NOTE]
+> Obecnie maksymalizacja była testowana na **Chromium** i **Gecko**.
+
+### Zmiany w Rozgrywce
+Od teraz walka opiera się na strzelaniu.
+Do strzelania używa się rewolwera na wodę.
+Dotykając Tebulinka strzał staje się dwa razy mocniejszy.
+Między strzałami jest 2-sekundowy odstęp ukazany w UI.
+Zmienił się znacznie system żyć dla gracza i nauczyciela, od teraz wyrażany w punktach również w kodzie.
+Dodałem możliwość zmiany długości poziomu oraz kilkuetapowość bossa.
+Między etapami ukazuje się napis następnej sceny.
+> [!NOTE]
+> Nie wyrobiłem się z dodaniem różnych przedmiotów dla nauczycieli, lecz każdy inny aspekt został skończony.
 
 ## Status
-> Newest Version: **Alpha 1.03**;
-> Last Updated: **28-11-2024**;
+> Newest Version: **Alpha 1.10**;
+> Last Updated: **30-11-2024**;
 
 ## Have a Nice and Happy Day!
 - Ciupaga and probably all the devs >_o

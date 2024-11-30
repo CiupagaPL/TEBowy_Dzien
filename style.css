@@ -59,28 +59,4 @@ html{
   font-size:28px;
   color:white;
   visibility:hidden;
-} #about{
-  position:absolute;
-  visibility:shown;
-  top:calc(100% - 24px);
-  left:0px;
-  width:640px;
-  height:24px;
-  text-align:center;
-  background-color:#002563;
-  font-family:orangeKid;
-  font-size:16px;
-  color:white;
-  border-top:2px solid white;
-  box-shadow:0px 0px 10px 2px white;
-  visibility:hidden;
-}
-
-.link{
-  text-decoration:none;
-  color:yellow;
-}
-.link:hover{
-  text-decoration:none;
-  color:purple;
 }

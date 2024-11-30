@@ -13,13 +13,8 @@ sceneoff=function(){
   changeScene=true;
   changeTimer++;
 
-  if(changeTimer<=10){
-    _html.style.backgroundColor=_background.color3a;
-    _about.style.backgroundColor=_background.color3b;
-  } if(changeTimer>10){ 
-    _html.style.backgroundColor=_background.color4a;
-    _about.style.backgroundColor=_background.color4b;
-  }
+  if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
+  if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
 
   if(changeTimer<5){ _context.drawShortImage(_change.img1,_change); } 
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
@@ -32,9 +27,9 @@ sceneoff=function(){
     sceneTimer=0;
     defeat=false;
 
-    if(hp==0){
+    if(_player.hp==0){
       nextScene=scene;
-      hp=6;
+      _player.hp=150;
     } scene=nextScene;
   }
 }
@@ -42,30 +37,39 @@ sceneoff=function(){
 sceneon=function(){
   changeTimer++;
 
-  if(changeTimer>=1&&changeTimer<2&&scene!=1){
+  if(changeTimer>=1&&changeTimer<2){
     resetlevel();
     window.defaultgame();
     generatelevel();
+
+    if(scene==1){ _changeText.value="Menu"; }
+    if(scene>=2){ _changeText.value="Poziom "+Number(scene-1); }
+
+    _audio.menu.load();
+    _audio.game.load();
+    _audio.boss.load();
+    musicTimer=0;
   }
 
-  if(changeTimer<=10){
-    _html.style.backgroundColor=_background.color4a;
-    _about.style.backgroundColor=_background.color4b;
-  } if(changeTimer>10){ 
-    _html.style.backgroundColor=_background.color3a;
-    _about.style.backgroundColor=_background.color3b;
-  }
+  if(changeTimer<=50){ _html.style.backgroundColor=_background.color4; }
+  if(changeTimer>50){ _html.style.backgroundColor=_background.color3; }
 
-  if(changeTimer<5){ _context.drawShortImage(_change.img4,_change); } 
-  if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img3,_change); }
-  if(changeTimer>=10&&changeTimer<15){ _context.drawShortImage(_change.img2,_change); }
-  if(changeTimer>=15){ _context.drawShortImage(_change.img1,_change); }
+  if(changeTimer<45){ _context.drawShortImage(_change.img4,_change); } 
+  if(changeTimer>=45&&changeTimer<50){ _context.drawShortImage(_change.img3,_change); }
+  if(changeTimer>=50&&changeTimer<55){ _context.drawShortImage(_change.img2,_change); }
+  if(changeTimer>=55){ _context.drawShortImage(_change.img1,_change); }
 
-  if(changeTimer>=20){
+  if(changeTimer>=5&&changeTimer<10){ _context.fillShortText(_changeText.color2,_changeText,_changeText.value); }
+  if(changeTimer>=10&&changeTimer<15){ _context.fillShortText(_changeText.color1,_changeText,_changeText.value); }
+  if(changeTimer>=15&&changeTimer<30){ _context.fillShortText(_changeText.color0,_changeText,_changeText.value); }
+  if(changeTimer>=30&&changeTimer<35){ _context.fillShortText(_changeText.color1,_changeText,_changeText.value); }
+  if(changeTimer>=35&&changeTimer<40){ _context.fillShortText(_changeText.color2,_changeText,_changeText.value); }
+
+  if(changeTimer>=60){
     changeTimer=0;
 
-    changeScene=false;
     canClick=true;
+    changeScene=false;
 
     pauseChange=false;
     pause=false;
@@ -86,13 +90,8 @@ pauseon=function(){
   pause=true;
   changeTimer++;
 
-  if(changeTimer<=10){
-    _html.style.backgroundColor=_background.color3a;
-    _about.style.backgroundColor=_background.color3b;
-  } if(changeTimer>10){ 
-    _html.style.backgroundColor=_background.color4a;
-    _about.style.backgroundColor=_background.color4b;
-  }
+  if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
+  if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
 
   if(changeTimer<5){ _context.drawShortImage(_change.img1,_change); } 
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
@@ -119,13 +118,8 @@ pauseoff=function(){
   canClick=false;
   changeTimer++;
 
-  if(changeTimer<=5){
-    _html.style.backgroundColor=_background.color4a;
-    _about.style.backgroundColor=_background.color4b;
-  } if(changeTimer>5){ 
-    _html.style.backgroundColor=_background.color3a;
-    _about.style.backgroundColor=_background.color3b;
-  }
+  if(changeTimer<=5){ _html.style.backgroundColor=_background.color4; }
+  if(changeTimer>5){ _html.style.backgroundColor=_background.color3; }
 
   if(changeTimer<5){ _context.drawShortImage(_change.img3,_change); } 
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
@@ -150,8 +144,7 @@ pauseend=function(){
   canClick=false;
   changeTimer++;
   
-  _html.style.backgroundColor=_background.color4a;
-  _about.style.backgroundColor=_background.color4b;
+  _html.style.backgroundColor=_background.color4;
 
   _context.drawShortImage(_change.img4,_change);
 
