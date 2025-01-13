@@ -1,12 +1,18 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 const ratio=16/9,fpsLimit=60;
 let resolutionError=false,scale=1.00,lastFrame=0,screenCheckTimer=0;
@@ -319,7 +325,7 @@ let _menuVersion={
   imgOn:new Image(),
 };
 let _menuVersionText={
-  value:"Alpha 1.11;\n01-12-2024",
+  value:"Alpha 1.2;\n13-01-2025",
 
   size:16,
   font:"orangeKid",
@@ -1484,3 +1490,4 @@ _attack2.imgDove0.src="Source/Object/Attack/Dove/0.png";
 _attack2.imgDove1.src="Source/Object/Attack/Dove/90.png";
 _attack2.imgDove2.src="Source/Object/Attack/Dove/180.png";
 _attack2.imgDove3.src="Source/Object/Attack/Dove/270.png";
+

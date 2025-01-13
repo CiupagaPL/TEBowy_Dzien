@@ -1,6 +1,13 @@
-![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/release/Github/banner.png)
-# TEBOWY DZIEŃ
+![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/stable/Github/banner.png)
+# LICENSE
 
-## License
-For now this project doesn't have any license.
-Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-kid-font.html) which is great for projects like this :-)
+## MIT
+**Copyright 2025 Full Project: tom2edu and CiupagaPL; Music and Audio: Ucheesename and M4RCIN-MJJ**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

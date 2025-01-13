@@ -1,12 +1,18 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 handleplayer=function(){
   _playerLeft.x=_player.x+_player.vx;
@@ -39,8 +45,11 @@ handleplayer=function(){
 
   while(_laser.lenght>=_laser.currentLenght){
     _currentLaser=_laser.array[_laser.currentLenght];
-    if(_currentLaser.left){ _context.drawShortImage(_laser.img1,_currentLaser); }
-    else if(!_currentLaser.left){ _context.drawShortImage(_laser.img0,_currentLaser); }
+
+    if(_currentLaser.y<_render.height+(32*scale)&&_currentLaser.y>-64*scale){
+      if(_currentLaser.left){ _context.drawShortImage(_laser.img1,_currentLaser); }
+      else if(!_currentLaser.left){ _context.drawShortImage(_laser.img0,_currentLaser); }
+    }
 
     _currentLaser.y+=globalMove;
     _currentLaser.x+=localMove;
@@ -74,7 +83,10 @@ handleplayer=function(){
 
   while(_platform.lenght>=_platform.currentLenght){
     _currentPlatform=_platform.array[_platform.currentLenght];
-    _context.drawShortImage(_platform.img,_currentPlatform);
+
+    if(_currentPlatform.y<_render.height+(32*scale)&&_currentPlatform.y>-64*scale){
+      _context.drawShortImage(_platform.img,_currentPlatform);
+    }
 
     _currentPlatform.y+=globalMove;
     _currentPlatform.x+=localMove;
@@ -82,34 +94,39 @@ handleplayer=function(){
     _background.y+=globalMove/64;
     _backgroundTop.y+=globalMove/64;
 
-    if(window.detectcollision(_currentPlatform,_playerTop)&&!_player.touched){
-      _player.fly=true;
-      _player.touched=true;
-      if(_player.upTimer<12){ _player.y=_currentPlatform.y+8*scale; }
-    }
-    if(window.detectcollision(_currentPlatform,_playerBottom)&&!_player.touched){
-      if(_player.y<=_currentPlatform.y){ score=_currentPlatform.level+1; }
+    if(_currentPlatform.y<_render.height+(32*scale)&&_currentPlatform.y>-64*scale){
+      if(window.detectcollision(_currentPlatform,_playerTop)&&!_player.touched){
+        _player.fly=true;
+        _player.touched=true;
+        if(_player.upTimer<12){ _player.y=_currentPlatform.y+8*scale; }
+      }
+      if(window.detectcollision(_currentPlatform,_playerBottom)&&!_player.touched){
+        if(_player.y<=_currentPlatform.y){ score=_currentPlatform.level+1; }
 
-      if(!_player.cloud){ _player.y=_currentPlatform.y-_player.height; }
-      _player.vy=globalMove;
-      _player.touched=true;
-    } if(window.detectcollision(_currentPlatform,_playerLeft)&&!_player.touched){
-      _player.x+=4*scale;
-      _player.touched=true;
-    } if(window.detectcollision(_currentPlatform,_playerRight)&&!_player.touched){
-      _player.x-=4*scale;
-      _player.touched=true;
-    }
+        if(!_player.cloud){ _player.y=_currentPlatform.y-_player.height; }
+        _player.vy=globalMove;
+        _player.touched=true;
+      } if(window.detectcollision(_currentPlatform,_playerLeft)&&!_player.touched){
+        _player.x+=4*scale;
+        _player.touched=true;
+      } if(window.detectcollision(_currentPlatform,_playerRight)&&!_player.touched){
+        _player.x-=4*scale;
+        _player.touched=true;
+      }
 
-    if(window.detectcollision(_currentPlatform,_playerBottom)){ _player.active=true; }
+      if(window.detectcollision(_currentPlatform,_playerBottom)){ _player.active=true; }
+    }
 
     _platform.currentLenght+=1;
   }
 
   while(_corner.lenght>=_corner.currentLenght){
     _currentCorner=_corner.array[_corner.currentLenght];
-    if(_currentCorner.left){ _context.drawShortImage(_corner.img0,_currentCorner); }
-    else if(!_currentCorner.left){ _context.drawShortImage(_corner.img1,_currentCorner); }
+
+    if(_currentCorner.y<_render.height+(32*scale)&&_currentCorner.y>-64*scale){
+      if(_currentCorner.left){ _context.drawShortImage(_corner.img0,_currentCorner); }
+      else if(!_currentCorner.left){ _context.drawShortImage(_corner.img1,_currentCorner); }
+    }
 
     _currentCorner.y+=globalMove;
     _currentCorner.x+=localMove;
@@ -120,14 +137,16 @@ handleplayer=function(){
   while(_light.lenght>=_light.currentLenght){
     _currentLight=_light.array[_light.currentLenght];
 
-    drawlight();
+    if(_currentLight.y<_render.height+(32*scale)&&_currentLight.y>-64*scale){
+      drawlight();
 
-    if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!boss&&_laser.timer>=_laser.max&&!_player.touched){ 
-      _player.hp-=25;
-      _playerText.value="-25 punktów\nz zachowania";
-      if(_player.hp>0){ _player.invisible=1; }
-      _player.touched=true;
-      if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
+      if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!boss&&_laser.timer>=_laser.max&&!_player.touched){ 
+        _player.hp-=25;
+        _playerText.value="-25 punktów\nz zachowania";
+        if(_player.hp>0){ _player.invisible=1; }
+        _player.touched=true;
+        if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
+      }
     }
 
     _currentLight.y+=globalMove;
@@ -138,13 +157,16 @@ handleplayer=function(){
 
   while(_spike.lenght>=_spike.currentLenght){
     _currentSpike=_spike.array[_spike.currentLenght];
-    _context.drawShortImage(_spike.img,_currentSpike);
 
-    if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0&&!boss){
-      _player.hp-=25;
-      _playerText.value="-25 punktów\nz zachowania";
-      if(_player.hp>0){ _player.invisible=1; }
-      if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
+    if(_currentSpike.y<_render.height+(32*scale)&&_currentSpike.y>-64*scale){
+      _context.drawShortImage(_spike.img,_currentSpike);
+
+      if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0&&!boss){
+        _player.hp-=25;
+        _playerText.value="-25 punktów\nz zachowania";
+        if(_player.hp>0){ _player.invisible=1; }
+        if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
+      }
     }
 
     _currentSpike.y+=globalMove;
@@ -210,3 +232,4 @@ handleplayer=function(){
   _player.fly=false;
   _player.touched=false;
 }
+

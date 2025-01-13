@@ -1,12 +1,18 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 document.addEventListener("visibilitychange",function(_event){
   if(document.visibilityState=="visible"){
@@ -55,7 +61,7 @@ document.addEventListener("keyup",function(_event){
       if(_event.key=="Enter"&&!canStart&&!resolutionError){ canStart=true; sceneTimer=0; }
       break;
     case 1:
-      if(_event.key=="Enter"&&canClick){
+      if(_event.key=="Enter"&&canClick&&!resolutionError){
         if(sfxOn){
           _audio.click.load();
           _audio.click.play();
@@ -247,7 +253,7 @@ document.addEventListener("mousemove",function(_event){
 
 window.addEventListener("click",function(_event){
   if(window.detectcollision(_menuTitle,_mouse)&&scene==1&&canClick||
-     window.detectcollision(_menuTitle,_mouse)&&scene!=0&&scene!=1&&canClick&&pause){ window.open("https://teb.pl","_blank").focus(); }
+     window.detectcollision(_menuTitle,_mouse)&&scene!=0&&scene!=1&&canClick&&pause){ window.open("https://github.com/CiupagaPL/Tebowy_Dzien","_blank").focus(); }
 
   if(window.detectcollision(_menuResolution,_mouse)&&scene<2&&canClick||
      window.detectcollision(_menuResolution,_mouse)&&scene!=0&&scene!=1&&canClick&&pause){
@@ -683,3 +689,4 @@ window.addEventListener("click",function(_event){
     }
   }
 });
+

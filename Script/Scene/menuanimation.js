@@ -1,17 +1,23 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 animateloading=function(){
   if(!canStart){
     _context.fillShortRect(_background.color0,_background);
-    _html.style.backgroundColor=_background.color0;
+    if(!resolutionError){ _html.style.backgroundColor=_background.color0; }
 
     _context.drawShortImage(_startTEB.img0,_startTEB);
 
@@ -37,7 +43,7 @@ animateloading=function(){
   } else if(canStart){
     if(sceneTimer>0&&sceneTimer<=20){
       _context.fillShortRect(_background.color1,_background);
-      _html.style.backgroundColor=_background.color1;
+      if(!resolutionError){ _html.style.backgroundColor=_background.color1; }
 
       _context.drawShortImage(_startTEB.img1,_startTEB);
 
@@ -50,7 +56,7 @@ animateloading=function(){
       }
     } if(sceneTimer>20&&sceneTimer<=40){
       _context.fillShortRect(_background.color2,_background);
-      _html.style.backgroundColor=_background.color2;
+      if(!resolutionError){ _html.style.backgroundColor=_background.color2; }
 
       _context.drawShortImage(_startTEB.img2,_startTEB);
 
@@ -521,3 +527,4 @@ animateclipboard=function(){
     }
   }
 }
+

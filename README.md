@@ -1,37 +1,36 @@
-![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/release/Github/banner.png)
-# TEBOWY DZIEŃ
+![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/stable/Github/banner.png)
+# TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka
 
 ### Wstęp
-Najnowsza wersja jest w pewien sposób wersją prezentacyjną projektu, tym razem tą oficjalną.
-Postarałem się naprawić jak najwięcej błędów psujących rozgrywkę.
-Od teraz wszystkie poziomy się czymś wyróżniają, a ostatni znacząco różni się od innych.
-Wszyscy od teraz umieszczeni jesteście w specjalnej zakładce w grze, gdzie od teraz znajdować się będzie wersja i data wydania.
-> [!IMPORTANT]
-> Projekt na ten moment nie posiada jeszcze licencji.
+Od dłuższego czasu pracuję nad o wiele większą Betą, jednak postanowiłem że przed wydaniem jakiejkolwiek wersji niestabilnej wydam nową Alphę.
+Naprawia ona kilka błędów i wprowadza już część nowinek z nadchodzącej Bety.
 
-### Rozdzielczość
-Gra od teraz skupia się na jak najefektywniejszym wykorzystaniu wolnej przestrzenii.
-Dodałem przycisk maksymalizacji gry, od teraz zmaksymalizowana gra wypełnia jak najwięcej obszaru.
-Niestety różne przeglądarki nakładają wiele ograniczeń na zmianę rozdzielczości przez co może ona się psuć na różnych przeglądarkach.
-> [!NOTE]
-> Obecnie maksymalizacja była testowana na **Chromium** i **Gecko**.
+### Nowy podział projektu
+Od teraz projekt podzielony jest na gałęź stabilną i niestabilną.
+Wszelkie wersji w gałęzi stabilnej przeznaczone są na naszą domenę, mają one małą liczbę błędów i są w pełni gotowe dla graczy.
+Natomiast wydania w gałęzi niestabilnej są przeznaczone tylko i wyłącznie do testowania i są silnie zbugowane.
+Za to w tej gałęzi aktualizacje wychodzą wiele częściej (nawet po kilka na dzień).
 
-### Zmiany w Rozgrywce
-Od teraz walka opiera się na strzelaniu.
-Do strzelania używa się rewolwera na wodę.
-Dotykając Tebulinka strzał staje się dwa razy mocniejszy.
-Między strzałami jest 2-sekundowy odstęp ukazany w UI.
-Zmienił się znacznie system żyć dla gracza i nauczyciela, od teraz wyrażany w punktach również w kodzie.
-Dodałem możliwość zmiany długości poziomu oraz kilkuetapowość bossa.
-Między etapami ukazuje się napis następnej sceny.
-> [!NOTE]
-> Nie wyrobiłem się z dodaniem różnych przedmiotów dla nauczycieli, lecz każdy inny aspekt został skończony.
+### Widoczność projektu
+Wraz z nową wersją i zastosowaniem licencji postanowiłem uczynić ten projekt publicznym dla wszystkich.
+Każdy od teraz może się zaangażować w produkcję tej gry jak i zarazem z wyprzedzeniem testować niektóre wydania.
+
+### Nowa licencja
+Wprowadzona została licencja MIT, obowiązuje ona od tego wydania aż po każde następne.
 
 ## Status
-> Newest Version: **Alpha 1.11**;
-> Last Updated: **01-12-2024**;
+> Newest Version: **Alpha 1.2**;
+> Last Updated: **13-01-2025**;
 
-## Have a Nice and Happy Day!
-- Ciupaga and probably all the devs >_o
+## License
+**This project uses MIT License**. You can read about it in **LICENSE.md** file.<br><br>
+
+Main font of this project is [orangeKid](https://www.1001fonts.com/orange-kid-font.html).
+
+## Domain
+**You can play the game [here](https://tebowo.pl/gra)**.
+
+### Have a Nice and Happy Day!
+
