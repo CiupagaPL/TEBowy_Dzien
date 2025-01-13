@@ -1,20 +1,28 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 sceneoff=function(){
   canClick=false;
   changeScene=true;
   changeTimer++;
 
-  if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
-  if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
+  if(!resolutionError){
+    if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
+    if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
+  }
 
   if(changeTimer<5){ _context.drawShortImage(_change.img1,_change); } 
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
@@ -53,8 +61,10 @@ sceneon=function(){
     pause=true;
   }
 
-  if(changeTimer<=50){ _html.style.backgroundColor=_background.color4; }
-  if(changeTimer>50){ _html.style.backgroundColor=_background.color3; }
+  if(!resolutionError){
+    if(changeTimer<=50){ _html.style.backgroundColor=_background.color4; }
+    if(changeTimer>50){ _html.style.backgroundColor=_background.color3; }
+  }
 
   if(changeTimer<45){ _context.drawShortImage(_change.img4,_change); } 
   if(changeTimer>=45&&changeTimer<50){ _context.drawShortImage(_change.img3,_change); }
@@ -92,8 +102,10 @@ pauseon=function(){
   pause=true;
   changeTimer++;
 
-  if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
-  if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
+  if(!resolutionError){
+    if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
+    if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
+  }
 
   if(changeTimer<5){ _context.drawShortImage(_change.img1,_change); } 
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
@@ -120,8 +132,10 @@ pauseoff=function(){
   canClick=false;
   changeTimer++;
 
-  if(changeTimer<=5){ _html.style.backgroundColor=_background.color4; }
-  if(changeTimer>5){ _html.style.backgroundColor=_background.color3; }
+  if(!resolutionError){
+    if(changeTimer<=5){ _html.style.backgroundColor=_background.color4; }
+    if(changeTimer>5){ _html.style.backgroundColor=_background.color3; }
+  }
 
   if(changeTimer<5){ _context.drawShortImage(_change.img3,_change); } 
   if(changeTimer>=5&&changeTimer<10){ _context.drawShortImage(_change.img2,_change); }
@@ -146,7 +160,7 @@ pauseend=function(){
   canClick=false;
   changeTimer++;
   
-  _html.style.backgroundColor=_background.color4;
+  if(!resolutionError){ _html.style.backgroundColor=_background.color4; }
 
   _context.drawShortImage(_change.img4,_change);
 
@@ -166,3 +180,4 @@ pauseend=function(){
     scene=nextScene;
   }
 }
+

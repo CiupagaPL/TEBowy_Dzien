@@ -1,12 +1,18 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 start=function(){
   sceneTimer++;
@@ -39,7 +45,7 @@ menu=function(){
   animateclipboard();
 
   animatemenubackground();
-  if(!changeScene){
+  if(!changeScene&&!resolutionError){
     _html.style.backgroundColor=_background.color0;
     _audio.menu.volume=0.25;
   } else if(changeScene){
@@ -151,3 +157,4 @@ menu=function(){
   if(changeScene&&!menuLoad){ sceneoff(); }
   if(changeScene&&menuLoad){ sceneon(); }
 }
+

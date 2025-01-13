@@ -1,12 +1,18 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 _context.fillShortText=function(_color,_text,value){
   let lines=value.split("\n");
@@ -571,3 +577,4 @@ window.defaultvalue=function(){
   _attack2.x=-_attack2.width;
   _attack2.y=-_attack2.height;
 }
+

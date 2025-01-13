@@ -1,12 +1,18 @@
-/* |\,__,/|
-   /      |    ,--.
-  (  >  o )   / ,-'
-   \   .  |-._( (
-   /         `. \
-  |         _  \ |
-   \ \ ,  /      |
-    || |-_\__   /
-   ((_/`(____,-' */
+/*
+ *    ,-----,
+ *    |     |    ,--------------------------------------------------------,
+ *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:     )
+ *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md )
+ *   |\_____/|   "--------------------------------------------------------"
+ *   |       |    __---.
+ *   ( o   o )   /      )
+ *   \ = . = \__/    --"
+ *   /              /
+ *  |              |
+ *   \ \    \ \   |
+ *    | |    | | /
+ *   (_(_)--(_(_)
+*/
 
 generatelevel=function(){
   while(_platform.currentLoad<=_platform.load){
@@ -279,3 +285,4 @@ spikegenerator=function(){
     }
   }
 }
+
