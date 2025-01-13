@@ -20,6 +20,9 @@ Każdy od teraz może się zaangażować w produkcję tej gry jak i zarazem z wy
 ### Nowa licencja
 Wprowadzona została licencja MIT, obowiązuje ona od tego wydania aż po każde następne.
 
+### Changelog
+Od teraz wszelkie zmiany opisywane będą w zakładce Pull Requests.
+
 ## Status
 > Newest Version: **Alpha 1.2**;
 > Last Updated: **13-01-2025**;
