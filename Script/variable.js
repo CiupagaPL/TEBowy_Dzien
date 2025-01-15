@@ -325,7 +325,7 @@ let _menuVersion={
   imgOn:new Image(),
 };
 let _menuVersionText={
-  value:"Alpha 1.2;\n13-01-2025",
+  value:"Unstable;\n15-01-2025",
 
   size:16,
   font:"orangeKid",
@@ -915,9 +915,9 @@ let _bossTitle={
   value5:"Anna Świtoń",
   value6:"Piotr Łojek",
   value7:"Iwo Musiałowski",
-  valueAdd0:"Iwona Bury Sierzchuła",
-  valueAdd1:"Wojciech Złotowski",
-  valueAdd2:"Anna Niklas",
+  valueAdd0:"Wojciech Złotowski",
+  valueAdd1:"Anna Niklas",
+  valueAdd2:"Iwona Bury-Sierzchuła",
 
   size:20,
   font:"orangeKid",
@@ -947,12 +947,12 @@ let _bossDescription={
          "może Cię potraktować ulgowo… pod\nwarunkiem, że go słuchasz! Walka\nnie będzie łatwa.",
   value7:"To jest dopiero #nauczycielzpasją!\nNie stroni od historycznych przebieranek\n"+
          "i inscenizacji, a jego lekcje historii\npoparte są żywym przykładem. Kolekcjoner\nuzbrojenia i mundrów. Walka nie\nbędzie łatwa.",
-  valueAdd0:"[...] To jeszcze nie koniec!",
-  valueAdd1:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
+  valueAdd0:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
             "Wojtek zarządza Liceum, a jednocześnie\nprzekazuje praktyczną wiedzę. To jeszcze\nnie koniec!",
-  valueAdd2:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
+  valueAdd1:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
             "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
             "Daj z siebie wszystko!",
+  valueAdd2:"Główna Pani Dyrektor TEB TORUŃ.\nNadzoruje aby wszystko działało jak należy.\nTo już ostateczna walka!",
 
   size:12,
   font:"orangeKid",
@@ -1425,7 +1425,7 @@ _wideBlueprint.img.src="Source/UI/Blueprint/wideBlueprint.png";
 _wideBlueprintForward.img.src="Source/UI/Blueprint/right.png";
 _wideBlueprintForward.imgOn.src="Source/UI/Blueprint/rightOn.png";
 
-_rewardIcon.img.src="Source/UI/Icons/trophy.png";
+_rewardIcon.img.src="Source/UI/Icon/trophy.png";
 
 _player.img0.src="Source/Object/Player/boy0.png";
 _player.img1.src="Source/Object/Player/boy1.png";
@@ -1464,9 +1464,9 @@ _boss.img4.src="Source/Object/People/MM.png";
 _boss.img5.src="Source/Object/People/AS.png";
 _boss.img6.src="Source/Object/People/PL.png";
 _boss.img7.src="Source/Object/People/IM.png";
-_boss.imgAdd0.src="Source/Object/People/IBS.png";
-_boss.imgAdd1.src="Source/Object/People/WZ.png";
-_boss.imgAdd2.src="Source/Object/People/AN.png";
+_boss.imgAdd0.src="Source/Object/People/WZ.png";
+_boss.imgAdd1.src="Source/Object/People/AN.png";
+_boss.imgAdd2.src="Source/Object/People/IBS.png";
 _bossCloud.img.src="Source/Object/Cloud/left.png";
 
 _tebulinek.img0.src="Source/Object/Attack/Tebulinek/0.png";
