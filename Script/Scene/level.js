@@ -57,6 +57,8 @@ level=function(){
 
   if(_background.y>=_render.height){ _background.y=_backgroundTop.y-_render.height; }
   if(_backgroundTop.y>=_render.height){ _backgroundTop.y=_background.y-_render.height; }
+  if(_background.y+_background.height<=0){ _background.y=_backgroundTop.y+_render.height; }
+  if(_backgroundTop.y+_backgroundTop.height<=0){ _backgroundTop.y=_background.y+_render.height; }
 
   animateclipboard();
 
@@ -146,8 +148,8 @@ level=function(){
     if(!_menuTitle.hover){ _context.drawShortImage(_menuTitle.img,_menuTitle); }
     else if(_menuTitle.hover){ _context.drawShortImage(_menuTitle.imgOn,_menuTitle); }
 
-    if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
-    else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
+    if(document.fullscreenElement){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+    else{ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
     if(!tutorial&&!teacher&&!reward){
       _context.drawShortImage(_clipboard.img,_clipboard);

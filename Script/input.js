@@ -257,12 +257,12 @@ window.addEventListener("click",function(_event){
 
   if(window.detectcollision(_menuResolution,_mouse)&&scene<2&&canClick||
      window.detectcollision(_menuResolution,_mouse)&&scene!=0&&scene!=1&&canClick&&pause){
-    if(fullScreen){
+    if(document.fullscreenElement){
       document.exitFullscreen();
     } else if(!fullScreen){
-      if(document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen(); }
-      else if(document.documentElement.webkitRequestFullscreen){ document.documentElement.webkitRequestFullscreen(); }
+      if(document.documentElement.webkitRequestFullscreen){ document.documentElement.webkitRequestFullscreen(); }
       else if(document.documentElement.msRequestFullscreen){ document.documentElement.msRequestFullscreen(); }
+      else if(document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen(); }
     }
   }
 

@@ -46,7 +46,7 @@ handleplayer=function(){
   while(_laser.lenght>=_laser.currentLenght){
     _currentLaser=_laser.array[_laser.currentLenght];
 
-    if(_currentLaser.y<_render.height+(32*scale)&&_currentLaser.y>-64*scale){
+    if(_currentLaser.y<_render.height+(128*scale)&&_currentLaser.y>-32*scale&&!_player.cloud){
       if(_currentLaser.left){ _context.drawShortImage(_laser.img1,_currentLaser); }
       else if(!_currentLaser.left){ _context.drawShortImage(_laser.img0,_currentLaser); }
     }
@@ -84,7 +84,7 @@ handleplayer=function(){
   while(_platform.lenght>=_platform.currentLenght){
     _currentPlatform=_platform.array[_platform.currentLenght];
 
-    if(_currentPlatform.y<_render.height+(32*scale)&&_currentPlatform.y>-64*scale){
+    if((_currentPlatform.y<_render.height+(128*scale)&&_currentPlatform.y>-(32*scale))||(_player.cloud&&_currentPlatform==_platform.array[_platform.lenght-1])){
       _context.drawShortImage(_platform.img,_currentPlatform);
     }
 
@@ -94,7 +94,7 @@ handleplayer=function(){
     _background.y+=globalMove/64;
     _backgroundTop.y+=globalMove/64;
 
-    if(_currentPlatform.y<_render.height+(32*scale)&&_currentPlatform.y>-64*scale){
+    if((_currentPlatform.y<_render.height+(128*scale)&&_currentPlatform.y>-(32*scale))||(_player.cloud&&_currentPlatform==_platform.array[_platform.lenght-1])){
       if(window.detectcollision(_currentPlatform,_playerTop)&&!_player.touched){
         _player.fly=true;
         _player.touched=true;
@@ -123,7 +123,7 @@ handleplayer=function(){
   while(_corner.lenght>=_corner.currentLenght){
     _currentCorner=_corner.array[_corner.currentLenght];
 
-    if(_currentCorner.y<_render.height+(32*scale)&&_currentCorner.y>-64*scale){
+    if(_currentCorner.y<_render.height+(128*scale)&&_currentCorner.y>-32*scale&&!_player.cloud){
       if(_currentCorner.left){ _context.drawShortImage(_corner.img0,_currentCorner); }
       else if(!_currentCorner.left){ _context.drawShortImage(_corner.img1,_currentCorner); }
     }
@@ -137,10 +137,10 @@ handleplayer=function(){
   while(_light.lenght>=_light.currentLenght){
     _currentLight=_light.array[_light.currentLenght];
 
-    if(_currentLight.y<_render.height+(32*scale)&&_currentLight.y>-64*scale){
+    if(_currentLight.y<_render.height+(128*scale)&&_currentLight.y>-32*scale&&!_player.cloud){
       drawlight();
 
-      if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!boss&&_laser.timer>=_laser.max&&!_player.touched){ 
+      if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!boss&&_laser.timer>=_laser.max&&!_player.touched){
         _player.hp-=25;
         _playerText.value="-25 punktów\nz zachowania";
         if(_player.hp>0){ _player.invisible=1; }
@@ -158,7 +158,7 @@ handleplayer=function(){
   while(_spike.lenght>=_spike.currentLenght){
     _currentSpike=_spike.array[_spike.currentLenght];
 
-    if(_currentSpike.y<_render.height+(32*scale)&&_currentSpike.y>-64*scale){
+    if(_currentSpike.y<_render.height+(128*scale)&&_currentSpike.y>-32*scale&&!_player.cloud){
       _context.drawShortImage(_spike.img,_currentSpike);
 
       if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0&&!boss){
@@ -197,9 +197,9 @@ handleplayer=function(){
     if(_player.y<=_render.height*1/16){ _player.y+=4*scale; if(_player.cloud){ _playerCloud.y+=4*scale; } if(boss&&sceneTimer>=99||boss&&_boss.round>=1){ _playerGun.y+=4*scale; } }
     if(_player.y+_player.height>=_render.height*15/16){ _player.y-=4*scale; if(_player.cloud){ _playerCloud.y-=4*scale; } if(boss&&sceneTimer>=99){ _playerGun.y-=4*scale; } }
   }
-  if(_player.x<=0){ _player.x+=4*scale; if(_player.cloud){ _playerCloud.x+=4*scale; } if(boss&&sceneTimer>=99||boss&&_boss.round>=1){ _playerGun.x+=4*scale; } }
+  if(_player.x<=0||_playerCloud.x<=0){ _player.x+=4*scale; if(_player.cloud){ _playerCloud.x+=4*scale; } if(boss&&sceneTimer>=99||boss&&_boss.round>=1){ _playerGun.x+=4*scale; } }
   if(_player.x>=_currentResolution.width-_player.width&&score!=_platform.load+1||
-     _player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; if(_player.cloud){ _playerCloud.x-=4*scale; } if(boss&&sceneTimer>=99||boss&&_boss.round>=1){ _playerGun.x-=4*scale; } }
+     _player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; }
   if(_player.x>=_currentResolution.width&&score==_platform.load+1&&!boss){
     localMove-=_render.width;
     globalMove=0;

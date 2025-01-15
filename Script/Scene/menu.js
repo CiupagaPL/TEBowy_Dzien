@@ -65,8 +65,8 @@ menu=function(){
   if(!_menuTitle.hover){ _context.drawShortImage(_menuTitle.img,_menuTitle); }
   else if(_menuTitle.hover){ _context.drawShortImage(_menuTitle.imgOn,_menuTitle); }
 
-  if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
-  else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
+  if(document.fullscreenElement){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
+  else{ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
   if(!_menuStart.hover){ _context.drawShortImage(_menuStart.img,_menuStart); }
   else if(_menuStart.hover){ _context.drawShortImage(_menuStart.imgOn,_menuStart); } 

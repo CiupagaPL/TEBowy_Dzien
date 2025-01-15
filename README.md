@@ -1,4 +1,4 @@
-![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/stable/Github/banner.png)
+![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/stable/Source/banner.png)
 # TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka
@@ -24,8 +24,8 @@ Wprowadzona została licencja MIT, obowiązuje ona od tego wydania aż po każde
 Od teraz wszelkie zmiany opisywane będą w zakładce Pull Requests.
 
 ## Status
-> Newest Version: **Alpha 1.2**;
-> Last Updated: **13-01-2025**;
+> Newest Version: **Alpha 1.21**;
+> Last Updated: **15-01-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br><br>
