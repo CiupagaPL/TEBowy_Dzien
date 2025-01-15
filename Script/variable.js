@@ -325,7 +325,7 @@ let _menuVersion={
   imgOn:new Image(),
 };
 let _menuVersionText={
-  value:"Unstable;\n15-01-2025",
+  value:"Alpha 1.21;\n15-01-2025",
 
   size:16,
   font:"orangeKid",
