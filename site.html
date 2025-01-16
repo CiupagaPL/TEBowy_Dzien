@@ -1,5 +1,5 @@
 <!--Projekt obięty jest licencją. Przeczytasz o niej na:
-github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md-->
+github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md-->
 <!--,,,-----,,,,,,,,,,,,,-->
 <!--,,|.....|,,,,,,,,,,,,-->
 <!--,,|.....|,,,,,,,,,,,,-->
@@ -26,8 +26,8 @@ github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md-->
 
     <title>Tebowy Dzień</title>
 
-    <link rel="icon"href="Source/iconD.png"type="image/png"media="(prefers-color-scheme:light)">
-    <link rel="icon"href="Source/iconL.png"type="image/png"media="(prefers-color-scheme:dark)">
+    <link rel="icon"href="tex/icon/iconD.png"type="image/png"media="(prefers-color-scheme:light)">
+    <link rel="icon"href="tex/icon/iconL.png"type="image/png"media="(prefers-color-scheme:dark)">
     <link rel="stylesheet"type="text/css"media="screen"href="style.css">
   </head>
 
@@ -36,25 +36,43 @@ github.com/CiupagaPL/Tebowy_Dzien/blob/stable/LICENSE.md-->
 
     <section id="load"></section>
 
-    <img id="error"src="Source/error.png">
+    <img id="error"src="tex/icon/error.png">
   </body>
 
-  <script src="Script/variable.js"defer></script>
-  <script src="Script/default.js"defer></script>
+  <script src="src/variable.js"defer></script>
+  <script src="src/object.js"defer></script>
 
-  <script src="Script/input.js"defer></script>
-  <script src="Script/generator.js"defer></script>
+  <script src="src/render/context.js"defer></script>
 
-  <script src="Script/player.js"defer></script>
-  <script src="Script/boss.js"defer></script>
-  <script src="Script/transition.js"defer></script>
+  <script src="src/scene/start/startScene.js"defer></script>
 
-  <script src="Script/Scene/menu.js"defer></script>
-  <script src="Script/Scene/menuanimation.js"defer></script>
+  <script src="src/object/ui/transition.js"defer></script>
 
-  <script src="Script/Scene/level.js"defer></script>
-  <script src="Script/Scene/levelanimation.js"defer></script>
+  <script src="src/object/ui/blueprint.js"defer></script>
+  <script src="src/object/ui/clipboard.js"defer></script>
 
-  <script src="Script/window.js"defer></script>
+  <script src="src/scene/menu/menuUpdate.js"defer></script>
+  <script src="src/scene/menu/menuRender.js"defer></script>
+
+  <script src="src/generator/generatePlatform.js"defer></script>
+  <script src="src/generator/generateSpike.js"defer></script>
+  <script src="src/generator/generateRest.js"defer></script>
+
+  <script src="src/object/game/player.js"defer></script>
+
+  <script src="src/object/game/obstacle.js"defer></script>
+
+  <script src="src/scene/level/levelUpdate.js"defer></script>
+  <script src="src/scene/level/levelRender.js"defer></script>
+
+  <script src="src/object/game/teacher.js"defer></script>
+
+  <script src="src/object/game/attack.js"defer></script>
+
+  <script src="src/input/inputClick.js"defer></script>
+  <script src="src/input/inputKey.js"defer></script>
+  <script src="src/input/inputBasic.js"defer></script>
+
+  <script src="src/render/window.js"defer></script>
 </html>
 
