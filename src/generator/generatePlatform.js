@@ -1,23 +1,21 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 scene.mainPlatformGenerator=function(){
   _currentPlatform={
     x:0,
-    y:canvas.height-(12*canvas.scale),
+    y:canvas.height-context.scale(12),
 
     width:canvas.width,
     height:_platform.height,
@@ -35,7 +33,7 @@ scene.mainPlatformGenerator=function(){
 scene.lastPlatformGenerator=function(){
   _currentPlatform={
     x:0,
-    y:-((128*canvas.scale)*(_platform.load-1))-(36*canvas.scale),
+    y:-(context.scale(128)*(_platform.load-1))-context.scale(36),
 
     width:canvas.width,
     height:_platform.height,
@@ -51,15 +49,15 @@ scene.lastPlatformGenerator=function(){
 }
 
 scene.platformGenerator=function(){
-  if(_platform.lx>(canvas.width-_platform.lx)-(128*canvas.scale)&&_platform.currentLoad<1){
-    _platform.random=Math.floor(Math.random()*(125*canvas.scale))+(42*canvas.scale)+(25*canvas.scale);
-  } else if(_platform.lx<=(canvas.width-_platform.lx)-(128*canvas.scale)&&_platform.currentLoad<1){
-    _platform.random=Math.floor(Math.random()*(125*canvas.scale))+(320*canvas.scale)+(25*canvas.scale);
+  if(_platform.lx>(canvas.width-_platform.lx)-context.scale(128)&&_platform.currentLoad<1){
+    _platform.random=Math.floor(Math.random()*context.scale(125))+context.scale(42)+context.scale(25);
+  } else if(_platform.lx<=(canvas.width-_platform.lx)-context.scale(128)&&_platform.currentLoad<1){
+    _platform.random=Math.floor(Math.random()*context.scale(125))+context.scale(320)+context.scale(25);
   }
 
   _currentPlatform={
     x:0,
-    y:(canvas.height-((128*canvas.scale)*_platform.currentLoad))-(144*canvas.scale),
+    y:(canvas.height-(context.scale(128)*_platform.currentLoad))-context.scale(144),
 
     width:_platform.random,
     height:_platform.height,
@@ -70,10 +68,10 @@ scene.platformGenerator=function(){
   _platform.array.push(_currentPlatform);
 
   _currentPlatform={
-    x:_platform.random+(128*canvas.scale),
-    y:(canvas.height-((128*canvas.scale)*_platform.currentLoad))-(144*canvas.scale),
+    x:_platform.random+context.scale(128),
+    y:(canvas.height-(context.scale(128)*_platform.currentLoad))-context.scale(144),
 
-    width:(canvas.width-_platform.random)-(128*canvas.scale),
+    width:(canvas.width-_platform.random)-context.scale(128),
     height:_platform.height,
 
     level:_platform.currentLoad,
@@ -88,4 +86,3 @@ scene.platformGenerator=function(){
   _platform.currentCount++;
   _platform.lenght++;
 }
-

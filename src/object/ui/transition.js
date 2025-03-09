@@ -1,18 +1,16 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 _transition.sceneOff=function(){
   _transition.timer++;
@@ -20,7 +18,7 @@ _transition.sceneOff=function(){
   scene.blocked=true;
   scene.change=true;
 
-  if(_transition.timer>=15){
+  if(_transition.timer>=context.time(15)){
     // audio.timer=0;
     _transition.timer=0;
     scene.timer=0;
@@ -30,6 +28,7 @@ _transition.sceneOff=function(){
       _player.hp=150;
     } scene.value=scene.next;
 
+    _transition.base.alpha=100;
     if(scene.value==1){ _transition.text.value0="   Menu"; }
     else{ _transition.text.value0="Poziom "+Number(scene.value-1); }
   }
@@ -50,7 +49,7 @@ _transition.sceneOn=function(){
     // audio.timer=0;
   }
 
-  if(_transition.timer>=75){
+  if(_transition.timer>=context.time(75)){
     _transition.timer=0;
 
     scene.blocked=false;
@@ -73,36 +72,13 @@ _transition.sceneOn=function(){
   }
 }
 
-_transition.pauseOn=function(){
-  _transition.timer++;
-
-  scene.blocked=true;
-  global.pause=true;
-
-  if(_transition.timer>=10){
-    _transition.timer=0;
-    // audio.timer=0;
-
-    scene.blocked=false;
-    global.pauseChange=false;
-
-    keyDown.up=false;
-    keyDown.down=false;
-    keyDown.left=false;
-    keyDown.right=false;
-
-    _player.vx=0;
-    if(_player.cloud){ _player.vy=0; }
-  }
-}
-
 _transition.pauseOff=function(){
   _transition.timer++;
-
   scene.blocked=true;
 
-  if(_transition.timer>=10){
+  if(_transition.timer>=context.time(10)){
     _transition.timer=0;
+    _transition.base.alpha=0;
 
     scene.blocked=false;
     global.pauseChange=false;
@@ -115,12 +91,36 @@ _transition.pauseOff=function(){
   }
 }
 
+_transition.pauseOn=function(){
+  _transition.timer++;
+
+  scene.blocked=true;
+  global.pause=true;
+
+  if(_transition.timer>=context.time(10)){
+    _transition.timer=0;
+    // audio.timer=0;
+
+    scene.blocked=false;
+    global.pauseChange=false;
+
+    keyDown.up=false;
+    keyDown.down=false;
+    keyDown.left=false;
+    keyDown.right=false;
+
+    _player.vx=0;
+    _transition.base.alpha=50;
+    if(_player.cloud){ _player.vy=0; }
+  }
+}
+
 _transition.pauseEnd=function(){
   _transition.timer++;
 
   scene.blocked=true;
 
-  if(_transition.timer>=5){
+  if(_transition.timer>=context.time(5)){
     // audio.timer=0;
     _transition.timer=0;
     scene.timer=0;
@@ -139,4 +139,3 @@ _transition.pauseEnd=function(){
     else{ _transition.text.value0="Poziom "+Number(scene.value-1); }
   }
 }
-

@@ -1,25 +1,25 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 let _currentPlatform=[],_currentSpike=[],_currentCorner=[];
 
-let _background={
+const _background={
   base:{
     x:0,
     y:0,
+	
+	alpha:75,
   }, bottom:{
     x:0,
     y:360,
@@ -33,45 +33,57 @@ let _background={
 
   change:false,
 
-  color0:"rgba(0,47,109,1)",
-  color1:"rgba(3,122,162,1)",
-  color2:"rgba(228,0,2,1)",
-
-  color0Half:"rgba(0,47,109,0.75)",
-  color1Half:"rgba(3,122,162,0.75)",
-  color2Half:"rgba(228,0,2,0.65)",
-
+  color0:"rgb(0,47,109)",
+  color1:"rgb(3,122,162)",
+  color2:"rgb(228,0,2)",
   img0:Object.assign(new Image(),{src:"tex/ui/background/0.png"}),
   img1:Object.assign(new Image(),{src:"tex/ui/background/1.png"}),
   img2:Object.assign(new Image(),{src:"tex/ui/background/2.png"}),
   img3:Object.assign(new Image(),{src:"tex/ui/background/3.png"}),
 };
 
-let _transition={
+const _transition={
   base:{
     x:0,
     y:0,
 
-    color0:"rgba(0,0,25,0.15)",
-    color1:"rgba(0,0,25,0.5)",
-    color2:"rgba(0,0,25,1)",
+    color0:"rgb(0,0,25)",
+    alpha:0,
   }, text:{
     x:640-256,
     y:96,
 
     value0:"",
-
     size:64,
 
-    color0:"rgba(255,255,255,1)",
-    color1:"rgba(255,255,255,0.5)",
-    color2:"rgba(255,255,255,0.15)",
+    color0:"rgb(255,255,255)",
+    alpha:0,
   },
 
   timer:0,
+
+  sceneOff:function(){},
+  sceneOn:function(){},
+  pauseOff:function(){},
+  pauseOn:function(){},
+  pauseEnd:function(){},
 };
 
-let _start={
+const _info={
+  x:64,
+  y:128,
+
+  value0:"Wersja Niestabilna",
+  size:80,
+  rotation:25,
+
+  enabled:true,
+  
+  color0:"rgb(255,255,255)",
+  alpha:50,
+}
+
+const _start={
   base:{
     x:640-256,
     y:0,
@@ -79,11 +91,10 @@ let _start={
     width:256,
     height:256,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/teb/teb0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/teb/teb1.png"}),
-    img2:Object.assign(new Image(),{src:"tex/obj/teb/teb2.png"}),
-    img0Liceum:Object.assign(new Image(),{src:"tex/obj/teb/liceum.png"}),
-    img0Technikum:Object.assign(new Image(),{src:"tex/obj/teb/technikum.png"}),
+    img0:Object.assign(new Image(),{src:"tex/obj/teb/teb.png"}),
+    img1:Object.assign(new Image(),{src:"tex/obj/teb/liceum.png"}),
+    img2:Object.assign(new Image(),{src:"tex/obj/teb/technikum.png"}),
+    alpha:100,
   }, arrow:{
     x:-92,
     y:(360-256)-32,
@@ -92,69 +103,78 @@ let _start={
     height:384,
 
     img0:Object.assign(new Image(),{src:"tex/obj/arrow.png"}),
+    alpha:25,
   }
 };
 
-let _title={
-  x:64,
-  y:24,
+const _title={
+  base:{
+    x:166,
+    y:24,
 
-  width:264,
-  height:96,
+    width:162,
+    height:96,
 
-  hover:false,
+    img0:Object.assign(new Image(),{src:"tex/ui/title/text.png"}),
+    alpha:100,
+  }, teb:{
+    x:64,
+    y:24,
+    
+    width:96,
+    height:96,
 
-  img0:Object.assign(new Image(),{src:"tex/ui/title/title.png"}),
-  img1:Object.assign(new Image(),{src:"tex/ui/title/titleOn.png"}),
+    img0:Object.assign(new Image(),{src:"tex/ui/title/teb.png"}),
+    img1:Object.assign(new Image(),{src:"tex/ui/title/tebOn.png"}),
+  },
 };
 
-let _resolution={
+const _resolution={
   x:640-24,
   y:360-24,
 
   width:16,
   height:16,
 
-  hover:false,
-
   img0:Object.assign(new Image(),{src:"tex/ui/max.png"}),
   img1:Object.assign(new Image(),{src:"tex/ui/min.png"}),
-  img2:Object.assign(new Image(),{src:"tex/ui/maxOn.png"}),
-  img3:Object.assign(new Image(),{src:"tex/ui/minOn.png"}),
+  alpha:100,
 };
 
-let _ui={
+const _ui={
   menu:{
     x:48,
     y:0,
 
     width:296,
     height:360,
+
+	  alpha:75,
   }, game:{
     x:0,
     y:0,
 
     width:640,
     height:24,
+
+	  alpha:75,
   },
 
-  color0:"rgba(0,0,55,0.75)",
+  color0:"rgb(0,0,55)",
 };
 
-let _hud={
+const _hud={
   level:{
     x:640-70,
     y:18,
 
     value0:"",
-
     size:20,
   }, score:{
     x:24,
     y:18,
 
     value0:"",
-
     size:20,
   },
 
@@ -167,7 +187,6 @@ let _hud={
       height:12,
 
       value0:"ıı",
-
       size:28,
     },
 
@@ -248,11 +267,10 @@ let _hud={
     },
   },
 
-  color0:"rgba(255,255,255,1)",
-  color1:"rgba(255,255,255,0.5)",
+  color0:"rgb(255,255,255)",
 };
 
-let _button={
+const _button={
   start:{
     base:{
       x:64,
@@ -267,12 +285,11 @@ let _button={
       x:64+48,
       y:(360-192)+18,
 
-      value0:"Start;\nPoziom: 01",
-
+      value0:"Rozpocznij\nPoziom: 01",
       size:16,
+      line:2,
+	    alpha:100,
     },
-
-    hover:false,
   }, level:{
     base:{
       x:64,
@@ -285,16 +302,15 @@ let _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/levelOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-128)+30,
+      y:(360-128)+18,
 
-      value0:"Poziomy",
-
-      size:32,
+      value0:"Selektor\nPoziomów",
+      size:16,
+      line:2,
+	    alpha:100,
     },
 
-    hover:false,
     on:false,
-
     animation:false,
     lateanimation:false,
   }, menu:{
@@ -309,14 +325,13 @@ let _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/menuOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-128)+30,
+      y:(360-128)+18,
 
-      value0:"Menu",
-
-      size:32,
+      value0:"Menu\nGłówne",
+      size:16,
+      line:2,
+	    alpha:100,
     },
-
-    hover:false,
   }, custom:{
     base:{
       x:64,
@@ -329,16 +344,14 @@ let _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/customOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-64)+30,
+      y:(360-64)+28,
 
       value0:"Postać",
-
-      size:32,
+      size:24,
+	    alpha:100,
     },
 
-    hover:false,
     on:false,
-
     animation:false,
     lateanimation:false,
   }, restart:{
@@ -353,14 +366,13 @@ let _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/restartOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-64)+30,
+      y:(360-64)+18,
 
-      value0:"Powtórz",
-
-      size:32,
+      value0:"Powtórz\nPoziom",
+      size:16,
+      line:2,
+	    alpha:100,
     },
-
-    hover:false,
   }, setting:{
     base:{
       x:(64+264)-42,
@@ -372,17 +384,15 @@ let _button={
       img0:Object.assign(new Image(),{src:"tex/ui/button/setting.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/button/settingOn.png"}),
     }, text:{
-      x:((64+264)-42)-64,
-      y:(360-192)+30,
+      x:((64+264)-42)-48,
+      y:(360-192)+28,
 
       value0:"Opcje",
-
-      size:32,
+      size:24,
+	    alpha:100,
     },
 
-    hover:false,
     on:false,
-
     animation:false,
     lateanimation:false,
   }, about:{
@@ -396,17 +406,16 @@ let _button={
       img0:Object.assign(new Image(),{src:"tex/ui/button/about.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/button/aboutOn.png"}),
     }, text:{
-      x:((64+264)-42)-50,
-      y:(360-128)+30,
+      x:((64+264)-42)-60,
+      y:(360-128)+18,
 
-      value0:"Opis",
-
-      size:32,
+      value0:" Na Temat\nRozgrywki",
+      size:16,
+      line:2,
+	    alpha:100,
     },
-
-    hover:false,
+	
     on:false,
-
     animation:false,
     lateanimation:false,
   }, version:{
@@ -420,22 +429,20 @@ let _button={
       img0:Object.assign(new Image(),{src:"tex/ui/button/version.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/button/versionOn.png"}),
     }, text:{
-      x:((64+264)-42)-60,
+      x:((64+264)-42)-64,
       y:(360-64)+18,
 
-      value0:"  Unstable;\n16-01-2025",
-
+      value0:"    Unstable\n09-03-2025",
       size:16,
+      line:2,
+	    alpha:100,
     },
-
-    hover:false,
   },
 
-  color0:"rgba(255,255,255,1)",
-  color1:"rgba(255,255,255,0.5)",
+  color0:"rgb(255,255,255)",
 };
 
-let _clipboard={
+const _clipboard={
   base:{
     x:640+160,
     y:(360/2)-(240/2),
@@ -448,10 +455,9 @@ let _clipboard={
     x:(640+160)+(160-36),
     y:((360/2)-(240/2))+4,
 
-    rotate:2,
-
     width:32,
     height:32,
+	  rotation:180,
 
     hover:false,
 
@@ -471,10 +477,9 @@ let _clipboard={
     x:(64-2)+234,
     y:152,
 
-    rotate:2,
-
     width:24,
     height:24,
+	  rotation:180,
 
     hover:false,
 
@@ -488,7 +493,6 @@ let _clipboard={
       y:((360/2)-(240/2))+60,
 
       value0:"Opcje",
-
       size:28,
     }, sfx:{
       base:{
@@ -502,7 +506,6 @@ let _clipboard={
         y:((360/2)-(240/2))+91,
 
         value0:"Dźwięk",
-
         size:16,
       },
     }, music:{
@@ -517,7 +520,6 @@ let _clipboard={
         y:((360/2)-(240/2))+121,
 
         value0:"Muzyka",
-
         size:16,
       },
     }, tutorial:{
@@ -532,7 +534,6 @@ let _clipboard={
         y:((360/2)-(240/2))+151,
 
         value0:"Poradnik",
-
         size:16,
       },
     }, teacher:{
@@ -547,7 +548,6 @@ let _clipboard={
         y:((360/2)-(240/2))+181,
 
         value0:"Opis Nauczycieli",
-
         size:16,
       },
     }, addon:{
@@ -562,7 +562,6 @@ let _clipboard={
         y:((360/2)-(240/2))+211,
 
         value0:"Efekty Dodatkowe",
-
         size:16,
       },
     },
@@ -577,7 +576,6 @@ let _clipboard={
       y:((360/2)-(240/2))+60,
 
       value0:"Opis",
-
       size:28,
     }, text:{
       x:(640+160)+24,
@@ -585,7 +583,6 @@ let _clipboard={
 
       value0:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\n"+
             "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\nPozdrawiamy :-D",
-
       size:15,
     },
   },
@@ -596,14 +593,12 @@ let _clipboard={
       y:((360/2)-(240/2))+60,
 
       value0:"Twórcy",
-
       size:28,
     }, text:{
       x:(640+160)+24,
       y:((360/2)-(240/2))+88,
 
       value0:"Nadzorowanie Projektu:\n> tom2edu\nPisanie Kodu:\n> Ciupaga\nDźwięk, Testowanie:\n> Ucheesename\nMuzyka:\n> M4RCIN-MJJ",
-
       size:15,
     },
   },
@@ -614,7 +609,6 @@ let _clipboard={
       y:152+32,
 
       value0:"Poradnik",
-
       size:28,
     }, text:{
       x:(64-2)+18,
@@ -624,7 +618,6 @@ let _clipboard={
             "na chmurce do poruszania używaj [W]|[A]|[S]|[D] lub\n[Góra]|[Lewo]|[Dół]|[Prawo]. Strzelaj za pomocą\n"+
             "[Shift]. Twoim celem jest dostać się na górę poziomu\ni pokonać danego nauczyciela. Po drodze musisz\n"+
             "omijać przeszkody w postaci kolców i laserów.\nW trudnej sytuacji użyj Tebulinka. Życzymy szczęścia!",
-
       size:12,
     },
   },
@@ -635,14 +628,12 @@ let _clipboard={
       y:152+32,
 
       value0:"Gratulacje!",
-
       size:28,
     }, text:{
       x:(64-2)+18,
       y:152+50,
 
       value0:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
-
       size:12,
     }, icon:{
       x:(64-2)+162,
@@ -659,10 +650,12 @@ let _clipboard={
   close:false,
   change:false,
 
-  color0:"rgba(0,0,0,1)",
+  color0:"rgb(0,0,0)",
+
+  update:function(){},
 };
 
-let _blueprint={
+const _blueprint={
   base:{
     x:640+160,
     y:(360/2)-(240/2),
@@ -687,10 +680,9 @@ let _blueprint={
     x:(640+160)+124,
     y:((360/2)-(240/2))+6,
 
-    rotate:2,
-
     width:28,
     height:28,
+	  rotation:180,
 
     hover:false,
 
@@ -711,10 +703,9 @@ let _blueprint={
     x:(640+160)+124,
     y:((360/2)-(240/2))+206,
 
-    rotate:2,
-
     width:28,
     height:28,
+	  rotation:180,
 
     hover:false,
 
@@ -734,10 +725,9 @@ let _blueprint={
     x:(64-2)+238,
     y:152+158,
 
-    rotate:2,
-
     width:24,
     height:24,
+	  rotation:180,
 
     hover:false,
 
@@ -751,7 +741,6 @@ let _blueprint={
       y:((360/2)-(240/2))+58,
 
       value0:"Poziomy",
-
       size:28,
     }, button1:{
       x:(640+160)+20,
@@ -761,10 +750,7 @@ let _blueprint={
       height:14,
 
       value0:"Poziom  1",
-
       size:18,
-
-      hover:false,
     }, button2:{
       x:(640+160)+20,
       y:((360/2)-(240/2))+120,
@@ -773,10 +759,7 @@ let _blueprint={
       height:14,
 
       value0:"Poziom  2",
-
       size:18,
-
-      hover:false,
     }, button3:{
       x:(640+160)+20,
       y:((360/2)-(240/2))+148,
@@ -784,10 +767,7 @@ let _blueprint={
       width:52,
       height:14,
       value0:"Poziom  3",
-
       size:18,
-
-      hover:false,
     }, button4:{
       x:(640+160)+20,
       y:((360/2)-(240/2))+176,
@@ -796,10 +776,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom  4",
-
       size:18,
-
-      hover:false,
     }, button5:{
       x:(640+160)+20,
       y:((360/2)-(240/2))+204,
@@ -808,10 +785,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom  5",
-
       size:18,
-
-      hover:false,
     }, button6:{
       x:(640+160)+88,
       y:((360/2)-(240/2))+92,
@@ -820,10 +794,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom  6",
-
       size:18,
-
-      hover:false,
     }, button7:{
       x:(640+160)+88,
       y:((360/2)-(240/2))+120,
@@ -832,10 +803,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom  7",
-
       size:18,
-
-      hover:false,
     }, button8:{
       x:(640+160)+88,
       y:((360/2)-(240/2))+148,
@@ -844,10 +812,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom  8",
-
       size:18,
-
-      hover:false,
     }, button9:{
       x:(640+160)+88,
       y:((360/2)-(240/2))+176,
@@ -856,10 +821,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom  9",
-
       size:18,
-
-      hover:false,
     }, button10:{
       x:(640+160)+88,
       y:((360/2)-(240/2))+204,
@@ -868,10 +830,7 @@ let _blueprint={
       height:14,
       
       value0:"Poziom 10",
-
       size:18,
-
-      hover:false,
     },
   },
 
@@ -881,14 +840,12 @@ let _blueprint={
       y:((360/2)-(240/2))+58,
 
       value0:"Postać",
-
       size:28,
     }, text:{
       x:(640+160)+68,
       y:((360/2)-(240/2))+200,
 
       value0:"1/4",
-
       size:20,
     },
   },
@@ -909,7 +866,6 @@ let _blueprint={
       valueAdd0:"Iwona Bury Sierzchuła",
       valueAdd1:"Wojciech Złotowski",
       valueAdd2:"Anna Niklas",
-
       size:20,
     }, text:{
       x:(64-2)+14,
@@ -941,7 +897,6 @@ let _blueprint={
       valueAdd2:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
                 "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
                 "Daj z siebie wszystko!",
-
       size:12,
     },
   },
@@ -950,11 +905,12 @@ let _blueprint={
   close:false,
   change:false,
 
-  color0:"rgba(255,255,255,1)",
-  color1:"rgba(255,255,255,0.5)",
+  color0:"rgb(255,255,255)",
+
+  update:function(){},
 };
 
-let _player={
+const _player={
   base:{
     x:64,
     y:(360-12)-81,
@@ -970,17 +926,16 @@ let _player={
     img1Left:Object.assign(new Image(),{src:"tex/obj/player/boy1left.png"}),
     img2Left:Object.assign(new Image(),{src:"tex/obj/player/girl0left.png"}),
     img3Left:Object.assign(new Image(),{src:"tex/obj/player/girl1left.png"}),
+    alpha:100,
   }, text:{
     x:0,
     y:0,
 
     value0:"",
-
     size:12,
 
-    color0:"rgba(225,255,255,0.15)",
-    color1:"rgba(225,255,255,0.5)",
-    color2:"rgba(225,255,255,1)",
+    color0:"rgb(225,255,255)",
+    alpha:0,
   },
 
   gun:{
@@ -1053,12 +1008,9 @@ let _player={
   vx:0,
   vy:0,
   ivy:-12,
-
   gravity:0.5,
-
   upTimer:0,
   invisible:0,
-
   max:60,
   skin:0,
   hp:150,
@@ -1066,14 +1018,19 @@ let _player={
   touched:false,
   active:false,
   grounded:false,
-
   jumped:false,
   fly:false,
   cloudFly:false,
   left:false,
+
+  render:function(){},
+  textRender:function(){},
+  update:function(){},
+  midUpdate:function(){},
+  lateUpdate:function(){},
 };
 
-let _platform={
+const _platform={
   array:[],
 
   lx:0,
@@ -1087,15 +1044,16 @@ let _platform={
   load:13,
   currentLoad:0,
   currentCount:0,
-
   level:0,
   lastLevel:0,
   random:0,
 
   img0:Object.assign(new Image(),{src:"tex/obj/platform.png"}),
+
+  update:function(){},
 };
 
-let _corner={
+const _corner={
   base:{
     width:6,
     height:12,
@@ -1108,26 +1066,23 @@ let _corner={
 
   lenght:-1,
   currentLenght:0,
-
   timer:0,
   max:60,
 
   img0:Object.assign(new Image(),{src:"tex/obj/corner.png"}),
 
-  color0:"rgba(255,255,255,1)",
-  color1:"rgba(255,255,255,0.5)",
-  color2:"rgba(255,255,255,0.15)",
+  color0:"rgb(255,255,255)",
+
+  update:function(){},
 };
 
-let _spike={
+const _spike={
   array:[],
 
   width:16,
   height:14,
-
   lenght:-1,
   currentLenght:0,
-
   random:0,
   count:0,
 
@@ -1135,9 +1090,11 @@ let _spike={
   detected:false,
   
   img0:Object.assign(new Image(),{src:"tex/obj/spike.png"}),
+
+  update:function(){},
 };
 
-let _sign={
+const _sign={
   base:{
     x:0,
     y:0,
@@ -1157,7 +1114,7 @@ let _sign={
   },
 };
 
-let _teacher={
+const _teacher={
   base:{
     x:0,
     y:0,
@@ -1181,12 +1138,9 @@ let _teacher={
     y:0,
 
     value0:"",
-
     size:12,
 
-    color0:"rgba(225,255,255,0.15)",
-    color1:"rgba(225,255,255,0.5)",
-    color2:"rgba(225,255,255,1)",
+    color0:"rgb(225,255,255)",
   },
 
   cloud:{
@@ -1202,26 +1156,27 @@ let _teacher={
   invisible:0,
   random:0,
   round:0,
-
   max:60,
   hp:250,
 
   load:false,
   attack:false,
+  on:false,
+
+  render:function(){},
+  textRender:function(){},
+  update:function(){},
 };
 
-let _attack={
+const _attack={
   tebulinek:{
     x:0,
     y:0,
 
     width:64,
     height:64,
-
-    rotate:0,
-
-    timer:0,
-
+    rotation:0,
+	
     unused:true,
 
     img0:Object.assign(new Image(),{src:"tex/obj/attack/tebulinek.png"}),
@@ -1233,10 +1188,8 @@ let _attack={
 
     width:48,
     height:48,
+    rotation:0,
 
-    rotate:0,
-
-    timer:0,
     current:0,
 
     unused:true,
@@ -1249,10 +1202,8 @@ let _attack={
 
     width:48,
     height:48,
+    rotation:0,
 
-    rotate:0,
-
-    timer:0,
     current:0,
 
     unused:true,
@@ -1260,5 +1211,7 @@ let _attack={
     img0Coffe:Object.assign(new Image(),{src:"tex/obj/attack/coffe.png"}),
     img0Pigeon:Object.assign(new Image(),{src:"tex/obj/attack/pigeon.png"}),
   },
-};
 
+  update:function(){},
+  handle:function(){},
+};

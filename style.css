@@ -1,18 +1,16 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |   ,-------------------------------------------,
+ *   |     |   ( */*{ opacity:1; }/* pastebin.com/zdg35gef )
+*   (|-----|) < The project is licensed under MIT -^       |
+ *  |\_____/|  "------------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 @font-face{
   font-family:orangeKid;
@@ -26,10 +24,8 @@
   0%{
     visibility:visible;
     opacity:0;
-  } 50%{
-    visibility:visible;
-    opacity:0;
-  } 100%{
+  } 50%{ opacity:0; }
+  100%{
     opacity:1;
     visibility:visible;
   }
@@ -37,8 +33,7 @@
   0%{
     opacity:1;
     visibility:visible;
-  } 99%{ visibility:visible; }
-  100%{
+  } 100%{
     opacity:0;
     visibility:hidden;
   }
@@ -62,15 +57,9 @@ html{
 }
 
 #render{
-  border:4px solid white;
   position:absolute;
   visibility:hidden;
   opacity:0;
-  top:calc(40% - (480px / 2));
-  left:calc(50% - (640px / 2));
-  width:360px;
-  height:360px;
-  box-shadow:0px 0px 8px 2px white;
   overflow:hidden;
   cursor:url("tex/icon/mouse.png"),pointer;
 }
@@ -85,9 +74,6 @@ html{
   visibility:visible;
   opacity:1;
 } #load::after{
-  text-align:center;
-  font-family:orangeKid;
-  font-size:1vw;
   content:"";
   color:white;
   width:4vw;
@@ -111,4 +97,3 @@ html{
 
 #render.show,#load.show,#error.show{ animation:show 1s forwards; }
 #render.hide,#load.hide,#error.hide{ animation:hide 0.5s forwards; }
-

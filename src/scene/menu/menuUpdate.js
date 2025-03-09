@@ -1,18 +1,16 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 scene.menuUpdate=function(){
   scene.timer++;
@@ -31,78 +29,70 @@ scene.menuUpdate=function(){
   // }
 
   if(_player.skin==0||_player.skin==2){
-    _blueprint.skin.height=122*canvas.scale;
-    _blueprint.skin.y=_blueprint.base.y+(58*canvas.scale);
+    _blueprint.skin.height=context.scale(122);
+    _blueprint.skin.y=_blueprint.base.y+context.scale(58);
   } else if(_player.skin==1||_player.skin==3){
-    _blueprint.skin.height=113*canvas.scale;
-    _blueprint.skin.y=_blueprint.base.y+(67*canvas.scale);
+    _blueprint.skin.height=context.scale(113);
+    _blueprint.skin.y=_blueprint.base.y+context.scale(67);
   }
 
-  _background.base.x+=(16*canvas.scale)/7;
-  _background.base.y-=(9*canvas.scale)/7;
-  _background.bottom.x+=(16*canvas.scale)/7;
-  _background.bottom.y-=(9*canvas.scale)/7;
-  _background.left.x+=(16*canvas.scale)/7;
-  _background.left.y-=(9*canvas.scale)/7;
-  _background.bottomLeft.x+=(16*canvas.scale)/7;
-  _background.bottomLeft.y-=(9*canvas.scale)/7;
+  _background.base.x+=context.move(16)/7;
+  _background.base.y-=context.move(9)/7;
+  _background.bottom.x+=context.move(16)/7;
+  _background.bottom.y-=context.move(9)/7;
+  _background.left.x+=context.move(16)/7;
+  _background.left.y-=context.move(9)/7;
+  _background.bottomLeft.x+=context.move(16)/7;
+  _background.bottomLeft.y-=context.move(9)/7;
 
-  if(_background.bottomLeft.x<=(16*canvas.scale)/7&&_background.bottomLeft.y<=(9*canvas.scale)/7){
-    _background.base.x=0;
-    _background.base.y=0;
-    _background.bottom.x=0;
-    _background.bottom.y=canvas.height;
-    _background.left.x=-canvas.width;
-    _background.left.y=0;
-    _background.bottomLeft.x=-canvas.width;
-    _background.bottomLeft.y=canvas.height;
+  if(_background.bottomLeft.y<=context.scale(9)/7){
+    _background.base.x=context.move(16)/7;
+    _background.base.y=-context.move(9)/7;
+    _background.bottom.x=context.move(16)/7;
+    _background.bottom.y=-(context.move(9)/7)+canvas.height;
+    _background.left.x=(context.move(16)/9)-canvas.width;
+    _background.left.y=-context.move(9)/7;
+    _background.bottomLeft.x=(context.move(16)/7)-canvas.width;
+    _background.bottomLeft.y=-(context.move(9)/7)+canvas.height;
 
     if(_background.change){ _background.change=false; }
     else{ _background.change=true; }
   }
 
-  if(scene.timer==10||scene.timer==20||scene.timer==70||scene.timer==80){
-    _title.y+=2*canvas.scale;
+  if(scene.timer<context.time(20)||scene.timer>=context.time(60)){
+    _title.base.y+=context.move(0.25);
+    _title.teb.y+=context.move(0.25);
 
-    _button.start.base.y+=2*canvas.scale;
-    _button.start.text.y+=2*canvas.scale;
+    _button.start.base.y+=context.move(0.25);
+    _button.start.text.y+=context.move(0.25);
+    _button.level.base.y+=context.move(0.25);
+    _button.level.text.y+=context.move(0.25);
+    _button.setting.base.y+=context.move(0.25);
+    _button.setting.text.y+=context.move(0.25);
+    _button.about.base.y+=context.move(0.25);
+    _button.about.text.y+=context.move(0.25);
+    _button.version.base.y+=context.move(0.25);
+    _button.version.text.y+=context.move(0.25);
+    _button.custom.base.y+=context.move(0.25);
+    _button.custom.text.y+=context.move(0.25);
 
-    _button.level.base.y+=2*canvas.scale;
-    _button.level.text.y+=2*canvas.scale;
+    if(scene.timer==context.time(80)){ scene.timer=0; }
+  } else{
+    _title.base.y-=context.move(0.25);
+    _title.teb.y-=context.move(0.25);
 
-    _button.setting.base.y+=2*canvas.scale;
-    _button.setting.text.y+=2*canvas.scale;
-
-    _button.about.base.y+=2*canvas.scale;
-    _button.about.text.y+=2*canvas.scale;
-
-    _button.version.base.y+=2*canvas.scale;
-    _button.version.text.y+=2*canvas.scale;
-
-    _button.custom.base.y+=2*canvas.scale;
-    _button.custom.text.y+=2*canvas.scale;
-
-    if(scene.timer==80){ scene.timer=0; }
-  } else if(scene.timer==30||scene.timer==40||scene.timer==50||scene.timer==60){
-    _title.y-=2*canvas.scale;
-
-    _button.start.base.y-=2*canvas.scale;
-    _button.start.text.y-=2*canvas.scale;
-
-    _button.level.base.y-=2*canvas.scale;
-    _button.level.text.y-=2*canvas.scale;
-
-    _button.setting.base.y-=2*canvas.scale;
-    _button.setting.text.y-=2*canvas.scale;
-
-    _button.about.base.y-=2*canvas.scale;
-    _button.about.text.y-=2*canvas.scale;
-
-    _button.version.base.y-=2*canvas.scale;
-    _button.version.text.y-=2*canvas.scale;
-
-    _button.custom.base.y-=2*canvas.scale;
-    _button.custom.text.y-=2*canvas.scale;
+    _button.start.base.y-=context.move(0.25);
+    _button.start.text.y-=context.move(0.25);
+    _button.level.base.y-=context.move(0.25);
+    _button.level.text.y-=context.move(0.25);
+    _button.setting.base.y-=context.move(0.25);
+    _button.setting.text.y-=context.move(0.25);
+    _button.about.base.y-=context.move(0.25);
+    _button.about.text.y-=context.move(0.25);
+    _button.version.base.y-=context.move(0.25);
+    _button.version.text.y-=context.move(0.25);
+    _button.custom.base.y-=context.move(0.25);
+    _button.custom.text.y-=context.move(0.25);
   }
 
   _blueprint.update();
@@ -117,4 +107,3 @@ scene.menuUpdate=function(){
     else{ _transition.sceneOn(); }
   }
 }
-

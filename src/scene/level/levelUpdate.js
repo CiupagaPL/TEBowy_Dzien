@@ -1,18 +1,16 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 scene.levelUpdate=function(){
   // if(musicOn&&!tutorial){
@@ -62,7 +60,7 @@ scene.levelUpdate=function(){
   if(_corner.timer==_corner.max&&!global.pause&&_player.hp>0&&global.sfx&&!_teacher.on&&!scene.win){
     // _audio.laser.load();
     // _audio.laser.play();
-  } if(_corner.timer>=_corner.max+25){ _corner.timer=0; }
+  } if(_corner.timer>=_corner.max+context.time(25)){ _corner.timer=0; }
 
   if(_player.invisible!=0&&!global.pause&&_player.hp>0&&_player.invisible<_player.max){ _player.invisible++; }
   else if(_player.invisible>=_player.max){ _player.invisible=0; }
@@ -83,12 +81,12 @@ scene.levelUpdate=function(){
 
   if(scene.defeat){
     if(_player.hp==0){ _transition.sceneOff(); }
-    else if(_player.hp==150){ _transition.sceneOn(); }
+    else if(_player.hp==context.time(150)){ _transition.sceneOn(); }
   }
 
-  if(scene.timer>=99){
+  if(scene.timer>=context.time(99)){
     if(!_player.gun.on){ _player.gun.timer++; }
-    if(_player.gun.timer>=120){ _player.gun.on=true; }
+    if(_player.gun.timer>=context.time(120)){ _player.gun.on=true; }
   }
 
   if(scene.auto&&!_clipboard.on){
@@ -120,4 +118,3 @@ scene.levelUpdate=function(){
     _transition.sceneOff();
   }
 }
-

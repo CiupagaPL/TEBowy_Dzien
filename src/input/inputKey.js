@@ -1,18 +1,16 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 window.addEventListener("keydown",function(event){
   if(!global.pause&&_player.hp>0&&scene.value>=2){
@@ -21,28 +19,32 @@ window.addEventListener("keydown",function(event){
       keyDown.right=false;
 
       _player.left=true;
-      _player.vx=-4*canvas.scale;
+      _player.vx=-context.move(4);
     } else if(event.key=="d"||event.key=="D"||event.key=="ArrowRight"){
       keyDown.right=true;
       keyDown.left=false;
 
       _player.left=false;
-      _player.vx=4*canvas.scale;
+      _player.vx=context.move(4);
     } else if((event.key=="w"||event.key=="W"||event.key=="ArrowUp"||event.key==" ")&&_player.cloudFly){
       keyDown.up=true;
       keyDown.down=false;
-      _player.vy=-4*canvas.scale;
+      _player.vy=-context.move(4);
     } else if((event.key=="s"||event.key=="S"||event.key=="ArrowDown")&&_player.cloudFly){
       keyDown.down=true;
       keyDown.up=false;
-      _player.vy=4*canvas.scale;
+      _player.vy=context.move(4);
     }
   }
 });
 
 window.addEventListener("keyup",function(event){
   if(!scene.blocked&&!canvas.error){
-    if(scene.value==0&&event.key=="Enter"&&scene.timer<70){ scene.timer=70; }
+    if(event.key=="Enter"&&scene.value==0&&!render.error&&scene.timer<context.time(70)){
+      scene.timer=context.time(70);
+      _start.base.alpha=100;
+    }
+
     else if(scene.value==1){
       if(event.key=="Enter"){
         scene.blocked=true;
@@ -70,8 +72,6 @@ window.addEventListener("keyup",function(event){
           scene.next=2;
           scene.change=true;
         }
-
-        return true;
       }
 
       else if(event.key=="Escape"&&(_clipboard.on||_blueprint.on)){
@@ -121,8 +121,6 @@ window.addEventListener("keyup",function(event){
           global.pauseChange=true;
           global.pauseAnimation=true;
         }
-
-        return true;
       }
 
       if(!global.pause){
@@ -131,22 +129,22 @@ window.addEventListener("keyup",function(event){
             keyDown.left=false;
 
             if(!keyDown.right){ _player.vx=0; }
-            else{ _player.vx=4*canvas.scale; }
+            else{ _player.vx=context.move(4); }
           } if(event.key=="d"||event.key=="D"||event.key=="ArrowRight"){
             keyDown.right=false;
 
             if(!keyDown.left){ _player.vx=0; }
-            else{ _player.vx=-4*canvas.scale; }
+            else{ _player.vx=-context.move(4); }
           } if((event.key=="w"||event.key=="W"||event.key=="ArrowUp"||event.key==" ")&&_player.cloudFly){
             keyDown.up=false;
 
             if(!keyDown.down){ _player.vy=0; }
-            else{ _player.vy=4*canvas.scale; }
+            else{ _player.vy=context.move(4); }
           } if((event.key=="s"||event.key=="S"||event.key=="ArrowDown")&&_player.cloudFly){
             keyDown.down=false;
 
             if(!keyDown.up){ _player.vy=0; }
-            else{ _player.vy=-4*canvas.scale; }
+            else{ _player.vy=-context.move(4); }
           }
         }
 
@@ -159,8 +157,6 @@ window.addEventListener("keyup",function(event){
 
           _player.jumped=true;
           _player.vy=_player.ivy;
-
-          return true;
         }
 
         if(event.key=="Shift"&&_teacher.on&&_player.gun.on){
@@ -169,8 +165,8 @@ window.addEventListener("keyup",function(event){
             // _audio.laser.play();
           }
 
-          _player.ammo.x=_player.base.x+(20*canvas.scale);
-          _player.ammo.y=_player.base.y+(20*canvas.scale);
+          _player.ammo.x=_player.base.x+context.scale(20);
+          _player.ammo.y=_player.base.y+context.scale(20);
           _player.ammo.unused=false;
 
           _player.gun.timer=0;
@@ -185,4 +181,3 @@ window.addEventListener("keyup",function(event){
     }
   }
 });
-

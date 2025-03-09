@@ -1,26 +1,45 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
-let html=document.getElementById("html");
-let load=document.getElementById("load");
-let error=document.getElementById("error");
-let render=document.getElementById("render");
-let context=render.getContext("2d");
+const html=document.getElementById("html");
+const load=document.getElementById("load");
+const error=document.getElementById("error");
+const render=document.getElementById("render",{
+  width:"0px",
+  height:"0px",
+});
 
-let mouse={
+const context=render.getContext("2d",{
+  alpha:true,
+  willReadFrequently:true,
+
+  powerPreference:"high-performance",
+
+  collision:function(){},
+  scale:function(){},
+  time:function(){},
+  frame:function(){},
+  move:function(){},
+  limit:function(){},
+  setup:function(){},
+  render:function(){},
+  text:function(){},
+  default:function(){},
+  reset:function(){},
+});
+
+const mouse={
   x:0,
   y:0,
 
@@ -28,22 +47,36 @@ let mouse={
   height:4,
 };
 
-let canvas={
+const canvas={
   width:640,
   height:360,
 
   scale:1.00,
   prevScale:1.00,
+  timeScale:1.00,
+  prevTimeScale:1.00,
 
-  lastFrame:0,
-
-  font:"orangeKid",
+  limitFps:120,
+  currentFps:40,
+  countFps:0,
+  start:0,
+  then:0,
+  elapsed:0,
+  reset:0,
 
   error:false,
   resize:true,
+  start:false,
+  minimize:false,
+
+  setup:function(){},
+  check:function(){},
+  animate:function(){},
+  startAnimating:function(){},
+  loop:function(){},
 };
 
-let scene={
+const scene={
   vx:0,
   vy:0,
 
@@ -63,9 +96,16 @@ let scene={
   change:false,
   blocked:false,
   auto:false,
+
+  startRender:function(){},
+  startUpdate:function(){},
+  menuRender:function(){},
+  menuUpdate:function(){},
+  levelRender:function(){},
+  levelUpdate:function(){},
 };
 
-let global={
+const global={
   pause:false,
   pauseChange:false,
   pauseAnimation:false,
@@ -88,17 +128,17 @@ let global={
   addon:true,
 };
 
-let keyDown={
+const keyDown={
   left:false,
   right:false,
   top:false,
   bottom:false,
 };
 
-let audio={
+const audio={
   menu:new Audio("sfx/music/menu.mp3"),
   game:new Audio("sfx/music/game.mp3"),
-  boss:new Audio("sfx/music/teacher.mp3"),
+  teacher:new Audio("sfx/music/teacher.mp3"),
 
   load1:new Audio("sfx/load1.mp3"),
   load2:new Audio("sfx/load2.mp3"),
@@ -120,11 +160,11 @@ let audio={
 
 // audio.menu.load();
 // audio.game.load();
-// audio.boss.load();
+// audio.teacher.load();
 
 // audio.menu.volume=0.25;
 // audio.game.volume=0.25;
-// audio.boss.volume=0.25;
+// audio.teacher.volume=0.25;
 
 audio.load1.load();
 audio.load2.load();
@@ -155,4 +195,3 @@ audio.load3.volume=1;
 // audio.teacherDefeat.volume=0.25;
 // audio.teacherHit.volume=0.25;
 // audio.teacherStart.volume=0.25;
-

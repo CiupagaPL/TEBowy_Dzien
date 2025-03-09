@@ -1,25 +1,26 @@
-/*
- *    ,-----,
- *    |     |    ,---------------------------------------------------------,
- *    |     |   ( Projekt objęty jest licencją. Przeczytasz o niej na:      )
- *   (|-----|)  < github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md )
- *   |\_____/|   "---------------------------------------------------------"
- *   |       |    __---.
- *   ( o   o )   /      )
- *   \ = . = \__/    --"
- *   /              /
- *  |              |
- *   \ \    \ \   |
- *    | |    | | /
- *   (_(_)--(_(_)
-*/
+/*   ,-----,
+ *   |     |    ,--------------------------------------,
+ *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
+ *  (|-----|) < The project is licensed under MIT -^    |
+ *  |\_____/|  "---------------------------------------"
+ *  |       |    __---.
+ *  ( o   o )   /      )
+ *  \ = . = \__/    --"
+ *  /              /
+ * |              |
+ *  \ \    \ \   |
+ *   | |    | | /
+ *  (_(_)--(_(_) */
 
 window.addEventListener("click",function(){
   if(!scene.blocked&&!canvas.error){
-    if(context.collision(_title,mouse)&&(scene.value==1||scene.value>=2&&
+    if((context.collision(_title.base,mouse)||context.collision(_title.teb,mouse))&&(scene.value==1||scene.value>=2&&
        global.pause)){ window.open("https://github.com/CiupagaPL/Tebowy_Dzien","_blank").focus(); }
 
-    if(context.collision(_start.base,mouse)&&scene.value==0&&!render.error&&scene.timer<70){ scene.timer=70; }
+    if(context.collision(_start.base,mouse)&&scene.value==0&&!render.error&&scene.timer<context.time(70)){
+      scene.timer=context.time(70);
+      _start.base.alpha=100;
+    }
 
     if(context.collision(_resolution,mouse)&&(scene.value<=1||scene.value>=2&&global.pause)){
       if(document.fullscreenElement){ document.exitFullscreen(); }
@@ -74,8 +75,6 @@ window.addEventListener("click",function(){
             global.pauseAnimation=false;
           }
         }
-
-        return true;
       }
 
       else if(context.collision(_button.level.base,mouse)&&scene.value==1){
@@ -104,8 +103,6 @@ window.addEventListener("click",function(){
             else{ _button.version.animation=true; }
           }
         }
-
-        return true;
       }
 
       else if(context.collision(_button.menu.base,mouse)&&scene.value>=2&&global.pause&&!global.currentTutorial&&
@@ -129,8 +126,6 @@ window.addEventListener("click",function(){
           scene.change=true;
           global.pauseChange=true;
         }
-
-        return true;
       }
 
       else if(context.collision(_button.custom.base,mouse)&&scene.value==1){
@@ -159,8 +154,6 @@ window.addEventListener("click",function(){
             else{ _button.version.animation=true; }
           }
         }
-
-        return true;
       }
 
       else if(context.collision(_button.restart.base,mouse)&&global.pause&&!global.currentTutorial&&
@@ -179,8 +172,6 @@ window.addEventListener("click",function(){
           else if(_button.about.on){ _button.about.animation=true; }
           else if(_button.version.on){ _button.version.animation=true; }
         } else{ global.restart=true; }
-
-        return true;
       }
 
       else if(context.collision(_button.setting.base,mouse)&&(scene.value==1||scene.value>=2&&global.pause&&
@@ -212,8 +203,6 @@ window.addEventListener("click",function(){
             else{ _button.custom.animation=true; }
           }
         }
-
-        return true;
       }
 
       else if(context.collision(_button.about.base,mouse)&&(scene.value==1||scene.value>=2&&global.pause&&
@@ -245,8 +234,6 @@ window.addEventListener("click",function(){
             else{ _button.custom.animation=true; }
           }
         }
-
-        return true;
       }
 
       else if(context.collision(_button.version.base,mouse)&&(scene.value==1||scene.value>=2&&global.pause&&
@@ -278,8 +265,6 @@ window.addEventListener("click",function(){
             else{ _button.custom.animation=true; }
           }
         }
-
-        return true;
       }
     }
 
@@ -295,8 +280,6 @@ window.addEventListener("click",function(){
       if(_button.setting.on){ _button.setting.animation=true; }
       else if(_button.about.on){ _button.about.animation=true; }
       else{ _button.version.animation=true; }
-
-      return true;
     }
 
     if(context.collision(_clipboard.wideBack,mouse)&&global.pause&&(global.currentTutorial||global.currentReward)){
@@ -311,8 +294,6 @@ window.addEventListener("click",function(){
 
       if(global.currentTutorial){ global.currentTutorial=false; }
       else{ global.currentReward=false; }
-
-      return true;
     }
 
     if(_blueprint.on){
@@ -327,8 +308,6 @@ window.addEventListener("click",function(){
 
         if(_button.level.on){ _button.level.animation=true; }
         else{ _button.custom.animation=true; }
-
-        return true;
       } else if(context.collision(_blueprint.left,mouse)&&_button.custom.on){
         if(global.sfx){
           // _audio.paper.load();
@@ -339,8 +318,6 @@ window.addEventListener("click",function(){
           _player.skin--;
           _blueprint.custom.text.value0=Number(_player.skin+1)+"/4";
         }
-
-        return true;
       } else if(context.collision(_blueprint.right,mouse)&&_button.custom.on){
         if(global.sfx){
           // _audio.paper.load();
@@ -351,8 +328,6 @@ window.addEventListener("click",function(){
           _player.skin++;
           _blueprint.custom.text.value0=Number(_player.skin+1)+"/4";
         }
-
-        return true;
       }
     }
 
@@ -365,8 +340,6 @@ window.addEventListener("click",function(){
 
       global.pauseChange=true;
       global.pauseAnimation=false;
-
-      return true;
     }
 
     if(_button.level.on&&(context.collision(_blueprint.level.button1,mouse)||
@@ -399,8 +372,6 @@ window.addEventListener("click",function(){
         if(_button.level.on){ _button.level.animation=true; }
         else{ _button.custom.animation=true; }
       }
-
-      return true;
     }
 
     if(_button.setting.on){
@@ -412,8 +383,6 @@ window.addEventListener("click",function(){
           // _audio.paper.load();
           // _audio.paper.play();
         }
-
-        return true;
       } else if(context.collision(_clipboard.setting.music.base,mouse)){
         if(global.sfx){
           // _audio.paper.load();
@@ -422,8 +391,6 @@ window.addEventListener("click",function(){
 
         if(global.music){ global.music=false; }
         else{ global.music=true; }
-
-        return true;
       } else if(context.collision(_clipboard.setting.tutorial.base,mouse)){
         if(global.sfx){
           // _audio.paper.load();
@@ -432,8 +399,6 @@ window.addEventListener("click",function(){
 
         if(global.tutorial){ global.tutorial=false; }
         else{ global.tutorial=true; }
-
-        return true;
       } else if(context.collision(_clipboard.setting.teacher.base,mouse)){
         if(global.sfx){
           // _audio.paper.load();
@@ -442,8 +407,6 @@ window.addEventListener("click",function(){
 
         if(global.teacher){ global.teacher=false; }
         else{ global.teacher=true; }
-
-        return true;
       } else if(context.collision(_clipboard.setting.addon.base,mouse)){
         if(global.sfx){
           // _audio.paper.load();
@@ -452,8 +415,6 @@ window.addEventListener("click",function(){
 
         if(global.addon){ global.addon=false; }
         else{ global.addon=true; }
-
-        return true;
       }
     }
 
@@ -469,4 +430,3 @@ window.addEventListener("click",function(){
     }
   }
 });
-

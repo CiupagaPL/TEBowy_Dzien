@@ -1,78 +1,67 @@
-<!--Projekt obięty jest licencją. Przeczytasz o niej na:
-github.com/CiupagaPL/Tebowy_Dzien/blob/release/LICENSE.md-->
-<!--,,,-----,,,,,,,,,,,,,-->
-<!--,,|.....|,,,,,,,,,,,,-->
-<!--,,|.....|,,,,,,,,,,,,-->
-<!--,(|-----|),,,,,,,,,,,-->
-<!--,|\_____/|,,,,,,,,,,,-->
-<!--,|.......|,,,,__---.,-->
-<!--,(.o...o.),,,/......)-->
-<!--,\ = . = \__/....--",-->
-<!--,/............../,,,,-->
-<!--|..............|,,,,,-->
-<!--,\.\....\.\...|,,,,,,-->
-<!--,,|.|....|.|./,,,,,,,-->
-<!--,(_(_)--(_(_),,,,,,,,-->
-
 <!DOCTYPE html>
-<html lang="pl"id="html">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible"content="IE=edge">
-    <meta name="viewport"content="width=device-width,initial-scale=1.0">
-    <meta name="author"content="Ciupaga,tom2edu,Ucheesename,M4RCIN_MMJ">
-    <meta name="description"content="Tebowy Dzień">
-    <meta name="keywords"content="Tebowy,Dzień">
+<!-- The project is licensed under MIT: pastebin.com/zdg35gef -->
+<!-- ,,,-----,,,,,,,,,,,,, -->
+<!-- ,,|.....|,,,,,,,,,,,, -->
+<!-- ,,|.....|,,,,,,,,,,,, -->
+<!-- ,(|-----|),,,,,,,,,,, -->
+<!-- ,|\_____/|,,,,,,,,,,, -->
+<!-- ,|.......|,,,,__---., -->
+<!-- ,(.o...o.),,,/......) -->
+<!-- ,\ = . = \__/....--", -->
+<!-- ,/............../,,,, -->
+<!-- |..............|,,,,, -->
+<!-- ,\.\....\.\...|,,,,,, -->
+<!-- ,,|.|....|.|./,,,,,,, -->
+<!-- ,(_(_)--(_(_),,,,,,,, -->
 
-    <title>Tebowy Dzień</title>
+<html id="html">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="author"content="tom2edu;Ciupaga;Ucheesename;M4RCIN_MMJ"/>
 
-    <link rel="icon"href="tex/icon/iconD.png"type="image/png"media="(prefers-color-scheme:light)">
-    <link rel="icon"href="tex/icon/iconL.png"type="image/png"media="(prefers-color-scheme:dark)">
-    <link rel="stylesheet"type="text/css"media="screen"href="style.css">
-  </head>
+  <title>Tebowy Dzień: Start</title>
 
-  <body>
-    <canvas id="render"></canvas>
+  <link rel="icon"href="tex/icon/iconD.png"media="(prefers-color-scheme:light)"/>
+  <link rel="icon"href="tex/icon/iconL.png"media="(prefers-color-scheme:dark)"/>
+  <link rel="stylesheet"media="screen"href="style.css"/>
+</head>
 
-    <section id="load"></section>
+<body>
+  <canvas id="render"></canvas>
+  <section id="load"></section>
 
-    <img id="error"src="tex/icon/error.png">
-  </body>
+  <img id="error"src="tex/icon/error.png"/>
+</body>
 
-  <script src="src/variable.js"defer></script>
-  <script src="src/object.js"defer></script>
+<script src="src/variable.js"defer></script>
+<script src="src/object.js"defer></script>
+<script src="src/render/context.js"defer></script>
 
-  <script src="src/render/context.js"defer></script>
+<script src="src/scene/start/startScene.js"defer></script>
 
-  <script src="src/scene/start/startScene.js"defer></script>
+<script src="src/object/ui/transition.js"defer></script>
+<script src="src/object/ui/blueprint.js"defer></script>
+<script src="src/object/ui/clipboard.js"defer></script>
 
-  <script src="src/object/ui/transition.js"defer></script>
+<script src="src/scene/menu/menuUpdate.js"defer></script>
+<script src="src/scene/menu/menuRender.js"defer></script>
 
-  <script src="src/object/ui/blueprint.js"defer></script>
-  <script src="src/object/ui/clipboard.js"defer></script>
+<script src="src/generator/generatePlatform.js"defer></script>
+<script src="src/generator/generateSpike.js"defer></script>
+<script src="src/generator/generateRest.js"defer></script>
 
-  <script src="src/scene/menu/menuUpdate.js"defer></script>
-  <script src="src/scene/menu/menuRender.js"defer></script>
+<script src="src/object/game/player.js"defer></script>
+<script src="src/object/game/obstacle.js"defer></script>
 
-  <script src="src/generator/generatePlatform.js"defer></script>
-  <script src="src/generator/generateSpike.js"defer></script>
-  <script src="src/generator/generateRest.js"defer></script>
+<script src="src/scene/level/levelUpdate.js"defer></script>
+<script src="src/scene/level/levelRender.js"defer></script>
 
-  <script src="src/object/game/player.js"defer></script>
+<script src="src/object/game/teacher.js"defer></script>
+<script src="src/object/game/attack.js"defer></script>
 
-  <script src="src/object/game/obstacle.js"defer></script>
+<script src="src/input/inputClick.js"defer></script>
+<script src="src/input/inputKey.js"defer></script>
+<script src="src/input/inputBasic.js"defer></script>
 
-  <script src="src/scene/level/levelUpdate.js"defer></script>
-  <script src="src/scene/level/levelRender.js"defer></script>
-
-  <script src="src/object/game/teacher.js"defer></script>
-
-  <script src="src/object/game/attack.js"defer></script>
-
-  <script src="src/input/inputClick.js"defer></script>
-  <script src="src/input/inputKey.js"defer></script>
-  <script src="src/input/inputBasic.js"defer></script>
-
-  <script src="src/render/window.js"defer></script>
+<script src="src/render/canvas.js"defer></script>
 </html>
-
