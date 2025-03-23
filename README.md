@@ -8,7 +8,7 @@ Przełącz się na gałęź stabilną aby znaleźć najnowsze najbezpieczniejsze
 
 ## Status
 > Newest Version: **Unstable**;
-> Last Updated: **21-03-2025**;
+> Last Updated: **23-03-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

@@ -47,7 +47,7 @@ _attack.update=function(){
     if(context.collision(_player.base,_attack.tebulinek)){ _player.gun.power=true; }
 
     if((context.collision(_player.base,_attack.object1)||context.collision(_player.base,_attack.object2))&&_player.invisible==0){
-      _player.hp-=25;
+      _player.hp-=1;
       _player.text.value0="-25 punktów\nz zachowania";
       _player.invisible=1;
       if(global.sfx){ audio.damage1_sfx.play(); }

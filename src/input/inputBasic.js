@@ -47,6 +47,17 @@ window.addEventListener("mousemove",function(event){
       else{ _button.about.text.alpha=100; }
       if(context.collision(_button.version.base,mouse)||context.collision(_button.version.text,mouse)){ _button.version.text.alpha=50; }
       else{ _button.version.text.alpha=100; }
+    } else{
+      if(context.collision(_ui.game.hp.background,mouse)){ _ui.game.hp.background.alpha=50; }
+      else{ _ui.game.hp.background.alpha=100; }
+      if(context.collision(_ui.game.pause.background,mouse)){ _ui.game.pause.background.alpha=50; }
+      else{ _ui.game.pause.background.alpha=100; }
+      if(context.collision(_ui.game.info.background,mouse)){ _ui.game.info.background.alpha=50; }
+      else{ _ui.game.info.background.alpha=100; }
+      if(context.collision(_ui.game.teacher.background,mouse)){ _ui.game.teacher.background.alpha=50; }
+      else{ _ui.game.teacher.background.alpha=100; }
+      if(context.collision(_ui.game.ammo.background,mouse)){ _ui.game.ammo.background.alpha=50; }
+      else{ _ui.game.ammo.background.alpha=100; }
     }
 
     if(context.collision(_clipboard.back,mouse)){ _clipboard.back.hover=true; }
@@ -67,8 +78,5 @@ window.addEventListener("mousemove",function(event){
       if(context.collision(_blueprint.right,mouse)){ _blueprint.right.hover=true; }
       else{ _blueprint.right.hover=false; }
     }
-
-    if(context.collision(_hud.icon.pause,mouse)&&!global.pause){ _hud.icon.pause.alpha=50; }
-    else{ _hud.icon.pause.alpha=100; }
   }
 });

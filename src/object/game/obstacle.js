@@ -16,7 +16,7 @@ _corner.localUpdate=function(){
   if(_currentCorner.laser!=undefined){
     if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&
        !global.currentTeacher&&_corner.timer>=_corner.max&&!_player.touched){
-      _player.hp-=25;
+      _player.hp-=1;
       _player.text.value0="-25 punktów\nz zachowania";
 
       if(_player.hp>0){
@@ -107,7 +107,7 @@ _platform.update=function(){
 
 _spike.update=function(){
   if(context.collision(_currentSpike,_player.base)&&_player.invisible==0&&!global.currentTeacher){
-    _player.hp-=25;
+    _player.hp-=1;
     _player.text.value0="-25 punktów\nz zachowania";
 
     if(_player.hp!=0){

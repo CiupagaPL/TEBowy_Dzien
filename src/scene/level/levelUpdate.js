@@ -114,8 +114,10 @@ scene.levelUpdate=function(){
   if(_background.base.y>=canvas.height){ _background.base.y=_background.bottom.y-canvas.height; }
   if(_background.bottom.y>=canvas.height){ _background.bottom.y=_background.base.y-canvas.height; }
 
-  _hud.level.value0="Poziom: "+Number(scene.value-1);
-  _hud.score.value0="Wynik: "+scene.score;
+  _ui.game.hp.text.value0=_player.hp+"/5";
+  _ui.game.info.score.value0="Wynik: "+scene.score;
+  _ui.game.info.level.value0="Poziom: "+Number(scene.value-1);
+  _ui.game.teacher.text.value0=_teacher.hp+"/10";
 
   if(_player.invisible!=0&&!global.pause&&_player.hp>0&&_player.invisible<_player.max){ _player.invisible++; }
   else if(_player.invisible>=_player.max){ _player.invisible=0; }
@@ -148,7 +150,7 @@ scene.levelUpdate=function(){
   } if(global.autoRestart&&!_clipboard.on&&!global.pauseChange){
     global.restart=true;
     scene.change=true;
-    _player.hp=150;
+    _player.hp=5;
   }
 
   if(scene.next!=scene.value&&global.pauseChange||global.restart){ _transition.pauseEnd(); }

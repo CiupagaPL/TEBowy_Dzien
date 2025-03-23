@@ -72,19 +72,15 @@ scene.menuRender=function(){
       if(!global.sfx){ context.render(_clipboard.setting.sfx.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.sfx.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.sfx.text,_clipboard.color0,_clipboard.setting.sfx.text.value0);
-
       if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.music.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.music.text,_clipboard.color0,_clipboard.setting.music.text.value0);
-
       if(!global.tutorial){ context.render(_clipboard.setting.tutorial.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.tutorial.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.tutorial.text,_clipboard.color0,_clipboard.setting.tutorial.text.value0);
-
       if(!global.teacher){ context.render(_clipboard.setting.teacher.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.teacher.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.teacher.text,_clipboard.color0,_clipboard.setting.teacher.text.value0);
-
       if(!global.addon){ context.render(_clipboard.setting.addon.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.addon.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.addon.text,_clipboard.color0,_clipboard.setting.addon.text.value0);
@@ -93,9 +89,7 @@ scene.menuRender=function(){
     if(_button.about.animation||_button.about.on){
       context.text(_clipboard.about.title,_clipboard.color0,_clipboard.about.title.value0);
       context.text(_clipboard.about.text,_clipboard.color0,_clipboard.about.text.value0);
-    }
-
-    if(_button.version.animation||_button.version.on){
+    } else if(_button.version.animation||_button.version.on){
       context.text(_clipboard.version.title,_clipboard.color0,_clipboard.version.title.value0);
       context.text(_clipboard.version.text,_clipboard.color0,_clipboard.version.text.value0);
     }
@@ -121,7 +115,6 @@ scene.menuRender=function(){
       else{ context.render(_blueprint.right,_blueprint.right.img1); }
 
       context.text(_blueprint.custom.title,_blueprint.color0,_blueprint.custom.title.value0);
-
       context.text(_blueprint.custom.text,_blueprint.color0,_blueprint.custom.text.value0);
     }
 

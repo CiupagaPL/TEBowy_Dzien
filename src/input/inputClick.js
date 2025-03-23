@@ -381,7 +381,7 @@ window.addEventListener("click",function(){
       }
     }
 
-    if(context.collision(_hud.icon.pause,mouse)&&!global.pause&&scene.value>=2){
+    if(context.collision(_ui.game.pause.background,mouse)&&!global.pause&&scene.value>=2){
       if(global.sfx){ audio.click1_sfx.play(); }
 
       global.pause=true;

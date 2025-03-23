@@ -109,8 +109,8 @@ context.text=function(object,fill,value){
 }
 
 context.default=function(){
-  _title.base.y=context.scale(24);
-  _title.teb.y=context.scale(24);
+  _title.base.y=context.scale(35);
+  _title.teb.y=context.scale(35);
 
   _button.start.base.y=context.scale(360-204);
   _button.start.text.y=_button.start.base.y+context.scale(18);
@@ -156,7 +156,7 @@ context.default=function(){
   _player.text.x=_player.base.x-context.scale(2);
   _player.text.y=_player.base.y-context.scale(12);
 
-  _player.hp=150;
+  _player.hp=5;
   scene.score=0;
   scene.timer=0;
 
@@ -201,7 +201,7 @@ context.default=function(){
   _attack.object2.unused=true;
 
   scene.boss=false;
-  _teacher.hp=250;
+  _teacher.hp=10;
   _teacher.timer=0;
   _teacher.base.y=context.scale(104);
   _teacher.base.x=(canvas.width+_teacher.base.width)+context.scale(32);
@@ -248,6 +248,7 @@ context.reset=function(){
   context.setup(_transition.text);
 
   context.setup(_info);
+  context.setup(_resolution);
 
   context.setup(_start.base);
   context.setup(_start.arrow);
@@ -263,29 +264,31 @@ context.reset=function(){
   context.setup(_footer.github);
   context.setup(_footer.pastebin);
 
-  context.setup(_resolution);
-
   context.setup(_ui.menu.main);
   context.setup(_ui.menu.left);
   context.setup(_ui.menu.right);
-  context.setup(_ui.game);
-
-  context.setup(_hud.level);
-  context.setup(_hud.score);
-
-  context.setup(_hud.icon.pause);
-  
-  context.setup(_hud.icon.water);
-
-  context.setup(_hud.icon.hpPlayer.heart0);
-  context.setup(_hud.icon.hpPlayer.heart1);
-  context.setup(_hud.icon.hpPlayer.heart2);
-
-  context.setup(_hud.icon.hpTeacher.heart0);
-  context.setup(_hud.icon.hpTeacher.heart1);
-  context.setup(_hud.icon.hpTeacher.heart2);
-  context.setup(_hud.icon.hpTeacher.heart3);
-  context.setup(_hud.icon.hpTeacher.heart4);
+  context.setup(_ui.game.hp.main);
+  context.setup(_ui.game.hp.background);
+  context.setup(_ui.game.hp.heart);
+  context.setup(_ui.game.hp.text);
+  context.setup(_ui.game.pause.main);
+  context.setup(_ui.game.pause.background);
+  context.setup(_ui.game.pause.icon);
+  context.setup(_ui.game.pause.text);
+  context.setup(_ui.game.info.main);
+  context.setup(_ui.game.info.background);
+  context.setup(_ui.game.info.icon);
+  context.setup(_ui.game.info.text);
+  context.setup(_ui.game.info.score);
+  context.setup(_ui.game.info.level);
+  context.setup(_ui.game.teacher.main);
+  context.setup(_ui.game.teacher.background);
+  context.setup(_ui.game.teacher.heart);
+  context.setup(_ui.game.teacher.text);
+  context.setup(_ui.game.ammo.main);
+  context.setup(_ui.game.ammo.background);
+  context.setup(_ui.game.ammo.icon);
+  context.setup(_ui.game.ammo.text);
 
   context.setup(_button.start.base);
   context.setup(_button.start.text);

@@ -121,7 +121,7 @@ _teacher.update=function(){
       scene.timer=context.time(360);
     } else if(scene.timer>=context.time(330)&&scene.timer<context.time(360)&&scene.value==11&&_teacher.round<=1){
       _teacher.round++;
-      _teacher.hp=250;
+      _teacher.hp=10;
 
       scene.timer=context.time(60);
 
@@ -138,10 +138,10 @@ _teacher.update=function(){
 
   if(context.collision(_teacher.base,_player.ammo)&&_teacher.invisible==0){
     if(!_player.ammo.power){
-      _teacher.hp-=25;
+      _teacher.hp-=1;
       _teacher.text.value0="-25 punktów\nz zachowania";
     } else{
-      _teacher.hp-=50;
+      _teacher.hp-=2;
       _teacher.text.value0="-50 punktów\nz zachowania";
     }
 

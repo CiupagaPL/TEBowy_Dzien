@@ -108,7 +108,7 @@ const _start={
 const _title={
   base:{
     x:166,
-    y:32,
+    y:35,
 
     width:162,
     height:96,
@@ -117,7 +117,7 @@ const _title={
     alpha:100,
   }, teb:{
     x:64,
-    y:32,
+    y:35,
     
     width:96,
     height:96,
@@ -161,7 +161,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 21-03-2025",
+    value0:"Gałęź Niestabilna: 23-03-2025",
     size:16,
   }, github:{
     x:322,
@@ -187,8 +187,8 @@ const _footer={
 };
 
 const _resolution={
-  x:640-24,
-  y:360-24,
+  x:640-20,
+  y:360-20,
 
   width:16,
   height:16,
@@ -222,125 +222,193 @@ const _ui={
       height:364,
     },
   }, game:{
-    x:0,
-    y:0,
+    hp:{
+      main:{
+        x:604,
+        y:6,
 
-    width:640,
-    height:24,
+        width:32,
+        height:32,
+      }, background:{
+        x:602,
+        y:4,
 
-	  alpha:75,
+        width:36,
+        height:36,
+
+        alpha:100,
+      }, heart:{
+        x:612,
+        y:10,
+
+        width:16,
+        height:16,
+
+        img0:Object.assign(new Image(),{src:"tex/ui/heart/0.png"}),
+        img1:Object.assign(new Image(),{src:"tex/ui/heart/player/1.png"}),
+        img2:Object.assign(new Image(),{src:"tex/ui/heart/player/2.png"}),
+        img3:Object.assign(new Image(),{src:"tex/ui/heart/player/3.png"}),
+        img4:Object.assign(new Image(),{src:"tex/ui/heart/player/4.png"}),
+        img5:Object.assign(new Image(),{src:"tex/ui/heart/player/5.png"}),
+      }, text:{
+        x:613,
+        y:36,
+
+        value0:"5/5",
+        size:12,
+      },
+    }, pause:{
+      main:{
+        x:6,
+        y:6,
+
+        width:32,
+        height:32,
+      }, background:{
+        x:4,
+        y:4,
+
+        width:36,
+        height:36,
+
+        alpha:100,
+      }, icon:{
+        x:16,
+        y:26,
+
+        width:12,
+        line:1,
+
+        value0:"ıı",
+        size:34,
+      }, text:{
+        x:10,
+        y:36,
+
+        value0:"Pauza",
+        size:12,
+      },
+    }, info:{
+      main:{
+        x:44,
+        y:6,
+
+        width:92,
+        height:32,
+      }, background:{
+        x:42,
+        y:4,
+
+        width:96,
+        height:36,
+
+        alpha:100,
+      }, icon:{
+        x:50,
+        y:8,
+
+        width:20,
+        height:20,
+
+        img0:Object.assign(new Image(),{src:"tex/icon/iconL.png"}),
+      }, text:{
+        x:48,
+        y:36,
+
+        value0:"Status",
+        size:12,
+      }, score:{
+        x:80,
+        y:20,
+
+        value0:"Wynik: 00",
+        size:14,
+      }, level:{
+        x:80,
+        y:33,
+
+        value0:"Poziom: 00",
+        size:14,
+      },
+    }, teacher:{
+      main:{
+        x:142,
+        y:6,
+
+        width:32,
+        height:32,
+      }, background:{
+        x:140,
+        y:4,
+
+        width:36,
+        height:36,
+
+        alpha:100,
+      }, heart:{
+        x:150,
+        y:10,
+
+        width:16,
+        height:16,
+
+        img0:Object.assign(new Image(),{src:"tex/ui/heart/0.png"}),
+        img1:Object.assign(new Image(),{src:"tex/ui/heart/teacher/1.png"}),
+        img2:Object.assign(new Image(),{src:"tex/ui/heart/teacher/2.png"}),
+        img3:Object.assign(new Image(),{src:"tex/ui/heart/teacher/3.png"}),
+        img4:Object.assign(new Image(),{src:"tex/ui/heart/teacher/4.png"}),
+        img5:Object.assign(new Image(),{src:"tex/ui/heart/teacher/5.png"}),
+        img6:Object.assign(new Image(),{src:"tex/ui/heart/teacher/6.png"}),
+        img7:Object.assign(new Image(),{src:"tex/ui/heart/teacher/7.png"}),
+        img8:Object.assign(new Image(),{src:"tex/ui/heart/teacher/8.png"}),
+        img9:Object.assign(new Image(),{src:"tex/ui/heart/teacher/9.png"}),
+        img10:Object.assign(new Image(),{src:"tex/ui/heart/teacher/10.png"}),
+      }, text:{
+        x:150,
+        y:36,
+
+        value0:"10/10",
+        size:12,
+      },
+    }, ammo:{
+      main:{
+        x:566,
+        y:6,
+
+        width:32,
+        height:32,
+      }, background:{
+        x:564,
+        y:4,
+
+        width:36,
+        height:36,
+
+        alpha:100,
+      }, icon:{
+        x:574,
+        y:10,
+
+        width:16,
+        height:16,
+
+        img0:Object.assign(new Image(),{src:"tex/ui/water/empty.png"}),
+        img1:Object.assign(new Image(),{src:"tex/ui/water/half.png"}),
+        img2:Object.assign(new Image(),{src:"tex/ui/water/water.png"}),
+        img3:Object.assign(new Image(),{src:"tex/ui/water/powerHalf.png"}),
+        img4:Object.assign(new Image(),{src:"tex/ui/water/powerWater.png"}),
+      }, text:{
+        x:569,
+        y:36,
+
+        value0:"Pocisk",
+        size:12,
+      },
+    },
   },
 
   color0:"rgb(0,0,55)",
   color1:"rgb(255,255,255)",
-};
-
-const _hud={
-  level:{
-    x:640-70,
-    y:18,
-
-    value0:"",
-    size:20,
-  }, score:{
-    x:24,
-    y:18,
-
-    value0:"",
-    size:20,
-  },
-
-  icon:{
-    pause:{
-      x:8,
-      y:18,
-
-      width:12,
-      line:1,
-
-      value0:"ıı",
-      size:28,
-      alpha:100,
-    },
-
-    water:{
-      x:640-156,
-      y:4,
-
-      width:16,
-      height:16,
-
-      img0:Object.assign(new Image(),{src:"tex/ui/water/water.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/water/half.png"}),
-      img2:Object.assign(new Image(),{src:"tex/ui/water/empty.png"}),
-      img3:Object.assign(new Image(),{src:"tex/ui/water/powerWater.png"}),
-      img4:Object.assign(new Image(),{src:"tex/ui/water/powerHalf.png"}),
-    },
-
-    hpPlayer:{
-      heart0:{
-        x:640-132,
-        y:4,
-
-        width:16,
-        height:16,
-      }, heart1:{
-        x:640-114,
-        y:4,
-
-        width:16,
-        height:16,
-      }, heart2:{
-        x:640-96,
-        y:4,
-
-        width:16,
-        height:16,
-      },
-
-      img0:Object.assign(new Image(),{src:"tex/ui/heart/heart.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/heart/half.png"}),
-      img2:Object.assign(new Image(),{src:"tex/ui/heart/empty.png"}),
-    }, hpTeacher:{
-      heart0:{
-        x:90,
-        y:4,
-
-        width:16,
-        height:16,
-      }, heart1:{
-        x:108,
-        y:4,
-
-        width:16,
-        height:16,
-      }, heart2:{
-        x:126,
-        y:4,
-
-        width:16,
-        height:16,
-      }, heart3:{
-        x:144,
-        y:4,
-
-        width:16,
-        height:16,
-      }, heart4:{
-        x:162,
-        y:4,
-
-        width:16,
-        height:16,
-      },
-
-      img0:Object.assign(new Image(),{src:"tex/ui/heart/teacherHeart.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/heart/teacherHalf.png"}),
-      img2:Object.assign(new Image(),{src:"tex/ui/heart/empty.png"}),
-    },
-  },
-
-  color0:"rgb(255,255,255)",
 };
 
 const _button={
@@ -1105,7 +1173,7 @@ const _player={
   invisible:0,
   max:60,
   skin:0,
-  hp:150,
+  hp:5,
 
   touched:false,
   active:false,
@@ -1229,7 +1297,7 @@ const _teacher={
   random:0,
   round:0,
   max:60,
-  hp:250,
+  hp:10,
 
   load:false,
   attack:false,
