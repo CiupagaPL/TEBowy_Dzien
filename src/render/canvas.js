@@ -139,16 +139,11 @@ canvas.animate=function(current){
 
         if(scene.value>=2){
           _player.invisible=context.limit(_player.invisible);
-          _player.max=context.limit(_player.max);
           _player.upTimer=context.limit(_player.upTimer);
+          _teacher.invisible=context.limit(_teacher.invisible);
 
           _corner.timer=context.limit(_corner.timer);
-          _corner.max=context.limit(_corner.max);
-
-          if(_teacher.on){
-            _teacher.invisible=context.limit(_teacher.invisible);
-            _teacher.max=context.limit(_teacher.max);
-          }
+          _ui.elapsed=context.limit(_ui.elapsed);
         }
       } else{
         canvas.fpsLimit=120;

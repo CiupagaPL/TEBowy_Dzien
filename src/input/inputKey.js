@@ -85,9 +85,8 @@ window.addEventListener("keyup",function(event){
       }
     } else{
       if(event.key=="Escape"){
-        if(global.sfx){ audio.click1_sfx.play(); }
-
         if(global.pause){
+          if(global.sfx){ audio.click1_sfx.play(); }
           scene.blocked=true;
 
           if(_clipboard.on){
@@ -101,7 +100,9 @@ window.addEventListener("keyup",function(event){
             global.pauseChange=true;
             global.pauseAnimation=false;
           }
-        } else{
+        } else if(_ui.show){
+          if(global.sfx){ audio.click1_sfx.play(); }
+
           global.pauseChange=true;
           global.pauseAnimation=true;
         }

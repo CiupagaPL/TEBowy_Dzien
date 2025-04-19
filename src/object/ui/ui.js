@@ -170,7 +170,7 @@ _ui.update=function(){
 
   if(!global.pause&&_player.hp>0){
     _ui.elapsed++;
-    if(_ui.elapsed%context.time(45)==0){ _ui.game.info.time.value0="Czas: "+_ui.elapsed/context.time(45)+"s"; }
+    _ui.game.info.time.value0="Czas: "+Math.round(_ui.elapsed/context.time(40))+"s";
 
     if(_ui.game.heart.icon.timer>=1){
       _ui.game.heart.icon.timer++;
