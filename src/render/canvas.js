@@ -196,9 +196,13 @@ canvas.loop=function(){
       _button.custom.on=false;
       _button.custom.animation=false;
 
+      _transition.text.value0="Menu Główne";
+      _transition.text.x=context.scale(225);
+
       _transition.base.y=context.scale(2);
       _transition.top.y=-canvas.height+context.scale(4);
       _transition.bottom.y=canvas.height;
+      _transition.text.y=context.scale(175);
     }
 
     html.style.animationPlayState="running";
