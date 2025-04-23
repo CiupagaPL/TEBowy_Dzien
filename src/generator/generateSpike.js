@@ -13,5 +13,237 @@
  *  (_(_)--(_(_) */
 
 scene.spikeGenerator=function(){
+  if(scene.type7!=0&&scene.type0!=0){
+    _spike.current=Math.floor(Math.random()*2); 
 
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(6),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(6),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type0!=0&&scene.type1!=0){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(166),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(166),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type1!=0&&scene.type2!=0&&_platform.currentLoad!=1){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(326),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(326),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type2!=0&&scene.type3!=0){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(486),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(486),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type3!=0&&scene.type4!=0){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(646),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(646),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type4!=0&&scene.type5!=0){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(806),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(806),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type5!=0&&scene.type6!=0){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(966),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(966),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  } if(scene.type6!=0&&scene.type7!=0){
+    _spike.current=Math.floor(Math.random()*2); 
+
+    if(_spike.current==0){
+      _currentSpike={
+        x:context.scale(1126),
+        y:_currentPlatform.y+context.scale(153),
+
+        width:context.scale(20),
+        height:context.scale(28),
+      };
+    } else{
+      _currentSpike={
+        x:context.scale(1126),
+        y:_currentPlatform.y+context.scale(13),
+
+        width:context.scale(20),
+        height:context.scale(28),
+        rotation:180,
+
+        score:_platform.currentLoad-1,
+
+        active:false,
+        disable:false,
+      };
+    }
+
+    _spike.array.push(_currentSpike);
+    _spike.lenght++;
+  }
 }

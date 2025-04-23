@@ -127,7 +127,7 @@ canvas.animate=function(current){
         canvas.prevTimeScale=canvas.timeScale;
 
         while((canvas.timeScale-0.1)*40>canvas.currentFps){ canvas.timeScale-=0.1; }
-        while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.2; }
+        while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.1; }
 
         if(canvas.timeScale<0.3){ canvas.timeScale=0.3; }
         if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
@@ -144,6 +144,11 @@ canvas.animate=function(current){
 
           _corner.timer=context.limit(_corner.timer);
           _ui.elapsed=context.limit(_ui.elapsed);
+
+          if(_player.vx!=0){
+            if(_player.left){ _player.vx=-context.move(4); }
+            else{ _player.vx=context.move(4); }
+          }
         }
       } else{
         canvas.fpsLimit=120;

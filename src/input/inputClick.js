@@ -269,7 +269,7 @@ window.addEventListener("click",function(){
       else{ _button.version.animation=true; }
     }
 
-    if(context.collision(_clipboard.wideBack,mouse)&&global.pause&&(global.currentTutorial||global.currentReward)){
+    if(context.collision(_footer.next,mouse)&&(global.currentReward||global.currentTeacher||global.currentTutorial)){
       scene.blocked=true;
       if(global.sfx){ audio.click1_sfx.play(); }
 
@@ -293,21 +293,13 @@ window.addEventListener("click",function(){
         if(global.sfx){ audio.click1_sfx.play(); }
 
         _player.skin=0;
-        _blueprint.custom.text.value0=Number(_player.skin+1)+"/2";
+        _blueprint.text.value0=Number(_player.skin+1)+"/2";
       } else if(context.collision(_blueprint.right,mouse)&&_button.custom.on){
         if(global.sfx){ audio.click1_sfx.play(); }
 
         _player.skin=1;
-        _blueprint.custom.text.value0=Number(_player.skin+1)+"/2";
+        _blueprint.text.value0=Number(_player.skin+1)+"/2";
       }
-    }
-
-    if(context.collision(_blueprint.wideBack,mouse)&&global.pause&&global.currentTeacher){
-      scene.blocked=true;
-      if(global.sfx){ audio.click1_sfx.play(); }
-
-      global.pauseChange=true;
-      global.pauseAnimation=false;
     }
 
     if(_button.level.on&&(context.collision(_blueprint.level.button1,mouse)||

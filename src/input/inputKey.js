@@ -150,7 +150,7 @@ window.addEventListener("keyup",function(event){
         if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_loot.timer==0){
           if(_tebox.first!=-1){
             _loot.current=_tebox.first;
-            if(_loot.current==3&&_player.hp==5){ _loot.current=Math.floor(Math.random()*2)+1; }
+            if(_loot.current==3&&_player.hp==5){ _loot.current=Math.floor(Math.random()*3)+1; }
 
             if(_loot.current==1&&_player.gun.ammo1<50){ _player.gun.ammo1++; }
             else if(_loot.current==2&&_player.gun.ammo2<50){ _player.gun.ammo2++; }

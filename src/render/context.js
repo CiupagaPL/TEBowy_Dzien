@@ -104,20 +104,20 @@ context.text=function(object,fill,value){
 }
 
 context.default=function(){
-  _title.base.y=context.scale(35);
-  _title.teb.y=context.scale(35);
-  _button.start.base.y=context.scale(156);
-  _button.start.text.y=_button.start.base.y+context.scale(18);
-  _button.level.base.y=context.scale(220);
-  _button.level.text.y=_button.level.base.y+context.scale(18);
-  _button.custom.base.y=context.scale(284);
-  _button.custom.text.y=_button.custom.base.y+context.scale(18);
-  _button.setting.base.y=context.scale(156);
-  _button.setting.text.y=_button.setting.base.y+context.scale(28);
-  _button.about.base.y=context.scale(220);
-  _button.about.text.y=_button.about.base.y+context.scale(18);
-  _button.version.base.y=context.scale(284);
-  _button.version.text.y=_button.version.base.y+context.scale(18);
+  _title.base.y=context.scale(28);
+  _title.teb.y=context.scale(28);
+  _button.start.base.y=context.scale(150);
+  _button.start.text.y=context.scale(168);
+  _button.level.base.y=context.scale(214);
+  _button.level.text.y=context.scale(232);
+  _button.custom.base.y=context.scale(278);
+  _button.custom.text.y=context.scale(296);
+  _button.setting.base.y=context.scale(150);
+  _button.setting.text.y=context.scale(178);
+  _button.about.base.y=context.scale(214);
+  _button.about.text.y=context.scale(232);
+  _button.version.base.y=context.scale(278);
+  _button.version.text.y=context.scale(296);
   if(scene.value==1){ _button.start.text.value0="Rozpocznij\nNową Grę"; }
   else{ _button.start.text.value0="Kontynuuj\nRozgrywkę"; }
 
@@ -233,6 +233,11 @@ context.reset=function(){
   context.setup(_footer.version);
   context.setup(_footer.github);
   context.setup(_footer.pastebin);
+  context.setup(_footer.next);
+
+  context.setup(_description.title);
+  context.setup(_description.text);
+  context.setup(_description.icon);
 
   context.setup(_ui.menu.main);
   context.setup(_ui.menu.left);
@@ -289,9 +294,9 @@ context.reset=function(){
 
   context.setup(_clipboard.base);
   context.setup(_clipboard.back);
-  context.setup(_clipboard.wide);
-  context.setup(_clipboard.wideBack);
-  context.setup(_clipboard.setting.title);
+  context.setup(_clipboard.icon);
+  context.setup(_clipboard.title);
+  context.setup(_clipboard.text);
   context.setup(_clipboard.setting.sfx.base);
   context.setup(_clipboard.setting.music.base);
   context.setup(_clipboard.setting.tutorial.base);
@@ -302,24 +307,15 @@ context.reset=function(){
   context.setup(_clipboard.setting.tutorial.text);
   context.setup(_clipboard.setting.teacher.text);
   context.setup(_clipboard.setting.addon.text);
-  context.setup(_clipboard.about.title);
-  context.setup(_clipboard.about.text);
-  context.setup(_clipboard.version.title);
-  context.setup(_clipboard.version.text);
-  context.setup(_clipboard.tutorial.title);
-  context.setup(_clipboard.tutorial.text);
-  context.setup(_clipboard.reward.title);
-  context.setup(_clipboard.reward.text);
-  context.setup(_clipboard.reward.icon);
 
   context.setup(_blueprint.base);
   context.setup(_blueprint.skin);
   context.setup(_blueprint.back);
   context.setup(_blueprint.left);
   context.setup(_blueprint.right);
-  context.setup(_blueprint.wide);
-  context.setup(_blueprint.wideBack);
-  context.setup(_blueprint.level.title);
+  context.setup(_blueprint.title);
+  context.setup(_blueprint.text);
+  context.setup(_blueprint.icon);
   context.setup(_blueprint.level.button1);
   context.setup(_blueprint.level.button2);
   context.setup(_blueprint.level.button3);
@@ -330,13 +326,9 @@ context.reset=function(){
   context.setup(_blueprint.level.button8);
   context.setup(_blueprint.level.button9);
   context.setup(_blueprint.level.button10);
-  context.setup(_blueprint.custom.title);
-  context.setup(_blueprint.custom.text);
-  context.setup(_blueprint.teacher.title);
-  context.setup(_blueprint.teacher.text);
-  
+
   context.setup(_player.base);
-  _player.ivy=-context.scale(14);
+  _player.ivy=-context.scale(13.5);
   _player.gravity=context.scale(0.5);
   context.setup(_player.cloud);
   context.setup(_player.gun);

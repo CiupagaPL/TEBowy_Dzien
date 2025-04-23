@@ -38,8 +38,7 @@ scene.levelRender=function(){
     while(_decoration.lenght>=_decoration.currentLenght){
       _currentDecoration=_decoration.array[_decoration.currentLenght];
 
-      if(_currentDecoration.current==0&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5&&
-         (_currentDecoration.base.x<context.scale(640+16)||_currentDecoration.base.x+_currentDecoration.base.width>-context.scale(16))){
+      if(_currentDecoration.current==0&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5){
         if(_currentDecoration.type==0){ context.render(_currentDecoration.base,_decoration.img0Door); }
         else if(_currentDecoration.type==1){ context.render(_currentDecoration.base,_decoration.img1Door); }
         else if(_currentDecoration.type==2){ context.render(_currentDecoration.base,_decoration.img2Door); }
@@ -50,43 +49,49 @@ scene.levelRender=function(){
         else{ context.text(_currentDecoration.text,"rgb(255,255,255)",_currentDecoration.text.value0); }
 
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
-      } else if(_currentDecoration.current==1&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5&&
-			          (_currentDecoration.base.x<context.scale(640+32)||_currentDecoration.base.x+_currentDecoration.base.width>-context.scale(32))){
+      } else if(_currentDecoration.current==1&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5){
         if(_currentDecoration.base.type==0){ context.render(_currentDecoration.base,_decoration.img1Locker); }
           else if(_currentDecoration.base.type==1){ context.render(_currentDecoration.base,_decoration.img2Locker); }
           else if(_currentDecoration.base.type==2){ context.render(_currentDecoration.base,_decoration.img3Locker); }
           else if(_currentDecoration.base.type==3){ context.render(_currentDecoration.base,_decoration.img4Locker); }
           else{ context.render(_currentDecoration.base,_decoration.img0Locker); }
-
         if(_currentDecoration.bottom.type==0){ context.render(_currentDecoration.bottom,_decoration.img1Locker); }
           else if(_currentDecoration.bottom.type==1){ context.render(_currentDecoration.bottom,_decoration.img2Locker); }
           else if(_currentDecoration.bottom.type==2){ context.render(_currentDecoration.bottom,_decoration.img3Locker); }
           else if(_currentDecoration.bottom.type==3){ context.render(_currentDecoration.bottom,_decoration.img4Locker); }
           else{ context.render(_currentDecoration.bottom,_decoration.img0Locker); }
-
         if(_currentDecoration.left.type==0){ context.render(_currentDecoration.left,_decoration.img1Locker); }
           else if(_currentDecoration.left.type==1){ context.render(_currentDecoration.left,_decoration.img2Locker); }
           else if(_currentDecoration.left.type==2){ context.render(_currentDecoration.left,_decoration.img3Locker); }
           else if(_currentDecoration.left.type==3){ context.render(_currentDecoration.left,_decoration.img4Locker); }
           else{ context.render(_currentDecoration.left,_decoration.img0Locker); }
-
         if(_currentDecoration.bottomLeft.type==0){ context.render(_currentDecoration.bottomLeft,_decoration.img1Locker); }
           else if(_currentDecoration.bottomLeft.type==1){ context.render(_currentDecoration.bottomLeft,_decoration.img2Locker); }
           else if(_currentDecoration.bottomLeft.type==2){ context.render(_currentDecoration.bottomLeft,_decoration.img3Locker); }
           else if(_currentDecoration.bottomLeft.type==3){ context.render(_currentDecoration.bottomLeft,_decoration.img4Locker); }
           else{ context.render(_currentDecoration.bottomLeft,_decoration.img0Locker); }
 
+        if(_currentDecoration.first.active){
+          if(_currentDecoration.first.type==0){ context.render(_currentDecoration.first,_decoration.img0Close); }
+          else if(_currentDecoration.first.type==1){ context.render(_currentDecoration.first,_decoration.img1Close); }
+          else if(_currentDecoration.first.type==2){ context.render(_currentDecoration.first,_decoration.img2Close); }
+          else{ context.render(_currentDecoration.first,_decoration.img3Close); }
+        } if(_currentDecoration.second.active){
+          if(_currentDecoration.second.type==0){ context.render(_currentDecoration.second,_decoration.img0Close); }
+          else if(_currentDecoration.second.type==1){ context.render(_currentDecoration.second,_decoration.img1Close); }
+          else if(_currentDecoration.second.type==2){ context.render(_currentDecoration.second,_decoration.img2Close); }
+          else{ context.render(_currentDecoration.second,_decoration.img3Close); }
+        }
+
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
-	  } else if(_currentDecoration.current==2&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5&&
-			        (_currentDecoration.x<context.scale(640+16)||_currentDecoration.x+_currentDecoration.width>-context.scale(16))){
+	    } else if(_currentDecoration.current==2&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5){
         if(_currentDecoration.type==0){ context.render(_currentDecoration,_decoration.img0Board); }
         else if(_currentDecoration.type==1){ context.render(_currentDecoration,_decoration.img1Board); }
         else if(_currentDecoration.type==2){ context.render(_currentDecoration,_decoration.img2Board); }
         else{ context.render(_currentDecoration,_decoration.img3Board); }
 
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
-      } else if(_currentDecoration.current==3&&_currentDecoration.light.y<canvas.height*1.5&&_currentDecoration.light.y>=-canvas.height*0.5&&
-			          (_currentDecoration.light.x<context.scale(640+16)||_currentDecoration.light.x+_currentDecoration.light.width>-context.scale(16))){
+      } else if(_currentDecoration.current==3&&_currentDecoration.light.y<canvas.height*1.5&&_currentDecoration.light.y>=-canvas.height*0.5){
         context.render(_currentDecoration.base,"rgb(255,255,255)");
         context.render(_currentDecoration.light,_decoration.img0Light);
 
@@ -103,10 +108,14 @@ scene.levelRender=function(){
         _currentDecoration.bottom.y+=scene.vy;
         _currentDecoration.left.y+=scene.vy;
         _currentDecoration.bottomLeft.y+=scene.vy;
+        _currentDecoration.first.y+=scene.vy;
+        _currentDecoration.second.y+=scene.vy;
         _currentDecoration.base.x+=scene.vx;
         _currentDecoration.bottom.x+=scene.vx;
         _currentDecoration.left.x+=scene.vx;
         _currentDecoration.bottomLeft.x+=scene.vx;
+        _currentDecoration.first.x+=scene.vx;
+        _currentDecoration.second.x+=scene.vx;
       } else if(_currentDecoration.current==2){
         _currentDecoration.y+=scene.vy;
         _currentDecoration.x+=scene.vx;
@@ -141,6 +150,19 @@ scene.levelRender=function(){
       _tebox.currentLenght+=1;
     }
 
+    while(_spike.lenght>=_spike.currentLenght){
+      _currentSpike=_spike.array[_spike.currentLenght];
+
+      if(_currentSpike.y<canvas.height+context.scale(32)&&_currentSpike.y>=-context.scale(32)&&!_currentSpike.disable){
+        context.render(_currentSpike,_spike.img0);
+        if(!global.pause&&_player.hp>0){ _spike.update(); }
+      }
+
+      _currentSpike.y+=scene.vy;
+      _currentSpike.x+=scene.vx;
+      _spike.currentLenght+=1;
+    }
+
     while(_platform.lenght>=_platform.currentLenght){
       _currentPlatform=_platform.array[_platform.currentLenght];
 
@@ -152,19 +174,6 @@ scene.levelRender=function(){
       _currentPlatform.y+=scene.vy;
       _currentPlatform.x+=scene.vx;
       _platform.currentLenght+=1;
-    }
-
-    while(_spike.lenght>=_spike.currentLenght){
-      _currentSpike=_spike.array[_spike.currentLenght];
-
-      if(_currentSpike.y<canvas.height+context.scale(32)&&_currentSpike.y>=-context.scale(32)){
-        context.render(_currentSpike,_spike.img0);
-        if(!global.pause&&_player.hp>0){ _spike.update(); }
-      }
-
-      _currentSpike.y+=scene.vy;
-      _currentSpike.x+=scene.vx;
-      _spike.currentLenght+=1;
     }
 
     while(_corner.lenght>=_corner.currentLenght){
@@ -289,7 +298,8 @@ scene.levelRender=function(){
 
     context.text(_account.name,_account.color0,_account.name.value0);
     context.render(_account.background,_account.color0);
-    context.render(_account.profile,_account.profile.img0);
+    if(_player.skin==0){ context.render(_account.profile,_account.profile.img0); }
+    else{ context.render(_account.profile,_account.profile.img1); }
 
     context.text(_footer.version,_footer.color0,_footer.version.value0);
     context.render(_footer.github,_footer.github.img0);
@@ -321,90 +331,86 @@ scene.levelRender=function(){
         else{ context.render(_clipboard.back,_clipboard.back.img1); }
 
         if(_button.setting.animation||_button.setting.on){
-          context.text(_clipboard.setting.title,_clipboard.color0,_clipboard.setting.title.value0);
+          context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value0);
+          context.render(_clipboard.icon,_clipboard.icon.img0);
 
           if(!global.sfx){ context.render(_clipboard.setting.sfx.base,_clipboard.setting.img0); }
           else{ context.render(_clipboard.setting.sfx.base,_clipboard.setting.img1); }
-          context.text(_clipboard.setting.sfx.text,_clipboard.color0,_clipboard.setting.sfx.text.value0);
+          context.text(_clipboard.setting.sfx.text,"rgb(0,0,0)",_clipboard.setting.sfx.text.value0);
           if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.img0); }
           else{ context.render(_clipboard.setting.music.base,_clipboard.setting.img1); }
-          context.text(_clipboard.setting.music.text,_clipboard.color0,_clipboard.setting.music.text.value0);
+          context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value0);
           if(!global.tutorial){ context.render(_clipboard.setting.tutorial.base,_clipboard.setting.img0); }
           else{ context.render(_clipboard.setting.tutorial.base,_clipboard.setting.img1); }
-          context.text(_clipboard.setting.tutorial.text,_clipboard.color0,_clipboard.setting.tutorial.text.value0);
+          context.text(_clipboard.setting.tutorial.text,"rgb(0,0,0)",_clipboard.setting.tutorial.text.value0);
           if(!global.teacher){ context.render(_clipboard.setting.teacher.base,_clipboard.setting.img0); }
           else{ context.render(_clipboard.setting.teacher.base,_clipboard.setting.img1); }
-          context.text(_clipboard.setting.teacher.text,_clipboard.color0,_clipboard.setting.teacher.text.value0);
+          context.text(_clipboard.setting.teacher.text,"rgb(0,0,0)",_clipboard.setting.teacher.text.value0);
           if(!global.addon){ context.render(_clipboard.setting.addon.base,_clipboard.setting.img0); }
           else{ context.render(_clipboard.setting.addon.base,_clipboard.setting.img1); }
-          context.text(_clipboard.setting.addon.text,_clipboard.color0,_clipboard.setting.addon.text.value0);
-        }
-  
-        if(_button.about.animation||_button.about.on){
-          context.text(_clipboard.about.title,_clipboard.color0,_clipboard.about.title.value0);
-          context.text(_clipboard.about.text,_clipboard.color0,_clipboard.about.text.value0);
+          context.text(_clipboard.setting.addon.text,"rgb(0,0,0)",_clipboard.setting.addon.text.value0);
+        } else if(_button.about.animation||_button.about.on){
+          context.render(_clipboard.icon,_clipboard.icon.img1);
+          context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value1);
+          context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value0);
         } else if(_button.version.animation||_button.version.on){
-          context.text(_clipboard.version.title,_clipboard.color0,_clipboard.version.title.value0);
-          context.text(_clipboard.version.text,_clipboard.color0,_clipboard.version.text.value0);
+          context.render(_clipboard.icon,_clipboard.icon.img2);
+          context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value2);
+          context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value1);
         }
       }
     }
 
-    if(global.currentTutorial||global.currentReward){
-      context.render(_clipboard.wide,_clipboard.wide.img0);
-      if(!_clipboard.wideBack.hover){ context.render(_clipboard.wideBack,_clipboard.wideBack.img0); }
-      else{ context.render(_clipboard.wideBack,_clipboard.wideBack.img1); }
+    if(global.currentTutorial||global.currentReward||global.currentTeacher){
+      context.render(_footer.next,_footer.next.img0);
 
       if(global.currentTutorial){
-        context.text(_clipboard.tutorial.title,_clipboard.color0,_clipboard.tutorial.title.value0);
-        context.text(_clipboard.tutorial.text,_clipboard.color0,_clipboard.tutorial.text.value0);
+        context.text(_description.title,"rgb(255,255,255)",_description.title.value0);
+        context.text(_description.text,"rgb(255,255,255)",_description.text.value0);
+        context.render(_description.icon,_description.icon.img0);
       } else if(global.currentReward){
-        context.text(_clipboard.reward.title,_clipboard.color0,_clipboard.reward.title.value0);
-        context.text(_clipboard.reward.text,_clipboard.color0,_clipboard.reward.text.value0);
-        context.render(_clipboard.reward.icon,_clipboard.reward.icon.img0);
-      }
-    } else if(global.currentTeacher){
-      context.render(_blueprint.wide,_blueprint.wide.img0);
-      if(!_blueprint.wideBack.hover){ context.render(_blueprint.wideBack,_blueprint.wideBack.img0); }
-      else{ context.render(_blueprint.wideBack,_blueprint.wideBack.img1); }
-
-      if(scene.value==2){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value0);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value0);
-      } else if(scene.value==3){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value1);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value1);
-      } else if(scene.value==4){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value2);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value2);
-      } else if(scene.value==5){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value3);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value3);
-      } else if(scene.value==6){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value4);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value4);
-      } else if(scene.value==7){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value5);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value5);
-      } else if(scene.value==8){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value6);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value6);
-      } else if(scene.value==9){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value7);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value7);
-      } else if(scene.value==10){
-        context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value1);
-        context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value1);
-      } else if(scene.value==11){
-        if(_teacher.round==0){
-          context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.valueAdd0);
-          context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.valueAdd0);
-        } else if(_teacher.round==1){
-          context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.valueAdd1);
-          context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.valueAdd1);
+        context.text(_description.title,"rgb(255,255,255)",_description.title.value1);
+        context.text(_description.text,"rgb(255,255,255)",_description.text.value1);
+        context.render(_description.icon,_description.icon.img0);
+      } else{
+        if(scene.value==2){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value0Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value0Teacher);
+        } else if(scene.value==3){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value1Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value1Teacher);
+        } else if(scene.value==4){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value2Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value2Teacher);
+        } else if(scene.value==5){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value3Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value3Teacher);
+        } else if(scene.value==6){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value4Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value4Teacher);
+        } else if(scene.value==7){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value5Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value5Teacher);
+        } else if(scene.value==8){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value6Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value6Teacher);
+        } else if(scene.value==9){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value7Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value7Teacher);
+        } else if(scene.value==10){
+          context.text(_description.title,"rgb(255,255,255)",_description.title.value1Teacher);
+          context.text(_description.text,"rgb(255,255,255)",_description.text.value1Teacher);
         } else{
-          context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.valueAdd2);
-          context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.valueAdd2);
+          if(_teacher.round==0){
+            context.text(_description.title,"rgb(255,255,255)",_description.title.value8Teacher);
+            context.text(_description.text,"rgb(255,255,255)",_description.text.value8Teacher);
+          } else if(_teacher.round==1){
+            context.text(_description.title,"rgb(255,255,255)",_description.title.value9Teacher);
+            context.text(_description.text,"rgb(255,255,255)",_description.text.value9Teacher);
+          } else{
+            context.text(_description.title,"rgb(255,255,255)",_description.title.value10Teacher);
+            context.text(_description.text,"rgb(255,255,255)",_description.text.value10Teacher);
+          }
         }
       }
     }

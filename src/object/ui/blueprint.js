@@ -17,12 +17,13 @@ _blueprint.update=function(){
     if(_blueprint.on&&_blueprint.close){
       if(_blueprint.base.x<canvas.width+_blueprint.base.width){
         _blueprint.base.x+=context.move(20);
+        _blueprint.skin.x+=context.move(20);
         _blueprint.back.x+=context.move(20);
         _blueprint.left.x+=context.move(20);
         _blueprint.right.x+=context.move(20);
-
-        _blueprint.skin.x+=context.move(20);
-        _blueprint.level.title.x+=context.move(20);
+        _blueprint.title.x+=context.move(20);
+        _blueprint.text.x+=context.move(20);
+        _blueprint.icon.x+=context.move(20);
 
         _blueprint.level.button1.x+=context.move(20);
         _blueprint.level.button2.x+=context.move(20);
@@ -34,31 +35,26 @@ _blueprint.update=function(){
         _blueprint.level.button8.x+=context.move(20);
         _blueprint.level.button9.x+=context.move(20);
         _blueprint.level.button10.x+=context.move(20);
-
-        _blueprint.custom.title.x+=context.move(20);
-        _blueprint.custom.text.x+=context.move(20);
       } else{
-        _blueprint.base.x=context.scale(640+160);
-        _blueprint.back.x=_blueprint.base.x+context.scale(124);
-        _blueprint.left.x=_blueprint.base.x+context.scale(8);
-        _blueprint.right.x=_blueprint.base.x+context.scale(124);
+        _blueprint.base.x=context.scale(800);
+        _blueprint.skin.x=context.scale(846);
+        _blueprint.back.x=context.scale(924);
+        _blueprint.left.x=context.scale(808);
+        _blueprint.right.x=context.scale(924);
+        _blueprint.title.x=context.scale(842);
+        _blueprint.text.x=context.scale(868);
+        _blueprint.icon.x=context.scale(820);
 
-        _blueprint.skin.x=_blueprint.base.x+context.scale(46);
-
-        _blueprint.level.title.x=_blueprint.base.x+context.scale(42);
-        _blueprint.level.button1.x=_blueprint.base.x+context.scale(20);
-        _blueprint.level.button2.x=_blueprint.base.x+context.scale(20);
-        _blueprint.level.button3.x=_blueprint.base.x+context.scale(20);
-        _blueprint.level.button4.x=_blueprint.base.x+context.scale(20);
-        _blueprint.level.button5.x=_blueprint.base.x+context.scale(20);
-        _blueprint.level.button6.x=_blueprint.base.x+context.scale(88);
-        _blueprint.level.button7.x=_blueprint.base.x+context.scale(88);
-        _blueprint.level.button8.x=_blueprint.base.x+context.scale(88);
-        _blueprint.level.button9.x=_blueprint.base.x+context.scale(88);
-        _blueprint.level.button10.x=_blueprint.base.x+context.scale(88);
-
-        _blueprint.custom.title.x=_blueprint.base.x+context.scale(50);
-        _blueprint.custom.text.x=_blueprint.base.x+context.scale(68);
+        _blueprint.level.button1.x=context.scale(820);
+        _blueprint.level.button2.x=context.scale(820);
+        _blueprint.level.button3.x=context.scale(820);
+        _blueprint.level.button4.x=context.scale(820);
+        _blueprint.level.button5.x=context.scale(820);
+        _blueprint.level.button6.x=context.scale(888);
+        _blueprint.level.button7.x=context.scale(888);
+        _blueprint.level.button8.x=context.scale(888);
+        _blueprint.level.button9.x=context.scale(888);
+        _blueprint.level.button10.x=context.scale(888);
 
         _button.level.on=false;
         _blueprint.on=false;
@@ -99,13 +95,14 @@ _blueprint.update=function(){
     else{
       if(_blueprint.base.x>(canvas.width-_blueprint.base.width)-context.scale(32)){
         _blueprint.base.x-=context.move(20);
+        _blueprint.skin.x-=context.move(20);
         _blueprint.back.x-=context.move(20);
         _blueprint.left.x-=context.move(20);
         _blueprint.right.x-=context.move(20);
+        _blueprint.title.x-=context.move(20);
+        _blueprint.text.x-=context.move(20);
+        _blueprint.icon.x-=context.move(20);
 
-        _blueprint.skin.x-=context.move(20);
-
-        _blueprint.level.title.x-=context.move(20);
         _blueprint.level.button1.x-=context.move(20);
         _blueprint.level.button2.x-=context.move(20);
         _blueprint.level.button3.x-=context.move(20);
@@ -116,9 +113,6 @@ _blueprint.update=function(){
         _blueprint.level.button8.x-=context.move(20);
         _blueprint.level.button9.x-=context.move(20);
         _blueprint.level.button10.x-=context.move(20);
-
-        _blueprint.custom.title.x-=context.move(20);
-        _blueprint.custom.text.x-=context.move(20);
       } else{
         _blueprint.on=true;
         _blueprint.close=false;

@@ -29,6 +29,8 @@ window.addEventListener("mousemove",function(event){
     else{ _footer.github.alpha=100; }
     if(context.collision(_footer.pastebin,mouse)){ _footer.pastebin.alpha=50; }
     else{ _footer.pastebin.alpha=100; }
+    if(context.collision(_footer.next,mouse)){ _footer.next.alpha=50; }
+    else{ _footer.next.alpha=100; }
     if(context.collision(_account.background,mouse)){ _account.background.alpha=50; }
     else{ _account.background.alpha=100; }
 
@@ -91,12 +93,6 @@ window.addEventListener("mousemove",function(event){
 
     if(context.collision(_clipboard.back,mouse)){ _clipboard.back.hover=true; }
     else{ _clipboard.back.hover=false; }
-
-    if(context.collision(_clipboard.wideBack,mouse)){ _clipboard.wideBack.hover=true; }
-    else{ _clipboard.wideBack.hover=false; }
-
-    if(context.collision(_blueprint.wideBack,mouse)){ _blueprint.wideBack.hover=true; }
-    else{ _blueprint.wideBack.hover=false; }
 
     if(_blueprint.on){
       if(context.collision(_blueprint.back,mouse)){ _blueprint.back.hover=true; }

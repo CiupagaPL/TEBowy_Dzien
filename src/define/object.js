@@ -124,13 +124,13 @@ const _start={
 
     img0:Object.assign(new Image(),{src:"tex/icon/menu/hugeArrow.png"}),
     alpha:25,
-  }
+  },
 };
 
 const _title={
   base:{
     x:166,
-    y:35,
+    y:28,
 
     width:162,
     height:96,
@@ -139,7 +139,7 @@ const _title={
     alpha:100,
   }, teb:{
     x:64,
-    y:35,
+    y:28,
     
     width:96,
     height:96,
@@ -159,20 +159,21 @@ const _account={
     value0:"Witaj Graczu!",
     size:16,
   }, profile:{
-    x:324,
+    x:320,
     y:4,
-
-    width:16,
-    height:16,
-
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/profile.png"}),
-    alpha:100,
-  }, background:{
-    x:322,
-    y:2,
 
     width:20,
     height:20,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/menu/profile0.png"}),
+    img1:Object.assign(new Image(),{src:"tex/icon/menu/profile1.png"}),
+    alpha:100,
+  }, background:{
+    x:318,
+    y:2,
+
+    width:24,
+    height:24,
   },
 
   color0:"rgb(255,255,255)",
@@ -183,29 +184,108 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 21-04-2025",
+    value0:"Gałęź Niestabilna: 23-04-2025",
     size:16,
   }, github:{
-    x:322,
-    y:338,
+    x:318,
+    y:334,
 
-    width:20,
-    height:20,
+    width:24,
+    height:24,
 
     img0:Object.assign(new Image(),{src:"tex/icon/menu/github.png"}),
     alpha:100,
   }, pastebin:{
-    x:298,
-    y:338,
+    x:292,
+    y:334,
 
-    width:20,
-    height:20,
+    width:24,
+    height:24,
 
     img0:Object.assign(new Image(),{src:"tex/icon/menu/pastebin.png"}),
+    alpha:100,
+  }, next:{
+    x:318,
+    y:338-28,
+
+    width:24,
+    height:18,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/menu/next.png"}),
     alpha:100,
   },
 
   color0:"rgb(255,255,255)",
+};
+
+const _description={
+  title:{
+    x:86,
+    y:184,
+
+    value0:"Poradnik",
+    value1:"Gratulacje",
+    value0Teacher:"Tomasz Staniszewski",
+    value1Teacher:"Radosław Sass",
+    value2Teacher:"Paweł Kępa",
+    value3Teacher:"Anna Skarbek Chmielewska",
+    value4Teacher:"Marta Milde",
+    value5Teacher:"Anna Świtoń",
+    value6Teacher:"Piotr Łojek",
+    value7Teacher:"Iwo Musiałowski",
+    value8Teacher:"Wojciech Złotowski",
+    value9Teacher:"Anna Niklas",
+    value10Teacher:"Iwona Bury Sierzchuła",
+    size:28,
+  }, text:{
+    x:64,
+    y:204,
+
+    value0:"Poruszaj się za pomocą [A][D] lub [←][→]. Podskakuj za pomocą\n"+
+           "[W][↑][Space]. Będąc na chmurce do poruszania używaj\n"+
+           "[W][A][S][D] lub [↑][←][↓][→]. Strzelaj za pomocą [Q]. Zmień typ\n"+
+           "amunicji za pomocą [R]. Używaj obiektów za pomocą [E]. Twoim\n"+
+           "celem jest dostać się na górę poziomu i pokonać danego nauczyciela.\n"+
+           "Po drodze musisz omijać wiele przeszkód na szkolnych korytarzach.\n"+
+           "W przypadku zagrożenia pamiętaj o innych amunicjach jak i o\n"+
+           "TEBulinku. Życzymy szczęścia!",
+    value1:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
+    value0Teacher:"Nauczyciel z pasją, zwany często\nPanem Gołębiem. Twórca Twojej\nplatformówki. "+
+                  "Dzięki niemu\npoznasz wszystkie tajniki aplikacji\nwebowych, desktopowych\ni mobilnych. Walka nie będzie łatwa.",
+    value1Teacher:"Zapalony fotograf i mistrz zdjęć\ndużego formatu. Z nim nie\nbędziesz się nudził/a szczególnie\n"+
+                  "jeśli planujesz zostać Technikiem\nFotografii i Multimediów. Zajęcia\npraktyczne"+
+                  "pełne ciekawych\nrozwiązań, a usposobienie Pana\nRadka na szóstkę z koroną!\nWalka nie będzie łatwa.",
+    value2Teacher:"Mężczyzna pracujący, żadnej\npracy się nie boi! Fotograf\ni Informatyk w jednym, a swoje\n"+
+                  "umiejętności z powodzeniem łączy\nna kierunkach zawodowych.\nNauczy Cię do egzaminu i sprzeda\n"+
+                  "przydatną wiedzę życiową! Walka\nnie będzie łatwa.",
+    value3Teacher:"Ma rękę do biznesów. Z tym\nnauczycielem będzie Ci po\ndrodze jeśli chcesz nauczyć się\n"+
+                  "Biznesu i Zarządzania. Podstawy\nPrzedsiębiorczości nie są jej\nobce, a wycieczki do Urzędu\n"+
+                  "Skarbowego murowane. Walka nie\nbędzie łatwa.",
+    value4Teacher:"Kobieta tysiąca zawodów\ni koordynator chaosu, nie ma\ntakich zadań, z którymi by sobie\n"+
+                  "nie poradziła! Możesz ją spotkać\nna zajęciach z Cyfrowej Obróbki\nObrazu, Projektów, Plastyki\n"+
+                  "czy BiZu. Za chwilę będzie\nwychodzić nawet z lodówki! Walka\nnie będzie łatwa.",
+    value5Teacher:"Kiedy głowa ciąży od problemów,\na serduszko łamie się od zmartwień,\nlekiem na problemy jest Pani Pedagog,\n"+
+                  "która zawsze znajdzie dla Ciebie czas.\nWalka nie będzie łatwa.",
+    value6Teacher:"Zwany postrachem tej szkoły. Mistrz\npoligrafii i nauczyciel w jednym. Jeśli\nmyślisz serio o przedmiotach zawodowych,\n"+
+                  "może Cię potraktować ulgowo… pod\nwarunkiem, że go słuchasz! Walka\nnie będzie łatwa.",
+    value7Teacher:"To jest dopiero #nauczycielzpasją!\nNie stroni od historycznych przebieranek\n"+
+                  "i inscenizacji, a jego lekcje historii\npoparte są żywym przykładem. Kolekcjoner\nuzbrojenia i mundrów. Walka nie\nbędzie łatwa.",
+    value8Teacher:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
+                  "Wojtek zarządza Liceum, a jednocześnie\nprzekazuje praktyczną wiedzę. To jeszcze\nnie koniec!",
+    value9Teacher:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
+                  "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
+                  "To jeszcze nie koniec!",
+    value10Teacher:"Główna Pani Dyrektor TEB TORUŃ\n Nadzoruje aby wszystko działało jak należy\n To już ostateczna walka!",
+    size:12,
+  }, icon:{
+    x:64,
+    y:168,
+
+    width:16,
+    height:16,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/decoration/general0.png"}),
+  },
 };
 
 const _ui={
@@ -516,7 +596,7 @@ const _button={
   start:{
     base:{
       x:64,
-      y:156,
+      y:150,
 
       width:42,
       height:42,
@@ -525,7 +605,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/startOn.png"}),
     }, text:{
       x:112,
-      y:174,
+      y:168,
 
       width:56,
       line:2,
@@ -537,7 +617,7 @@ const _button={
   }, level:{
     base:{
       x:64,
-      y:220,
+      y:214,
 
       width:42,
       height:42,
@@ -546,7 +626,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/levelOn.png"}),
     }, text:{
       x:112,
-      y:238,
+      y:232,
 
       width:42,
       line:2,
@@ -562,7 +642,7 @@ const _button={
   }, menu:{
     base:{
       x:64,
-      y:220,
+      y:214,
 
       width:42,
       height:42,
@@ -571,7 +651,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/menuOn.png"}),
     }, text:{
       x:112,
-      y:238,
+      y:232,
 
       width:46,
       line:2,
@@ -583,7 +663,7 @@ const _button={
   }, custom:{
     base:{
       x:64,
-      y:284,
+      y:278,
 
       width:42,
       height:42,
@@ -592,7 +672,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
     }, text:{
       x:112,
-      y:302,
+      y:296,
 
       width:42,
       line:2,
@@ -608,7 +688,7 @@ const _button={
   }, restart:{
     base:{
       x:64,
-      y:284,
+      y:278,
 
       width:42,
       height:42,
@@ -617,7 +697,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/restartOn.png"}),
     }, text:{
       x:112,
-      y:302,
+      y:296,
 
       width:42,
       line:2,
@@ -629,7 +709,7 @@ const _button={
   }, setting:{
     base:{
       x:286,
-      y:156,
+      y:150,
 
       width:42,
       height:42,
@@ -638,7 +718,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/settingOn.png"}),
     }, text:{
       x:238,
-      y:184,
+      y:178,
 
       width:42,
       line:1,
@@ -654,7 +734,7 @@ const _button={
   }, about:{
     base:{
       x:286,
-      y:220,
+      y:214,
 
       width:42,
       height:42,
@@ -663,7 +743,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/aboutOn.png"}),
     }, text:{
       x:226,
-      y:238,
+      y:232,
 
       width:54,
       line:2,
@@ -679,7 +759,7 @@ const _button={
   }, version:{
     base:{
       x:286,
-      y:284,
+      y:278,
 
       width:42,
       height:42,
@@ -688,7 +768,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
     }, text:{
       x:230,
-      y:302,
+      y:296,
 
       width:58,
       line:2,
@@ -723,38 +803,35 @@ const _clipboard={
 
     img0:Object.assign(new Image(),{src:"tex/ui/clipboard/back.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/clipboard/backHover.png"}),
-  },
+  }, icon:{
+    x:820,
+    y:104,
 
-  wide:{
-    x:62,
-    y:152,
+    width:16,
+    height:16,
 
-    width:264,
-    height:184,
+    img0:Object.assign(new Image(),{src:"tex/icon/decoration/setting.png"}),
+    img1:Object.assign(new Image(),{src:"tex/icon/decoration/info.png"}),
+    img2:Object.assign(new Image(),{src:"tex/icon/decoration/general1.png"}),
+  }, title:{
+    x:844,
+    y:120,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/wide.png"}),
-  }, wideBack:{
-    x:296,
-    y:152,
+    value0:"Opcje",
+    value1:"Opis",
+    value2:"Twórcy",
+    size:28,
+  }, text:{
+    x:824,
+    y:138,
 
-    width:24,
-    height:24,
-	  rotation:180,
-
-    hover:false,
-
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/clipboard/backHover.png"}),
-  },
-
-  setting:{
-    title:{
-      x:830,
-      y:120,
-
-      value0:"Ustawienia",
-      size:28,
-    }, sfx:{
+    value0:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\n"+
+           "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\n\nOd TEBowiczów\nDla TEBowiczów <3",
+    value1:"Inicjator Projektu,\nPomysłodawca:\n> tom2edu\nProgramista, Twórca\nWiększości Tekstur:\n> Ciupaga\n"+
+           "Twórca Dźwięków, Alpha\ni Beta Tester:\n> Ucheesename\nTwórca Muzyki:\n> M4RCIN-MJJ",
+    size:14,
+  }, setting:{
+    sfx:{
       base:{
         x:824,
         y:138,
@@ -830,88 +907,9 @@ const _clipboard={
     img1:Object.assign(new Image(),{src:"tex/ui/clipboard/checked.png"}),
   },
 
-  about:{
-    title:{
-      x:860,
-      y:120,
-
-      value0:"Opis",
-      size:28,
-    }, text:{
-      x:824,
-      y:138,
-
-      value0:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\n"+
-             "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\n\nOd TEBowiczów\nDla TEBowiczów <3",
-      size:14,
-    },
-  },
-
-  version:{
-    title:{
-      x:846,
-      y:120,
-
-      value0:"Twórcy",
-      size:28,
-    }, text:{
-      x:824,
-      y:138,
-
-      value0:"Inicjator Projektu,\nPomysłodawca:\n> tom2edu\nProgramista, Twórca\nWiększości Tekstur:\n> Ciupaga\n"+
-             "Twórca Dźwięków, Alpha\ni Beta Tester:\n> Ucheesename\nTwórca Muzyki:\n> M4RCIN-MJJ",
-      size:14,
-    },
-  },
-
-  tutorial:{
-    title:{
-      x:144,
-      y:184,
-
-      value0:"Poradnik",
-      size:28,
-    }, text:{
-      x:80,
-      y:202,
-
-      value0:"Poruszaj się za pomocą [A]|[D] lub [Lewo]|[Prawo].\nPodskakuj za pomocą [W]|[Góra]|[Spacja]. Będąc\n"+
-            "na chmurce do poruszania używaj [W]|[A]|[S]|[D] lub\n[Góra]|[Lewo]|[Dół]|[Prawo]. Strzelaj za pomocą\n"+
-            "[Q]. Zmień typ amunicji za pomocą [R]. Używaj\nobiektów za pomocą [E]. Twoim celem jest\ndostać się na górę poziomu i pokonać danego\n"+
-            "nauczyciela. Po drodze musisz omijać przeszkody\nw postaci kolców i laserów. W trudnej sytuacji\nużyj Tebulinka. Życzymy szczęścia!",
-      size:12,
-    },
-  },
-
-  reward:{
-    title:{
-      x:124,
-      y:184,
-
-      value0:"Gratulacje!",
-      size:28,
-    }, text:{
-      x:80,
-      y:202,
-
-      value0:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
-      size:12,
-    }, icon:{
-      x:224,
-      y:164,
-
-      width:24,
-      height:24,
-
-      img0:Object.assign(new Image(),{src:"tex/icon/decoration/trophy.png"}),
-    },
-  },
-
   on:false,
   close:false,
   change:false,
-
-  color0:"rgb(0,0,0)",
 
   update:function(){},
 };
@@ -928,7 +926,7 @@ const _blueprint={
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/1.png"}),
   }, skin:{
     x:846,
-    y:126,
+    y:132,
 
     width:70,
     height:120,
@@ -970,38 +968,30 @@ const _blueprint={
 
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
-  },
+  }, title:{
+    x:842,
+    y:120,
 
-  wide:{
-    x:62,
-    y:152,
+    value0:"Poziomy",
+    value1:"Skórka",
+    size:28,
+  }, text:{
+    x:868,
+    y:284,
 
-    width:264,
-    height:184,
+    value0:"1/2",
+    size:20,
+  }, icon:{
+    x:820,
+    y:104,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/wide.png"}),
-  }, wideBack:{
-    x:300,
-    y:310,
+    width:16,
+    height:16,
 
-    width:24,
-    height:24,
-	  rotation:180,
-
-    hover:false,
-
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
-  },
-
-  level:{
-    title:{
-      x:842,
-      y:118,
-
-      value0:"Poziomy",
-      size:28,
-    }, button1:{
+    img0:Object.assign(new Image(),{src:"tex/icon/decoration/level.png"}),
+    img1:Object.assign(new Image(),{src:"tex/icon/decoration/skin.png"}),
+  }, level:{
+    button1:{
       x:820,
       y:152,
 
@@ -1103,79 +1093,10 @@ const _blueprint={
       alpha:100,
     },
   },
-
-  custom:{
-    title:{
-      x:850,
-      y:118,
-
-      value0:"Skórka",
-      size:28,
-    }, text:{
-      x:868,
-      y:260,
-
-      value0:"1/2",
-      size:20,
-    },
-  },
-
-  teacher:{
-    title:{
-      x:74,
-      y:176,
-
-      value0:"Tomasz Staniszewski",
-      value1:"Radosław Sass",
-      value2:"Paweł Kępa",
-      value3:"Anna Skarbek Chmielewska",
-      value4:"Marta Milde",
-      value5:"Anna Świtoń",
-      value6:"Piotr Łojek",
-      value7:"Iwo Musiałowski",
-      valueAdd0:"Wojciech Złotowski",
-      valueAdd1:"Anna Niklas",
-      valueAdd2:"Iwona Bury Sierzchuła",
-      size:20,
-    }, text:{
-      x:76,
-      y:216,
-
-      value0:"Nauczyciel z pasją, zwany często\nPanem Gołębiem. Twórca Twojej\nplatformówki. "+
-             "Dzięki niemu\npoznasz wszystkie tajniki aplikacji\nwebowych, desktopowych\ni mobilnych. Walka nie będzie łatwa.",
-      value1:"Zapalony fotograf i mistrz zdjęć\ndużego formatu. Z nim nie\nbędziesz się nudził/a szczególnie\n"+
-             "jeśli planujesz zostać Technikiem\nFotografii i Multimediów. Zajęcia\npraktyczne"+
-             "pełne ciekawych\nrozwiązań, a usposobienie Pana\nRadka na szóstkę z koroną!\nWalka nie będzie łatwa.",
-      value2:"Mężczyzna pracujący, żadnej\npracy się nie boi! Fotograf\ni Informatyk w jednym, a swoje\n"+
-             "umiejętności z powodzeniem łączy\nna kierunkach zawodowych.\nNauczy Cię do egzaminu i sprzeda\n"+
-             "przydatną wiedzę życiową! Walka\nnie będzie łatwa.",
-      value3:"Ma rękę do biznesów. Z tym\nnauczycielem będzie Ci po\ndrodze jeśli chcesz nauczyć się\n"+
-             "Biznesu i Zarządzania. Podstawy\nPrzedsiębiorczości nie są jej\nobce, a wycieczki do Urzędu\n"+
-             "Skarbowego murowane. Walka nie\nbędzie łatwa.",
-      value4:"Kobieta tysiąca zawodów\ni koordynator chaosu, nie ma\ntakich zadań, z którymi by sobie\n"+
-             "nie poradziła! Możesz ją spotkać\nna zajęciach z Cyfrowej Obróbki\nObrazu, Projektów, Plastyki\n"+
-             "czy BiZu. Za chwilę będzie\nwychodzić nawet z lodówki! Walka\nnie będzie łatwa.",
-      value5:"Kiedy głowa ciąży od problemów,\na serduszko łamie się od zmartwień,\nlekiem na problemy jest Pani Pedagog,\n"+
-             "która zawsze znajdzie dla Ciebie czas.\nWalka nie będzie łatwa.",
-      value6:"Zwany postrachem tej szkoły. Mistrz\npoligrafii i nauczyciel w jednym. Jeśli\nmyślisz serio o przedmiotach zawodowych,\n"+
-             "może Cię potraktować ulgowo… pod\nwarunkiem, że go słuchasz! Walka\nnie będzie łatwa.",
-      value7:"To jest dopiero #nauczycielzpasją!\nNie stroni od historycznych przebieranek\n"+
-             "i inscenizacji, a jego lekcje historii\npoparte są żywym przykładem. Kolekcjoner\nuzbrojenia i mundrów. Walka nie\nbędzie łatwa.",
-      valueAdd0:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
-                "Wojtek zarządza Liceum, a jednocześnie\nprzekazuje praktyczną wiedzę. To jeszcze\nnie koniec!",
-      valueAdd1:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
-                "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
-                "To jeszcze nie koniec!",
-      valueAdd2:"Główna Pani Dyrektor TEB TORUŃ\n Nadzoruje aby wszystko działało jak należy\n To już ostateczna walka!",
-      size:12,
-    },
-  },
   
   on:false,
   close:false,
   change:false,
-
-  color0:"rgb(255,255,255)",
 
   update:function(){},
 };
@@ -1365,12 +1286,8 @@ const _spike={
 
   lenght:-1,
   currentLenght:0,
-  random:0,
-  count:0,
+  current:0,
 
-  checked:false,
-  detected:false,
-  
   img0:Object.assign(new Image(),{src:"tex/obj/map/spike.png"}),
 
   update:function(){},
@@ -1399,6 +1316,10 @@ const _decoration={
   img2Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/green.png"}),
   img3Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/purple.png"}),
   img4Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/cyan.png"}),
+  img0Close:Object.assign(new Image(),{src:"tex/obj/map/locker/obstacle/orange.png"}),
+  img1Close:Object.assign(new Image(),{src:"tex/obj/map/locker/obstacle/green.png"}),
+  img2Close:Object.assign(new Image(),{src:"tex/obj/map/locker/obstacle/purple.png"}),
+  img3Close:Object.assign(new Image(),{src:"tex/obj/map/locker/obstacle/cyan.png"}),
 
   update:function(){},
 };

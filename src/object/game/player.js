@@ -19,80 +19,80 @@ _player.render=function(){
       _player.base.alpha+=context.frame(8);
       if(_player.base.alpha>=100){ _player.invisible=0; }
     }
-  }
-
-  if(!_player.ammo.unused){
+  } if(!_player.ammo.unused){
     if(_player.ammo.type==0){ context.render(_player.ammo,_player.ammo.img0); }
     else if(_player.ammo.type==1){ context.render(_player.ammo,_player.ammo.img1); }
     else{ context.render(_player.ammo,_player.ammo.img2); }
   }
 
-  if(!_player.left){
-    if(_player.skin==0){
-      context.render(_player.base,_player.base.img0);
+  if(_player.hp>0&&!global.restart){
+    if(!_player.left){
+      if(_player.skin==0){
+        context.render(_player.base,_player.base.img0);
 
-      if(_player.gun.type==0){
-        if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0BoyNormal); }
-        else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1BoyNormal); }
-        else{ context.render(_player.gun,_player.gun.img2BoyNormal); }
-      } else if(_player.gun.type==1){
-        if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0BoyStrong); }
-        else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1BoyStrong); }
-        else{ context.render(_player.gun,_player.gun.img2BoyStrong); }
+        if(_player.gun.type==0){
+          if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0BoyNormal); }
+          else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1BoyNormal); }
+          else{ context.render(_player.gun,_player.gun.img2BoyNormal); }
+        } else if(_player.gun.type==1){
+          if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0BoyStrong); }
+          else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1BoyStrong); }
+          else{ context.render(_player.gun,_player.gun.img2BoyStrong); }
+        } else{
+          if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0BoyFast); }
+          else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1BoyFast); }
+          else{ context.render(_player.gun,_player.gun.img2BoyFast); }
+        }
       } else{
-        if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0BoyFast); }
-        else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1BoyFast); }
-        else{ context.render(_player.gun,_player.gun.img2BoyFast); }
+        context.render(_player.base,_player.base.img1);
+
+        if(_player.gun.type==0){
+          if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0GirlNormal); }
+          else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1GirlNormal); }
+          else{ context.render(_player.gun,_player.gun.img2GirlNormal); }
+        } else if(_player.gun.type==1){
+          if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0GirlStrong); }
+          else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1GirlStrong); }
+          else{ context.render(_player.gun,_player.gun.img2GirlStrong); }
+        } else{
+          if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0GirlFast); }
+          else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1GirlFast); }
+          else{ context.render(_player.gun,_player.gun.img2GirlFast); }
+        }
       }
     } else{
-      context.render(_player.base,_player.base.img1);
+      if(_player.skin==0){
+        context.render(_player.base,_player.base.img0Left);
 
-      if(_player.gun.type==0){
-        if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0GirlNormal); }
-        else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1GirlNormal); }
-        else{ context.render(_player.gun,_player.gun.img2GirlNormal); }
-      } else if(_player.gun.type==1){
-        if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0GirlStrong); }
-        else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1GirlStrong); }
-        else{ context.render(_player.gun,_player.gun.img2GirlStrong); }
+        if(_player.gun.type==0){
+          if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0BoyNormalLeft); }
+          else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1BoyNormalLeft); }
+          else{ context.render(_player.gun,_player.gun.img2BoyNormalLeft); }
+        } else if(_player.gun.type==1){
+          if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0BoyStrongLeft); }
+          else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1BoyStrongLeft); }
+          else{ context.render(_player.gun,_player.gun.img2BoyStrongLeft); }
+        } else{
+          if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0BoyFastLeft); }
+          else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1BoyFastLeft); }
+          else{ context.render(_player.gun,_player.gun.img2BoyFastLeft); }
+        }
       } else{
-        if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0GirlFast); }
-        else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1GirlFast); }
-        else{ context.render(_player.gun,_player.gun.img2GirlFast); }
-      }
-    }
-  } else{
-    if(_player.skin==0){
-      context.render(_player.base,_player.base.img0Left);
+        context.render(_player.base,_player.base.img1Left);
 
-      if(_player.gun.type==0){
-        if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0BoyNormalLeft); }
-        else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1BoyNormalLeft); }
-        else{ context.render(_player.gun,_player.gun.img2BoyNormalLeft); }
-      } else if(_player.gun.type==1){
-        if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0BoyStrongLeft); }
-        else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1BoyStrongLeft); }
-        else{ context.render(_player.gun,_player.gun.img2BoyStrongLeft); }
-      } else{
-        if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0BoyFastLeft); }
-        else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1BoyFastLeft); }
-        else{ context.render(_player.gun,_player.gun.img2BoyFastLeft); }
-      }
-    } else{
-      context.render(_player.base,_player.base.img1Left);
-
-      if(_player.gun.type==0){
-        if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0GirlNormalLeft); }
-        else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1GirlNormalLeft); }
-        else{ context.render(_player.gun,_player.gun.img2GirlNormalLeft); }
-      } else if(_player.gun.type==1){
-        if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0GirlStrongLeft); }
-        else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1GirlStrongLeft); }
-        else{ context.render(_player.gun,_player.gun.img2GirlStrongLeft); }
-      } else{
-        if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0GirlFastLeft); }
-        else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1GirlFastLeft); }
-        else{ context.render(_player.gun,_player.gun.img2GirlFastLeft); }
+        if(_player.gun.type==0){
+          if(_player.gun.timer<context.time(45)){ context.render(_player.gun,_player.gun.img0GirlNormalLeft); }
+          else if(_player.gun.timer>=context.time(45)&&_player.gun.timer<context.time(90)){ context.render(_player.gun,_player.gun.img1GirlNormalLeft); }
+          else{ context.render(_player.gun,_player.gun.img2GirlNormalLeft); }
+        } else if(_player.gun.type==1){
+          if(_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img0GirlStrongLeft); }
+          else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(120)){ context.render(_player.gun,_player.gun.img1GirlStrongLeft); }
+          else{ context.render(_player.gun,_player.gun.img2GirlStrongLeft); }
+        } else{
+          if(_player.gun.timer<context.time(30)){ context.render(_player.gun,_player.gun.img0GirlFastLeft); }
+          else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_player.gun,_player.gun.img1GirlFastLeft); }
+          else{ context.render(_player.gun,_player.gun.img2GirlFastLeft); }
+        }
       }
     }
   }
@@ -111,18 +111,15 @@ _player.update=function(){
     _player.cloud.y+=_player.vy;
     _player.gun.y+=_player.vy;
 
+    _player.ammo.y+=scene.vy;
+
     if(!_player.cloudFly){ _player.vy+=_player.gravity; }
 
     if(!_player.ammo.unused){
       if(!_player.ammo.left){ _player.ammo.x+=context.move(12); }
       else{ _player.ammo.x-=context.move(12); }
 
-      if(_player.ammo.x+_player.ammo.width>=canvas.width||_player.ammo.x<0){
-        _player.ammo.unused=true;
-        _player.ammo.power=false;
-        _player.ammo.x=_player.ammo.width;
-        _player.ammo.y=_player.ammo.height;
-      }
+      if(_player.ammo.x+_player.ammo.width-scene.vx>=canvas.width||_player.ammo.x<scene.vx){ _player.ammo.unused=true; }
     }
 
     if(!_player.grounded&&!_player.cloudFly){
@@ -134,7 +131,6 @@ _player.update=function(){
 
       _player.cloud.y+=scene.vy;
       _player.gun.y+=scene.vy;
-      _player.ammo.y+=scene.vy;
     }
 
     _player.base.x+=scene.vx+_player.vx;
@@ -189,9 +185,29 @@ _player.lateUpdate=function(){
   }
 
   if(!global.pause&&_player.hp>0){
-    if(_player.base.x<=context.scale(160)){ scene.vx=context.move(4); }
-    else if(_player.base.x>=context.scale(640-160)){ scene.vx=-context.move(4); }
-    else{ scene.vx=0; }
+    if(_player.base.x<=context.scale(160)){
+      scene.vx=context.move(4);
+
+      _player.base.x=context.scale(160);
+      _player.collisionLeft.x=_player.base.x+context.scale(4);
+      _player.collisionRight.x=_player.base.x+context.scale(52);
+      _player.collisionTop.x=_player.base.x+context.scale(14);
+      _player.collisionBottom.x=_player.base.x+context.scale(12);
+
+      _player.gun.x=_player.base.x;
+      _player.cloud.x=_player.base.x-context.scale(8);
+    } else if(_player.base.x>=context.scale(480)){
+      scene.vx=-context.move(4);
+
+      _player.base.x=context.scale(480);
+      _player.collisionLeft.x=_player.base.x+context.scale(4);
+      _player.collisionRight.x=_player.base.x+context.scale(52);
+      _player.collisionTop.x=_player.base.x+context.scale(14);
+      _player.collisionBottom.x=_player.base.x+context.scale(12);
+
+      _player.gun.x=_player.base.x;
+      _player.cloud.x=_player.base.x-context.scale(8);
+    } else{ scene.vx=0; }
   } else{ scene.vx=0; }
 
   if(_player.base.x>=canvas.width&&scene.score==_platform.load+1&&!_teacher.on){
@@ -223,7 +239,7 @@ _player.lateUpdate=function(){
   if(_player.fly){
     _player.upTimer++;
 
-    if(_player.upTimer<context.time(16)){
+    if(_player.upTimer<context.time(20)){
       _player.gravity=0;
       _player.vy=0;
     } else{ _player.gravity=context.scale(0.5); }
