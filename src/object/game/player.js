@@ -25,7 +25,7 @@ _player.render=function(){
     else{ context.render(_player.ammo,_player.ammo.img2); }
   }
 
-  if(_player.hp>0&&!global.restart){
+  if(_player.hp>0&&!global.load){
     if(!_player.left){
       if(_player.skin==0){
         context.render(_player.base,_player.base.img0);

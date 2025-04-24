@@ -43,12 +43,16 @@ _decoration.update=function(){
     }
 
     if(context.collision(_currentDecoration.first,_player.ammo)&&!_player.ammo.unused&&_currentDecoration.first.active){
+      if(global.sfx&&_player.hp>0){ audio.locker_sfx.play(); }
+
       if(_currentDecoration.base.type==5){ _currentDecoration.base.type=_currentDecoration.first.type; }
       else{ _currentDecoration.bottom.type=_currentDecoration.first.type; }
 
       _currentDecoration.first.active=false;
       _player.ammo.unused=true;
     } if(context.collision(_currentDecoration.second,_player.ammo)&&!_player.ammo.unused&&_currentDecoration.second.active){
+      if(global.sfx&&_player.hp>0){ audio.locker_sfx.play(); }
+
       if(_currentDecoration.left.type==5){ _currentDecoration.left.type=_currentDecoration.second.type; }
       else{ _currentDecoration.bottomLeft.type=_currentDecoration.second.type; }
 
@@ -143,12 +147,19 @@ _spike.update=function(){
     if(_currentSpike.y>=context.scale(672)){ _currentSpike.disable=true; }
   }
 
-
   if(context.collision(_currentSpike,_player.base)&&_player.invisible==0){
     _player.hp-=1;
     _player.damage=true;
     _player.invisible=1;
-    if(global.sfx&&_player.hp>0){ audio.damage1_sfx.play(); }
+    if(global.sfx&&_player.hp>0){
+      if(audio.damage1==0){
+        audio.damage1_sfx.play();
+        audio.damage1++;
+      } else{
+        audio.damage1_alt.play();
+        audio.damage1=0;
+      }
+    }
   }
 }
 
@@ -223,16 +234,22 @@ _corner.update=function(){
       _player.hp-=1;
       _player.damage=true;
       _player.invisible=1;
-      if(global.sfx&&_player.hp>0){ audio.damage1_sfx.play(); }
+      if(global.sfx&&_player.hp>0){
+        if(audio.damage1==0){
+          audio.damage1_sfx.play();
+          audio.damage1++;
+        } else{
+          audio.damage1_sfx.alt();
+          audio.damage1=0;
+        }
+      }
     }
 
     if(_corner.timer>=context.time(40)&&_corner.timer<context.time(50)){ _currentCorner.laser.alpha+=context.frame(4); }
     else if(_corner.timer==context.time(50)){ _currentCorner.laser.alpha=50; }
     else if(_corner.timer>=context.time(60)&&_corner.timer<context.time(70)){ _currentCorner.laser.alpha+=context.frame(6); }
-    else if(_corner.timer==context.time(70)){
-      if(!global.pause&&_player.hp>0){ audio.laser_sfx.play(); }
-      _currentCorner.laser.alpha=100;
-    } else if(_corner.timer>context.time(70)){
+    else if(_corner.timer==context.time(70)){ _currentCorner.laser.alpha=100; }
+    else if(_corner.timer>context.time(70)){
       _currentCorner.laser.alpha-=context.frame(8);
       if(_currentCorner.laser.alpha<=0){ _corner.timer=0; }
     }
@@ -258,6 +275,7 @@ _corner.update=function(){
       }
 
       if(scene.key&&_currentCorner.lock.alpha==100){
+        if(global.sfx){ audio.unlock_sfx.play(); }
         _currentCorner.lock.alpha=99;
         scene.key=false;
       }

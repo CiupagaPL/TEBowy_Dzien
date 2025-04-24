@@ -275,10 +275,9 @@ window.addEventListener("click",function(){
 
       global.pauseChange=true;
       global.pauseAnimation=false;
-
-      if(global.currentTutorial){ global.currentTutorial=false; }
-      else{ global.currentReward=false; }
     }
+
+    if(context.collision(_account.background,mouse)&&(scene.value==1||scene.value>=2&&global.pause)){ if(global.sfx){ audio.click1_sfx.play(); } }
 
     if(_blueprint.on){
       if(context.collision(_blueprint.back,mouse)&&_blueprint.on){

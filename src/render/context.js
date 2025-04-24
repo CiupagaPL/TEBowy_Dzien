@@ -149,8 +149,15 @@ context.default=function(){
   scene.auto=false;
   scene.boss=false;
 
-  if(scene.value!=11){ _platform.load=15; }
-  else{ _platform.load=5; }
+  if(scene.value!=11){ _platform.load=11; }
+  else{ _platform.load=6; }
+
+  audio.jump=0;
+  audio.damage1=0;
+  audio.damage2=0;
+  audio.fire1=0;
+  audio.fire2=0;
+  audio.laser=0;
 
   global.currentTeacher=false;
   global.currentReward=false;

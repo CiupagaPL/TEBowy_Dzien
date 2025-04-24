@@ -184,7 +184,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 23-04-2025",
+    value0:"Gałęź Niestabilna: 24-04-2025",
     size:16,
   }, github:{
     x:318,
@@ -221,7 +221,7 @@ const _footer={
 const _description={
   title:{
     x:86,
-    y:184,
+    y:174,
 
     value0:"Poradnik",
     value1:"Gratulacje",
@@ -239,16 +239,18 @@ const _description={
     size:28,
   }, text:{
     x:64,
-    y:204,
+    y:188,
 
-    value0:"Poruszaj się za pomocą [A][D] lub [←][→]. Podskakuj za pomocą\n"+
-           "[W][↑][Space]. Będąc na chmurce do poruszania używaj\n"+
-           "[W][A][S][D] lub [↑][←][↓][→]. Strzelaj za pomocą [Q]. Zmień typ\n"+
-           "amunicji za pomocą [R]. Używaj obiektów za pomocą [E]. Twoim\n"+
-           "celem jest dostać się na górę poziomu i pokonać danego nauczyciela.\n"+
-           "Po drodze musisz omijać wiele przeszkód na szkolnych korytarzach.\n"+
-           "W przypadku zagrożenia pamiętaj o innych amunicjach jak i o\n"+
-           "TEBulinku. Życzymy szczęścia!",
+    value0:"Poruszanie: [A] [D] | [<] [>]\n"+
+           "Skok: [W] | [^] | [Spacja]; Interakcja z obiektami: [E]\n"+
+           "Strzelanie: [Q]; Zamiana amunicji: [R]\n\n"+
+           "Twoim celem jest dostać się na górę poziomu i stawić czoła\n"+
+           "danemu nauczycielowi. Po drodze musisz omijać wiele przeszkód\n"+
+           "na szkolnych korytarzach. Przeskakuj dolne kolce. Zwracaj\n"+
+           "uwagę na kolce górne. Strzelaj w szafki by je zamknąć. Otwieraj\n"+
+           "TEBoxy by zdobyć klucze do kolejnych pięter i inne przedmioty.\n"+
+           "W przypadku zagrożenia pamiętaj o innych rodzajach amunicji.\n"+
+           "Może również przydać Ci się TEBulinek. Życzymy szczęścia!",
     value1:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
     value0Teacher:"Nauczyciel z pasją, zwany często\nPanem Gołębiem. Twórca Twojej\nplatformówki. "+
                   "Dzięki niemu\npoznasz wszystkie tajniki aplikacji\nwebowych, desktopowych\ni mobilnych. Walka nie będzie łatwa.",
@@ -276,10 +278,10 @@ const _description={
                   "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
                   "To jeszcze nie koniec!",
     value10Teacher:"Główna Pani Dyrektor TEB TORUŃ\n Nadzoruje aby wszystko działało jak należy\n To już ostateczna walka!",
-    size:12,
+    size:13,
   }, icon:{
     x:64,
-    y:168,
+    y:158,
 
     width:16,
     height:16,
@@ -1244,7 +1246,7 @@ const _platform={
 
   lenght:0,
   currentLenght:0,
-  load:15,
+  load:0,
   currentLoad:0,
   level:0,
   lastLevel:0,
@@ -1253,7 +1255,7 @@ const _platform={
   move:false,
   up:false,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/platform.png"}),
+  img0:Object.assign(new Image(),{src:"tex/obj/map/general/platform.png"}),
 
   update:function(){},
 };
@@ -1265,8 +1267,8 @@ const _corner={
   currentLenght:0,
   timer:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/corner.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/lock.png"}),
+  img0:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/map/general/lock.png"}),
   color0:"rgb(255,255,255)",
 
   update:function(){},
@@ -1288,7 +1290,7 @@ const _spike={
   currentLenght:0,
   current:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/spike.png"}),
+  img0:Object.assign(new Image(),{src:"tex/obj/map/general/spike.png"}),
 
   update:function(){},
 };
@@ -1310,7 +1312,7 @@ const _decoration={
   img1Board:Object.assign(new Image(),{src:"tex/obj/map/board/green.png"}),
   img2Board:Object.assign(new Image(),{src:"tex/obj/map/board/purple.png"}),
   img3Board:Object.assign(new Image(),{src:"tex/obj/map/board/cyan.png"}),
-  img0Light:Object.assign(new Image(),{src:"tex/obj/map/light.png"}),
+  img0Light:Object.assign(new Image(),{src:"tex/obj/map/general/light.png"}),
   img0Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/empty.png"}),
   img1Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/orange.png"}),
   img2Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/green.png"}),

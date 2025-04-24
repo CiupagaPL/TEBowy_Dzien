@@ -20,11 +20,12 @@ scene.menuUpdate=function(){
       audio.menu1_music.load();
       audio.menu1_music.play();
       audio.current++;
+      if(audio.current==5){ audio.current=0; }
 
       if(audio.current>=3&&(audio.menu2_music.paused||audio.menu2_music.currentTime>audio.menu2_music.duration-0.2)){
         audio.menu2_music.load();
         audio.menu2_music.play();
-      } if(audio.current==5){ audio.current=0; }
+      }
     } else if(audio.menu1_music.paused){
       audio.menu1_music.load();
       audio.menu1_music.play();
@@ -35,15 +36,11 @@ scene.menuUpdate=function(){
   }
 
   if(scene.change){
-    if(audio.menu1_music.volume>0.03){ audio.menu1_music.volume-=0.02; }
-    else{ audio.menu1_music.volume=0; }
-    if(audio.menu2_music.volume>0.03){ audio.menu2_music.volume-=0.02; }
-    else{ audio.menu2_music.volume=0; }
+    audio.menu1_music.volume=0;
+    audio.menu2_music.volume=0;
   } else{
-    if(audio.menu1_music.volume<0.25){ audio.menu1_music.volume+=0.02; }
-    else{ audio.menu1_music.volume=0.25; }
-    if(audio.menu2_music.volume<0.15){ audio.menu2_music.volume+=0.02; }
-    else{ audio.menu2_music.volume=0.15; }
+    audio.menu1_music.volume=0.25;
+    audio.menu2_music.volume=0.15;
   }
 
   _background.base.x+=context.move(16)/7;

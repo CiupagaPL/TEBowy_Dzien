@@ -132,6 +132,7 @@ const global={
   restart:false,
   autoUnpause:false,
   autoRestart:false,
+  load:false,
   menuLoad:false,
   gameLoad:false,
   currentTutorial:false,
@@ -171,16 +172,32 @@ const audio={
   click3_sfx:new Audio("sfx/general/clickStart.mp3"),
   click4_sfx:new Audio("sfx/general/clickChange.mp3"),
   jump_sfx:new Audio("sfx/player/jump.mp3"),
+  jump_alt:new Audio("sfx/player/jumpAlt.mp3"),
   damage1_sfx:new Audio("sfx/player/damage.mp3"),
+  damage1_alt:new Audio("sfx/player/damageAlt.mp3"),
   damage2_sfx:new Audio("sfx/teacher/damage.mp3"),
+  damage2_alt:new Audio("sfx/teacher/damageAlt.mp3"),
   lost1_sfx:new Audio("sfx/player/lost.mp3"),
   lost2_sfx:new Audio("sfx/teacher/lost.mp3"),
   fire1_sfx:new Audio("sfx/player/fire.mp3"),
+  fire1_alt:new Audio("sfx/player/fireAlt.mp3"),
   fire2_sfx:new Audio("sfx/teacher/fire.mp3"),
+  fire2_alt:new Audio("sfx/teacher/fireAlt.mp3"),
   laser_sfx:new Audio("sfx/level/laser.mp3"),
+  laser_alt:new Audio("sfx/level/laserAlt.mp3"),
+  chest_sfx:new Audio("sfx/level/chest.mp3"),
+  door_sfx:new Audio("sfx/level/door.mp3"),
+  unlock_sfx:new Audio("sfx/level/unlock.mp3"),
+  locker_sfx:new Audio("sfx/level/locker.mp3"),
   entrance_sfx:new Audio("sfx/teacher/entrance.mp3"),
 
   current:0,
+  jump:0,
+  damage1:0,
+  damage2:0,
+  fire1:0,
+  fire2:0,
+  laser:0,
 };
 
 audio.menu1_music.volume=0.25;
@@ -196,11 +213,21 @@ audio.click2_sfx.volume=0.5;
 audio.click3_sfx.volume=0.5;
 audio.click4_sfx.volume=0.5;
 audio.jump_sfx.volume=0.35;
+audio.jump_alt.volume=0.35;
 audio.damage1_sfx.volume=0.5;
+audio.damage1_alt.volume=0.5;
 audio.damage2_sfx.volume=0.5;
+audio.damage2_alt.volume=0.5;
 audio.lost1_sfx.volume=0.5;
 audio.lost2_sfx.volume=0.5;
 audio.fire1_sfx.volume=0.5;
+audio.fire1_alt.volume=0.5;
 audio.fire2_sfx.volume=0.35;
+audio.fire2_alt.volume=0.35;
 audio.laser_sfx.volume=0.5;
+audio.laser_alt.volume=0.5;
+audio.chest_sfx.volume=0.65;
+audio.door_sfx.volume=0.65;
+audio.unlock_sfx.volume=0.65;
+audio.locker_sfx.volume=0.35;
 audio.entrance_sfx.volume=0.65;

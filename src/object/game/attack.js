@@ -50,7 +50,15 @@ _attack.update=function(){
       _player.hp-=1;
       _player.damage=true;
       _player.invisible=1;
-      if(global.sfx&&_player.hp>0){ audio.damage1_sfx.play(); }
+      if(global.sfx&&_player.hp>0){
+        if(audio.damage1==0){
+          audio.damage1_sfx.play();
+          audio.damage1++;
+        } else{
+          audio.damage1_sfx.alt();
+          audio.damage1=0;
+        }
+      }
     }
   }
 }

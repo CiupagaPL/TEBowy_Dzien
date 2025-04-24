@@ -13,19 +13,18 @@
  *  (_(_)--(_(_) */
 
 scene.levelUpdate=function(){
-  if(global.music&&!scene.change&&!scene.blocked||global.pauseChange){
+  if(global.music&&!scene.change&&!scene.blocked&&!global.pause){
     if(_teacher.on){
       if(audio.teacher1_music.currentTime>audio.teacher1_music.duration-0.2){
         audio.teacher1_music.load();
         audio.teacher1_music.play();
         audio.current++;
+        if(audio.current==6){ audio.current=0; }
 
         if(audio.current>=4&&audio.current<6&&(audio.teacher2_music.paused||audio.teacher2_music.currentTime>audio.teacher2_music.duration-0.2)){
           audio.teacher2_music.load();
           audio.teacher2_music.play();
         }
-
-        if(audio.current==6){ audio.current=0; }
       } else if(audio.teacher1_music.paused){
         audio.teacher1_music.load();
         audio.teacher1_music.play();
@@ -35,66 +34,51 @@ scene.levelUpdate=function(){
         audio.level1_music.load();
         audio.level1_music.play();
         audio.current++;
+        if(audio.current==9){ audio.current=0; }
 
-        if(audio.current>=3&&audio.current<6&&(audio.level2_music.paused||audio.level2_music.currentTime>audio.level2_music.duration-0.2)){
+        if(audio.current>=3&&audio.current<5&&(audio.level2_music.paused||audio.level2_music.currentTime>audio.level2_music.duration-0.2)){
           audio.level2_music.load();
           audio.level2_music.play();
-        }
-        if(audio.current>=8&&audio.current<10&&(audio.level3_music.paused||audio.level3_music.currentTime>audio.level3_music.duration-0.2)){
+        } else if(audio.current==5){ audio.level2_music.pause(); }
+        if(audio.current>=7&&audio.current<9&&(audio.level3_music.paused||audio.level3_music.currentTime>audio.level3_music.duration-0.2)){
           audio.level3_music.load();
           audio.level3_music.play();
-        }
-
-        if(audio.current==10){ audio.current=0; }
+        } else if(audio.current==0){ audio.level3_music.pause(); }
       } else if(audio.level1_music.paused){
         audio.level1_music.load();
         audio.level1_music.play();
       }
     }
-  } else if(!global.music&&!global.pauseChange){
+  } else if(!global.music||global.pause||scene.change||scene.blocked){
     audio.level1_music.pause();
     audio.level2_music.pause();
     audio.level3_music.pause();
     audio.teacher1_music.pause();
     audio.teacher2_music.pause();
-  }
-
-  if(_teacher.on){
+  } if(_teacher.on){
     audio.level1_music.pause();
     audio.level2_music.pause();
     audio.level3_music.pause();
   } else if(_teacher.hp==0){
     audio.teacher1_music.pause();
     audio.teacher2_music.pause();
-  }
-
-  if(global.pauseChange&&global.music){
+  } if(global.pauseChange&&global.music){
     if(_teacher.on){
-      if(audio.teacher1_music.volume>0.03){ audio.teacher1_music.volume-=0.02; }
-      else{ audio.teacher1_music.volume=0; }
-      if(audio.teacher2_music.volume>0.03){ audio.teacher2_music.volume-=0.02; }
-      else{ audio.teacher2_music.volume=0; }
+      audio.teacher1_music.volume=0;
+      audio.teacher2_music.volume=0;
     } else{
-      if(audio.level1_music.volume>0.03){ audio.level1_music.volume-=0.02; }
-      else{ audio.level1_music.volume=0; }
-      if(audio.level2_music.volume>0.03){ audio.level2_music.volume-=0.02; }
-      else{ audio.level2_music.volume=0; }
-      if(audio.level3_music.volume>0.03){ audio.level3_music.volume-=0.02; }
-      else{ audio.level3_music.volume=0; }
+      audio.level1_music.volume=0;
+      audio.level2_music.volume=0;
+      audio.level3_music.volume=0;
     }
   } else if((!global.pause||global.pause&&!global.pauseAnimation)&&global.music){
     if(_teacher.on){
-      if(audio.teacher1_music.volume<0.25){ audio.teacher1_music.volume+=0.02; }
-      else{ audio.teacher1_music.volume=0.25; }
-      if(audio.teacher2_music.volume<0.1){ audio.teacher2_music.volume+=0.02; }
-      else{ audio.teacher2_music.volume=0.1; }
+      audio.teacher1_music.volume=0.25;
+      audio.teacher2_music.volume=0.1;
     } else{
-      if(audio.level1_music.volume<0.25){ audio.level1_music.volume+=0.02; }
-      else{ audio.level1_music.volume=0.25; }
-      if(audio.level2_music.volume<0.075){ audio.level2_music.volume+=0.02; }
-      else{ audio.level2_music.volume=0.075; }
-      if(audio.level3_music.volume<0.075){ audio.level3_music.volume+=0.02; }
-      else{ audio.level3_music.volume=0.075; }
+      audio.level1_music.volume=0.25;
+      audio.level2_music.volume=0.075;
+      audio.level3_music.volume=0.075;
     }
   }
 
@@ -136,6 +120,18 @@ scene.levelUpdate=function(){
     if(_platform.up){ scene.vy=context.move(4); }
     else{ scene.vy=-context.move(4); }
   } else{ scene.vy=0; }
+
+  if(_corner.timer==context.time(70)){
+    if(!global.pause&&_player.hp>0){
+      if(audio.laser==0){
+        audio.laser_sfx.play();
+        audio.laser++;
+      } else{
+        audio.laser_alt.play();
+        audio.laser=0;
+      }
+    }
+  }
 
   if(_background.base.y>=canvas.height){ _background.base.y=_background.bottom.y-canvas.height; }
   else if(_background.base.y+context.scale(360)<0){ _background.base.y=_background.bottom.y+canvas.height; }
@@ -194,11 +190,7 @@ scene.levelUpdate=function(){
 
   if(_player.hp==0&&!global.pause){
     if(global.sfx){ audio.lost1_sfx.play(); }
-
     global.autoRestart=true;
-    global.pause=true;
-    global.pauseAnimation=true;
-    global.pauseChange=true;
   }
 
   if(scene.auto&&!_clipboard.on&&!global.pauseChange){

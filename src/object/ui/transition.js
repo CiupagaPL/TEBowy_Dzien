@@ -70,7 +70,9 @@ _transition.sceneOn=function(){
     scene.resetLevel();
     context.default();
     scene.generateLevel();
-  }
+	global.load=false;
+  } if(_transition.base.y>=-context.scale(8)){ global.load=false; }
+  else if(_transition.base.y<-context.scale(8)&&global.restart){ global.load=true; }
 
   _transition.base.y+=context.move(20);
   _transition.top.y+=context.move(20);
