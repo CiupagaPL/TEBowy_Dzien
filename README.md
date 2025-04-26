@@ -10,7 +10,7 @@ Przełącz się na gałęź stabilną aby znaleźć najnowsze oficjalne wydania.
 
 ## Status
 > Newest Version: **Unstable**;
-> Last Updated: **24-04-2025**;
+> Last Updated: **26-04-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

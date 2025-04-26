@@ -99,12 +99,15 @@ const scene={
   section3:0,
   section4:0,
   last:-1,
+  count:10,
 
   generated:false,
   change:false,
   blocked:false,
   auto:false,
   key:false,
+  teacher:false,
+  load:false,
 
   startRender:function(){},
   startUpdate:function(){},
@@ -138,12 +141,9 @@ const global={
   currentTutorial:false,
   currentTeacher:false,
   currentReward:false,
-
   sfx:localStorage.getItem("sfx"),
   music:localStorage.getItem("music"),
   tutorial:true,
-  teacher:true,
-  addon:true,
 };
 if(global.sfx==null||global.sfx=="true"){ global.sfx=true; }
 else{ global.sfx=false; }
@@ -163,8 +163,7 @@ const audio={
   level1_music:new Audio("sfx/music/level1.mp3"),
   level2_music:new Audio("sfx/music/level2.mp3"),
   level3_music:new Audio("sfx/music/level3.mp3"),
-  teacher1_music:new Audio("sfx/music/teacher1.mp3"),
-  teacher2_music:new Audio("sfx/music/teacher2.mp3"),
+  teacher_music:new Audio("sfx/music/teacher.mp3"),
 
   load_sfx:new Audio("sfx/general/load.mp3"),
   click1_sfx:new Audio("sfx/general/click.mp3"),
@@ -205,8 +204,7 @@ audio.menu2_music.volume=0.15;
 audio.level1_music.volume=0;
 audio.level2_music.volume=0;
 audio.level3_music.volume=0;
-audio.teacher1_music.volume=0;
-audio.teacher2_music.volume=0;
+audio.teacher_music.volume=0;
 
 audio.click1_sfx.volume=0.5;
 audio.click2_sfx.volume=0.5;
@@ -223,7 +221,7 @@ audio.lost2_sfx.volume=0.5;
 audio.fire1_sfx.volume=0.5;
 audio.fire1_alt.volume=0.5;
 audio.fire2_sfx.volume=0.35;
-audio.fire2_alt.volume=0.35;
+audio.fire2_alt.volume=0.65;
 audio.laser_sfx.volume=0.5;
 audio.laser_alt.volume=0.5;
 audio.chest_sfx.volume=0.65;

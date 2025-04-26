@@ -18,7 +18,7 @@ const _background={
   base:{
     x:0,
     y:0,
-	
+
 	  alpha:75,
   }, bottom:{
     x:0,
@@ -34,8 +34,9 @@ const _background={
   color0:"rgb(0,47,109)",
   color1:"rgb(3,122,162)",
   color2:"rgb(228,0,2)",
-  img0Menu:Object.assign(new Image(),{src:"tex/back/menu.png"}),
+  imgMenu:Object.assign(new Image(),{src:"tex/back/menu.png"}),
   imgLevel:Object.assign(new Image(),{src:"tex/back/level.png"}),
+  imgTeacher:Object.assign(new Image(),{src:"tex/back/teacher.png"}),
 };
 
 const _transition={
@@ -184,7 +185,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 24-04-2025",
+    value0:"Gałęź Niestabilna: 26-04-2025",
     size:16,
   }, github:{
     x:318,
@@ -225,59 +226,121 @@ const _description={
 
     value0:"Poradnik",
     value1:"Gratulacje",
-    value0Teacher:"Tomasz Staniszewski",
-    value1Teacher:"Radosław Sass",
-    value2Teacher:"Paweł Kępa",
-    value3Teacher:"Anna Skarbek Chmielewska",
-    value4Teacher:"Marta Milde",
-    value5Teacher:"Anna Świtoń",
-    value6Teacher:"Piotr Łojek",
-    value7Teacher:"Iwo Musiałowski",
-    value8Teacher:"Wojciech Złotowski",
-    value9Teacher:"Anna Niklas",
-    value10Teacher:"Iwona Bury Sierzchuła",
+    value2:"Walka",
     size:28,
   }, text:{
     x:64,
     y:188,
 
-    value0:"Poruszanie: [A] [D] | [<] [>]\n"+
+    value0:"Sterowanie\n"+
+           "Poruszanie: [A] [D] | [<] [>]\n"+
            "Skok: [W] | [^] | [Spacja]; Interakcja z obiektami: [E]\n"+
            "Strzelanie: [Q]; Zamiana amunicji: [R]\n\n"+
-           "Twoim celem jest dostać się na górę poziomu i stawić czoła\n"+
-           "danemu nauczycielowi. Po drodze musisz omijać wiele przeszkód\n"+
+           "Opis\n"+
+           "Twoim celem jest dostać się na górę poziomu i zjawić się w\n"+
+           "pokoju nauczyciela. Po drodze musisz omijać wiele przeszkód\n"+
            "na szkolnych korytarzach. Przeskakuj dolne kolce. Zwracaj\n"+
-           "uwagę na kolce górne. Strzelaj w szafki by je zamknąć. Otwieraj\n"+
-           "TEBoxy by zdobyć klucze do kolejnych pięter i inne przedmioty.\n"+
-           "W przypadku zagrożenia pamiętaj o innych rodzajach amunicji.\n"+
-           "Może również przydać Ci się TEBulinek. Życzymy szczęścia!",
-    value1:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
-    value0Teacher:"Nauczyciel z pasją, zwany często\nPanem Gołębiem. Twórca Twojej\nplatformówki. "+
-                  "Dzięki niemu\npoznasz wszystkie tajniki aplikacji\nwebowych, desktopowych\ni mobilnych. Walka nie będzie łatwa.",
-    value1Teacher:"Zapalony fotograf i mistrz zdjęć\ndużego formatu. Z nim nie\nbędziesz się nudził/a szczególnie\n"+
-                  "jeśli planujesz zostać Technikiem\nFotografii i Multimediów. Zajęcia\npraktyczne"+
-                  "pełne ciekawych\nrozwiązań, a usposobienie Pana\nRadka na szóstkę z koroną!\nWalka nie będzie łatwa.",
-    value2Teacher:"Mężczyzna pracujący, żadnej\npracy się nie boi! Fotograf\ni Informatyk w jednym, a swoje\n"+
-                  "umiejętności z powodzeniem łączy\nna kierunkach zawodowych.\nNauczy Cię do egzaminu i sprzeda\n"+
-                  "przydatną wiedzę życiową! Walka\nnie będzie łatwa.",
-    value3Teacher:"Ma rękę do biznesów. Z tym\nnauczycielem będzie Ci po\ndrodze jeśli chcesz nauczyć się\n"+
-                  "Biznesu i Zarządzania. Podstawy\nPrzedsiębiorczości nie są jej\nobce, a wycieczki do Urzędu\n"+
-                  "Skarbowego murowane. Walka nie\nbędzie łatwa.",
-    value4Teacher:"Kobieta tysiąca zawodów\ni koordynator chaosu, nie ma\ntakich zadań, z którymi by sobie\n"+
-                  "nie poradziła! Możesz ją spotkać\nna zajęciach z Cyfrowej Obróbki\nObrazu, Projektów, Plastyki\n"+
-                  "czy BiZu. Za chwilę będzie\nwychodzić nawet z lodówki! Walka\nnie będzie łatwa.",
-    value5Teacher:"Kiedy głowa ciąży od problemów,\na serduszko łamie się od zmartwień,\nlekiem na problemy jest Pani Pedagog,\n"+
-                  "która zawsze znajdzie dla Ciebie czas.\nWalka nie będzie łatwa.",
-    value6Teacher:"Zwany postrachem tej szkoły. Mistrz\npoligrafii i nauczyciel w jednym. Jeśli\nmyślisz serio o przedmiotach zawodowych,\n"+
-                  "może Cię potraktować ulgowo… pod\nwarunkiem, że go słuchasz! Walka\nnie będzie łatwa.",
-    value7Teacher:"To jest dopiero #nauczycielzpasją!\nNie stroni od historycznych przebieranek\n"+
-                  "i inscenizacji, a jego lekcje historii\npoparte są żywym przykładem. Kolekcjoner\nuzbrojenia i mundrów. Walka nie\nbędzie łatwa.",
-    value8Teacher:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
-                  "Wojtek zarządza Liceum, a jednocześnie\nprzekazuje praktyczną wiedzę. To jeszcze\nnie koniec!",
-    value9Teacher:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
-                  "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
-                  "To jeszcze nie koniec!",
-    value10Teacher:"Główna Pani Dyrektor TEB TORUŃ\n Nadzoruje aby wszystko działało jak należy\n To już ostateczna walka!",
+           "uwagę na kolce górne. Strzelaj w szafki by je zamknąć.\n"+
+           "Otwieraj TEBoxy by zdobyć klucze do kolejnych pięter\n"+
+           "i inne przedmioty. Życzymy szczęścia!",
+    value1:"Notka\n"+
+           "Udało się Tobie przejść całą grę. Mamy nadzieję że zabawa\n"+
+           "była udana i przy okazji nauczyciele występujący w grze nie\n"+
+           "będą straszni już w realu >_o",
+    value0Teacher:"Tomasz Staniszewski\n"+
+                  "Nauczyciel z pasją, zwany często Panem Gołębiem. Twórca\n"+
+                  "Twojej platformówki. Dzięki niemu poznasz wszystkie tajniki\n"+
+                  "aplikacji webowych, desktopowych i mobilnych.\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value1Teacher:"Radosław Sass\n"+
+                  "Zapalony fotograf i mistrz zdjęć dużego formatu. Z nim nie\n"+
+                  "będziesz się nudził/a szczególnie jeśli planujesz zostać\n"+
+                  "Technikiem Fotografii i Multimediów. Zajęcia praktyczne\n"+
+                  "pełne ciekawych rozwiązań, a usposobienie Pana Radka na\n"+
+                  "szóstkę z koroną!\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki.\n"+
+                  "Życzymy szczęścia!",
+    value2Teacher:"Paweł Kępa\n"+
+                  "Mężczyzna pracujący, żadnej pracy się nie boi! Fotograf i\n"+
+                  "Informatyk w jednym, a swoje umiejętności z powodzeniem\n"+
+                  "łączy a kierunkach zawodowych. Nauczy Cię do egzaminu i\n"+
+                  "sprzeda przydatną wiedzę życiową!\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value3Teacher:"Anna Skarbek Chmielewska\n"+
+                  "Ma rękę do biznesów. Z tym nauczycielem będzie Ci po drodze\n"+
+                  "jeśli chcesz nauczyć się Biznesu i Zarządzania. Podstawy\n"+
+                  "Przedsiębiorczości nie są Jej obce, a wycieczki do Urzędu\n"+
+                  "Skarbowego murowane.\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value4Teacher:"Marta Milde\n"+
+                  "Kobieta tysiąca zawodów i koordynator chaosu, nie ma takich\n"+
+                  "zadań, z którymi by sobie nie poradziła! Możesz Ją spotkać\n"+
+                  "na zajęciach z Cyfrowej Obróbki Obrazu, Projektów, Plastyki\n"+
+                  "czy BiZu. Za chwilę będzie wychodzić nawet z lodówki!\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value5Teacher:"Anna Świtoń\n"+
+                  "<< Kiedy głowa ciąży od problemów, a serduszko łamie się od\n"+
+                  "zmartwień, lekiem na problemy jest Pani Pedagog, która\n"+
+                  "zawsze znajdzie dla Ciebie czas. >>\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value6Teacher:"Piotr Łojek\n"+
+                  "Zwany postrachem tej szkoły. Mistrz poligrafii i nauczyciel w\n"+
+                  "jednym. Jeśli myślisz serio o przedmiotach zawodowych, może\n"+
+                  "Cię potraktować ulgowo… pod warunkiem, że go słuchasz!\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value7Teacher:"Iwo Musiałowski\n"+
+                  "To jest dopiero #nauczycielzpasją! Nie stroni od historycznych\n"+
+                  "przebieranek i inscenizacji, a jego lekcje historii poparte są\n"+
+                  "żywym przykładem. Kolekcjoner uzbrojenia i mundrów.\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value8Teacher:"Wojciech Złotowski\n"+
+                  "Bezpieczeństwo i higiena to przedmiot, który uczy nasz\n"+
+                  "Dyrektor. Pan Wojtek zarządza Liceum, a jednocześnie\n"+
+                  "przekazuje praktyczną wiedzę.\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value9Teacher:"Anna Niklas\n"+
+                  "Groźna Pani Dyrektor! A skąd! Wie kiedy pogrozić palcem, mimo\n"+
+                  "to uwielbia swoją młodzież i stara się robić wszystko by\n"+
+                  "spełnić ich marzenia. Pod warunkiem, że akurat nie dostałeś/aś\n"+
+                  "drugiej nagany.\n\n"+
+                  "Opis\n"+
+                  "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                  "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                  "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
+    value10Teacher:"Iwona Bury Sierzchuła\n"+
+                   "Główna Pani Dyrektor TEB TORUŃ. Nadzoruje aby wszystko\n"+
+                   "działało jak należy. To wielki finał!\n\n"+
+                   "Opis\n"+
+                   "Użyj chmurki do latania. Unikaj ataków nauczyciela, o ile nie\n"+
+                   "zapominaj, że TEBulinek jest po Twojej stronie. Inne rodzaje\n"+
+                   "amunicji nadadzą się wiele lepiej do walki. Życzymy szczęścia!",
     size:13,
   }, icon:{
     x:64,
@@ -287,6 +350,8 @@ const _description={
     height:16,
 
     img0:Object.assign(new Image(),{src:"tex/icon/decoration/general0.png"}),
+    img1:Object.assign(new Image(),{src:"tex/icon/decoration/win.png"}),
+    img2:Object.assign(new Image(),{src:"tex/icon/decoration/fight.png"}),
   },
 };
 
@@ -541,20 +606,20 @@ const _ui={
       },
     }, teacher:{
       main:{
-        x:142,
-        y:6,
+        x:604,
+        y:44,
 
         width:32,
         height:32,
       }, background:{
-        x:140,
-        y:4,
+        x:602,
+        y:42,
 
         width:36,
         height:36,
       }, icon:{
-        x:150,
-        y:10,
+        x:613,
+        y:47,
 
         width:14,
         height:14,
@@ -567,14 +632,9 @@ const _ui={
         img3:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/3.png"}),
         img4:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/4.png"}),
         img5:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/5.png"}),
-        img6:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/6.png"}),
-        img7:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/7.png"}),
-        img8:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/8.png"}),
-        img9:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/9.png"}),
-        img10:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/10.png"}),
       }, text:{
-        x:150,
-        y:36,
+        x:610,
+        y:73,
 
         value0:"",
         size:12,
@@ -861,48 +921,6 @@ const _clipboard={
         value0:"Muzyka",
         size:16,
       },
-    }, tutorial:{
-      base:{
-        x:824,
-        y:198,
-
-        width:16,
-        height:16,
-      }, text:{
-        x:842,
-        y:211,
-
-        value0:"Poradnik",
-        size:16,
-      },
-    }, teacher:{
-      base:{
-        x:824,
-        y:228,
-
-        width:16,
-        height:16,
-      }, text:{
-        x:842,
-        y:241,
-
-        value0:"Opis Nauczycieli",
-        size:16,
-      },
-    }, addon:{
-      base:{
-        x:824,
-        y:258,
-
-        width:16,
-        height:16,
-      }, text:{
-        x:842,
-        y:271,
-
-        value0:"Efekty Dodatkowe",
-        size:16,
-      },
     },
 
     img0:Object.assign(new Image(),{src:"tex/ui/clipboard/unChecked.png"}),
@@ -997,100 +1015,90 @@ const _blueprint={
       x:820,
       y:152,
 
-      width:52,
+      width:58,
       line:1,
 
-      value0:"Poziom  1",
+      value0:"Poziom 01",
       size:18,
       alpha:100,
     }, button2:{
       x:820,
       y:180,
 
-      width:52,
+      width:58,
       line:1,
 
-      value0:"Poziom  2",
+      value0:"Poziom 02",
       size:18,
       alpha:100,
     }, button3:{
       x:820,
       y:208,
 
-      width:52,
+      width:58,
       line:1,
 
-      value0:"Poziom  3",
+      value0:"Poziom 03",
       size:18,
       alpha:100,
     }, button4:{
       x:820,
       y:236,
 
-      width:52,
+      width:58,
       line:1,
       
-      value0:"Poziom  4",
+      value0:"Poziom 04",
       size:18,
       alpha:100,
     }, button5:{
       x:820,
       y:264,
 
-      width:52,
+      width:58,
       line:1,
       
-      value0:"Poziom  5",
+      value0:"Poziom 05",
       size:18,
       alpha:100,
     }, button6:{
       x:888,
       y:152,
 
-      width:52,
+      width:58,
       line:1,
       
-      value0:"Poziom  6",
+      value0:"Poziom 06",
       size:18,
       alpha:100,
     }, button7:{
       x:888,
       y:180,
 
-      width:52,
+      width:58,
       line:1,
       
-      value0:"Poziom  7",
+      value0:"Poziom 07",
       size:18,
       alpha:100,
     }, button8:{
       x:888,
       y:208,
 
-      width:52,
+      width:58,
       line:1,
       
-      value0:"Poziom  8",
+      value0:"Poziom 08",
       size:18,
       alpha:100,
-    }, button9:{
-      x:888,
-      y:236,
-
-      width:52,
-      line:1,
-      
-      value0:"Poziom  9",
-      size:18,
-      alpha:100,
-    }, button10:{
-      x:888,
+    }, buttonF:{
+      x:902,
       y:264,
 
-      width:52,
+      width:28,
       line:1,
       
-      value0:"Poziom 10",
+      value0:"Finał",
       size:18,
       alpha:100,
     },
@@ -1186,10 +1194,12 @@ const _player={
     width:64,
     height:48,
 
-    available:false,
+    on:false,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/cloud/left.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/cloud/right.png"}),
+    img0:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/left.png"}),
+    img1:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/right.png"}),
+    img0Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/left.png"}),
+    img1Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/right.png"}),
   }, collisionTop:{
     x:0,
     y:0,
@@ -1226,12 +1236,12 @@ const _player={
   hp:5,
 
   touchTebox:false,
+  touchDoor:false,
   touched:false,
   active:false,
   grounded:false,
   jumped:false,
   fly:false,
-  cloudFly:false,
   left:false,
   damage:false,
   heal:false,
@@ -1365,7 +1375,7 @@ const _teacher={
     x:0,
     y:0,
 
-    width:64,
+    width:48,
     height:108,
 
     img0:Object.assign(new Image(),{src:"tex/obj/teacher/base/TS.png"}),
@@ -1376,27 +1386,42 @@ const _teacher={
     img5:Object.assign(new Image(),{src:"tex/obj/teacher/base/AS.png"}),
     img6:Object.assign(new Image(),{src:"tex/obj/teacher/base/PL.png"}),
     img7:Object.assign(new Image(),{src:"tex/obj/teacher/base/IM.png"}),
-    imgAdd0:Object.assign(new Image(),{src:"tex/obj/teacher/base/WZ.png"}),
-    imgAdd1:Object.assign(new Image(),{src:"tex/obj/teacher/base/AN.png"}),
-    imgAdd2:Object.assign(new Image(),{src:"tex/obj/teacher/base/ISB.png"}),
+    img8:Object.assign(new Image(),{src:"tex/obj/teacher/base/WZ.png"}),
+    img9:Object.assign(new Image(),{src:"tex/obj/teacher/base/AN.png"}),
+    img10:Object.assign(new Image(),{src:"tex/obj/teacher/base/ISB.png"}),
+    img0Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/TS.png"}),
+    img1Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/RS.png"}),
+    img2Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/PK.png"}),
+    img3Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/ASC.png"}),
+    img4Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/MM.png"}),
+    img5Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/AS.png"}),
+    img6Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/PL.png"}),
+    img7Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/IM.png"}),
+    img8Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/WZ.png"}),
+    img9Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/AN.png"}),
+    img10Left:Object.assign(new Image(),{src:"tex/obj/teacher/left/ISB.png"}),
   }, cloud:{
     x:0,
     y:0,
 
-    width:96,
-    height:72,
+    width:64,
+    height:48,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/cloud/left.png"}),
+    img0:Object.assign(new Image(),{src:"tex/obj/teacher/cloud/normal/left.png"}),
+    img1:Object.assign(new Image(),{src:"tex/obj/teacher/cloud/normal/right.png"}),
+    img0Final:Object.assign(new Image(),{src:"tex/obj/teacher/cloud/final/left.png"}),
+    img1Final:Object.assign(new Image(),{src:"tex/obj/teacher/cloud/final/right.png"}),
+    img0Lose:Object.assign(new Image(),{src:"tex/obj/teacher/cloud/defeat/left.png"}),
+    img1Lose:Object.assign(new Image(),{src:"tex/obj/teacher/cloud/defeat/right.png"}),
   },
 
   invisible:0,
   random:0,
   round:0,
-  hp:10,
+  hp:30,
 
-  load:false,
   attack:false,
-  on:false,
+  left:true,
 
   render:function(){},
   update:function(){},
@@ -1407,16 +1432,17 @@ const _attack={
     x:0,
     y:0,
 
-    width:64,
-    height:64,
+    width:68,
+    height:48,
     rotation:0,
-	
+
     unused:true,
+    left:true,
+    touch:false,
 
     img0:Object.assign(new Image(),{src:"tex/obj/teacher/attack/tebulinek.png"}),
-  },
-
-  object1:{
+    alpha:100,
+  }, object0:{
     x:0,
     y:0,
 
@@ -1427,10 +1453,13 @@ const _attack={
     current:0,
 
     unused:true,
+    left:true,
+    touch:false,
 
     img0Computer:Object.assign(new Image(),{src:"tex/obj/teacher/attack/computer.png"}),
     img0Keyboard:Object.assign(new Image(),{src:"tex/obj/teacher/attack/keyboard.png"}),
-  }, object2:{
+    alpha:100,
+  }, object1:{
     x:0,
     y:0,
 
@@ -1441,9 +1470,12 @@ const _attack={
     current:0,
 
     unused:true,
+    left:true,
+    touch:false,
 
     img0Coffe:Object.assign(new Image(),{src:"tex/obj/teacher/attack/coffe.png"}),
     img0Pigeon:Object.assign(new Image(),{src:"tex/obj/teacher/attack/pigeon.png"}),
+    alpha:100,
   },
 
   update:function(){},

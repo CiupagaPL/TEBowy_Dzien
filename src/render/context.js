@@ -144,12 +144,14 @@ context.default=function(){
   scene.current=0;
   scene.score=0;
   scene.timer=0;
+  scene.load=false;
+  scene.teacher=false;
   scene.generated=false;
   scene.key=false;
   scene.auto=false;
   scene.boss=false;
 
-  if(scene.value!=11){ _platform.load=11; }
+  if(scene.value!=scene.count){ _platform.load=11; }
   else{ _platform.load=6; }
 
   audio.jump=0;
@@ -182,7 +184,7 @@ context.default=function(){
   _player.vy=0;
   _player.hp=5;
   _player.base.alpha=100;
-  _player.cloudFly=false;
+  _player.cloud.on=false;
   _player.left=false;
   _player.gun.x=_player.base.x;
   _player.gun.y=_player.base.y+context.scale(32);
@@ -190,26 +192,29 @@ context.default=function(){
   _player.gun.ammo1=5;
   _player.gun.ammo2=5;
   _player.ammo.unused=true;
-  _player.cloud.x=_player.base.x-context.scale(8);
-  _player.cloud.y=_player.base.y+_player.cloud.height;
+  _player.cloud.x=(canvas.width/2)-(_player.cloud.width/2);
+  _player.cloud.y=context.scale(220);
 
   _corner.timer=0;
 
   _ui.elapsed=0;
   _ui.game.info.time.value0="Czas: 0s";
 
-  _teacher.base.y=context.scale(104);
-  _teacher.base.x=(canvas.width+_teacher.base.width)+context.scale(32);
-  _teacher.hp=10;
+  _teacher.base.y=context.scale(188);
+  _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
+  _teacher.hp=30;
   _teacher.timer=0;
   _teacher.round=0;
-  _teacher.on=false;
-  _teacher.cloud.y=context.scale(174);
-  _teacher.cloud.x=(canvas.width+_teacher.base.width)+context.scale(16);
+  _teacher.cloud.y=context.scale(274);
+  _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(30);
+  _teacher.left=true;
 
   _attack.tebulinek.unused=true;
+  _attack.object0.unused=true;
   _attack.object1.unused=true;
-  _attack.object2.unused=true;
+  _attack.tebulinek.alpha=100;
+  _attack.object0.alpha=100;
+  _attack.object1.alpha=100;
 }
 
 context.reset=function(){
@@ -306,14 +311,8 @@ context.reset=function(){
   context.setup(_clipboard.text);
   context.setup(_clipboard.setting.sfx.base);
   context.setup(_clipboard.setting.music.base);
-  context.setup(_clipboard.setting.tutorial.base);
-  context.setup(_clipboard.setting.teacher.base);
-  context.setup(_clipboard.setting.addon.base);
   context.setup(_clipboard.setting.sfx.text);
   context.setup(_clipboard.setting.music.text);
-  context.setup(_clipboard.setting.tutorial.text);
-  context.setup(_clipboard.setting.teacher.text);
-  context.setup(_clipboard.setting.addon.text);
 
   context.setup(_blueprint.base);
   context.setup(_blueprint.skin);
@@ -331,8 +330,7 @@ context.reset=function(){
   context.setup(_blueprint.level.button6);
   context.setup(_blueprint.level.button7);
   context.setup(_blueprint.level.button8);
-  context.setup(_blueprint.level.button9);
-  context.setup(_blueprint.level.button10);
+  context.setup(_blueprint.level.buttonF);
 
   context.setup(_player.base);
   _player.ivy=-context.scale(13.5);
@@ -350,6 +348,6 @@ context.reset=function(){
   context.setup(_teacher.base);
   context.setup(_teacher.cloud);
   context.setup(_attack.tebulinek);
+  context.setup(_attack.object0);
   context.setup(_attack.object1);
-  context.setup(_attack.object2);
 }

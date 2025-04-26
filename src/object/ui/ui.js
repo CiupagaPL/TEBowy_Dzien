@@ -103,10 +103,10 @@ _ui.update=function(){
       _ui.game.info.score.y=context.scale(16);
       _ui.game.info.level.y=context.scale(26);
       _ui.game.info.time.y=context.scale(36);
-      _ui.game.teacher.main.y=context.scale(6);
-      _ui.game.teacher.background.y=context.scale(4);
-      _ui.game.teacher.icon.y=context.scale(10);
-      _ui.game.teacher.text.y=context.scale(36);
+      _ui.game.teacher.main.y=context.scale(44);
+      _ui.game.teacher.background.y=context.scale(42);
+      _ui.game.teacher.icon.y=context.scale(47);
+      _ui.game.teacher.text.y=context.scale(73);
 
       _ui.show=true;
     }
@@ -226,6 +226,16 @@ _ui.update=function(){
       if(_ui.game.notification.icon.timer==context.time(5)){
         _ui.game.notification.icon.size=context.scale(28);
         _ui.game.notification.icon.timer=0;
+      }
+    } if(_ui.game.teacher.icon.timer>=1){
+      _ui.game.teacher.icon.timer++;
+
+      if(_ui.game.teacher.icon.timer==context.time(5)){
+        _ui.game.teacher.icon.x+=context.scale(1);
+        _ui.game.teacher.icon.y+=context.scale(1);
+        _ui.game.teacher.icon.width=context.scale(14);
+        _ui.game.teacher.icon.height=context.scale(14);
+        _ui.game.teacher.icon.timer=0;
       }
     }
   }

@@ -306,7 +306,7 @@ window.addEventListener("click",function(){
        context.collision(_blueprint.level.button3,mouse)||context.collision(_blueprint.level.button4,mouse)||
        context.collision(_blueprint.level.button5,mouse)||context.collision(_blueprint.level.button6,mouse)||
        context.collision(_blueprint.level.button7,mouse)||context.collision(_blueprint.level.button8,mouse)||
-       context.collision(_blueprint.level.button9,mouse)||context.collision(_blueprint.level.button10,mouse))){
+       context.collision(_blueprint.level.buttonF,mouse))){
       scene.blocked=true;
       if(global.sfx){ audio.click2_sfx.play(); }
 
@@ -318,8 +318,7 @@ window.addEventListener("click",function(){
       else if(context.collision(_blueprint.level.button6,mouse)){ scene.nextAuto=7; }
       else if(context.collision(_blueprint.level.button7,mouse)){ scene.nextAuto=8; }
       else if(context.collision(_blueprint.level.button8,mouse)){ scene.nextAuto=9; }
-      else if(context.collision(_blueprint.level.button9,mouse)){ scene.nextAuto=10; }
-      else if(context.collision(_blueprint.level.button10,mouse)){ scene.nextAuto=11; }
+      else if(context.collision(_blueprint.level.buttonF,mouse)){ scene.nextAuto=scene.count; }
 
       scene.auto=true;
       _blueprint.close=true;
@@ -335,8 +334,7 @@ window.addEventListener("click",function(){
         if(global.sfx){
           global.sfx=false;
           localStorage.setItem("sfx",false);
-        }
-        else{
+        } else{
           global.sfx=true;
           localStorage.setItem("sfx",true);
 
@@ -348,26 +346,10 @@ window.addEventListener("click",function(){
         if(global.music){
           global.music=false;
           localStorage.setItem("music",false);
-        }
-        else{
+        } else{
           global.music=true;
           localStorage.setItem("music",true);
         }
-      } else if(context.collision(_clipboard.setting.tutorial.base,mouse)){
-        if(global.sfx){ audio.click2_sfx.play(); }
-
-        if(global.tutorial){ global.tutorial=false; }
-        else{ global.tutorial=true; }
-      } else if(context.collision(_clipboard.setting.teacher.base,mouse)){
-        if(global.sfx){ audio.click2_sfx.play(); }
-
-        if(global.teacher){ global.teacher=false; }
-        else{ global.teacher=true; }
-      } else if(context.collision(_clipboard.setting.addon.base,mouse)){
-        if(global.sfx){ audio.click2_sfx.play(); }
-
-        if(global.addon){ global.addon=false; }
-        else{ global.addon=true; }
       }
     }
 
@@ -418,6 +400,14 @@ window.addEventListener("click",function(){
 
         _ui.game.notification.icon.timer=1;
         _ui.game.notification.icon.size=context.scale(30);
+      } if(context.collision(_ui.game.teacher.background,mouse)&&_ui.game.teacher.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
+
+        _ui.game.teacher.icon.timer=1;
+        _ui.game.teacher.icon.x-=context.scale(1);
+        _ui.game.teacher.icon.y-=context.scale(1);
+        _ui.game.teacher.icon.width=context.scale(16);
+        _ui.game.teacher.icon.height=context.scale(16);
       }
     }
   }

@@ -13,10 +13,10 @@
  *  (_(_)--(_(_) */
 
 scene.menuRender=function(){
-  context.render(_background.base,_background.img0Menu);
-  context.render(_background.bottom,_background.img0Menu);
-  context.render(_background.left,_background.img0Menu);
-  context.render(_background.bottomLeft,_background.img0Menu);
+  context.render(_background.base,_background.imgMenu);
+  context.render(_background.bottom,_background.imgMenu);
+  context.render(_background.left,_background.imgMenu);
+  context.render(_background.bottomLeft,_background.imgMenu);
 
   context.render(_ui.menu.main,_ui.color0);
   context.render(_ui.menu.left,_ui.color1);
@@ -69,15 +69,6 @@ scene.menuRender=function(){
       if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.music.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value0);
-      if(!global.tutorial){ context.render(_clipboard.setting.tutorial.base,_clipboard.setting.img0); }
-      else{ context.render(_clipboard.setting.tutorial.base,_clipboard.setting.img1); }
-      context.text(_clipboard.setting.tutorial.text,"rgb(0,0,0)",_clipboard.setting.tutorial.text.value0);
-      if(!global.teacher){ context.render(_clipboard.setting.teacher.base,_clipboard.setting.img0); }
-      else{ context.render(_clipboard.setting.teacher.base,_clipboard.setting.img1); }
-      context.text(_clipboard.setting.teacher.text,"rgb(0,0,0)",_clipboard.setting.teacher.text.value0);
-      if(!global.addon){ context.render(_clipboard.setting.addon.base,_clipboard.setting.img0); }
-      else{ context.render(_clipboard.setting.addon.base,_clipboard.setting.img1); }
-      context.text(_clipboard.setting.addon.text,"rgb(0,0,0)",_clipboard.setting.addon.text.value0);
     } else if(_button.about.animation||_button.about.on){
       context.render(_clipboard.icon,_clipboard.icon.img1);
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value1);
@@ -107,8 +98,7 @@ scene.menuRender=function(){
       context.text(_blueprint.level.button6,"rgb(255,255,255)",_blueprint.level.button6.value0);
       context.text(_blueprint.level.button7,"rgb(255,255,255)",_blueprint.level.button7.value0);
       context.text(_blueprint.level.button8,"rgb(255,255,255)",_blueprint.level.button8.value0);
-      context.text(_blueprint.level.button9,"rgb(255,255,255)",_blueprint.level.button9.value0);
-      context.text(_blueprint.level.button10,"rgb(255,255,255)",_blueprint.level.button10.value0);
+      context.text(_blueprint.level.buttonF,"rgb(255,255,255)",_blueprint.level.buttonF.value0);
     } else if(_button.custom.animation||_button.custom.on){
       context.text(_blueprint.title,"rgb(255,255,255)",_blueprint.title.value1);
       context.text(_blueprint.text,"rgb(255,255,255)",_blueprint.text.value0);

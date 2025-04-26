@@ -27,10 +27,13 @@ _transition.sceneOff=function(){
   if(scene.next==1){
     _transition.text.value0="Menu Główne";
     _transition.text.x=context.scale(225);
-  } else{
+  } else if(scene.next!=scene.count){
     if(scene.next<=10){ _transition.text.value0="Poziom 0"+String(Number(scene.next-1)); }
     else{ _transition.text.value0="Poziom "+String(Number(scene.next-1)); } 
     _transition.text.x=context.scale(250);
+  } else{
+    _transition.text.value0="Finał";
+    _transition.text.x=context.scale(280);
   }
 
   if(_transition.base.y>=context.scale(8)){
@@ -66,13 +69,31 @@ _transition.sceneOn=function(){
   _indicator.alpha=100;
   if(_indicator.timer>=context.time(35)){ _indicator.timer=0; }
 
-  if(_transition.base.y>=-context.scale(8)&&_transition.base.y<context.scale(8)){
+  if(_transition.base.y>=-context.scale(8)&&_transition.base.y<context.scale(8)&&!scene.load){
     scene.resetLevel();
     context.default();
     scene.generateLevel();
-	global.load=false;
-  } if(_transition.base.y>=-context.scale(8)){ global.load=false; }
-  else if(_transition.base.y<-context.scale(8)&&global.restart){ global.load=true; }
+    global.load=false;
+  } if(_transition.base.y>=-context.scale(8)&&!scene.load){ global.load=false; }
+  else if(_transition.base.y<-context.scale(8)&&global.restart&&!scene.load){ global.load=true; }
+  if(_transition.base.y>=-context.scale(8)&&_transition.base.y<context.scale(8)&&scene.load){
+    scene.vy=(canvas.height-_platform.array[_platform.lenght].y)-context.scale(12);
+    _player.base.alpha=100;
+    _player.invisible=0;
+    _background.base.x=0;
+    _background.base.y=0;
+    scene.teacher=true;
+    _player.touchDoor=false;
+  } if(_platform.array[_platform.lenght].y>context.scale(300)){
+    _player.base.y=canvas.height-_player.base.height-context.scale(14);
+    _player.collisionLeft.y=_player.base.y+context.scale(12);
+    _player.collisionRight.y=_player.base.y+context.scale(12);
+    _player.collisionTop.y=_player.base.y-context.scale(4);
+    _player.collisionBottom.y=_player.base.y+context.scale(90);
+    _player.gun.y=_player.base.y+context.scale(32);
+    _player.vx=0;
+    scene.vy=0;
+  }
 
   _transition.base.y+=context.move(20);
   _transition.top.y+=context.move(20);
@@ -86,7 +107,8 @@ _transition.sceneOn=function(){
     _transition.bottom.y=-canvas.height;
     _transition.text.y=-context.scale(550);
 
-    scene.change=false;
+    if(!scene.load){ scene.change=false; }
+    else{ scene.load=false; }
     scene.blocked=false;
     audio.current=0;
     _indicator.timer=0;

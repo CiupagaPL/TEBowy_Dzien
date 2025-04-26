@@ -22,7 +22,8 @@ _decoration.update=function(){
       _currentDecoration.text.x+=context.scale(1280);
     }
 
-    if(context.collision(_currentDecoration.base,_player.base)&&_currentDecoration.text.value0=="Finał"){  }
+    if(context.collision(_currentDecoration.base,_player.base)&&_currentDecoration.text.value0=="Finał"){ _player.touchDoor=true; }
+    else if(_currentDecoration.text.value0=="Finał"){ _player.touchDoor=false; }
   } else if(_currentDecoration.current==1){
     if(_currentDecoration.base.x>canvas.width){
       _currentDecoration.base.x-=context.scale(1280);
@@ -47,7 +48,6 @@ _decoration.update=function(){
 
       if(_currentDecoration.base.type==5){ _currentDecoration.base.type=_currentDecoration.first.type; }
       else{ _currentDecoration.bottom.type=_currentDecoration.first.type; }
-
       _currentDecoration.first.active=false;
       _player.ammo.unused=true;
     } if(context.collision(_currentDecoration.second,_player.ammo)&&!_player.ammo.unused&&_currentDecoration.second.active){
@@ -55,7 +55,6 @@ _decoration.update=function(){
 
       if(_currentDecoration.left.type==5){ _currentDecoration.left.type=_currentDecoration.second.type; }
       else{ _currentDecoration.bottomLeft.type=_currentDecoration.second.type; }
-
       _currentDecoration.second.active=false;
       _player.ammo.unused=true;
     }
@@ -68,7 +67,7 @@ _decoration.update=function(){
       _player.collisionBottom.x=_player.base.x+context.scale(12);
 
       _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(8);
+      _player.cloud.x=_player.base.x-context.scale(6);
     } else if(context.collision(_currentDecoration.first,_player.collisionRight)&&_currentDecoration.first.active&&!_player.left){
       _player.base.x=_currentDecoration.first.x-_player.base.width+context.move(8);
       _player.collisionLeft.x=_player.base.x+context.scale(4);
@@ -77,7 +76,7 @@ _decoration.update=function(){
       _player.collisionBottom.x=_player.base.x+context.scale(12);
 
       _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(8);
+      _player.cloud.x=_player.base.x-context.scale(6);
     } else if(context.collision(_currentDecoration.second,_player.collisionLeft)&&_currentDecoration.second.active&&_player.left){
       _player.base.x=_currentDecoration.second.x+_currentDecoration.second.width-context.move(8);
       _player.collisionLeft.x=_player.base.x+context.scale(4);
@@ -86,7 +85,7 @@ _decoration.update=function(){
       _player.collisionBottom.x=_player.base.x+context.scale(12);
 
       _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(8);
+      _player.cloud.x=_player.base.x-context.scale(6);
     } else if(context.collision(_currentDecoration.second,_player.collisionRight)&&_currentDecoration.second.active&&!_player.left){
       _player.base.x=_currentDecoration.second.x-_player.base.width+context.move(8);
       _player.collisionLeft.x=_player.base.x+context.scale(4);
@@ -95,7 +94,7 @@ _decoration.update=function(){
       _player.collisionBottom.x=_player.base.x+context.scale(12);
 
       _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(8);
+      _player.cloud.x=_player.base.x-context.scale(6);
     }
   } else if(_currentDecoration.current==2){
     if(_currentDecoration.x>canvas.width){ _currentDecoration.x-=context.scale(1280); }
@@ -140,10 +139,12 @@ _spike.update=function(){
   if(_currentSpike.x>canvas.width){ _currentSpike.x-=context.scale(1280); }
   else if(_currentSpike.x+_currentSpike.width<0){ _currentSpike.x+=context.scale(1280); }
 
-  if(_currentSpike.rotation==180&&_player.base.x+_player.base.width>=_currentSpike.x&&_player.base.x<=_currentSpike.x+_currentSpike.width&&
+  if(_currentSpike.rotation==180&&_player.base.x+_player.base.width+context.scale(2)>=_currentSpike.x&&_player.base.x<=_currentSpike.x+_currentSpike.width-context.scale(2)&&
      _currentSpike.score==scene.score){ _currentSpike.active=true; }
   if(_currentSpike.active){
-    _currentSpike.y+=context.move(4);
+    if(_currentSpike.vy==0){ _currentSpike.vy=context.move(1); }
+    else{ _currentSpike.vy+=context.move(0.15); }
+    _currentSpike.y+=_currentSpike.vy;
     if(_currentSpike.y>=context.scale(672)){ _currentSpike.disable=true; }
   }
 
@@ -167,20 +168,20 @@ _platform.update=function(){
   if(_currentPlatform.x>canvas.width){ _currentPlatform.x-=context.scale(1280); }
   else if(_currentPlatform.x+_currentPlatform.width<0){ _currentPlatform.x+=context.scale(1280); }
 
-  if(scene.score==_currentPlatform.level+1&&scene.score>0&&scene.score<_platform.load-1){
+  if(scene.score==_currentPlatform.level+1&&scene.score>0&&scene.score<_platform.load-1&&!scene.teacher){
     if(_currentPlatform.y<context.scale(254)||_currentPlatform.y>context.scale(274)){ _platform.move=true; }
     else if(_currentPlatform.y>=context.scale(254)&&_currentPlatform.y<=context.scale(274)){ _platform.move=false; }
     if(_currentPlatform.y<context.scale(254)){ _platform.up=true; }
     else if(_currentPlatform.y>context.scale(274)){ _platform.up=false; }
-  } else if(scene.score==0){
+  } else if(scene.score==0&&!scene.teacher){
     if(_platform.array[0].y>context.scale(352)){ _platform.move=true; }
     else{ _platform.move=false; }
     _platform.up=false;
-  } else if(scene.score==_platform.load-1){
-    if(_platform.array[_platform.load*3].y<context.scale(-4)){ _platform.move=true; }
+  } else if(scene.score==_platform.load-1&&!scene.teacher){
+    if(_platform.array[_platform.lenght].y<context.scale(-4)){ _platform.move=true; }
     else{ _platform.move=false; }
     _platform.up=true;
-  }
+  } else if(scene.score==_platform.load&&scene.vy<context.scale(5)){ _platform.move=false; }
 
   if(context.collision(_currentPlatform,_player.collisionTop)&&!_player.touched){
     _player.fly=true;
@@ -192,22 +193,26 @@ _platform.update=function(){
       _player.collisionRight.y=_player.base.y+context.scale(12);
       _player.collisionTop.y=_player.base.y-context.scale(4);
       _player.collisionBottom.y=_player.base.y+context.scale(90);
-
-      _player.cloud.y=_player.base.y+_player.cloud.height;
       _player.gun.y=_player.base.y+context.scale(32);
     }
-  } if(context.collision(_currentPlatform,_player.collisionBottom)&&!_player.touched){
+  } if((context.collision(_currentPlatform,_player.collisionBottom)||(context.collision(_currentPlatform,_player.cloud)&&_player.cloud.on))&&!_player.touched){
     if(_player.base.y<=_currentPlatform.y){ scene.score=_currentPlatform.level+1; }
 
-    if(!_player.cloudFly){
+    if(!_player.cloud.on){
       _player.base.y=_currentPlatform.y-_player.base.height;
       _player.collisionLeft.y=_player.base.y+context.scale(12);
       _player.collisionRight.y=_player.base.y+context.scale(12);
       _player.collisionTop.y=_player.base.y-context.scale(4);
       _player.collisionBottom.y=_player.base.y+context.scale(90);
-
-      _player.cloud.y=_player.base.y+_player.cloud.height;
       _player.gun.y=_player.base.y+context.scale(32);
+    } else{
+      _player.base.y=_currentPlatform.y-_player.base.height-context.scale(16);
+      _player.collisionLeft.y=_player.base.y+context.scale(12);
+      _player.collisionRight.y=_player.base.y+context.scale(12);
+      _player.collisionTop.y=_player.base.y-context.scale(4);
+      _player.collisionBottom.y=_player.base.y+context.scale(90);
+      _player.gun.y=_player.base.y+context.scale(32);
+      _player.cloud.y=_player.base.y+context.scale(64);
     }
 
     _player.vy=scene.vy;
@@ -239,7 +244,7 @@ _corner.update=function(){
           audio.damage1_sfx.play();
           audio.damage1++;
         } else{
-          audio.damage1_sfx.alt();
+          audio.damage1_alt.play();
           audio.damage1=0;
         }
       }
@@ -269,8 +274,6 @@ _corner.update=function(){
         _player.collisionRight.y=_player.base.y+context.scale(12);
         _player.collisionTop.y=_player.base.y-context.scale(4);
         _player.collisionBottom.y=_player.base.y+context.scale(90);
-
-        _player.cloud.y=_player.base.y+_player.cloud.height;
         _player.gun.y=_player.base.y+context.scale(32);
       }
 

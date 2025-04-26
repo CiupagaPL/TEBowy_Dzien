@@ -24,14 +24,8 @@ _clipboard.update=function(){
 
         _clipboard.setting.sfx.base.x+=context.move(20);
         _clipboard.setting.music.base.x+=context.move(20);
-        _clipboard.setting.tutorial.base.x+=context.move(20);
-        _clipboard.setting.teacher.base.x+=context.move(20);
-        _clipboard.setting.addon.base.x+=context.move(20);
         _clipboard.setting.sfx.text.x+=context.move(20);
         _clipboard.setting.music.text.x+=context.move(20);
-        _clipboard.setting.tutorial.text.x+=context.move(20);
-        _clipboard.setting.teacher.text.x+=context.move(20);
-        _clipboard.setting.addon.text.x+=context.move(20);
       } else{
         _clipboard.base.x=context.scale(800);
         _clipboard.back.x=context.scale(924);
@@ -41,14 +35,8 @@ _clipboard.update=function(){
 
         _clipboard.setting.sfx.base.x=context.scale(824);
         _clipboard.setting.music.base.x=context.scale(824);
-        _clipboard.setting.tutorial.base.x=context.scale(824);
-        _clipboard.setting.teacher.base.x=context.scale(824);
-        _clipboard.setting.addon.base.x=context.scale(824);
         _clipboard.setting.sfx.text.x=context.scale(842);
         _clipboard.setting.music.text.x=context.scale(842);
-        _clipboard.setting.tutorial.text.x=context.scale(842);
-        _clipboard.setting.teacher.text.x=context.scale(842);
-        _clipboard.setting.addon.text.x=context.scale(842);
 
         _clipboard.on=false;
         _clipboard.close=false;
@@ -103,14 +91,8 @@ _clipboard.update=function(){
 
         _clipboard.setting.sfx.base.x-=context.move(20);
         _clipboard.setting.music.base.x-=context.move(20);
-        _clipboard.setting.tutorial.base.x-=context.move(20);
-        _clipboard.setting.teacher.base.x-=context.move(20);
-        _clipboard.setting.addon.base.x-=context.move(20);
         _clipboard.setting.sfx.text.x-=context.move(20);
         _clipboard.setting.music.text.x-=context.move(20);
-        _clipboard.setting.tutorial.text.x-=context.move(20);
-        _clipboard.setting.teacher.text.x-=context.move(20);
-        _clipboard.setting.addon.text.x-=context.move(20);
       } else{
         _clipboard.on=true;
         scene.blocked=false;

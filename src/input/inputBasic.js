@@ -69,10 +69,8 @@ window.addEventListener("mousemove",function(event){
         else{ _blueprint.level.button7.alpha=100; }
         if(context.collision(_blueprint.level.button8,mouse)){ _blueprint.level.button8.alpha=50; }
         else{ _blueprint.level.button8.alpha=100; }
-        if(context.collision(_blueprint.level.button9,mouse)){ _blueprint.level.button9.alpha=50; }
-        else{ _blueprint.level.button9.alpha=100; }
-        if(context.collision(_blueprint.level.button10,mouse)){ _blueprint.level.button10.alpha=50; }
-        else{ _blueprint.level.button10.alpha=100; }
+        if(context.collision(_blueprint.level.buttonF,mouse)){ _blueprint.level.buttonF.alpha=50; }
+        else{ _blueprint.level.buttonF.alpha=100; }
       }
     } else{
       if(context.collision(_ui.game.heart.background,mouse)){ _ui.game.heart.background.alpha=50; }

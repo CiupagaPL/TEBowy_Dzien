@@ -26,11 +26,11 @@ window.addEventListener("keydown",function(event){
 
       _player.left=false;
       _player.vx=context.move(4);
-    } else if((event.key=="w"||event.key=="W"||event.key=="ArrowUp"||event.key==" ")&&_player.cloudFly){
+    } else if((event.key=="w"||event.key=="W"||event.key=="ArrowUp"||event.key==" ")&&_player.cloud.on){
       keyDown.up=true;
       keyDown.down=false;
       _player.vy=-context.move(4);
-    } else if((event.key=="s"||event.key=="S"||event.key=="ArrowDown")&&_player.cloudFly){
+    } else if((event.key=="s"||event.key=="S"||event.key=="ArrowDown")&&_player.cloud.on){
       keyDown.down=true;
       keyDown.up=false;
       _player.vy=context.move(4);
@@ -84,7 +84,7 @@ window.addEventListener("keyup",function(event){
         else{ _button.custom.animation=true; }
       }
     } else{
-      if(event.key=="Escape"){
+      if(event.key=="Escape"&&!scene.change){
         if(global.pause){
           if(global.sfx){ audio.click1_sfx.play(); }
           scene.blocked=true;
@@ -120,12 +120,12 @@ window.addEventListener("keyup",function(event){
 
             if(!keyDown.left){ _player.vx=0; }
             else{ _player.vx=-context.move(4); }
-          } if((event.key=="w"||event.key=="W"||event.key=="ArrowUp"||event.key==" ")&&_player.cloudFly){
+          } if((event.key=="w"||event.key=="W"||event.key=="ArrowUp"||event.key==" ")&&_player.cloud.on){
             keyDown.up=false;
 
             if(!keyDown.down){ _player.vy=0; }
             else{ _player.vy=context.move(4); }
-          } if((event.key=="s"||event.key=="S"||event.key=="ArrowDown")&&_player.cloudFly){
+          } if((event.key=="s"||event.key=="S"||event.key=="ArrowDown")&&_player.cloud.on){
             keyDown.down=false;
 
             if(!keyDown.up){ _player.vy=0; }
@@ -134,7 +134,7 @@ window.addEventListener("keyup",function(event){
         }
 
         if((event.key==" "||event.key=="ArrowUp"||event.key=="w"||event.key=="W")&&
-           _player.hp>0&&_player.grounded&&!_player.cloudFly){
+           _player.hp>0&&_player.grounded&&!scene.teacher){
           if(global.sfx){
             if(audio.jump==0){
               audio.jump_sfx.play();
@@ -192,6 +192,25 @@ window.addEventListener("keyup",function(event){
             _loot.alpha=100;
             _tebox.third=-1;
           }
+        }
+
+        if(_player.touchDoor&&(event.key=="e"||event.key=="E")&&!scene.load&&!global.pause&&scene.key){
+          if(global.sfx){ audio.door_sfx.play(); }
+          scene.blocked=true;
+          scene.load=true;
+        }
+
+        if(context.collision(_player.base,_player.cloud)&&(event.key=="e"||event.key=="E")&&!scene.load&&scene.teacher&&!global.pause&&!_player.cloud.on){
+          if(global.sfx){ audio.unlock_sfx.play(); }
+          _player.cloud.on=true;
+          _player.vy=0;
+
+          _player.base.y=_player.cloud.y-context.scale(64);
+          _player.collisionLeft.y=_player.base.y+context.scale(12);
+          _player.collisionRight.y=_player.base.y+context.scale(12);
+          _player.collisionTop.y=_player.base.y-context.scale(4);
+          _player.collisionBottom.y=_player.base.y+context.scale(90);
+          _player.gun.y=_player.base.y+context.scale(32);
         }
 
         if((event.key=="q"||event.key=="Q")&&(_player.gun.type==0&&_player.gun.timer>=context.time(90)||_player.gun.type==1&&_player.gun.timer>=context.time(120)&&
