@@ -16,10 +16,8 @@ canvas.setup=function(){
   if((window.innerWidth/16)>=(window.innerHeight/9)){
     canvas.width=16*Math.floor(window.innerHeight/9);
     canvas.height=9*Math.floor(window.innerHeight/9);
-
     render.width=canvas.width;
     render.height=canvas.height;
-
     canvas.prevScale=canvas.scale;
     canvas.scale=Math.floor((canvas.width/640||canvas.height/360)*100)/100;
 
@@ -27,16 +25,13 @@ canvas.setup=function(){
 
     render.style.borderTop=0;
     render.style.borderBottom=0;
-
     render.style.borderLeft=context.scale(4)+"px solid white";
     render.style.borderRight=context.scale(4)+"px solid white";
-
     render.style.left=((window.innerWidth-canvas.width)/2)-context.scale(4)+"px";
     render.style.top=((window.innerHeight-canvas.height)/2)+"px";
   } else{
     canvas.width=16*Math.floor(window.innerWidth/16);
     canvas.height=9*Math.floor(window.innerWidth/16);
-
     render.width=canvas.width;
     render.height=canvas.height;
 
@@ -44,18 +39,15 @@ canvas.setup=function(){
 
     canvas.prevScale=canvas.scale;
     canvas.scale=Math.floor((canvas.width/640||canvas.height/360)*100)/100;
-
     render.style.borderTop=context.scale(4)+"px solid white";
     render.style.borderBottom=context.scale(4)+"px solid white";
     render.style.borderLeft=0;
     render.style.borderRight=0;
-
     render.style.left=((window.innerWidth-canvas.width)/2)+"px";
     render.style.top=((window.innerHeight-canvas.height)/2)-context.scale(4)+"px";
   }
 
   render.style.boxShadow=0+"px "+0+"px "+context.scale(8)+"px "+context.scale(2)+"px white";
-
   render.style.width=canvas.width+"px";
   render.style.height=canvas.height+"px";
 }
@@ -69,7 +61,6 @@ canvas.check=function(){
       load.classList.add("show");
       load.classList.remove("hide");
     }
-
     error.classList.add("show");
     error.classList.remove("hide");
 
@@ -200,6 +191,21 @@ canvas.loop=function(){
       _button.version.animation=false;
       _button.custom.on=false;
       _button.custom.animation=false;
+
+      html.classList.add("blue-black");
+      html.classList.remove("cyan-black");
+      html.classList.remove("red-black");
+      html.classList.remove("black-blue");
+      html.classList.remove("black-cyan");
+      html.classList.remove("black-red");
+      html.classList.remove("cyan-red");
+      html.classList.remove("red-blue");
+      html.classList.remove("blue-red");
+
+      audio.level1_music.pause();
+      audio.level2_music.pause();
+      audio.level3_music.pause();
+      audio.teacher_music.pause();
 
       _transition.text.value0="Menu Główne";
       _transition.text.x=context.scale(225);

@@ -107,15 +107,13 @@ scene.levelUpdate=function(){
     else{ scene.vy=-context.move(4); }
   } else{ scene.vy=0; }
 
-  if(_corner.timer==context.time(70)&&!scene.teacher){
-    if(!global.pause&&_player.hp>0){
-      if(audio.laser==0){
-        audio.laser_sfx.play();
-        audio.laser++;
-      } else{
-        audio.laser_alt.play();
-        audio.laser=0;
-      }
+  if(_corner.timer==context.time(70)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
+    if(audio.laser==0){
+      audio.laser_sfx.play();
+      audio.laser++;
+    } else{
+      audio.laser_alt.play();
+      audio.laser=0;
     }
   }
 

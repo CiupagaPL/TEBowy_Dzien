@@ -128,7 +128,7 @@ const scene={
 };
 
 const global={
-  stable:false,
+  stable:true,
   pause:false,
   pauseChange:false,
   pauseAnimation:false,

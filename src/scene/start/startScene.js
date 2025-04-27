@@ -19,7 +19,6 @@ html.classList.add("black-blue");
 scene.startRender=function(){
   if(scene.timer<context.time(100)){
     context.render(_background.base,_background.color0);
-    html.style.backgroundColor=_background.color0;
 
     if(scene.timer>=context.time(5)&&scene.timer<context.time(35)){ _start.base.alpha-=context.frame(4); }
     else if(scene.timer==context.time(35)){ _start.base.alpha=0; }
@@ -29,8 +28,9 @@ scene.startRender=function(){
     if(scene.timer>=context.time(100)&&scene.timer<context.time(120)){
       context.render(_background.base,_background.color1);
 
-      if(html.classList.contains("black-blue")){
+      if(html.classList.contains("black-blue")||html.classList.contains("red-blue")){
         html.classList.remove("black-blue");
+        html.classList.remove("red-blue");
         html.classList.add("blue-cyan");
       } context.render(_start.base,_start.base.img1);
     } else{

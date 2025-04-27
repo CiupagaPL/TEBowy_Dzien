@@ -2,23 +2,20 @@
 # TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka [PL]
-Gałęź ta zawiera wersje testowe, które są często aktualizowane.
-Zawartość tych wersji silnie różni się od wydań stabilnych, zawierając wszelakie nadchodzące zmiany.
-Są one mocno niestabilne, dlatego spodziewać się możecie dużej ilości błędów.
-**Wersje te nie są przeznaczone na naszą domenę**.
-Przełącz się na gałęź stabilną aby znaleźć najnowsze oficjalne wydania.
+Wielką satysfakcję daje ukończenie pół rocznej pracy, uwierzcie mi ;-))
+Najnowsza Beta zmienia niemalże wszystkie aspekty gry i otwiera drogę na wiele bogatszy dalszy rozwój.
+W trakcie pracy nad tą wersją byłem w stanie przepisać cały kod i przygotować go pod wiele nowych zmian.
 
 ## Status
-> Newest Version: **Unstable**;
-> Last Updated: **26-04-2025**;
+> Newest Version: **Beta (B)1.000**;
+> Last Updated: **27-04-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>
 Main font of this project is [orangeKid](https://www.1001fonts.com/orange-kid-font.html).
 
-## Domain
+## External
 **You can play the game [here](https://tebowo.pl/gra)**.
-> [!IMPORTANT]
-> To play unstable version download zip with green button above.
+**Read the changelog [here](https://pastebin.com/czx0T7u1)**.
 
 ### Have a Nice and Happy Day!

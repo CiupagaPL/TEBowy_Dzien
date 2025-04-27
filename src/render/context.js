@@ -171,6 +171,8 @@ context.default=function(){
 
   _player.base.x=context.scale(320)-(_player.base.width/2);
   _player.base.y=(canvas.height-context.scale(14))-_player.base.height;
+  _player.action.x=_player.base.x+_player.base.width;
+  _player.action.y=_player.base.y;
   _player.collisionLeft.x=_player.base.x+context.scale(4);
   _player.collisionLeft.y=_player.base.y+context.scale(12);
   _player.collisionRight.x=_player.base.x+context.scale(52);
@@ -189,6 +191,7 @@ context.default=function(){
   _player.gun.x=_player.base.x;
   _player.gun.y=_player.base.y+context.scale(32);
   _player.gun.timer=0;
+  _player.gun.type=0;
   _player.gun.ammo1=5;
   _player.gun.ammo2=5;
   _player.ammo.unused=true;
@@ -338,6 +341,7 @@ context.reset=function(){
   context.setup(_player.cloud);
   context.setup(_player.gun);
   context.setup(_player.ammo);
+  context.setup(_player.action);
   context.setup(_player.collisionTop);
   context.setup(_player.collisionBottom);
   context.setup(_player.collisionLeft);

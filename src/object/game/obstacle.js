@@ -68,6 +68,7 @@ _decoration.update=function(){
 
       _player.gun.x=_player.base.x;
       _player.cloud.x=_player.base.x-context.scale(6);
+      _player.action.x=_player.base.x+_player.base.width;
     } else if(context.collision(_currentDecoration.first,_player.collisionRight)&&_currentDecoration.first.active&&!_player.left){
       _player.base.x=_currentDecoration.first.x-_player.base.width+context.move(8);
       _player.collisionLeft.x=_player.base.x+context.scale(4);
@@ -77,6 +78,7 @@ _decoration.update=function(){
 
       _player.gun.x=_player.base.x;
       _player.cloud.x=_player.base.x-context.scale(6);
+      _player.action.x=_player.base.x+_player.base.width;
     } else if(context.collision(_currentDecoration.second,_player.collisionLeft)&&_currentDecoration.second.active&&_player.left){
       _player.base.x=_currentDecoration.second.x+_currentDecoration.second.width-context.move(8);
       _player.collisionLeft.x=_player.base.x+context.scale(4);
@@ -86,6 +88,7 @@ _decoration.update=function(){
 
       _player.gun.x=_player.base.x;
       _player.cloud.x=_player.base.x-context.scale(6);
+      _player.action.x=_player.base.x+_player.base.width;
     } else if(context.collision(_currentDecoration.second,_player.collisionRight)&&_currentDecoration.second.active&&!_player.left){
       _player.base.x=_currentDecoration.second.x-_player.base.width+context.move(8);
       _player.collisionLeft.x=_player.base.x+context.scale(4);
@@ -95,6 +98,7 @@ _decoration.update=function(){
 
       _player.gun.x=_player.base.x;
       _player.cloud.x=_player.base.x-context.scale(6);
+      _player.action.x=_player.base.x+_player.base.width;
     }
   } else if(_currentDecoration.current==2){
     if(_currentDecoration.x>canvas.width){ _currentDecoration.x-=context.scale(1280); }
@@ -194,6 +198,7 @@ _platform.update=function(){
       _player.collisionTop.y=_player.base.y-context.scale(4);
       _player.collisionBottom.y=_player.base.y+context.scale(90);
       _player.gun.y=_player.base.y+context.scale(32);
+      _player.action.y=_player.base.y;
     }
   } if((context.collision(_currentPlatform,_player.collisionBottom)||(context.collision(_currentPlatform,_player.cloud)&&_player.cloud.on))&&!_player.touched){
     if(_player.base.y<=_currentPlatform.y){ scene.score=_currentPlatform.level+1; }
@@ -205,6 +210,7 @@ _platform.update=function(){
       _player.collisionTop.y=_player.base.y-context.scale(4);
       _player.collisionBottom.y=_player.base.y+context.scale(90);
       _player.gun.y=_player.base.y+context.scale(32);
+      _player.action.y=_player.base.y;
     } else{
       _player.base.y=_currentPlatform.y-_player.base.height-context.scale(16);
       _player.collisionLeft.y=_player.base.y+context.scale(12);
@@ -213,6 +219,7 @@ _platform.update=function(){
       _player.collisionBottom.y=_player.base.y+context.scale(90);
       _player.gun.y=_player.base.y+context.scale(32);
       _player.cloud.y=_player.base.y+context.scale(64);
+      _player.action.y=_player.base.y;
     }
 
     _player.vy=scene.vy;
@@ -275,6 +282,10 @@ _corner.update=function(){
         _player.collisionTop.y=_player.base.y-context.scale(4);
         _player.collisionBottom.y=_player.base.y+context.scale(90);
         _player.gun.y=_player.base.y+context.scale(32);
+        _player.action.y=_player.base.y;
+      } if(!_player.touchLock){
+        _player.touchLock=true;
+        _corner.useLenght=_corner.currentLenght;
       }
 
       if(scene.key&&_currentCorner.lock.alpha==100){
@@ -282,7 +293,14 @@ _corner.update=function(){
         _currentCorner.lock.alpha=99;
         scene.key=false;
       }
-    } if(_currentCorner.lock.alpha<100){ _currentCorner.lock.alpha-=context.frame(7); }
+    } else if(!context.collision(_currentCorner.lock,_player.base)&&_corner.currentLenght==_corner.useLenght){
+      _player.touchLock=false;
+      _corner.useLenght=-1;
+    } if(_currentCorner.lock.alpha<100){
+      _currentCorner.lock.alpha-=context.frame(7);
+      _player.touchLock=false;
+      _corner.useLenght=-1;
+    }
   }
 
   if(context.collision(_currentCorner.base,_player.collisionLeft)&&!_player.touched){
@@ -293,6 +311,7 @@ _corner.update=function(){
     _player.collisionRight.x+=context.move(4);
     _player.cloud.x+=context.move(4);
     _player.gun.x+=context.move(4);
+    _player.action.x+=context.move(4);
 
     _player.touched=true;
   } if(context.collision(_currentCorner.base,_player.collisionRight)&&!_player.touched){
@@ -303,6 +322,7 @@ _corner.update=function(){
     _player.collisionRight.x-=context.move(4);
     _player.cloud.x-=context.move(4);
     _player.gun.x-=context.move(4);
+    _player.action.x-=context.move(4);
 
     _player.touched=true;
   }

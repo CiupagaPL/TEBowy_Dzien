@@ -175,9 +175,7 @@ const _account={
 
     width:24,
     height:24,
-  },
-
-  color0:"rgb(255,255,255)",
+  }, color0:"rgb(255,255,255)",
 }
 
 const _footer={
@@ -185,7 +183,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 26-04-2025",
+    value0:"Wersja: Beta (B)1.000",
     size:16,
   }, github:{
     x:318,
@@ -214,9 +212,7 @@ const _footer={
 
     img0:Object.assign(new Image(),{src:"tex/icon/menu/next.png"}),
     alpha:100,
-  },
-
-  color0:"rgb(255,255,255)",
+  }, color0:"rgb(255,255,255)",
 };
 
 const _description={
@@ -1200,6 +1196,17 @@ const _player={
     img1:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/right.png"}),
     img0Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/left.png"}),
     img1Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/right.png"}),
+  }, action:{
+    x:0,
+    y:0,
+
+    width:20,
+    height:16,
+
+    current:-1,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),
+    img1:Object.assign(new Image(),{src:"tex/icon/action/use.png"}),
   }, collisionTop:{
     x:0,
     y:0,
@@ -1237,6 +1244,7 @@ const _player={
 
   touchTebox:false,
   touchDoor:false,
+  touchLock:false,
   touched:false,
   active:false,
   grounded:false,
@@ -1275,6 +1283,7 @@ const _corner={
 
   lenght:-1,
   currentLenght:0,
+  useLenght:-1,
   timer:0,
 
   img0:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),

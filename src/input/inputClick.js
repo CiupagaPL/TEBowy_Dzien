@@ -22,7 +22,7 @@ window.addEventListener("click",function(){
       window.open("https://github.com/ciupagapl/tebowy_dzien","_blank").focus();
     } if(context.collision(_footer.pastebin,mouse)&&(scene.value==1||scene.value>=2&&global.pause)){
       if(global.sfx){ audio.click1_sfx.play(); }
-      window.open("https://pastebin.com/zdg35gef","_blank").focus();
+      window.open("https://pastebin.com/czx0T7u1","_blank").focus();
     }
 
     if(context.collision(_start.base,mouse)&&scene.value==0&&!render.error&&scene.timer<context.time(100)){

@@ -203,7 +203,13 @@ scene.levelRender=function(){
       _currentForeground.y+=scene.vy;
       _currentForeground.x+=scene.vx;
       _foreground.currentLenght+=1;
-    } _player.lateUpdate();
+    }
+
+    _player.lateUpdate();
+    if(_player.action.current!=-1){
+      if(_player.action.current==0){ context.render(_player.action,_player.action.img0); }
+      else{ context.render(_player.action,_player.action.img1); }
+    }
   }
 
   context.render(_ui.game.heart.background,_ui.color1);
@@ -280,7 +286,7 @@ scene.levelRender=function(){
     context.text(_ui.game.teacher.text,_ui.color1,_ui.game.teacher.text.value0);
   }
 
-  if(global.pauseAnimation&&(!global.pauseChange||scene.next!=scene.value)&&global.pause&&_player.hp>0&&!global.gameLoad&&!global.restart){
+  if(global.pauseAnimation&&(!global.pauseChange||scene.next!=scene.value)&&global.pause&&_player.hp>0&&!global.gameLoad&&!global.restart&&!scene.load){
     context.render(_transition.overlay,_transition.color0);
 
     context.render(_ui.menu.main,_ui.color0);
@@ -379,7 +385,7 @@ scene.levelRender=function(){
   }
 
   if(scene.change&&scene.next!=1||scene.change&&_teacher.round>=2){
-    if(_player.hp==0||global.load){
+    if(_player.hp==0||_teacher.hp==0||global.load){
       if(scene.teacher){
         html.classList.remove("black-red");
         html.classList.add("red-black");
