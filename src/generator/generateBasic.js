@@ -51,7 +51,7 @@ scene.foregroundGenerator=function(){
     x:0,
     y:_currentPlatform.y+context.scale(14),
 
-    width:canvas.width,
+    width:5120,
     height:context.scale(166),
 
     score:_platform.currentLoad-1,
@@ -69,10 +69,10 @@ scene.foregroundGenerator=function(){
   _foreground.lenght++;
 
   _currentForeground={
-    x:canvas.width,
+    x:5120,
     y:_currentPlatform.y+context.scale(14),
 
-    width:canvas.width,
+    width:5120,
     height:context.scale(166),
 
     score:_platform.currentLoad-1,

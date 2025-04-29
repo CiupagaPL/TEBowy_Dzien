@@ -53,7 +53,7 @@ canvas.setup=function(){
 }
 
 canvas.check=function(){
-  if(canvas.width<640||canvas.height<360){
+  if(canvas.width<640||canvas.width>5120||canvas.height<360||canvas.height>2880){
     if(render.classList.contains("show")){
       render.classList.remove("show");
       render.classList.add("hide");
@@ -100,9 +100,9 @@ canvas.animate=function(current){
 
     canvas.loop();
 	
-	  if(document.visibilityState=="visible"){ document.title="Tebowy Dzień: "+canvas.currentFps+"FPS"; }
+	  if(document.visibilityState=="visible"){ document.title="TEBowy Dzień: "+canvas.currentFps+"FPS"; }
 	  else{
-      document.title="Tebowy Dzień: Minimized";
+      document.title="TEBowy Dzień: Minimized";
       global.pause=true;
       global.pauseChange=true;
     }

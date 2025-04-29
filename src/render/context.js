@@ -197,11 +197,23 @@ context.default=function(){
   _player.ammo.unused=true;
   _player.cloud.x=(canvas.width/2)-(_player.cloud.width/2);
   _player.cloud.y=context.scale(220);
+  _player.damage=false;
+  _player.heal=false;
+  _player.touchTebox=false;
 
   _corner.timer=0;
 
   _ui.elapsed=0;
   _ui.game.info.time.value0="Czas: 0s";
+  _ui.game.notification.main.x=-context.scale(132);
+  _ui.game.notification.background.x=-context.scale(134);
+  _ui.game.notification.icon.x=-context.scale(120);
+  _ui.game.notification.text.x=-context.scale(124);
+  _ui.game.notification.info.x=-context.scale(100);
+
+  _tebox.useLenght=-1;
+  _loot.current=-1;
+  _loot.timer=0;
 
   _teacher.base.y=context.scale(188);
   _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
