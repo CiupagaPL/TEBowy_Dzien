@@ -40,7 +40,7 @@ context.setup=function(object){
 
   if(object.width!=undefined){ object.width=Math.round((context.scale(object.width)/canvas.prevScale)*100)/100; }
   if(object.height!=undefined){ object.height=Math.round((context.scale(object.height)/canvas.prevScale)*100)/100; }
-  if(object.size!=undefined){ object.size=Math.round((Math.round(context.scale(object.size)/canvas.prevScale))*100)/100; }
+  if(object.size!=undefined){ object.size=Math.round((context.scale(object.size)/canvas.prevScale)*100)/100; }
 }
 
 context.render=function(object,fill){

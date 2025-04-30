@@ -64,12 +64,14 @@ _attack.update=function(){
       _loot.y=_attack.tebulinek.y+_loot.height;
       _loot.alpha=100;
 
-      if(_player.hp>=3){ _loot.current=Math.floor(Math.random()*2)+1; }
-      else{ _loot.current=Math.floor(Math.random()*3)+1; }
+      if(_player.hp>=4){ _loot.current=Math.floor(Math.random()*3); }
+      else{ _loot.current=Math.floor(Math.random()*6); }
 
       if(_loot.current==1){ _player.gun.ammo1++; }
-      else if(_loot.current==2){ _player.gun.ammo2++; }
-      else{
+      else if(_loot.current==2||_loot.current==0){
+        _loot.current=2;
+        _player.gun.ammo2++;
+      } else{
         _player.hp++;
         _player.heal=true;
       } _attack.tebulinek.touch=true;

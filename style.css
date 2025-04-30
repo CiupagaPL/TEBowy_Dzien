@@ -137,7 +137,7 @@ html{
 }
 
 #render.show,#load.show,#error.show{ animation:show 1s forwards; }
-#render.hide,#load.hide,#error.hide{ animation:hide 0.5s forwards; }
+#render.hide,#load.hide,#error.hide{ animation:hide 0.15s forwards; }
 
 #html.blue-black{ animation:blue-black 1s forwards; }
 #html.cyan-black{ animation:cyan-black 1s forwards; }

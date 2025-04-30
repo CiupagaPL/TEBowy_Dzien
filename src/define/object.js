@@ -183,7 +183,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Wersja: Beta (B)1.001",
+    value0:"Wersja: Beta (B)1.002",
     size:16,
   }, github:{
     x:318,
@@ -1207,6 +1207,7 @@ const _player={
 
     img0:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),
     img1:Object.assign(new Image(),{src:"tex/icon/action/use.png"}),
+    alpha:75,
   }, collisionTop:{
     x:0,
     y:0,

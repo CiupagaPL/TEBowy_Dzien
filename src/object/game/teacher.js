@@ -141,7 +141,7 @@ _teacher.update=function(){
 
   if((context.collision(_teacher.base,_player.ammo)||context.collision(_teacher.cloud,_player.ammo))&&_teacher.invisible==0&&!_player.ammo.unused){
     if(_player.ammo.type==0){ _teacher.hp-=1; }
-    else if(_player.ammo.type==1){ _teacher.hp-=5; }
+    else if(_player.ammo.type==1){ _teacher.hp-=4; }
     else{ _teacher.hp-=2; }
     _player.ammo.unused=true;
 

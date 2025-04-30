@@ -21,9 +21,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -43,9 +43,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -65,9 +65,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -87,9 +87,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -109,9 +109,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -131,9 +131,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -153,9 +153,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){
@@ -175,9 +175,9 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:Math.floor(Math.random()*3)+1,
-      second:Math.floor(Math.random()*2)+1,
-      third:Math.floor(Math.random()*2)+1,
+      first:0,
+      second:Math.floor(Math.random()*3),
+      third:Math.floor(Math.random()*2),
     };
 
     if(!scene.key){

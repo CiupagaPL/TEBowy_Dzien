@@ -117,14 +117,16 @@ scene.menuRender=function(){
   }
 
   if(scene.change){
-    if(!global.menuLoad){
-      html.classList.remove("red-blue");
-      html.classList.remove("black-blue");
-      html.classList.add("blue-black");
-    } else{
-      html.classList.remove("cyan-black");
-      html.classList.remove("red-black");
-      html.classList.add("black-blue");
+    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+      if(!global.menuLoad){
+        html.classList.remove("red-blue");
+        html.classList.remove("black-blue");
+        html.classList.add("blue-black");
+      } else{
+        html.classList.remove("cyan-black");
+        html.classList.remove("red-black");
+        html.classList.add("black-blue");
+      }
     }
 
     context.render(_transition.base,_transition.color0);

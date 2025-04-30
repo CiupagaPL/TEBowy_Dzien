@@ -12,6 +12,44 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
+document.addEventListener("visibilitychange",function(_event){
+  document.title="TEBowy Dzień: Minimized";
+  if(scene.value>=2&&!global.pause){
+    _ui.game.heart.main.y=-context.scale(74);
+    _ui.game.heart.background.y=-context.scale(76);
+    _ui.game.heart.icon.y=-context.scale(70);
+    _ui.game.heart.text.y=-context.scale(44);
+    _ui.game.ammo.main.y=-context.scale(74);
+    _ui.game.ammo.background.y=-context.scale(76);
+    _ui.game.ammo.icon.y=-context.scale(70);
+    _ui.game.ammo.text.y=-context.scale(45);
+    _ui.game.key.main.y=-context.scale(44);
+    _ui.game.key.background.y=-context.scale(38);
+    _ui.game.key.icon.y=-context.scale(33);
+    _ui.game.key.text.y=-context.scale(7);
+    _ui.game.pause.main.y=-context.scale(74);
+    _ui.game.pause.background.y=-context.scale(76);
+    _ui.game.pause.icon.y=-context.scale(54);
+    _ui.game.pause.text.y=-context.scale(44);
+    _ui.game.info.main.y=-context.scale(74);
+    _ui.game.info.background.y=-context.scale(76);
+    _ui.game.info.icon.y=-context.scale(72);
+    _ui.game.info.text.y=-context.scale(44);
+    _ui.game.info.score.y=-context.scale(64);
+    _ui.game.info.level.y=-context.scale(54);
+    _ui.game.info.time.y=-context.scale(44);
+    _ui.game.teacher.main.y=-context.scale(36);
+    _ui.game.teacher.background.y=-context.scale(38);
+    _ui.game.teacher.icon.y=-context.scale(33);
+    _ui.game.teacher.text.y=-context.scale(7);
+
+    _transition.overlay.alpha=60;
+    global.pause=true;
+    global.pauseChange=true;
+    global.pauseAnimation=true;
+  }
+});
+
 window.addEventListener("resize",function(){ canvas.resize=true; });
 
 window.addEventListener("mousemove",function(event){

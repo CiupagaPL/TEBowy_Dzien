@@ -160,12 +160,14 @@ window.addEventListener("keyup",function(event){
             if(global.sfx){ audio.chest_sfx.play(); }
 
             _loot.current=_tebox.first;
-            if(_loot.current==3&&_player.hp==5){ _loot.current=Math.floor(Math.random()*2)+1; }
-            else if(_loot.current==3&&_player.hp<=4){ _loot.current=Math.floor(Math.random()*5)+1; }
+            if(_loot.current==3&&_player.hp>=4){ _loot.current=Math.floor(Math.random()*3); }
+            else if(_loot.current==3&&_player.hp<4){ _loot.current=Math.floor(Math.random()*6); }
 
             if(_loot.current==1){ _player.gun.ammo1++; }
-            else if(_loot.current==2){ _player.gun.ammo2++; }
-            else{
+            else if(_loot.current==2||_loot.current==0){
+              _loot.current=2;
+              _player.gun.ammo2++;
+            } else{
               _player.hp++;
               _player.heal=true;
             }
@@ -177,7 +179,10 @@ window.addEventListener("keyup",function(event){
 
             _loot.current=_tebox.second;
             if(_loot.current==1){ _player.gun.ammo1++; }
-            else if(_loot.current==2){ _player.gun.ammo2++; }
+            else if(_loot.current==2||_loot.current==0){
+              _loot.current=2;
+              _player.gun.ammo2++;
+            }
 
             _loot.alpha=100;
             _tebox.second=-1;
@@ -185,7 +190,10 @@ window.addEventListener("keyup",function(event){
             if(global.sfx){ audio.chest_sfx.play(); }
 
             _loot.current=_tebox.third;
-            if(_loot.current==0){ scene.key=true; }
+            if(_loot.current!=0){
+              if(_loot.current==1&&_player.gun.ammo1-10>_player.gun.ammo2){ _loot.current=2 }
+              else if(_loot.current==2&&_player.gun.ammo2-10>_player.gun.ammo1){ _loot.current=1; }
+            } if(_loot.current==0){ scene.key=true; }
             else if(_loot.current==1){ _player.gun.ammo1++; }
             else if(_loot.current==2){ _player.gun.ammo2++; }
 
@@ -214,7 +222,7 @@ window.addEventListener("keyup",function(event){
         }
 
         if((event.key=="q"||event.key=="Q")&&(_player.gun.type==0&&_player.gun.timer>=context.time(90)||_player.gun.type==1&&_player.gun.timer>=context.time(120)&&
-           _player.gun.ammo1>0||_player.gun.type==2&&_player.gun.timer>=context.time(60)&&_player.gun.ammo2>0)){
+           _player.gun.ammo1>0||_player.gun.type==2&&_player.gun.timer>=context.time(60)&&_player.gun.ammo2>0)&&(!scene.teacher||scene.teacher&&scene.timer>=context.time(100))){
           if(global.sfx){
             if(audio.fire1==0){
               audio.fire1_sfx.play();

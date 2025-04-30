@@ -64,17 +64,19 @@ canvas.check=function(){
     error.classList.add("show");
     error.classList.remove("hide");
 
-    html.classList.remove("blue-black");
-    html.classList.remove("cyan-black");
-    html.classList.remove("red-black");
-    html.classList.remove("black-blue");
-    html.classList.remove("black-cyan");
-    html.classList.remove("black-red");
-    html.classList.remove("cyan-red");
-    html.classList.remove("red-blue");
-    html.classList.add("blue-red");
-
-    canvas.error=true;
+    if(html.classList.contains("blue-black")||html.classList.contains("cyan-black")||html.classList.contains("red-black")||
+       html.classList.contains("black-blue")||html.classList.contains("black-cyan")){
+      html.classList.remove("blue-black");
+      html.classList.remove("cyan-black");
+      html.classList.remove("red-black");
+      html.classList.remove("black-blue");
+      html.classList.remove("black-cyan");
+      html.classList.add("black-red");
+    } else{
+      html.classList.remove("cyan-red");
+      html.classList.remove("red-blue");
+      html.classList.add("blue-red");
+    } canvas.error=true;
   } else{
     render.classList.add("show");
     render.classList.remove("hide");
@@ -85,6 +87,7 @@ canvas.check=function(){
       error.classList.remove("show");
       error.classList.add("hide");
       html.classList.remove("blue-red");
+      html.classList.remove("black-red");
       html.classList.add("red-blue");
     } canvas.error=false;
   }
@@ -102,7 +105,6 @@ canvas.animate=function(current){
 	
 	  if(document.visibilityState=="visible"){ document.title="TEBowy Dzień: "+canvas.currentFps+"FPS"; }
 	  else{
-      document.title="TEBowy Dzień: Minimized";
       global.pause=true;
       global.pauseChange=true;
     }
@@ -172,7 +174,7 @@ canvas.loop=function(){
     context.reset();
     canvas.check();
 
-    if(scene.value>=2||scene.change){
+    if((scene.value>=2||scene.change)&&!canvas.error){
       scene.value=1;
       scene.next=1;
 

@@ -385,18 +385,20 @@ scene.levelRender=function(){
   }
 
   if(scene.change&&scene.next!=1||scene.change&&_teacher.round>=2){
-    if(_player.hp==0||_teacher.hp==0||global.load){
-      if(scene.teacher){
-        html.classList.remove("black-red");
-        html.classList.add("red-black");
-      } else{
-        html.classList.remove("black-cyan");
-        html.classList.add("cyan-black");
+    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+      if(_player.hp==0||_teacher.hp==0||global.load){
+        if(scene.teacher){
+          html.classList.remove("black-red");
+          html.classList.add("red-black");
+        } else{
+          html.classList.remove("black-cyan");
+          html.classList.add("cyan-black");
+        }
+      } else if(_transition.base.y>=canvas.height*1.5){
+        html.classList.remove("blue-black");
+        html.classList.remove("red-black");
+        html.classList.add("black-cyan");
       }
-    } else if(_transition.base.y>=canvas.height*1.5){
-      html.classList.remove("blue-black");
-      html.classList.remove("red-black");
-      html.classList.add("black-cyan");
     }
 
     context.render(_transition.base,_transition.color0);
@@ -412,7 +414,7 @@ scene.levelRender=function(){
     else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
     else{ context.render(_indicator,_indicator.img0Resolution); }
   } if(scene.next!=scene.value&&global.pauseChange||global.restart||scene.load){
-    if(scene.load){
+    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
       if(scene.teacher){
         html.classList.remove("cyan-black");
         html.classList.add("black-red");
@@ -435,23 +437,25 @@ scene.levelRender=function(){
     else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
     else{ context.render(_indicator,_indicator.img0Resolution); }
   } else if(global.pauseChange&&!global.restart){
-    if(!global.pauseAnimation){
-      if(scene.teacher){
-        html.classList.remove("red-black");
-        html.classList.add("black-red");
-      } else{
-        html.classList.remove("cyan-black");
-        html.classList.add("black-cyan");
-      }
-    } else if(!global.currentTutorial){
-      if(scene.teacher){
-        html.classList.remove("cyan-red");
-        html.classList.remove("black-red");
-        html.classList.add("red-black");
-      } else{
-        html.classList.remove("red-black");
-        html.classList.remove("black-cyan");
-        html.classList.add("cyan-black");
+    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+      if(!global.pauseAnimation){
+        if(scene.teacher){
+          html.classList.remove("red-black");
+          html.classList.add("black-red");
+        } else{
+          html.classList.remove("cyan-black");
+          html.classList.add("black-cyan");
+        }
+      } else if(!global.currentTutorial){
+        if(scene.teacher){
+          html.classList.remove("cyan-red");
+          html.classList.remove("black-red");
+          html.classList.add("red-black");
+        } else{
+          html.classList.remove("red-black");
+          html.classList.remove("black-cyan");
+          html.classList.add("cyan-black");
+        }
       }
     } context.render(_transition.overlay,_transition.color0);
   }

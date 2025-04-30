@@ -7,8 +7,8 @@ Najnowsza Beta zmienia niemalże wszystkie aspekty gry i otwiera drogę na wiele
 W trakcie pracy nad tą wersją byłem w stanie przepisać cały kod i przygotować go pod wiele nowych zmian.
 
 ## Status
-> Newest Version: **Beta (B)1.001**;
-> Last Updated: **29-04-2025**;
+> Newest Version: **Beta (B)1.002**;
+> Last Updated: **30-04-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>
