@@ -18,43 +18,43 @@ scene.menuRender=function(){
   context.render(_background.left,_background.imgMenu);
   context.render(_background.bottomLeft,_background.imgMenu);
 
-  context.render(_ui.menu.main,_ui.color0);
-  context.render(_ui.menu.left,_ui.color1);
-  context.render(_ui.menu.right,_ui.color1);
+  context.render(_ui.menu.main,"rgb(0,0,65)");
+  context.render(_ui.menu.left,"rgb(255,255,255)");
+  context.render(_ui.menu.right,"rgb(255,255,255)");
 
-  if(_title.base.alpha==100){ context.render(_title.teb,_title.teb.img0); }
-  else{ context.render(_title.teb,_title.teb.img1); }
-  context.render(_title.base,_title.base.img0);
+  if(_title.base.alpha==100){ context.render(_title.teb,_title.teb.imgOff); }
+  else{ context.render(_title.teb,_title.teb.imgOn); }
+  context.render(_title.base,_title.base.img);
 
-  context.text(_account.name,_account.color0,_account.name.value0);
-  context.render(_account.background,_account.color0);
+  context.text(_account.name,"rgb(255,255,255)",_account.name.value);
+  context.render(_account.background,"rgb(255,255,255)");
   if(_player.skin==0){ context.render(_account.profile,_account.profile.img0); }
   else{ context.render(_account.profile,_account.profile.img1); }
 
-  context.text(_footer.version,_footer.color0,_footer.version.value0);
-  context.render(_footer.github,_footer.github.img0);
-  context.render(_footer.pastebin,_footer.pastebin.img0);
+  context.text(_footer.version,"rgb(255,255,255)",_footer.version.value);
+  context.render(_footer.github,_footer.imgGit);
+  context.render(_footer.pastebin,_footer.imgPaste);
 
-  if(_button.start.text.alpha==100){ context.render(_button.start.base,_button.start.base.img0); }
-  else{ context.render(_button.start.base,_button.start.base.img1); }
-  context.text(_button.start.text,_button.color0,_button.start.text.value0);
-  if(_button.level.text.alpha==100){ context.render(_button.level.base,_button.level.base.img0); }
-  else{ context.render(_button.level.base,_button.level.base.img1); }
-  context.text(_button.level.text,_button.color0,_button.level.text.value0);
-  if(_button.custom.text.alpha==100){ context.render(_button.custom.base,_button.custom.base.img0); }
-  else{ context.render(_button.custom.base,_button.custom.base.img1); }
-  context.text(_button.custom.text,_button.color0,_button.custom.text.value0);
-  if(_button.setting.text.alpha==100){ context.render(_button.setting.base,_button.setting.base.img0); }
-  else{ context.render(_button.setting.base,_button.setting.base.img1); }
-  context.text(_button.setting.text,_button.color0,_button.setting.text.value0);
-  if(_button.about.text.alpha==100){ context.render(_button.about.base,_button.about.base.img0); }
-  else{ context.render(_button.about.base,_button.about.base.img1); }
-  context.text(_button.about.text,_button.color0,_button.about.text.value0);
-  if(_button.version.text.alpha==100){ context.render(_button.version.base,_button.version.base.img0); }
-  else{ context.render(_button.version.base,_button.version.base.img1); }
-  context.text(_button.version.text,_button.color0,_button.version.text.value0);
+  if(_button.start.text.alpha==100){ context.render(_button.start.base,_button.start.base.imgOff); }
+  else{ context.render(_button.start.base,_button.start.base.imgOn); }
+  context.text(_button.start.text,"rgb(255,255,255)",_button.start.text.value);
+  if(_button.level.text.alpha==100){ context.render(_button.level.base,_button.level.base.imgOff); }
+  else{ context.render(_button.level.base,_button.level.base.imgOn); }
+  context.text(_button.level.text,"rgb(255,255,255)",_button.level.text.value);
+  if(_button.custom.text.alpha==100){ context.render(_button.custom.base,_button.custom.base.imgOff); }
+  else{ context.render(_button.custom.base,_button.custom.base.imgOn); }
+  context.text(_button.custom.text,"rgb(255,255,255)",_button.custom.text.value);
+  if(_button.setting.text.alpha==100){ context.render(_button.setting.base,_button.setting.base.imgOff); }
+  else{ context.render(_button.setting.base,_button.setting.base.imgOn); }
+  context.text(_button.setting.text,"rgb(255,255,255)",_button.setting.text.value);
+  if(_button.about0.text.alpha==100){ context.render(_button.about0.base,_button.about0.base.imgOff); }
+  else{ context.render(_button.about0.base,_button.about0.base.imgOn); }
+  context.text(_button.about0.text,"rgb(255,255,255)",_button.about0.text.value);
+  if(_button.about1.text.alpha==100){ context.render(_button.about1.base,_button.about1.base.imgOff); }
+  else{ context.render(_button.about1.base,_button.about1.base.imgOn); }
+  context.text(_button.about1.text,"rgb(255,255,255)",_button.about1.text.value);
 
-  if(_button.setting.animation||_button.setting.on||_button.about.animation||_button.about.on||_button.version.animation||_button.version.on){
+  if(_button.setting.animation||_button.setting.on||_button.about0.animation||_button.about0.on||_button.about1.animation||_button.about1.on){
     context.render(_clipboard.base,_clipboard.base.img0);
     if(!_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.img0); }
     else{ context.render(_clipboard.back,_clipboard.back.img1); }
@@ -69,11 +69,11 @@ scene.menuRender=function(){
       if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.img0); }
       else{ context.render(_clipboard.setting.music.base,_clipboard.setting.img1); }
       context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value0);
-    } else if(_button.about.animation||_button.about.on){
+    } else if(_button.about0.animation||_button.about0.on){
       context.render(_clipboard.icon,_clipboard.icon.img1);
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value1);
       context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value0);
-    } else if(_button.version.animation||_button.version.on){
+    } else if(_button.about1.animation||_button.about1.on){
       context.render(_clipboard.icon,_clipboard.icon.img2);
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value2);
       context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value1);
@@ -129,20 +129,20 @@ scene.menuRender=function(){
       }
     }
 
-    context.render(_transition.base,_transition.color0);
-    context.render(_transition.top,_transition.img0);
-    context.render(_transition.bottom,_transition.img1);
-    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+    context.render(_transition.base,"rgb(0,27,69)");
+    context.render(_transition.top,_transition.imgTop);
+    context.render(_transition.bottom,_transition.imgBottom);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value);
 
-    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
-    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
-    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
-    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
-    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
-    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
-    else{ context.render(_indicator,_indicator.img0Resolution); }
+    if(_indicator.time<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.time>=context.time(5)&&_indicator.time<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.time>=context.time(10)&&_indicator.time<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.time>=context.time(15)&&_indicator.time<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.time>=context.time(20)&&_indicator.time<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.time>=context.time(25)&&_indicator.time<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.imgMax); }
   } else{
-    if(!document.fullscreenElement){ context.render(_indicator,_indicator.img0Resolution); }
-    else{ context.render(_indicator,_indicator.img1Resolution); }
+    if(!document.fullscreenElement){ context.render(_indicator,_indicator.imgMax); }
+    else{ context.render(_indicator,_indicator.imgMin); }
   }
 }

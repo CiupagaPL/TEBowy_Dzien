@@ -13,7 +13,7 @@
  *  (_(_)--(_(_) */
 
 _clipboard.update=function(){
-  if(_button.setting.animation||_button.about.animation||_button.version.animation){
+  if(_button.setting.animation||_button.about0.animation||_button.about1.animation){
     if(_clipboard.on&&_clipboard.close){
       if(_clipboard.base.x<canvas.width+_clipboard.base.width){
         _clipboard.base.x+=context.move(20);
@@ -45,12 +45,12 @@ _clipboard.update=function(){
         if(_button.setting.animation){
           _button.setting.animation=false;
           _button.setting.on=false;
-        } else if(_button.about.animation){
-          _button.about.animation=false;
-          _button.about.on=false;
-        } else if(_button.version.animation){
-          _button.version.animation=false;
-          _button.version.on=false;
+        } else if(_button.about0.animation){
+          _button.about0.animation=false;
+          _button.about0.on=false;
+        } else if(_button.about1.animation){
+          _button.about1.animation=false;
+          _button.about1.on=false;
         }
 
         if(_clipboard.change){
@@ -62,22 +62,22 @@ _clipboard.update=function(){
 
     else if(_clipboard.on&&!_clipboard.close){
       if(_button.setting.animation){
-        _button.about.on=false;
+        _button.about0.on=false;
         _button.setting.on=true;
-        _button.version.on=false;
-      } else if(_button.about.animation){
-        _button.about.on=true;
+        _button.about1.on=false;
+      } else if(_button.about0.animation){
+        _button.about0.on=true;
         _button.setting.on=false;
-        _button.version.on=false;
-      } else if(_button.version.animation){
-        _button.about.on=false;
+        _button.about1.on=false;
+      } else if(_button.about1.animation){
+        _button.about0.on=false;
         _button.setting.on=false;
-        _button.version.on=true;
+        _button.about1.on=true;
       }
 
-      _button.about.animation=false;
+      _button.about0.animation=false;
       _button.setting.animation=false;
-      _button.version.animation=false;
+      _button.about1.animation=false;
       scene.blocked=false;
     }
 
@@ -100,12 +100,12 @@ _clipboard.update=function(){
         if(_button.setting.animation){
           _button.setting.animation=false;
           _button.setting.on=true;
-        } else if(_button.about.animation){
-          _button.about.animation=false;
-          _button.about.on=true;
-        } else if(_button.version.animation){
-          _button.version.animation=false;
-          _button.version.on=true;
+        } else if(_button.about0.animation){
+          _button.about0.animation=false;
+          _button.about0.on=true;
+        } else if(_button.about1.animation){
+          _button.about1.animation=false;
+          _button.about1.on=true;
         }
       }
     }

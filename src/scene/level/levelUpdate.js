@@ -146,31 +146,6 @@ scene.levelUpdate=function(){
     _background.bottomLeft.x+=scene.vx;
   }
 
-  _ui.game.heart.text.value0=_player.hp+"/5";
-  _ui.game.info.score.value0="Wynik: "+scene.score;
-  if(scene.value<=10&&scene.value!=scene.count){ _ui.game.info.level.value0="Poziom: 0"+Number(scene.value-1); }
-  else if(scene.value>10&&scene.value!=scene.count){ _ui.game.info.level.value0="Poziom: "+Number(scene.value-1); }
-  else{ _ui.game.info.level.value0="Finał"; }
-  if(_teacher.hp<10){ _ui.game.teacher.text.x=context.scale(611); }
-  else{ _ui.game.teacher.text.x=context.scale(609); }
-  _ui.game.teacher.text.value0=_teacher.hp+"/30";
-  if(_player.gun.type==0){
-    _ui.game.ammo.text.value0="∞";
-    _ui.game.ammo.text.size=context.scale(16);
-    _ui.game.ammo.text.x=context.scale(577);
-  } else if(_player.gun.type==1){
-    _ui.game.ammo.text.value0=String(_player.gun.ammo1);
-    _ui.game.ammo.text.size=context.scale(13);
-    if(_player.gun.ammo1<=9&&_player.gun.ammo1!=1){ _ui.game.ammo.text.x=context.scale(580); }
-    else if(_player.gun.ammo1==1){ _ui.game.ammo.text.x=context.scale(581); }
-    else if(_player.gun.ammo1>9){ _ui.game.ammo.text.x=context.scale(578); }
-  } else{
-    _ui.game.ammo.text.value0=String(_player.gun.ammo2);
-    if(_player.gun.ammo2<=9&&_player.gun.ammo2!=1){ _ui.game.ammo.text.x=context.scale(580); }
-    else if(_player.gun.ammo2==1){ _ui.game.ammo.text.x=context.scale(581); }
-    else if(_player.gun.ammo2>9){ _ui.game.ammo.text.x=context.scale(578); }
-  }
-
   if(_player.hp==0&&!global.pause){
     if(global.sfx){ audio.lost1_sfx.play(); }
     global.restart=true;

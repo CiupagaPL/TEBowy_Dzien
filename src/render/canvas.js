@@ -102,7 +102,7 @@ canvas.animate=function(current){
     canvas.currentFps=Math.round(1000/((current-canvas.start)/++canvas.countFps));
 
     canvas.loop();
-	
+
 	  if(document.visibilityState=="visible"){ document.title="TEBowy Dzień: "+canvas.currentFps+"FPS"; }
 	  else{
       global.pause=true;
@@ -121,7 +121,6 @@ canvas.animate=function(current){
 
         while((canvas.timeScale-0.1)*40>canvas.currentFps){ canvas.timeScale-=0.1; }
         while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.1; }
-
         if(canvas.timeScale<0.3){ canvas.timeScale=0.3; }
         if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
 
@@ -129,10 +128,13 @@ canvas.animate=function(current){
         scene.timer=context.limit(scene.timer);
 
         _transition.timer=context.limit(_transition.timer);
+        _indicator.time=context.limit(_indicator.time);
 
         if(scene.value>=2){
           _player.invisible=context.limit(_player.invisible);
           _player.upTimer=context.limit(_player.upTimer);
+
+          _loot.timer=context.limit(_loot.timer);
           _teacher.invisible=context.limit(_teacher.invisible);
 
           _corner.timer=context.limit(_corner.timer);
@@ -161,6 +163,7 @@ canvas.startAnimating=function(){
 
   canvas.animate();
 }
+
 canvas.startAnimating();
 
 canvas.loop=function(){
@@ -211,7 +214,6 @@ canvas.loop=function(){
 
       _transition.text.value0="Menu Główne";
       _transition.text.x=context.scale(225);
-
       _transition.base.y=context.scale(2);
       _transition.top.y=-canvas.height+context.scale(4);
       _transition.bottom.y=canvas.height;
@@ -233,8 +235,6 @@ canvas.loop=function(){
     } else{
       scene.levelRender();
       scene.levelUpdate();
-    }
-
-    if(!global.stable){ context.text(_info,_info.color0,_info.value0); }
+    } if(!global.stable){ context.text(_info,"rgb(255,255,255)",_info.value); }
   }
 }

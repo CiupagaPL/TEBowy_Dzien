@@ -85,10 +85,10 @@ window.addEventListener("mousemove",function(event){
       else{ _button.restart.text.alpha=100; }
       if(context.collision(_button.setting.base,mouse)||context.collision(_button.setting.text,mouse)){ _button.setting.text.alpha=50; }
       else{ _button.setting.text.alpha=100; }
-      if(context.collision(_button.about.base,mouse)||context.collision(_button.about.text,mouse)){ _button.about.text.alpha=50; }
-      else{ _button.about.text.alpha=100; }
-      if(context.collision(_button.version.base,mouse)||context.collision(_button.version.text,mouse)){ _button.version.text.alpha=50; }
-      else{ _button.version.text.alpha=100; }
+      if(context.collision(_button.about0.base,mouse)||context.collision(_button.about0.text,mouse)){ _button.about0.text.alpha=50; }
+      else{ _button.about0.text.alpha=100; }
+      if(context.collision(_button.about1.base,mouse)||context.collision(_button.about1.text,mouse)){ _button.about1.text.alpha=50; }
+      else{ _button.about1.text.alpha=100; }
 
       if(scene.value==1){
         if(context.collision(_blueprint.level.button1,mouse)){ _blueprint.level.button1.alpha=50; }

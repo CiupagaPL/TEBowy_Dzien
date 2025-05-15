@@ -56,8 +56,8 @@ window.addEventListener("keyup",function(event){
           _clipboard.close=true;
 
           if(_button.setting.on){ _button.setting.animation=true; }
-          else if(_button.about.on){ _button.about.animation=true; }
-          else{ _button.version.animation=true; }
+          else if(_button.about0.on){ _button.about0.animation=true; }
+          else{ _button.about1.animation=true; }
         } else if(_blueprint.on){
           scene.auto=true;
           scene.nextAuto=2;
@@ -80,7 +80,8 @@ window.addEventListener("keyup",function(event){
 
         if(_button.level.on){ _button.level.animation=true; }
         else if(_button.setting.on){ _button.setting.animation=true; }
-        else if(_button.about.on){ _button.about.animation=true; }
+        else if(_button.about0.on){ _button.about0.animation=true; }
+        else if(_button.about1.on){ _button.about1.animation=true; }
         else{ _button.custom.animation=true; }
       }
     } else{
@@ -94,8 +95,8 @@ window.addEventListener("keyup",function(event){
             _clipboard.close=true;
 
             if(_button.setting.on){ _button.setting.animation=true; }
-            else if(_button.about.on){ _button.about.animation=true; }
-            else{ _button.version.animation=true; }
+            else if(_button.about0.on){ _button.about0.animation=true; }
+            else{ _button.about1.animation=true; }
           } else{
             global.pauseChange=true;
             global.pauseAnimation=false;

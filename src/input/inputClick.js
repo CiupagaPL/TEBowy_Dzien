@@ -57,8 +57,8 @@ window.addEventListener("click",function(){
             _clipboard.close=true;
 
             if(_button.setting.on){ _button.setting.animation=true; }
-            else if(_button.about.on){ _button.about.animation=true; }
-            else{ _button.version.animation=true; }
+            else if(_button.about0.on){ _button.about0.animation=true; }
+            else{ _button.about1.animation=true; }
           } else if(_blueprint.on){
             scene.auto=true;
             scene.nextAuto=2;
@@ -76,8 +76,8 @@ window.addEventListener("click",function(){
             _clipboard.close=true;
 
             if(_button.setting.on){ _button.setting.animation=true; }
-            else if(_button.about.on){ _button.about.animation=true; }
-            else{ _button.version.animation=true; }
+            else if(_button.about0.on){ _button.about0.animation=true; }
+            else{ _button.about1.animation=true; }
           } else{
             global.pauseChange=true;
             global.pauseAnimation=false;
@@ -104,8 +104,8 @@ window.addEventListener("click",function(){
             _button.level.animation=true;
 
             if(_button.setting.on){ _button.setting.animation=true; }
-            else if(_button.about.on){ _button.about.animation=true; }
-            else{ _button.version.animation=true; }
+            else if(_button.about0.on){ _button.about0.animation=true; }
+            else{ _button.about1.animation=true; }
           }
         }
       }
@@ -121,8 +121,8 @@ window.addEventListener("click",function(){
           _clipboard.close=true;
         
           if(_button.setting.on){ _button.setting.animation=true; } 
-          else if(_button.about.on){ _button.about.animation=true; }
-          else{ _button.version.animation=true; }
+          else if(_button.about0.on){ _button.about0.animation=true; }
+          else{ _button.about1.animation=true; }
         } else{
           scene.next=1;
           scene.change=true;
@@ -149,8 +149,8 @@ window.addEventListener("click",function(){
             _button.custom.animation=true;
 
             if(_button.setting.on){ _button.setting.animation=true; }
-            else if(_button.about.on){ _button.about.animation=true; }
-            else{ _button.version.animation=true; }
+            else if(_button.about0.on){ _button.about0.animation=true; }
+            else{ _button.about1.animation=true; }
           }
         }
       }
@@ -165,8 +165,8 @@ window.addEventListener("click",function(){
           _clipboard.close=true;
 
           if(_button.setting.on){ _button.setting.animation=true; }
-          else if(_button.about.on){ _button.about.animation=true; }
-          else if(_button.version.on){ _button.version.animation=true; }
+          else if(_button.about0.on){ _button.about0.animation=true; }
+          else{ _button.about1.animation=true; }
         } else{
           global.restart=true;
           scene.change=true;
@@ -182,14 +182,14 @@ window.addEventListener("click",function(){
           _clipboard.close=true;
           _button.setting.animation=true;
         } else{
-          _button.about.on=false;
-          _button.about.animation=false;
-          _button.version.on=false;
-          _button.version.animation=false;
+          _button.about0.on=false;
+          _button.about0.animation=false;
+          _button.about1.on=false;
+          _button.about1.animation=false;
 
           if(!_blueprint.on){ _button.setting.animation=true; }
-          else if(_button.about.on){ _button.setting.animation=true; }
-          else if(_button.version.on){ _button.version.animation=true; }
+          else if(_button.about0.on){ _button.about0.animation=true; }
+          else if(_button.about1.on){ _button.about1.animation=true; }
           else{
             _blueprint.close=true;
             _blueprint.change=true;
@@ -201,27 +201,27 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if((context.collision(_button.about.base,mouse)||context.collision(_button.about.text,mouse))&&(scene.value==1||scene.value>=2&&
+      else if((context.collision(_button.about0.base,mouse)||context.collision(_button.about0.text,mouse))&&(scene.value==1||scene.value>=2&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
-        if(_button.about.on){
+        if(_button.about0.on){
           _clipboard.close=true;
-          _button.about.animation=true;
+          _button.about0.animation=true;
         } else{
           _button.setting.on=false;
           _button.setting.animation=false;
-          _button.version.on=false;
-          _button.version.animation=false;
+          _button.about1.on=false;
+          _button.about1.animation=false;
 
-          if(!_blueprint.on){ _button.about.animation=true; }
+          if(!_blueprint.on){ _button.about0.animation=true; }
           else if(_button.setting.on){ _button.setting.animation=true; }
-          else if(_button.version.on){ _button.version.animation=true; }
+          else if(_button.about1.on){ _button.about1.animation=true; }
           else{
             _blueprint.close=true;
             _blueprint.change=true;
-            _button.about.animation=true;
+            _button.about0.animation=true;
 
             if(_button.level.on){ _button.level.animation=true; }
             else{ _button.custom.animation=true; }
@@ -229,27 +229,27 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if((context.collision(_button.version.base,mouse)||context.collision(_button.version.text,mouse))&&(scene.value==1||scene.value>=2&&
+      else if((context.collision(_button.about1.base,mouse)||context.collision(_button.about1.text,mouse))&&(scene.value==1||scene.value>=2&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
-        if(_button.version.on){
+        if(_button.about1.on){
           _clipboard.close=true;
-          _button.version.animation=true;
+          _button.about1.animation=true;
         } else{
           _button.setting.on=false;
           _button.setting.animation=false;
-          _button.about.on=false;
-          _button.about.animation=false;
+          _button.about0.on=false;
+          _button.about0.animation=false;
 
-          if(!_blueprint.on){ _button.version.animation=true; }
+          if(!_blueprint.on){ _button.about1.animation=true; }
           else if(_button.setting.on){ _button.setting.animation=true; }
-          else if(_button.about.on){ _button.about.animation=true; }
+          else if(_button.about0.on){ _button.about0.animation=true; }
           else{
             _blueprint.close=true;
             _blueprint.change=true;
-            _button.version.animation=true;
+            _button.about1.animation=true;
 
             if(_button.level.on){ _button.level.animation=true; }
             else{ _button.custom.animation=true; }
@@ -265,8 +265,8 @@ window.addEventListener("click",function(){
       scene.blocked=true;
 
       if(_button.setting.on){ _button.setting.animation=true; }
-      else if(_button.about.on){ _button.about.animation=true; }
-      else{ _button.version.animation=true; }
+      else if(_button.about0.on){ _button.about0.animation=true; }
+      else{ _button.about1.animation=true; }
     }
 
     if(context.collision(_footer.next,mouse)&&(global.currentReward||global.currentTeacher||global.currentTutorial)){
@@ -354,60 +354,47 @@ window.addEventListener("click",function(){
     }
 
     if(scene.value>=2&&!global.pause&&_ui.show){
-      if(context.collision(_ui.game.heart.background,mouse)&&_ui.game.heart.icon.timer==0){
+      if(context.collision(_ui.game.heart.background,mouse)&&_ui.game.heart.icon.time==0){
         if(global.sfx){ audio.click2_sfx.play(); }
 
-        _ui.game.heart.icon.timer=1;
-        _ui.game.heart.icon.x-=context.scale(1);
-        _ui.game.heart.icon.y-=context.scale(1);
-        _ui.game.heart.icon.width=context.scale(16);
-        _ui.game.heart.icon.height=context.scale(16);
-      } if(context.collision(_ui.game.ammo.background,mouse)&&_ui.game.ammo.icon.timer==0){
+        _ui.game.heart.icon.time=1;
+        _ui.game.heart.icon.width=context.scale(15);
+        _ui.game.heart.icon.height=context.scale(15);
+      } else if(context.collision(_ui.game.ammo.background,mouse)&&_ui.game.ammo.icon.time==0){
         if(global.sfx){ audio.click2_sfx.play(); }
 
-        _ui.game.ammo.icon.timer=1;
-        _ui.game.ammo.icon.x-=context.scale(1);
-        _ui.game.ammo.icon.y-=context.scale(1);
-        _ui.game.ammo.icon.width=context.scale(16);
-        _ui.game.ammo.icon.height=context.scale(16);
-      } if(context.collision(_ui.game.key.background,mouse)&&_ui.game.key.icon.timer==0){
+        _ui.game.ammo.icon.time=1;
+        _ui.game.ammo.icon.width=context.scale(15);
+        _ui.game.ammo.icon.height=context.scale(15);
+      } else if(context.collision(_ui.game.key.background,mouse)&&_ui.game.key.icon.time==0){
         if(global.sfx){ audio.click2_sfx.play(); }
 
-        _ui.game.key.icon.timer=1;
-        _ui.game.key.icon.x-=context.scale(1);
-        _ui.game.key.icon.y-=context.scale(1);
-        _ui.game.key.icon.width=context.scale(18);
-        _ui.game.key.icon.height=context.scale(18);
-      } if(context.collision(_ui.game.pause.background,mouse)&&_ui.game.pause.icon.timer==0){
+        _ui.game.key.icon.time=1;
+        _ui.game.key.icon.width=context.scale(17);
+        _ui.game.key.icon.height=context.scale(17);
+      } else if(context.collision(_ui.game.pause.background,mouse)&&!global.pause){
         if(global.sfx){ audio.click2_sfx.play(); }
 
         global.pause=true;
         global.pauseChange=true;
         global.pauseAnimation=true;
-
-        _ui.game.pause.icon.timer=1;
-        _ui.game.pause.icon.size=context.scale(36);
-      } if(context.collision(_ui.game.info.background,mouse)&&_ui.game.info.icon.timer==0){
+      } else if(context.collision(_ui.game.info.background,mouse)&&_ui.game.info.icon.time==0){
         if(global.sfx){ audio.click2_sfx.play(); }
 
-        _ui.game.info.icon.timer=1;
-        _ui.game.info.icon.x-=context.scale(1);
-        _ui.game.info.icon.y-=context.scale(1);
-        _ui.game.info.icon.width=context.scale(22);
-        _ui.game.info.icon.height=context.scale(22);
-      } if(context.collision(_ui.game.notification.background,mouse)&&_ui.game.notification.icon.timer==0){
+        _ui.game.info.icon.time=1;
+        _ui.game.info.icon.width=context.scale(21);
+        _ui.game.info.icon.height=context.scale(21);
+      } else if(context.collision(_ui.game.notification.background,mouse)&&_ui.game.notification.icon.time==0){
         if(global.sfx){ audio.click2_sfx.play(); }
 
-        _ui.game.notification.icon.timer=1;
-        _ui.game.notification.icon.size=context.scale(30);
-      } if(context.collision(_ui.game.teacher.background,mouse)&&_ui.game.teacher.icon.timer==0){
+        _ui.game.notification.icon.time=1;
+        _ui.game.notification.icon.size=context.scale(29);
+      } else if(context.collision(_ui.game.teacher.background,mouse)&&_ui.game.teacher.icon.time==0){
         if(global.sfx){ audio.click2_sfx.play(); }
 
-        _ui.game.teacher.icon.timer=1;
-        _ui.game.teacher.icon.x-=context.scale(1);
-        _ui.game.teacher.icon.y-=context.scale(1);
-        _ui.game.teacher.icon.width=context.scale(16);
-        _ui.game.teacher.icon.height=context.scale(16);
+        _ui.game.teacher.icon.time=1;
+        _ui.game.teacher.icon.width=context.scale(17);
+        _ui.game.teacher.icon.height=context.scale(17);
       }
     }
   }

@@ -15,9 +15,9 @@
 _transition.sceneOff=function(){
   scene.blocked=true;
   scene.change=true;
-  _indicator.timer++;
+  _indicator.time++;
   _indicator.alpha=100;
-  if(_indicator.timer>=context.time(35)){ _indicator.timer=0; }
+  if(_indicator.time>=context.time(35)){ _indicator.time=0; }
 
   _transition.base.y+=context.move(20);
   _transition.top.y+=context.move(20);
@@ -25,14 +25,14 @@ _transition.sceneOff=function(){
   _transition.text.y+=context.move(20);
 
   if(scene.next==1){
-    _transition.text.value0="Menu Główne";
+    _transition.text.value="Menu Główne";
     _transition.text.x=context.scale(225);
   } else if(scene.next!=scene.count){
-    if(scene.next<=10){ _transition.text.value0="Poziom 0"+String(Number(scene.next-1)); }
-    else{ _transition.text.value0="Poziom "+String(Number(scene.next-1)); } 
+    if(scene.next<=10){ _transition.text.value="Poziom 0"+String(Number(scene.next-1)); }
+    else{ _transition.text.value="Poziom "+String(Number(scene.next-1)); } 
     _transition.text.x=context.scale(250);
   } else{
-    _transition.text.value0="Finał";
+    _transition.text.value="Finał";
     _transition.text.x=context.scale(280);
   }
 
@@ -65,9 +65,9 @@ _transition.sceneOff=function(){
 
 _transition.sceneOn=function(){
   global.pause=true;
-  _indicator.timer++;
+  _indicator.time++;
   _indicator.alpha=100;
-  if(_indicator.timer>=context.time(35)){ _indicator.timer=0; }
+  if(_indicator.time>=context.time(35)){ _indicator.time=0; }
 
   if(_transition.base.y>=-context.scale(8)&&_transition.base.y<context.scale(8)&&!scene.load){
     scene.resetLevel();
@@ -111,7 +111,7 @@ _transition.sceneOn=function(){
     else{ scene.load=false; }
     scene.blocked=false;
     audio.current=0;
-    _indicator.timer=0;
+    _indicator.time=0;
 
     if(scene.value==1){ global.menuLoad=false; }
     else{

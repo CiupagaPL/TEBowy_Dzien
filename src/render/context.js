@@ -114,10 +114,10 @@ context.default=function(){
   _button.custom.text.y=context.scale(296);
   _button.setting.base.y=context.scale(150);
   _button.setting.text.y=context.scale(178);
-  _button.about.base.y=context.scale(214);
-  _button.about.text.y=context.scale(232);
-  _button.version.base.y=context.scale(278);
-  _button.version.text.y=context.scale(296);
+  _button.about0.base.y=context.scale(214);
+  _button.about0.text.y=context.scale(232);
+  _button.about1.base.y=context.scale(278);
+  _button.about1.text.y=context.scale(296);
   if(scene.value==1){ _button.start.text.value0="Rozpocznij\nNową Grę"; }
   else{ _button.start.text.value0="Kontynuuj\nRozgrywkę"; }
 
@@ -314,10 +314,10 @@ context.reset=function(){
   context.setup(_button.restart.text);
   context.setup(_button.setting.base);
   context.setup(_button.setting.text);
-  context.setup(_button.about.base);
-  context.setup(_button.about.text);
-  context.setup(_button.version.base);
-  context.setup(_button.version.text);
+  context.setup(_button.about0.base);
+  context.setup(_button.about0.text);
+  context.setup(_button.about1.base);
+  context.setup(_button.about1.text);
 
   context.setup(_clipboard.base);
   context.setup(_clipboard.back);

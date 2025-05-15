@@ -17,8 +17,8 @@ const body=document.getElementById("body");
 const load=document.getElementById("load");
 const error=document.getElementById("error");
 const render=document.getElementById("render",{
-  width:"0px",
-  height:"0px",
+  width:0,
+  height:0,
 });
 
 const context=render.getContext("2d",{
@@ -128,7 +128,7 @@ const scene={
 };
 
 const global={
-  stable:true,
+  stable:false,
   pause:false,
   pauseChange:false,
   pauseAnimation:false,

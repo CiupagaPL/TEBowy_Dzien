@@ -2,13 +2,20 @@
 # TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka [PL]
-Wielką satysfakcję daje ukończenie pół rocznej pracy, uwierzcie mi ;-))
-Najnowsza Beta zmienia niemalże wszystkie aspekty gry i otwiera drogę na wiele bogatszy dalszy rozwój.
-W trakcie pracy nad tą wersją byłem w stanie przepisać cały kod i przygotować go pod wiele nowych zmian.
+### Podstawowe
+Gałęź ta zawiera wersje testowe, które są często aktualizowane.
+Zawartość tych wersji silnie różni się od wydań stabilnych, zawierając wszelakie nadchodzące zmiany.
+Są one mocno niestabilne, dlatego spodziewać się możecie dużej ilości błędów.
+**Wersje te nie są przeznaczone na naszą domenę**.
+Przełącz się na gałęź stabilną aby znaleźć najnowsze oficjalne wydania.
+### Cel
+Obecne wydania niestabilne są przygotowaniem do nowej wersji stabilnej **Beta (B)1.010**.
+Dojdzie w niej do wielu poprawek w kodzie jak i w samej grze oraz do kilku dodatków i zmian balansowych.
+Głównym jej celem jest ułatwienie rozgrywki i przygotowanie gry do kolejnego dłuższego czasu bez aktualizacji.
 
 ## Status
-> Newest Version: **Beta (B)1.002**;
-> Last Updated: **30-04-2025**;
+> Newest Version: **Unstable**;
+> Last Updated: **15-05-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

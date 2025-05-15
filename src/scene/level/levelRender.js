@@ -212,18 +212,18 @@ scene.levelRender=function(){
     }
   }
 
-  context.render(_ui.game.heart.background,_ui.color1);
-  context.render(_ui.game.heart.main,_ui.color0);
+  context.render(_ui.game.heart.background,"rgb(255,255,255)");
+  context.render(_ui.game.heart.main,"rgb(0,0,65)");
   if(_player.hp==0){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img0); }
   else if(_player.hp==1){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img1); }
   else if(_player.hp==2){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img2); }
   else if(_player.hp==3){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img3); }
   else if(_player.hp==4){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img4); }
   else{ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img5); }
-  context.text(_ui.game.heart.text,_ui.color1,_ui.game.heart.text.value0);
+  context.text(_ui.game.heart.text,"rgb(255,255,255)",_ui.game.heart.text.value);
 
-  context.render(_ui.game.ammo.background,_ui.color1);
-  context.render(_ui.game.ammo.main,_ui.color0);
+  context.render(_ui.game.ammo.background,"rgb(255,255,255)");
+  context.render(_ui.game.ammo.main,"rgb(0,0,65)");
   if(_player.gun.type==0){
     if(_player.gun.timer<context.time(18)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
     else if(_player.gun.timer>=context.time(18)&&_player.gun.timer<context.time(36)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Normal); }
@@ -245,88 +245,88 @@ scene.levelRender=function(){
     else if(_player.gun.timer>=context.time(36)&&_player.gun.timer<context.time(48)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Fast); }
     else if(_player.gun.timer>=context.time(48)&&_player.gun.timer<context.time(60)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Fast); }
     else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Fast); }
-  } context.text(_ui.game.ammo.text,_ui.color1,_ui.game.ammo.text.value0);
+  } context.text(_ui.game.ammo.text,"rgb(255,255,255)",_ui.game.ammo.text.value);
 
   if(!scene.teacher){
-    context.render(_ui.game.key.background,_ui.color1);
-    context.render(_ui.game.key.main,_ui.color0);
-    if(!scene.key){ context.render(_ui.game.key.icon,_ui.game.key.icon.img0); }
-    else{ context.render(_ui.game.key.icon,_ui.game.key.icon.img1); }
-    context.text(_ui.game.key.text,_ui.color1,_ui.game.key.text.value0);
+    context.render(_ui.game.key.background,"rgb(255,255,255)");
+    context.render(_ui.game.key.main,"rgb(0,0,65)");
+    if(!scene.key){ context.render(_ui.game.key.icon,_ui.game.key.icon.imgOff); }
+    else{ context.render(_ui.game.key.icon,_ui.game.key.icon.imgOn); }
+    context.text(_ui.game.key.text,"rgb(255,255,255)",_ui.game.key.text.value);
   }
 
-  context.render(_ui.game.pause.background,_ui.color1);
-  context.render(_ui.game.pause.main,_ui.color0);
-  context.text(_ui.game.pause.icon,_ui.color1,_ui.game.pause.icon.value0);
-  context.text(_ui.game.pause.text,_ui.color1,_ui.game.pause.text.value0);
+  context.render(_ui.game.pause.background,"rgb(255,255,255)");
+  context.render(_ui.game.pause.main,"rgb(0,0,65)");
+  context.text(_ui.game.pause.icon,"rgb(255,255,255)",_ui.game.pause.icon.value);
+  context.text(_ui.game.pause.text,"rgb(255,255,255)",_ui.game.pause.text.value);
 
-  context.render(_ui.game.info.background,_ui.color1);
-  context.render(_ui.game.info.main,_ui.color0);
-  context.render(_ui.game.info.icon,_ui.game.info.icon.img0);
-  context.text(_ui.game.info.text,_ui.color1,_ui.game.info.text.value0);
-  context.text(_ui.game.info.score,_ui.color1,_ui.game.info.score.value0);
-  context.text(_ui.game.info.level,_ui.color1,_ui.game.info.level.value0);
-  context.text(_ui.game.info.time,_ui.color1,_ui.game.info.time.value0);
+  context.render(_ui.game.info.background,"rgb(255,255,255)");
+  context.render(_ui.game.info.main,"rgb(0,0,65)");
+  context.render(_ui.game.info.icon,_ui.game.info.icon.img);
+  context.text(_ui.game.info.text,"rgb(255,255,255)",_ui.game.info.text.value);
+  context.text(_ui.game.info.score,"rgb(255,255,255)",_ui.game.info.score.value);
+  context.text(_ui.game.info.level,"rgb(255,255,255)",_ui.game.info.level.value);
+  context.text(_ui.game.info.time,"rgb(255,255,255)",_ui.game.info.time.value);
 
-  context.render(_ui.game.notification.background,_ui.color1);
-  context.render(_ui.game.notification.main,_ui.color0);
-  context.text(_ui.game.notification.icon,_ui.color1,_ui.game.notification.icon.value0);
-  context.text(_ui.game.notification.text,_ui.color1,_ui.game.notification.text.value0);
-  context.text(_ui.game.notification.info,_ui.color1,_ui.game.notification.info.value0);
+  context.render(_ui.game.notification.background,"rgb(255,255,255)");
+  context.render(_ui.game.notification.main,"rgb(0,0,65)");
+  context.text(_ui.game.notification.icon,"rgb(255,255,255)",_ui.game.notification.icon.value);
+  context.text(_ui.game.notification.text,"rgb(255,255,255)",_ui.game.notification.text.value);
+  context.text(_ui.game.notification.info,"rgb(255,255,255)",_ui.game.notification.info.value);
 
   if(scene.teacher){
-    context.render(_ui.game.teacher.background,_ui.color1);
-    context.render(_ui.game.teacher.main,_ui.color0);
+    context.render(_ui.game.teacher.background,"rgb(255,255,255)");
+    context.render(_ui.game.teacher.main,"rgb(0,0,65)");
     if(_teacher.hp==0){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img0); }
     else if(_teacher.hp>0&&_teacher.hp<=4){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img1); }
     else if(_teacher.hp>4&&_teacher.hp<=8){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img2); }
     else if(_teacher.hp>8&&_teacher.hp<=12){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img3); }
     else if(_teacher.hp>12&&_teacher.hp<=16){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img4); }
     else{ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img5); }
-    context.text(_ui.game.teacher.text,_ui.color1,_ui.game.teacher.text.value0);
+    context.text(_ui.game.teacher.text,"rgb(255,255,255)",_ui.game.teacher.text.value);
   }
 
   if(global.pauseAnimation&&(!global.pauseChange||scene.next!=scene.value)&&global.pause&&_player.hp>0&&!global.gameLoad&&!global.restart&&!scene.load){
-    context.render(_transition.overlay,_transition.color0);
+    context.render(_transition.overlay,"rgb(0,27,69)");
 
-    context.render(_ui.menu.main,_ui.color0);
-    context.render(_ui.menu.left,_ui.color1);
-    context.render(_ui.menu.right,_ui.color1);
+    context.render(_ui.menu.main,"rgb(0,0,65)");
+    context.render(_ui.menu.left,"rgb(255,255,255)");
+    context.render(_ui.menu.right,"rgb(255,255,255)");
 
-    if(_title.base.alpha==100){ context.render(_title.teb,_title.teb.img0); }
-    else{ context.render(_title.teb,_title.teb.img1); }
-    context.render(_title.base,_title.base.img0);
+    if(_title.base.alpha==100){ context.render(_title.teb,_title.teb.imgOff); }
+    else{ context.render(_title.teb,_title.teb.imgOn); }
+    context.render(_title.base,_title.base.img);
 
-    context.text(_account.name,_account.color0,_account.name.value0);
-    context.render(_account.background,_account.color0);
+    context.text(_account.name,"rgb(255,255,255)",_account.name.value);
+    context.render(_account.background,"rgb(255,255,255)");
     if(_player.skin==0){ context.render(_account.profile,_account.profile.img0); }
     else{ context.render(_account.profile,_account.profile.img1); }
 
-    context.text(_footer.version,_footer.color0,_footer.version.value0);
-    context.render(_footer.github,_footer.github.img0);
-    context.render(_footer.pastebin,_footer.pastebin.img0);
+    context.text(_footer.version,"rgb(255,255,255)",_footer.version.value);
+    context.render(_footer.github,_footer.imgGit);
+    context.render(_footer.pastebin,_footer.imgPaste);
 
     if(!global.currentTutorial&&!global.currentTeacher&&!global.currentReward){
-      if(_button.start.text.alpha==100){ context.render(_button.start.base,_button.start.base.img0); }
-      else{ context.render(_button.start.base,_button.start.base.img1); }
-      context.text(_button.start.text,_button.color0,_button.start.text.value0);
-      if(_button.menu.text.alpha==100){ context.render(_button.menu.base,_button.menu.base.img0); }
-      else{ context.render(_button.menu.base,_button.menu.base.img1); }
-      context.text(_button.menu.text,_button.color0,_button.menu.text.value0);
-      if(_button.restart.text.alpha==100){ context.render(_button.restart.base,_button.restart.base.img0); }
-      else{ context.render(_button.restart.base,_button.restart.base.img1); }
-      context.text(_button.restart.text,_button.color0,_button.restart.text.value0);
-      if(_button.setting.text.alpha==100){ context.render(_button.setting.base,_button.setting.base.img0); }
-      else{ context.render(_button.setting.base,_button.setting.base.img1); }
-      context.text(_button.setting.text,_button.color0,_button.setting.text.value0);
-      if(_button.about.text.alpha==100){ context.render(_button.about.base,_button.about.base.img0); }
-      else{ context.render(_button.about.base,_button.about.base.img1); }
-      context.text(_button.about.text,_button.color0,_button.about.text.value0);
-      if(_button.version.text.alpha==100){ context.render(_button.version.base,_button.version.base.img0); }
-      else{ context.render(_button.version.base,_button.version.base.img1); }
-      context.text(_button.version.text,_button.color0,_button.version.text.value0);
+      if(_button.start.text.alpha==100){ context.render(_button.start.base,_button.start.base.imgOff); }
+      else{ context.render(_button.start.base,_button.start.base.imgOn); }
+      context.text(_button.start.text,"rgb(255,255,255)",_button.start.text.value);
+      if(_button.menu.text.alpha==100){ context.render(_button.menu.base,_button.menu.base.imgOff); }
+      else{ context.render(_button.menu.base,_button.menu.base.imgOn); }
+      context.text(_button.menu.text,"rgb(255,255,255)",_button.menu.text.value);
+      if(_button.restart.text.alpha==100){ context.render(_button.restart.base,_button.restart.base.imgOff); }
+      else{ context.render(_button.restart.base,_button.restart.base.imgOn); }
+      context.text(_button.restart.text,"rgb(255,255,255)",_button.restart.text.value);
+      if(_button.setting.text.alpha==100){ context.render(_button.setting.base,_button.setting.base.imgOff); }
+      else{ context.render(_button.setting.base,_button.setting.base.imgOn); }
+      context.text(_button.setting.text,"rgb(255,255,255)",_button.setting.text.value);
+      if(_button.about0.text.alpha==100){ context.render(_button.about0.base,_button.about0.base.imgOff); }
+      else{ context.render(_button.about0.base,_button.about0.base.imgOn); }
+      context.text(_button.about0.text,"rgb(255,255,255)",_button.about0.text.value);
+      if(_button.about1.text.alpha==100){ context.render(_button.about1.base,_button.about1.base.imgOff); }
+      else{ context.render(_button.about1.base,_button.about1.base.imgOn); }
+      context.text(_button.about1.text,"rgb(255,255,255)",_button.about1.text.value);
 
-      if(_button.setting.animation||_button.setting.on||_button.about.animation||_button.about.on||_button.version.animation||_button.version.on){
+      if(_button.setting.animation||_button.setting.on||_button.about0.animation||_button.about0.on||_button.about1.animation||_button.about1.on){
         context.render(_clipboard.base,_clipboard.base.img0);
         if(!_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.img0); }
         else{ context.render(_clipboard.back,_clipboard.back.img1); }
@@ -341,11 +341,11 @@ scene.levelRender=function(){
           if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.img0); }
           else{ context.render(_clipboard.setting.music.base,_clipboard.setting.img1); }
           context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value0);
-        } else if(_button.about.animation||_button.about.on){
+        } else if(_button.about0.animation||_button.about0.on){
           context.render(_clipboard.icon,_clipboard.icon.img1);
           context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value1);
           context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value0);
-        } else if(_button.version.animation||_button.version.on){
+        } else if(_button.about1.animation||_button.about1.on){
           context.render(_clipboard.icon,_clipboard.icon.img2);
           context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value2);
           context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value1);
@@ -354,19 +354,19 @@ scene.levelRender=function(){
     }
 
     if(global.currentTutorial||global.currentReward||global.currentTeacher){
-      context.render(_footer.next,_footer.next.img0);
+      context.render(_footer.next,_footer.imgNext);
 
       if(global.currentTutorial){
         context.text(_description.title,"rgb(255,255,255)",_description.title.value0);
         context.text(_description.text,"rgb(255,255,255)",_description.text.value0);
-        context.render(_description.icon,_description.icon.img0);
+        context.render(_description.icon,_description.icon.imgGen);
       } else if(global.currentReward){
         context.text(_description.title,"rgb(255,255,255)",_description.title.value1);
         context.text(_description.text,"rgb(255,255,255)",_description.text.value1);
-        context.render(_description.icon,_description.icon.img1);
+        context.render(_description.icon,_description.icon.imgWin);
       } else{
         context.text(_description.title,"rgb(255,255,255)",_description.title.value2);
-        context.render(_description.icon,_description.icon.img2);
+        context.render(_description.icon,_description.icon.imgFight);
         if(scene.value==2){ context.text(_description.text,"rgb(255,255,255)",_description.text.value0Teacher); }
         else if(scene.value==3){ context.text(_description.text,"rgb(255,255,255)",_description.text.value1Teacher); }
         else if(scene.value==4){ context.text(_description.text,"rgb(255,255,255)",_description.text.value2Teacher); }
@@ -401,18 +401,18 @@ scene.levelRender=function(){
       }
     }
 
-    context.render(_transition.base,_transition.color0);
-    context.render(_transition.top,_transition.img0);
-    context.render(_transition.bottom,_transition.img1);
-    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+    context.render(_transition.base,"rgb(0,27,69)");
+    context.render(_transition.top,_transition.imgTop);
+    context.render(_transition.bottom,_transition.imgBottom);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value);
 
-    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
-    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
-    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
-    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
-    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
-    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
-    else{ context.render(_indicator,_indicator.img0Resolution); }
+    if(_indicator.time<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.time>=context.time(5)&&_indicator.time<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.time>=context.time(10)&&_indicator.time<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.time>=context.time(15)&&_indicator.time<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.time>=context.time(20)&&_indicator.time<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.time>=context.time(25)&&_indicator.time<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.imgMax); }
   } if(scene.next!=scene.value&&global.pauseChange||scene.load){
     if(!canvas.error){
       if(scene.teacher){
@@ -424,18 +424,18 @@ scene.levelRender=function(){
       }
     }
 
-    context.render(_transition.base,_transition.color0);
-    context.render(_transition.top,_transition.img0);
-    context.render(_transition.bottom,_transition.img1);
-    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+    context.render(_transition.base,"rgb(0,27,69)");
+    context.render(_transition.top,_transition.imgTop);
+    context.render(_transition.bottom,_transition.imgBottom);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value);
 
-    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
-    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
-    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
-    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
-    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
-    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
-    else{ context.render(_indicator,_indicator.img0Resolution); }
+    if(_indicator.time<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.time>=context.time(5)&&_indicator.time<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.time>=context.time(10)&&_indicator.time<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.time>=context.time(15)&&_indicator.time<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.time>=context.time(20)&&_indicator.time<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.time>=context.time(25)&&_indicator.time<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.imgMax); }
   } else if(global.pauseChange){
     if(!canvas.error){
       if(!global.pauseAnimation){
@@ -457,6 +457,6 @@ scene.levelRender=function(){
           html.classList.add("cyan-black");
         }
       }
-    } context.render(_transition.overlay,_transition.color0);
+    } context.render(_transition.overlay,"rgb(0,27,69)");
   }
 }

@@ -31,9 +31,6 @@ const _background={
     y:360,
   },
 
-  color0:"rgb(0,47,109)",
-  color1:"rgb(3,122,162)",
-  color2:"rgb(228,0,2)",
   imgMenu:Object.assign(new Image(),{src:"tex/back/menu.png"}),
   imgLevel:Object.assign(new Image(),{src:"tex/back/level.png"}),
   imgTeacher:Object.assign(new Image(),{src:"tex/back/teacher.png"}),
@@ -59,12 +56,11 @@ const _transition={
     y:-550,
 
     size:48,
-    value0:"",
+    value:"",
   },
 
-  color0:"rgb(0,27,69)",
-  img0:Object.assign(new Image(),{src:"tex/ui/transition/top.png"}),
-  img1:Object.assign(new Image(),{src:"tex/ui/transition/bottom.png"}),
+  imgTop:Object.assign(new Image(),{src:"tex/ui/transition/top.png"}),
+  imgBottom:Object.assign(new Image(),{src:"tex/ui/transition/bottom.png"}),
 
   sceneOff:function(){},
   sceneOn:function(){},
@@ -79,10 +75,10 @@ const _indicator={
   width:20,
   height:20,
 
-  timer:0,
+  time:0,
 
-  img0Resolution:Object.assign(new Image(),{src:"tex/ui/indicator/max.png"}),
-  img1Resolution:Object.assign(new Image(),{src:"tex/ui/indicator/min.png"}),
+  imgMax:Object.assign(new Image(),{src:"tex/ui/indicator/max.png"}),
+  imgMin:Object.assign(new Image(),{src:"tex/ui/indicator/min.png"}),
   img0:Object.assign(new Image(),{src:"tex/ui/indicator/0.png"}),
   img1:Object.assign(new Image(),{src:"tex/ui/indicator/1.png"}),
   img2:Object.assign(new Image(),{src:"tex/ui/indicator/2.png"}),
@@ -96,11 +92,9 @@ const _info={
   x:64,
   y:128,
 
-  value0:"Wersja Niestabilna",
+  value:"Wersja Niestabilna",
   size:80,
   rotation:25,
-
-  color0:"rgb(255,255,255)",
   alpha:50,
 }
 
@@ -112,9 +106,9 @@ const _start={
     width:256,
     height:256,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/menu/teb/base.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/menu/teb/lic.png"}),
-    img2:Object.assign(new Image(),{src:"tex/ui/menu/teb/tech.png"}),
+    imgBase:Object.assign(new Image(),{src:"tex/ui/menu/teb/base.png"}),
+    imgLic:Object.assign(new Image(),{src:"tex/ui/menu/teb/lic.png"}),
+    imgTech:Object.assign(new Image(),{src:"tex/ui/menu/teb/tech.png"}),
     alpha:100,
   }, arrow:{
     x:-92,
@@ -123,7 +117,7 @@ const _start={
     width:384,
     height:384,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/hugeArrow.png"}),
+    img:Object.assign(new Image(),{src:"tex/icon/menu/hugeArrow.png"}),
     alpha:25,
   },
 };
@@ -136,7 +130,7 @@ const _title={
     width:162,
     height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/menu/title/text.png"}),
+    img:Object.assign(new Image(),{src:"tex/ui/menu/title/text.png"}),
     alpha:100,
   }, teb:{
     x:64,
@@ -145,11 +139,9 @@ const _title={
     width:96,
     height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/menu/title/teb.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/menu/title/tebHover.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/menu/title/teb.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/menu/title/tebHover.png"}),
   },
-
-  color0:"rgb(255,255,255)",
 };
 
 const _account={
@@ -157,7 +149,7 @@ const _account={
     x:52,
     y:14,
 
-    value0:"Witaj Graczu!",
+    value:"Witaj Graczu!",
     size:16,
   }, profile:{
     x:320,
@@ -175,15 +167,15 @@ const _account={
 
     width:24,
     height:24,
-  }, color0:"rgb(255,255,255)",
-}
+  },
+};
 
 const _footer={
   version:{
     x:52,
     y:354,
 
-    value0:"Wersja: Beta (B)1.002",
+    value:"Gałęź Niestabilna: 15-05-2025",
     size:16,
   }, github:{
     x:318,
@@ -192,7 +184,6 @@ const _footer={
     width:24,
     height:24,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/github.png"}),
     alpha:100,
   }, pastebin:{
     x:292,
@@ -201,7 +192,6 @@ const _footer={
     width:24,
     height:24,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/pastebin.png"}),
     alpha:100,
   }, next:{
     x:318,
@@ -210,9 +200,12 @@ const _footer={
     width:24,
     height:18,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/next.png"}),
     alpha:100,
-  }, color0:"rgb(255,255,255)",
+  },
+
+  imgGit:Object.assign(new Image(),{src:"tex/icon/menu/github.png"}),
+  imgPaste:Object.assign(new Image(),{src:"tex/icon/menu/pastebin.png"}),
+  imgNext:Object.assign(new Image(),{src:"tex/icon/menu/next.png"}),
 };
 
 const _description={
@@ -345,9 +338,9 @@ const _description={
     width:16,
     height:16,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/decoration/general0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/decoration/win.png"}),
-    img2:Object.assign(new Image(),{src:"tex/icon/decoration/fight.png"}),
+    imgGen:Object.assign(new Image(),{src:"tex/icon/decoration/general0.png"}),
+    imgWin:Object.assign(new Image(),{src:"tex/icon/decoration/win.png"}),
+    imgFight:Object.assign(new Image(),{src:"tex/icon/decoration/fight.png"}),
   },
 };
 
@@ -394,8 +387,8 @@ const _ui={
 
         width:14,
         height:14,
-        
-        timer:0,
+
+        time:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/heart/player/1.png"}),
@@ -407,7 +400,7 @@ const _ui={
         x:613,
         y:36,
 
-        value0:"",
+        value:"",
         size:12,
       },
     }, ammo:{
@@ -429,8 +422,8 @@ const _ui={
 
         width:14,
         height:14,
-        
-        timer:0,
+
+        time:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/1.png"}),
@@ -452,7 +445,7 @@ const _ui={
         x:577,
         y:35,
 
-        value0:"",
+        value:"",
         size:16,
       },
     }, key:{
@@ -474,16 +467,16 @@ const _ui={
 
         width:16,
         height:16,
-        
-        timer:0,
 
-        img0:Object.assign(new Image(),{src:"tex/ui/level/key/empty.png"}),
-        img1:Object.assign(new Image(),{src:"tex/ui/level/key/base.png"}),
+        time:0,
+
+        imgOn:Object.assign(new Image(),{src:"tex/ui/level/key/base.png"}),
+        imgOff:Object.assign(new Image(),{src:"tex/ui/level/key/empty.png"}),
       }, text:{
         x:610,
         y:73,
 
-        value0:"Klucz",
+        value:"Klucz",
         size:12,
       },
     }, pause:{
@@ -505,15 +498,14 @@ const _ui={
 
         width:12,
         line:1,
-        timer:0,
 
-        value0:"ıı",
+        value:"ıı",
         size:34,
       }, text:{
         x:10,
         y:36,
 
-        value0:"Pauza",
+        value:"Pauza",
         size:12,
       },
     }, info:{
@@ -535,33 +527,33 @@ const _ui={
 
         width:20,
         height:20,
-        
-        timer:0,
 
-        img0:Object.assign(new Image(),{src:"tex/icon/general/iconL.png"}),
+        time:0,
+
+        img:Object.assign(new Image(),{src:"tex/icon/general/iconL.png"}),
       }, text:{
         x:48,
         y:36,
 
-        value0:"Status",
+        value:"Status",
         size:12,
       }, score:{
         x:78,
         y:16,
 
-        value0:"",
+        value:"",
         size:13,
       }, level:{
         x:78,
         y:26,
 
-        value0:"",
+        value:"",
         size:13,
       }, time:{
         x:78,
         y:36,
 
-        value0:"Czas: 0s",
+        value:"Czas: 0s",
         size:13,
       },
     }, notification:{
@@ -583,21 +575,22 @@ const _ui={
 
         width:12,
         line:1,
-        timer:0,
 
-        value0:"!",
+        time:0,
+
+        value:"!",
         size:28,
       }, text:{
         x:-124,
         y:73,
 
-        value0:"Info",
+        value:"Info",
         size:12,
       }, info:{
         x:-100,
         y:56,
 
-        value0:"",
+        value:"",
         size:12,
       },
     }, teacher:{
@@ -620,7 +613,7 @@ const _ui={
         width:14,
         height:14,
 
-        timer:0,
+        time:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/1.png"}),
@@ -632,7 +625,7 @@ const _ui={
         x:610,
         y:73,
 
-        value0:"",
+        value:"",
         size:12,
       },
     },
@@ -643,9 +636,6 @@ const _ui={
 
   show:true,
   message:false,
-
-  color0:"rgb(0,0,65)",
-  color1:"rgb(255,255,255)",
 
   update:function(){},
 };
@@ -659,8 +649,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/startOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/startOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
     }, text:{
       x:112,
       y:168,
@@ -668,7 +658,7 @@ const _button={
       width:56,
       line:2,
 
-      value0:"Rozpocznij\nNową Grę",
+      value:"Rozpocznij\nNową Grę",
       size:16,
 	    alpha:100,
     },
@@ -680,8 +670,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/levelOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/levelOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
     }, text:{
       x:112,
       y:232,
@@ -689,7 +679,7 @@ const _button={
       width:42,
       line:2,
 
-      value0:"Wybierz\nPoziom",
+      value:"Wybierz\nPoziom",
       size:16,
 	    alpha:100,
     },
@@ -705,8 +695,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/menuOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/menuOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
     }, text:{
       x:112,
       y:232,
@@ -714,7 +704,7 @@ const _button={
       width:46,
       line:2,
 
-      value0:"Przejdź\nDo Menu",
+      value:"Przejdź\nDo Menu",
       size:16,
 	    alpha:100,
     },
@@ -726,8 +716,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
     }, text:{
       x:112,
       y:296,
@@ -735,7 +725,7 @@ const _button={
       width:42,
       line:2,
 
-      value0:"Wybierz\nPostać",
+      value:"Wybierz\nPostać",
       size:16,
 	    alpha:100,
     },
@@ -751,8 +741,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/restartOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/restartOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
     }, text:{
       x:112,
       y:296,
@@ -760,7 +750,7 @@ const _button={
       width:42,
       line:2,
 
-      value0:"Powtórz\nPoziom",
+      value:"Powtórz\nPoziom",
       size:16,
 	    alpha:100,
     },
@@ -772,8 +762,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/settingOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/settingOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
     }, text:{
       x:238,
       y:178,
@@ -781,7 +771,7 @@ const _button={
       width:42,
       line:1,
 
-      value0:"Opcje",
+      value:"Opcje",
       size:24,
 	    alpha:100,
     },
@@ -789,7 +779,7 @@ const _button={
     on:false,
     animation:false,
     lateanimation:false,
-  }, about:{
+  }, about0:{
     base:{
       x:286,
       y:214,
@@ -797,8 +787,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/aboutOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/aboutOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
     }, text:{
       x:226,
       y:232,
@@ -806,15 +796,15 @@ const _button={
       width:54,
       line:2,
 
-      value0:" Na Temat\nRozgrywki",
+      value:" Na Temat\nRozgrywki",
       size:16,
 	    alpha:100,
     },
-	
+
     on:false,
     animation:false,
     lateanimation:false,
-  }, version:{
+  }, about1:{
     base:{
       x:286,
       y:278,
@@ -822,8 +812,8 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
+      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
+      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
     }, text:{
       x:230,
       y:296,
@@ -831,13 +821,11 @@ const _button={
       width:58,
       line:2,
 
-      value0:"Na Temat\n Twórców",
+      value:"Na Temat\n Twórców",
       size:16,
 	    alpha:100,
     },
   },
-
-  color0:"rgb(255,255,255)",
 };
 
 const _clipboard={
