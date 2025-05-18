@@ -151,7 +151,7 @@ context.default=function(){
   scene.auto=false;
   scene.boss=false;
 
-  if(scene.value!=scene.count){ _platform.load=2; }
+  if(scene.value!=scene.count){ _platform.load=11; }
   else{ _platform.load=6; }
 
   audio.jump=0;
