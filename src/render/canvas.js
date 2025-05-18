@@ -121,14 +121,14 @@ canvas.animate=function(current){
         if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
 
         canvas.fpsLimit=canvas.timeScale*40;
-        scene.timer=context.limit(scene.timer);
+        scene.time=context.limit(scene.time);
 
         _indicator.time=context.limit(_indicator.time);
 
         if(scene.value>=2){
           _player.invisible=context.limit(_player.invisible);
-          _player.upTimer=context.limit(_player.upTimer);
-          _player.gun.timer=context.limit(_player.gun.timer);
+          _player.upTime=context.limit(_player.upTime);
+          _player.gun.time=context.limit(_player.gun.time);
 
           _tebox.loot.time=context.limit(_tebox.loot.time);
           _corner.time=context.limit(_corner.time);
@@ -136,9 +136,9 @@ canvas.animate=function(current){
           _ui.elapsed=context.limit(_ui.elapsed);
           _teacher.invisible=context.limit(_teacher.invisible);
 
-          if(_player.vx!=0){
-            if(_player.left){ _player.vx=-context.move(4); }
-            else{ _player.vx=context.move(4); }
+          if(_player.base.vx!=0){
+            if(_player.left){ _player.base.vx=-context.move(4); }
+            else{ _player.base.vx=context.move(4); }
           }
         }
       } else{
@@ -184,14 +184,14 @@ canvas.loop=function(){
       _clipboard.on=false;
       _button.level.on=false;
       _button.level.animation=false;
-      _button.setting.on=false;
-      _button.setting.animation=false;
-      _button.about.on=false;
-      _button.about.animation=false;
-      _button.version.on=false;
-      _button.version.animation=false;
       _button.custom.on=false;
       _button.custom.animation=false;
+      _button.setting.on=false;
+      _button.setting.animation=false;
+      _button.about0.on=false;
+      _button.about0.animation=false;
+      _button.about1.on=false;
+      _button.about1.animation=false;
 
       html.classList.add("blue-black");
       html.classList.remove("cyan-black");

@@ -63,30 +63,30 @@ _teacher.render=function(){
 
 _teacher.update=function(){
   if(!global.pause&&_player.hp!=0&&!scene.load){
-    scene.timer++;
+    scene.time++;
     if(_teacher.invisible>=1){ _teacher.invisible++; }
 
-    if(scene.timer==context.time(60)&&global.sfx){ audio.entrance_sfx.play(); }
-    else if(scene.timer>=context.time(60)&&scene.timer<context.time(100)){
+    if(scene.time==context.time(60)&&global.sfx){ audio.entrance_sfx.play(); }
+    else if(scene.time>=context.time(60)&&scene.time<context.time(100)){
       _teacher.base.x-=context.move(4);
       _teacher.cloud.x-=context.move(4);
-    } else if(scene.timer==context.time(100)){
+    } else if(scene.time==context.time(100)){
       global.pause=true;
       global.pauseChange=true;
       global.pauseAnimation=true;
       global.currentTeacher=true;
-    } else if(scene.timer>context.time(100)&&scene.timer<context.time(125)){
+    } else if(scene.time>context.time(100)&&scene.time<context.time(125)){
       _teacher.base.y-=context.move(4);
       _teacher.cloud.y-=context.move(4);
-    } else if(scene.timer==context.time(125)){ _attack.handle(); }
-    else if(scene.timer>context.time(140)&&scene.timer<context.time(165)){
+    } else if(scene.time==context.time(125)){ _attack.handle(); }
+    else if(scene.time>context.time(140)&&scene.time<context.time(165)){
       _teacher.base.y-=context.move(4);
       _teacher.cloud.y-=context.move(4);
-    } else if(scene.timer==context.time(165)){ _attack.handle(); }
-    else if(scene.timer>context.time(180)&&scene.timer<context.time(215)){
+    } else if(scene.time==context.time(165)){ _attack.handle(); }
+    else if(scene.time>context.time(180)&&scene.time<context.time(215)){
       _teacher.base.y-=context.move(4);
       _teacher.cloud.y-=context.move(4);
-    } else if(scene.timer==context.time(215)){
+    } else if(scene.time==context.time(215)){
       if(_teacher.base.x>canvas.width/2){
         _teacher.base.x=context.scale(32);
         _teacher.cloud.x=context.scale(22);
@@ -96,20 +96,20 @@ _teacher.update=function(){
         _teacher.cloud.x=context.scale(558);
         _teacher.left=true;
       }
-    } else if(scene.timer>context.time(215)&&scene.timer<context.time(250)){
+    } else if(scene.time>context.time(215)&&scene.time<context.time(250)){
       _teacher.base.y+=context.move(4);
       _teacher.cloud.y+=context.move(4);
-    } else if(scene.timer==context.time(250)){ _attack.handle(); }
-    else if(scene.timer>context.time(265)&&scene.timer<context.time(290)){
+    } else if(scene.time==context.time(250)){ _attack.handle(); }
+    else if(scene.time>context.time(265)&&scene.time<context.time(290)){
       _teacher.base.y+=context.move(4);
       _teacher.cloud.y+=context.move(4);
-    } else if(scene.timer==context.time(290)){ _attack.handle(); }
-    else if(scene.timer>context.time(305)&&scene.timer<context.time(330)){
+    } else if(scene.time==context.time(290)){ _attack.handle(); }
+    else if(scene.time>context.time(305)&&scene.time<context.time(330)){
       _teacher.base.y+=context.move(4);
       _teacher.cloud.y+=context.move(4);
-    } else if(scene.timer==context.time(330)){ _attack.handle(); }
-    else if(scene.timer==context.time(345)){ scene.timer=context.time(100); }
-    else if(scene.timer>=context.time(350)&&scene.timer<context.time(380)){
+    } else if(scene.time==context.time(330)){ _attack.handle(); }
+    else if(scene.time==context.time(345)){ scene.time=context.time(100); }
+    else if(scene.time>=context.time(350)&&scene.time<context.time(380)){
       if(_teacher.left){
         _teacher.base.x+=context.move(6);
         _teacher.cloud.x+=context.move(6);
@@ -117,27 +117,27 @@ _teacher.update=function(){
         _teacher.base.x-=context.move(6);
         _teacher.cloud.x-=context.move(6);
       }
-    } else if(scene.timer==context.time(385)&&scene.value==scene.count&&_teacher.round==2){
+    } else if(scene.time==context.time(385)&&scene.value==scene.count&&_teacher.round==2){
       global.pause=true;
       global.pauseChange=true;
       global.pauseAnimation=true;
       global.currentReward=true;
-      scene.timer=context.time(390);
-    } else if(scene.timer==context.time(385)&&scene.value==scene.count&&_teacher.round<=1){
+      scene.time=context.time(390);
+    } else if(scene.time==context.time(385)&&scene.value==scene.count&&_teacher.round<=1){
       _teacher.round++;
       _teacher.hp=30;
       _teacher.left=true;
-      scene.timer=context.time(60);
+      scene.time=context.time(60);
 
       _teacher.base.y=context.scale(188);
       _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
       _teacher.cloud.y=context.scale(274);
       _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(30);
-    } else if(scene.timer==context.time(390)&&scene.value==scene.count&&_teacher.round==2&&!global.pause){
+    } else if(scene.time==context.time(390)&&scene.value==scene.count&&_teacher.round==2&&!global.pause){
       scene.win=true;
       global.currentReward=false;
     }
-  } if(_teacher.hp==0&&scene.timer<context.time(350)){ scene.timer=context.time(350); }
+  } if(_teacher.hp==0&&scene.time<context.time(350)){ scene.time=context.time(350); }
 
   if((context.collision(_teacher.base,_player.ammo)||context.collision(_teacher.cloud,_player.ammo))&&_teacher.invisible==0&&!_player.ammo.unused){
     if(_player.ammo.type==0){ _teacher.hp-=1; }

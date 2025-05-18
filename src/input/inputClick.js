@@ -25,8 +25,8 @@ window.addEventListener("click",function(){
       window.open("https://pastebin.com/czx0T7u1","_blank").focus();
     }
 
-    if(context.collision(_start.base,_mouse.collision)&&scene.value==0&&!render.error&&scene.timer<context.time(100)){
-      scene.timer=context.time(100);
+    if(context.collision(_start.base,_mouse.collision)&&scene.value==0&&!render.error&&scene.time<context.time(100)){
+      scene.time=context.time(100);
       _start.base.alpha=100;
     }
 

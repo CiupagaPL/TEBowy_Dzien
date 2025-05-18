@@ -42,7 +42,7 @@ _transition.sceneOff=function(){
     _transition.bottom.y=canvas.height;
     _transition.text.y=context.scale(175);
 
-    scene.timer=0;
+    scene.time=0;
     audio.current=0;
 
     if(scene.value==1){
@@ -91,7 +91,7 @@ _transition.sceneOn=function(){
     _player.collisionTop.y=_player.base.y-context.scale(4);
     _player.collisionBottom.y=_player.base.y+context.scale(90);
     _player.gun.y=_player.base.y+context.scale(32);
-    _player.vx=0;
+    _player.base.vx=0;
     scene.vy=0;
   }
 
@@ -163,8 +163,8 @@ _transition.pauseOn=function(){
     keyDown.left=false;
     keyDown.right=false;
 
-    _player.vx=0;
+    _player.base.vx=0;
     _transition.overlay.alpha=60;
-    if(_player.cloud){ _player.vy=0; }
+    if(_player.cloud){ _player.base.vy=0; }
   }
 }

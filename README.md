@@ -14,8 +14,8 @@ Dojdzie w niej do wielu poprawek w kodzie jak i w samej grze oraz do kilku dodat
 Głównym jej celem jest ułatwienie rozgrywki i przygotowanie gry do kolejnego dłuższego czasu bez aktualizacji.
 
 ## Status
-> Newest Version: **Unstable**;
-> Last Updated: **16-05-2025**;
+> Newest Version: **Unstable(U)**;
+> Last Updated: **18-05-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

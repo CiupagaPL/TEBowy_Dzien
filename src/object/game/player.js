@@ -112,17 +112,17 @@ _player.update=function(){
   if(!global.pause&&_player.hp>0&&!scene.change){
     if(_player.invisible>=1){ _player.invisible++; }
 
-    _player.base.y+=_player.vy;
-    _player.collisionTop.y+=_player.vy;
-    _player.collisionBottom.y+=_player.vy;
-    _player.collisionLeft.y+=_player.vy;
-    _player.collisionRight.y+=_player.vy;
+    _player.base.y+=_player.base.vy;
+    _player.collisionTop.y+=_player.base.vy;
+    _player.collisionBottom.y+=_player.base.vy;
+    _player.collisionLeft.y+=_player.base.vy;
+    _player.collisionRight.y+=_player.base.vy;
 
-    if(_player.cloud.on){ _player.cloud.y+=_player.vy; }
-    _player.gun.y+=_player.vy;
+    if(_player.cloud.on){ _player.cloud.y+=_player.base.vy; }
+    _player.gun.y+=_player.base.vy;
     _player.ammo.y+=scene.vy;
     _player.action.y+=scene.vy;
-    if(!_player.cloud.on){ _player.vy+=_player.gravity; }
+    if(!_player.cloud.on){ _player.base.vy+=_player.base.gravity; }
     if(!_player.ammo.unused){
       if(!_player.ammo.left){ _player.ammo.x+=context.move(12); }
       else{ _player.ammo.x-=context.move(12); }
@@ -130,7 +130,7 @@ _player.update=function(){
       if(_player.ammo.x+_player.ammo.width-scene.vx>=canvas.width||_player.ammo.x<scene.vx){ _player.ammo.unused=true; }
     }
 
-    if(!_player.grounded){
+    if(!_player.ground){
       _player.base.y+=scene.vy;
       _player.collisionTop.y+=scene.vy;
       _player.collisionBottom.y+=scene.vy;
@@ -140,16 +140,16 @@ _player.update=function(){
       _player.action.y+=scene.vy;
     }
 
-    _player.base.x+=scene.vx+_player.vx;
-    _player.collisionTop.x+=scene.vx+_player.vx;
-    _player.collisionBottom.x+=scene.vx+_player.vx;
-    _player.collisionLeft.x+=scene.vx+_player.vx;
-    _player.collisionRight.x+=scene.vx+_player.vx;
+    _player.base.x+=scene.vx+_player.base.vx;
+    _player.collisionTop.x+=scene.vx+_player.base.vx;
+    _player.collisionBottom.x+=scene.vx+_player.base.vx;
+    _player.collisionLeft.x+=scene.vx+_player.base.vx;
+    _player.collisionRight.x+=scene.vx+_player.base.vx;
 
-    _player.cloud.x+=scene.vx+_player.vx;
-    _player.gun.x+=scene.vx+_player.vx;
+    _player.cloud.x+=scene.vx+_player.base.vx;
+    _player.gun.x+=scene.vx+_player.base.vx;
     if(!_player.ammo.unused){ _player.ammo.x+=scene.vx; }
-    _player.action.x+=scene.vx+_player.vx;
+    _player.action.x+=scene.vx+_player.base.vx;
 
     if((_player.gun.time<context.time(120)&&_player.gun.type==0)||(_player.gun.time<context.time(180)&&_player.gun.type==1&&_player.gun.ammo1>0)||
        (_player.gun.time<context.time(60)&&_player.gun.type==2&&_player.gun.ammo2>0)){ _player.gun.time++; }
@@ -197,34 +197,33 @@ _player.lateUpdate=function(){
   }
 
   if(!global.pause&&_player.hp>0){
-    if(_player.touchDoor&&!scene.load&&_player.vy==0&&!_player.fly&&!scene.key||_player.touchLock&&!scene.key){ _player.action.current=0; }
-    else if(_player.touchTebox&&_tebox.base.third!=-1&&_player.vy==0||context.collision(_player.base,_player.cloud)&&!scene.load&&
-            scene.teacher&&!_player.cloud.on||_player.touchDoor&&!scene.load&&_player.vy==0&&!_player.fly&&scene.key){ _player.action.current=1; }
+    if(_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&!scene.key||_player.touchLock&&!scene.key){ _player.action.current=0; }
+    else if(_player.touchTebox&&_tebox.base.third!=-1&&_player.base.vy==0||context.collision(_player.base,_player.cloud)&&!scene.load&&
+            scene.teacher&&!_player.cloud.on||_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&scene.key){ _player.action.current=1; }
     else{ _player.action.current=-1; }
   } else{ _player.action.current=-1; }
 
   if(_player.active){
-    _player.upTimer=0;
-    _player.gravity=context.scale(0.5);
+    _player.upTime=0;
+    _player.base.gravity=context.scale(0.5);
 
-    _player.grounded=true;
-    _player.jumped=false;
-    _player.vy=0;
-  } else{ _player.grounded=false; }
+    _player.ground=true;
+    _player.base.vy=0;
+  } else{ _player.ground=false; }
 
   if(_player.fly){
-    _player.upTimer++;
+    _player.upTime++;
 
-    if(_player.upTimer<context.time(20)){
-      _player.gravity=0;
-      _player.vy=0;
-    } else{ _player.gravity=context.scale(0.5); }
+    if(_player.upTime<context.time(20)){
+      _player.base.gravity=0;
+      _player.base.vy=0;
+    } else{ _player.base.gravity=context.scale(0.5); }
   } else{
-    _player.upTimer=0;
-    _player.gravity=context.scale(0.5);
+    _player.upTime=0;
+    _player.base.gravity=context.scale(0.5);
   }
 
   _player.active=false;
   _player.fly=false;
-  _player.touched=false;
+  _player.touchGround=false;
 }

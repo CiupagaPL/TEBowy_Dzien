@@ -14,7 +14,7 @@
 
 scene.levelUpdate=function(){
   if(global.music&&!scene.change&&!scene.blocked&&!global.pause){
-    if(scene.teacher&&scene.timer>=context.time(60)){
+    if(scene.teacher&&scene.time>=context.time(60)){
       if(audio.teacher_music.currentTime>audio.teacher_music.duration-0.2){
         audio.teacher_music.load();
         audio.teacher_music.play();
@@ -158,9 +158,6 @@ scene.levelUpdate=function(){
     scene.change=true;
     global.pauseAnimation=false;
     global.pauseChange=true;
-  } if(global.autoUnpause&&!_clipboard.on){
-    global.pauseChange=true;
-    global.pauseAnimation=false;
   } if(global.autoRestart&&!_clipboard.on&&!global.pauseChange){
     global.restart=true;
     scene.change=true;
@@ -170,7 +167,7 @@ scene.levelUpdate=function(){
     if(!global.pauseAnimation){ _transition.pauseOff(); }
     else{ _transition.pauseOn(); }
   } if(scene.change&&_player.hp>0&&scene.next==scene.value||scene.load){ _transition.sceneOn(); }
-  else if(_teacher.hp==0&&!global.pause&&(scene.timer>=context.time(380)&&scene.value!=scene.count||scene.timer>=context.time(390)&&scene.value==scene.count)){
+  else if(_teacher.hp==0&&!global.pause&&(scene.time>=context.time(380)&&scene.value!=scene.count||scene.time>=context.time(390)&&scene.value==scene.count)){
     if(scene.value<scene.count){ scene.nextAuto=scene.value+1; }
     else{
       scene.nextAuto=1;

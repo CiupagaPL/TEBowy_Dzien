@@ -143,7 +143,7 @@ context.default=function(){
   scene.section4=0;
   scene.current=0;
   scene.score=0;
-  scene.timer=0;
+  scene.time=0;
   scene.load=false;
   scene.teacher=false;
   scene.generated=false;
@@ -151,7 +151,7 @@ context.default=function(){
   scene.auto=false;
   scene.boss=false;
 
-  if(scene.value!=scene.count){ _platform.load=11; }
+  if(scene.value!=scene.count){ _platform.load=2; }
   else{ _platform.load=6; }
 
   audio.jump=0;
@@ -182,15 +182,15 @@ context.default=function(){
   _player.collisionBottom.x=_player.base.x+context.scale(12);
   _player.collisionBottom.y=_player.base.y+context.scale(90);
   _player.invisible=0;
-  _player.vx=0;
-  _player.vy=0;
+  _player.base.vx=0;
+  _player.base.vy=0;
   _player.hp=5;
   _player.base.alpha=100;
   _player.cloud.on=false;
   _player.left=false;
   _player.gun.x=_player.base.x;
   _player.gun.y=_player.base.y+context.scale(32);
-  _player.gun.timer=0;
+  _player.gun.time=0;
   _player.gun.type=0;
   _player.gun.ammo1=5;
   _player.gun.ammo2=5;
@@ -200,6 +200,8 @@ context.default=function(){
   _player.damage=false;
   _player.heal=false;
   _player.touchTebox=false;
+  _player.touchDoor=false;
+  _player.touchLock=false;
 
   _corner.time=0;
 
@@ -218,7 +220,6 @@ context.default=function(){
   _teacher.base.y=context.scale(188);
   _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
   _teacher.hp=30;
-  _teacher.timer=0;
   _teacher.round=0;
   _teacher.cloud.y=context.scale(274);
   _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(30);
@@ -318,6 +319,7 @@ context.reset=function(){
   context.setup(_button.about0.text);
   context.setup(_button.about1.base);
   context.setup(_button.about1.text);
+  context.setup(_button.overlay);
 
   context.setup(_clipboard.base);
   context.setup(_clipboard.back);
@@ -348,8 +350,8 @@ context.reset=function(){
   context.setup(_blueprint.level.buttonF);
 
   context.setup(_player.base);
-  _player.ivy=-context.scale(13.5);
-  _player.gravity=context.scale(0.5);
+  _player.base.ivy=-context.scale(13.5);
+  _player.base.gravity=context.scale(0.5);
   context.setup(_player.cloud);
   context.setup(_player.gun);
   context.setup(_player.ammo);

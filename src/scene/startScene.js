@@ -17,15 +17,15 @@ else{ console.log("Grasz na wersji niestabilnej, pamiętaj by wszelkie błędy z
 html.classList.add("black-blue");
 
 scene.startRender=function(){
-  if(scene.timer<context.time(100)){
+  if(scene.time<context.time(100)){
     context.render(_background.base,"rgb(0,47,109)");
 
-    if(scene.timer>=context.time(5)&&scene.timer<context.time(35)){ _start.base.alpha-=context.frame(4); }
-    else if(scene.timer==context.time(35)){ _start.base.alpha=0; }
-    else if(scene.timer>context.time(35)){ _start.base.alpha+=context.frame(4); }
+    if(scene.time>=context.time(5)&&scene.time<context.time(35)){ _start.base.alpha-=context.frame(4); }
+    else if(scene.time==context.time(35)){ _start.base.alpha=0; }
+    else if(scene.time>context.time(35)){ _start.base.alpha+=context.frame(4); }
     context.render(_start.base,_start.base.imgBase);
   } else{
-    if(scene.timer>=context.time(100)&&scene.timer<context.time(120)){
+    if(scene.time>=context.time(100)&&scene.time<context.time(120)){
       context.render(_background.base,"rgb(3,122,162)");
 
       if(html.classList.contains("black-blue")||html.classList.contains("red-blue")){
@@ -48,20 +48,20 @@ scene.startRender=function(){
 }
 
 scene.startUpdate=function(){
-  scene.timer++;
+  scene.time++;
 
-  if(scene.timer==context.time(102)&&global.sfx){
+  if(scene.time==context.time(102)&&global.sfx){
     audio.load_sfx.load();
     audio.load_sfx.play();
-  } else if(scene.timer==context.time(140)){
+  } else if(scene.time==context.time(140)){
     html.classList.remove("cyan-red");
     html.classList.add("red-blue");
 
 	  _background.base.alpha=100;
-    scene.timer=0;
+    scene.time=0;
     scene.value=1;
-  } else if(scene.timer>=context.time(65)&&scene.timer<context.time(100)){
-    scene.timer=0;
+  } else if(scene.time>=context.time(65)&&scene.time<context.time(100)){
+    scene.time=0;
     _start.base.alpha=100;
-  } else if(scene.timer==context.time(120)){ _background.base.alpha=50; }
+  } else if(scene.time==context.time(120)){ _background.base.alpha=50; }
 }

@@ -12,6 +12,35 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
+_clipboard.render=function(){
+  if(scene.value==1||scene.value>=2&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward&&(_button.setting.animation||_button.setting.on||_button.about0.animation
+     ||_button.about0.on||_button.about1.animation||_button.about1.on)){
+    context.render(_clipboard.base,_clipboard.base.img);
+    if(_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.imgOn); }
+    else{ context.render(_clipboard.back,_clipboard.back.imgOff); }
+
+    if(_button.setting.animation||_button.setting.on){
+      context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value0);
+      context.render(_clipboard.icon,_clipboard.icon.imgSet);
+
+      if(!global.sfx){ context.render(_clipboard.setting.sfx.base,_clipboard.setting.imgOff); }
+      else{ context.render(_clipboard.setting.sfx.base,_clipboard.setting.imgOn); }
+      context.text(_clipboard.setting.sfx.text,"rgb(0,0,0)",_clipboard.setting.sfx.text.value);
+      if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.imgOff); }
+      else{ context.render(_clipboard.setting.music.base,_clipboard.setting.imgOn); }
+      context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value);
+    } else if(_button.about0.animation||_button.about0.on){
+      context.render(_clipboard.icon,_clipboard.icon.imgInfo);
+      context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value1);
+      context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value0);
+    } else{
+      context.render(_clipboard.icon,_clipboard.icon.imgGen);
+      context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value2);
+      context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value1);
+    }
+  }
+}
+
 _clipboard.update=function(){
   if(_button.setting.animation||_button.about0.animation||_button.about1.animation){
     if(_clipboard.on&&_clipboard.close){

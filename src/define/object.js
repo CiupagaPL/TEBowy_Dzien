@@ -195,7 +195,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Gałęź Niestabilna: 16-05-2025",
+    value:"Gałęź Niestabilna: 18-05-2025",
     size:16,
   }, github:{
     x:318,
@@ -656,6 +656,9 @@ const _ui={
   show:true,
   message:false,
 
+  levelRender:function(){},
+  render:function(){},
+  infoRender:function(){},
   update:function(){},
 };
 
@@ -668,8 +671,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/startOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
     }, text:{
       x:112,
       y:168,
@@ -689,8 +691,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/levelOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
     }, text:{
       x:112,
       y:232,
@@ -714,8 +715,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/menuOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
     }, text:{
       x:112,
       y:232,
@@ -735,8 +735,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
     }, text:{
       x:112,
       y:296,
@@ -760,8 +759,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/restartOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
     }, text:{
       x:112,
       y:296,
@@ -781,8 +779,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/settingOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
     }, text:{
       x:238,
       y:178,
@@ -806,8 +803,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/aboutOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
     }, text:{
       x:226,
       y:232,
@@ -831,8 +827,7 @@ const _button={
       width:42,
       height:42,
 
-      imgOn:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
-      imgOff:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
     }, text:{
       x:230,
       y:296,
@@ -844,6 +839,16 @@ const _button={
       size:16,
 	    alpha:100,
     },
+  }, overlay:{
+    x:0,
+    y:0,
+
+    width:42,
+    height:42,
+
+    type:-1,
+
+    img:Object.assign(new Image(),{src:"tex/ui/menu/button/overlay.png"}),
   },
 };
 
@@ -934,6 +939,7 @@ const _clipboard={
   close:false,
   change:false,
 
+  render:function(){},
   update:function(){},
 };
 
@@ -1110,6 +1116,7 @@ const _blueprint={
   close:false,
   change:false,
 
+  render:function(){},
   update:function(){},
 };
 
@@ -1117,9 +1124,14 @@ const _player={
   base:{
     x:0,
     y:0,
+    vx:0,
+    vy:0,
+    ivy:-12,
 
     width:56,
     height:96,
+
+    gravity:0.5,
 
     imgBoy:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
     imgGirl:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
@@ -1239,21 +1251,16 @@ const _player={
     height:72,
   },
 
-  vx:0,
-  vy:0,
-  ivy:-12,
-  gravity:0.5,
-  upTimer:0,
+  upTime:0,
   invisible:0,
   skin:0,
   hp:5,
   touchTebox:false,
   touchDoor:false,
   touchLock:false,
-  touched:false,
+  touchGround:false,
   active:false,
-  grounded:false,
-  jumped:false,
+  ground:false,
   fly:false,
   left:false,
   damage:false,

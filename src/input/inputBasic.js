@@ -78,22 +78,52 @@ window.addEventListener("mousemove",function(event){
     else{ _account.background.alpha=100; }
 
     if(scene.value==1||global.pause){
-      if(context.collision(_button.start.base,_mouse.collision)||context.collision(_button.start.text,_mouse.collision)){ _button.start.text.alpha=50; }
-      else{ _button.start.text.alpha=100; }
-      if(context.collision(_button.level.base,_mouse.collision)||context.collision(_button.level.text,_mouse.collision)){ _button.level.text.alpha=50; }
-      else{ _button.level.text.alpha=100; }
-      if(context.collision(_button.menu.base,_mouse.collision)||context.collision(_button.menu.text,_mouse.collision)){ _button.menu.text.alpha=50; }
-      else{ _button.menu.text.alpha=100; }
-      if(context.collision(_button.custom.base,_mouse.collision)||context.collision(_button.custom.text,_mouse.collision)){ _button.custom.text.alpha=50; }
-      else{ _button.custom.text.alpha=100; }
-      if(context.collision(_button.restart.base,_mouse.collision)||context.collision(_button.restart.text,_mouse.collision)){ _button.restart.text.alpha=50; }
-      else{ _button.restart.text.alpha=100; }
-      if(context.collision(_button.setting.base,_mouse.collision)||context.collision(_button.setting.text,_mouse.collision)){ _button.setting.text.alpha=50; }
-      else{ _button.setting.text.alpha=100; }
-      if(context.collision(_button.about0.base,_mouse.collision)||context.collision(_button.about0.text,_mouse.collision)){ _button.about0.text.alpha=50; }
-      else{ _button.about0.text.alpha=100; }
-      if(context.collision(_button.about1.base,_mouse.collision)||context.collision(_button.about1.text,_mouse.collision)){ _button.about1.text.alpha=50; }
-      else{ _button.about1.text.alpha=100; }
+      _button.overlay.type=-1;
+
+      if(context.collision(_button.start.base,_mouse.collision)||context.collision(_button.start.text,_mouse.collision)){
+        _button.start.text.alpha=50;
+        _button.overlay.type=0;
+        _button.overlay.x=_button.start.base.x;
+        _button.overlay.y=_button.start.base.y;
+      } else{ _button.start.text.alpha=100; }
+      if(context.collision(_button.level.base,_mouse.collision)||context.collision(_button.level.text,_mouse.collision)||context.collision(_button.menu.base,_mouse.collision)||
+         context.collision(_button.menu.text,_mouse.collision)){
+        _button.level.text.alpha=50;
+        _button.menu.text.alpha=50;
+        _button.overlay.type=1;
+        _button.overlay.x=_button.level.base.x;
+        _button.overlay.y=_button.level.base.y;
+      } else{
+        _button.level.text.alpha=100;
+        _button.menu.text.alpha=100;
+      } if(context.collision(_button.custom.base,_mouse.collision)||context.collision(_button.custom.text,_mouse.collision)||context.collision(_button.restart.base,_mouse.collision)||
+           context.collision(_button.restart.text,_mouse.collision)){
+        _button.custom.text.alpha=50;
+        _button.restart.text.alpha=50;
+        _button.overlay.type=2;
+        _button.overlay.x=_button.custom.base.x;
+        _button.overlay.y=_button.custom.base.y;
+      } else{
+        _button.custom.text.alpha=100;
+        _button.restart.text.alpha=100;
+      } if(context.collision(_button.setting.base,_mouse.collision)||context.collision(_button.setting.text,_mouse.collision)){
+        _button.setting.text.alpha=50;
+        _button.overlay.type=3;
+        _button.overlay.x=_button.setting.base.x;
+        _button.overlay.y=_button.setting.base.y;
+      } else{ _button.setting.text.alpha=100; }
+      if(context.collision(_button.about0.base,_mouse.collision)||context.collision(_button.about0.text,_mouse.collision)){
+        _button.about0.text.alpha=50;
+        _button.overlay.type=4;
+        _button.overlay.x=_button.about0.base.x;
+        _button.overlay.y=_button.about0.base.y;
+      } else{ _button.about0.text.alpha=100; }
+      if(context.collision(_button.about1.base,_mouse.collision)||context.collision(_button.about1.text,_mouse.collision)){
+        _button.about1.text.alpha=50;
+        _button.overlay.type=5;
+        _button.overlay.x=_button.about1.base.x;
+        _button.overlay.y=_button.about1.base.y;
+      } else{ _button.about1.text.alpha=100; }
 
       if(scene.value==1){
         if(context.collision(_blueprint.level.button1,_mouse.collision)){ _blueprint.level.button1.alpha=50; }
