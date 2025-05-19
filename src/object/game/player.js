@@ -197,6 +197,22 @@ _player.lateUpdate=function(){
   }
 
   if(!global.pause&&_player.hp>0){
+    if(context.collision(_player.base,_player.cloud)&&!scene.load&&scene.teacher&&!_player.cloud.on||_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&scene.key||
+       _player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&!scene.key||_player.touchLock&&!scene.key){ _player.action.alpha=100; }
+    else if(_player.touchTebox&&_tebox.base.third!=-1&&_player.base.vy==0){
+      if(_player.action.time>=1){
+        _player.action.time++;
+        _player.action.alpha=100;
+        _player.action.width=context.scale(21);
+        _player.action.height=context.scale(17);
+        if(_player.action.time==context.frame(20)){ _player.action.time=0; }
+      } else{
+        _player.action.alpha=75;
+        _player.action.width=context.scale(20);
+        _player.action.height=context.scale(16);
+      }
+    }
+
     if(_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&!scene.key||_player.touchLock&&!scene.key){ _player.action.current=0; }
     else if(_player.touchTebox&&_tebox.base.third!=-1&&_player.base.vy==0||context.collision(_player.base,_player.cloud)&&!scene.load&&
             scene.teacher&&!_player.cloud.on||_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&scene.key){ _player.action.current=1; }

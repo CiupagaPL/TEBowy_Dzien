@@ -118,8 +118,8 @@ context.default=function(){
   _button.about0.text.y=context.scale(232);
   _button.about1.base.y=context.scale(278);
   _button.about1.text.y=context.scale(296);
-  if(scene.value==1){ _button.start.text.value0="Rozpocznij\nNową Grę"; }
-  else{ _button.start.text.value0="Kontynuuj\nRozgrywkę"; }
+  if(scene.value==1){ _button.start.text.value="Rozpocznij\nNową Grę"; }
+  else{ _button.start.text.value="Kontynuuj\nRozgrywkę"; }
 
   if(scene.value<2){
     _background.base.y=0;
@@ -151,8 +151,8 @@ context.default=function(){
   scene.auto=false;
   scene.boss=false;
 
-  if(scene.value!=scene.count){ _platform.load=11; }
-  else{ _platform.load=6; }
+  if(scene.value!=scene.count){ _platform.load=6; }
+  else{ _platform.load=11; }
 
   audio.jump=0;
   audio.damage1=0;

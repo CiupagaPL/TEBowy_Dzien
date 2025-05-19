@@ -118,7 +118,7 @@ canvas.animate=function(current){
         while((canvas.timeScale-0.1)*40>canvas.currentFps){ canvas.timeScale-=0.1; }
         while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.1; }
         if(canvas.timeScale<0.3){ canvas.timeScale=0.3; }
-        if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
+        else if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
 
         canvas.fpsLimit=canvas.timeScale*40;
         scene.time=context.limit(scene.time);
@@ -129,6 +129,7 @@ canvas.animate=function(current){
           _player.invisible=context.limit(_player.invisible);
           _player.upTime=context.limit(_player.upTime);
           _player.gun.time=context.limit(_player.gun.time);
+          _player.action.time=context.limit(_player.action.time);
 
           _tebox.loot.time=context.limit(_tebox.loot.time);
           _corner.time=context.limit(_corner.time);

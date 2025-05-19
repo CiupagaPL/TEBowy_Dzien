@@ -55,7 +55,6 @@ scene.foregroundGenerator=function(){
     height:context.scale(166),
 
     score:_platform.currentLoad-1,
-
     on:true,
     change:false,
 
@@ -76,7 +75,6 @@ scene.foregroundGenerator=function(){
     height:context.scale(166),
 
     score:_platform.currentLoad-1,
-
     on:true,
     change:false,
 

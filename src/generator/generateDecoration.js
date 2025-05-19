@@ -291,8 +291,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, bottom:{
         x:context.scale(78),
         y:_currentPlatform.y+context.scale(24),
@@ -301,8 +299,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, left:{
         x:context.scale(30),
         y:_currentPlatform.y+context.scale(100),
@@ -311,8 +307,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, bottomLeft:{
         x:context.scale(30),
         y:_currentPlatform.y+context.scale(24),
@@ -321,8 +315,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, first:{
         x:0,
         y:0,
@@ -331,8 +323,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -341,8 +331,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -419,8 +407,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -429,8 +415,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -507,8 +491,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -517,8 +499,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -595,8 +575,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -605,8 +583,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -683,8 +659,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -693,8 +667,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -771,8 +743,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -781,8 +751,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -859,8 +827,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -869,8 +835,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -947,8 +911,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -957,8 +919,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -1125,9 +1085,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1148,9 +1106,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1171,9 +1127,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1194,9 +1148,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1217,9 +1169,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1240,9 +1190,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1263,9 +1211,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1286,9 +1232,7 @@ scene.decorationGenerator=function(){
         height:context.scale(164),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);

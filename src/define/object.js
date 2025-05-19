@@ -195,7 +195,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Gałęź Niestabilna: 18-05-2025",
+    value:"Gałęź Niestabilna: 19-05-2025",
     size:16,
   }, github:{
     x:318,
@@ -215,7 +215,7 @@ const _footer={
     alpha:100,
   }, next:{
     x:318,
-    y:338-28,
+    y:310,
 
     width:24,
     height:18,
@@ -1220,6 +1220,7 @@ const _player={
     width:20,
     height:16,
 
+    time:0,
     current:-1,
 
     imgKey:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),

@@ -155,6 +155,7 @@ window.addEventListener("keyup",function(event){
         if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_tebox.loot.time==0){
           if(_tebox.base.first!=-1){
             if(global.sfx){ audio.chest_sfx.play(); }
+            _player.action.time=1;
 
             _tebox.loot.current=_tebox.base.first;
             if(_tebox.loot.current==3&&_player.hp>=4){ _tebox.loot.current=Math.floor(Math.random()*3); }
@@ -173,6 +174,7 @@ window.addEventListener("keyup",function(event){
             _tebox.base.first=-1;
           } else if(_tebox.base.second!=-1){
             if(global.sfx){ audio.chest_sfx.play(); }
+            _player.action.time=1;
 
             _tebox.loot.current=_tebox.base.second;
             if(_tebox.loot.current==1){ _player.gun.ammo1++; }

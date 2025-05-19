@@ -28,81 +28,83 @@ _decoration.update=function(){
     if(_currentDecoration.base.x>canvas.width){
       _currentDecoration.base.x-=context.scale(1280);
       _currentDecoration.bottom.x-=context.scale(1280);
-      _currentDecoration.first.x-=context.scale(1280);
+      if(_currentDecoration.first!=undefined){ _currentDecoration.first.x-=context.scale(1280); }
     } else if(_currentDecoration.base.x+_currentDecoration.base.width<0){
       _currentDecoration.base.x+=context.scale(1280);
       _currentDecoration.bottom.x+=context.scale(1280);
-      _currentDecoration.first.x+=context.scale(1280);
+      if(_currentDecoration.first!=undefined){ _currentDecoration.first.x+=context.scale(1280); }
     } if(_currentDecoration.left.x>canvas.width){
       _currentDecoration.left.x-=context.scale(1280);
       _currentDecoration.bottomLeft.x-=context.scale(1280);
-      _currentDecoration.second.x-=context.scale(1280);
+      if(_currentDecoration.second!=undefined){ _currentDecoration.second.x-=context.scale(1280); }
     } else if(_currentDecoration.left.x+_currentDecoration.left.width<0){
       _currentDecoration.left.x+=context.scale(1280);
       _currentDecoration.bottomLeft.x+=context.scale(1280);
-      _currentDecoration.second.x+=context.scale(1280);
+      if(_currentDecoration.second!=undefined){ _currentDecoration.second.x+=context.scale(1280); }
     }
 
-    if(context.collision(_currentDecoration.first,_player.ammo)&&!_player.ammo.unused&&_currentDecoration.first.active){
-      if(global.sfx&&_player.hp>0){ audio.locker_sfx.play(); }
+    if(_currentDecoration.first!=undefined){
+      if(context.collision(_currentDecoration.first,_player.collisionLeft)&&context.collision(_currentDecoration.first,_player.base)&&_player.left){
+        _player.base.x=_currentDecoration.first.x+_currentDecoration.first.width-context.move(8);
+        _player.collisionLeft.x=_player.base.x+context.scale(4);
+        _player.collisionRight.x=_player.base.x+context.scale(52);
+        _player.collisionTop.x=_player.base.x+context.scale(14);
+        _player.collisionBottom.x=_player.base.x+context.scale(12);
 
-      if(_currentDecoration.base.type==5){ _currentDecoration.base.type=_currentDecoration.first.type; }
-      else{ _currentDecoration.bottom.type=_currentDecoration.first.type; }
-      _currentDecoration.first.active=false;
-      _player.ammo.unused=true;
-    } if(context.collision(_currentDecoration.second,_player.ammo)&&!_player.ammo.unused&&_currentDecoration.second.active){
-      if(global.sfx&&_player.hp>0){ audio.locker_sfx.play(); }
+        _player.gun.x=_player.base.x;
+        _player.cloud.x=_player.base.x-context.scale(6);
+        _player.action.x=_player.base.x+_player.base.width;
+      } else if(context.collision(_currentDecoration.first,_player.collisionRight)&&context.collision(_currentDecoration.first,_player.base)&&!_player.left){
+        _player.base.x=_currentDecoration.first.x-_player.base.width+context.move(8);
+        _player.collisionLeft.x=_player.base.x+context.scale(4);
+        _player.collisionRight.x=_player.base.x+context.scale(52);
+        _player.collisionTop.x=_player.base.x+context.scale(14);
+        _player.collisionBottom.x=_player.base.x+context.scale(12);
 
-      if(_currentDecoration.left.type==5){ _currentDecoration.left.type=_currentDecoration.second.type; }
-      else{ _currentDecoration.bottomLeft.type=_currentDecoration.second.type; }
-      _currentDecoration.second.active=false;
-      _player.ammo.unused=true;
-    }
+        _player.gun.x=_player.base.x;
+        _player.cloud.x=_player.base.x-context.scale(6);
+        _player.action.x=_player.base.x+_player.base.width;
+      }
 
-    if(context.collision(_currentDecoration.first,_player.collisionLeft)&&context.collision(_currentDecoration.first,_player.base)&&
-       _currentDecoration.first.active&&_player.left){
-      _player.base.x=_currentDecoration.first.x+_currentDecoration.first.width-context.move(8);
-      _player.collisionLeft.x=_player.base.x+context.scale(4);
-      _player.collisionRight.x=_player.base.x+context.scale(52);
-      _player.collisionTop.x=_player.base.x+context.scale(14);
-      _player.collisionBottom.x=_player.base.x+context.scale(12);
+      if(context.collision(_currentDecoration.first,_player.ammo)&&!_player.ammo.unused){
+        if(global.sfx&&_player.hp>0){ audio.locker_sfx.play(); }
 
-      _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(6);
-      _player.action.x=_player.base.x+_player.base.width;
-    } else if(context.collision(_currentDecoration.first,_player.collisionRight)&&context.collision(_currentDecoration.first,_player.base)&&
-              _currentDecoration.first.active&&!_player.left){
-      _player.base.x=_currentDecoration.first.x-_player.base.width+context.move(8);
-      _player.collisionLeft.x=_player.base.x+context.scale(4);
-      _player.collisionRight.x=_player.base.x+context.scale(52);
-      _player.collisionTop.x=_player.base.x+context.scale(14);
-      _player.collisionBottom.x=_player.base.x+context.scale(12);
+        if(_currentDecoration.base.type==5){ _currentDecoration.base.type=_currentDecoration.first.type; }
+        else{ _currentDecoration.bottom.type=_currentDecoration.first.type; }
+        delete(_currentDecoration.first);
+        _player.ammo.unused=true;
+      }
+    } if(_currentDecoration.second!=undefined){
+      if(context.collision(_currentDecoration.second,_player.collisionLeft)&&context.collision(_currentDecoration.second,_player.base)&&_player.left){
+        _player.base.x=_currentDecoration.second.x+_currentDecoration.second.width-context.move(8);
+        _player.collisionLeft.x=_player.base.x+context.scale(4);
+        _player.collisionRight.x=_player.base.x+context.scale(52);
+        _player.collisionTop.x=_player.base.x+context.scale(14);
+        _player.collisionBottom.x=_player.base.x+context.scale(12);
 
-      _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(6);
-      _player.action.x=_player.base.x+_player.base.width;
-    } else if(context.collision(_currentDecoration.second,_player.collisionLeft)&&context.collision(_currentDecoration.second,_player.base)&&
-              _currentDecoration.second.active&&_player.left){
-      _player.base.x=_currentDecoration.second.x+_currentDecoration.second.width-context.move(8);
-      _player.collisionLeft.x=_player.base.x+context.scale(4);
-      _player.collisionRight.x=_player.base.x+context.scale(52);
-      _player.collisionTop.x=_player.base.x+context.scale(14);
-      _player.collisionBottom.x=_player.base.x+context.scale(12);
+        _player.gun.x=_player.base.x;
+        _player.cloud.x=_player.base.x-context.scale(6);
+        _player.action.x=_player.base.x+_player.base.width;
+      } else if(context.collision(_currentDecoration.second,_player.collisionRight)&&context.collision(_currentDecoration.second,_player.base)&&!_player.left){
+        _player.base.x=_currentDecoration.second.x-_player.base.width+context.move(8);
+        _player.collisionLeft.x=_player.base.x+context.scale(4);
+        _player.collisionRight.x=_player.base.x+context.scale(52);
+        _player.collisionTop.x=_player.base.x+context.scale(14);
+        _player.collisionBottom.x=_player.base.x+context.scale(12);
 
-      _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(6);
-      _player.action.x=_player.base.x+_player.base.width;
-    } else if(context.collision(_currentDecoration.second,_player.collisionRight)&&context.collision(_currentDecoration.second,_player.base)&&
-              _currentDecoration.second.active&&!_player.left){
-      _player.base.x=_currentDecoration.second.x-_player.base.width+context.move(8);
-      _player.collisionLeft.x=_player.base.x+context.scale(4);
-      _player.collisionRight.x=_player.base.x+context.scale(52);
-      _player.collisionTop.x=_player.base.x+context.scale(14);
-      _player.collisionBottom.x=_player.base.x+context.scale(12);
+        _player.gun.x=_player.base.x;
+        _player.cloud.x=_player.base.x-context.scale(6);
+        _player.action.x=_player.base.x+_player.base.width;
+      }
 
-      _player.gun.x=_player.base.x;
-      _player.cloud.x=_player.base.x-context.scale(6);
-      _player.action.x=_player.base.x+_player.base.width;
+      if(context.collision(_currentDecoration.second,_player.ammo)&&!_player.ammo.unused){
+        if(global.sfx&&_player.hp>0){ audio.locker_sfx.play(); }
+
+        if(_currentDecoration.left.type==5){ _currentDecoration.left.type=_currentDecoration.second.type; }
+        else{ _currentDecoration.bottomLeft.type=_currentDecoration.second.type; }
+        delete(_currentDecoration.second);
+        _player.ammo.unused=true;
+      }
     }
   } else if(_currentDecoration.current==2){
     if(_currentDecoration.x>canvas.width){ _currentDecoration.x-=context.scale(1280); }
@@ -150,10 +152,15 @@ _spike.update=function(){
   if(_currentSpike.rotation==180&&_player.base.x+_player.base.width+context.scale(2)>=_currentSpike.x&&_player.base.x<=_currentSpike.x+_currentSpike.width-context.scale(2)&&
      _currentSpike.score==scene.score){ _currentSpike.active=true; }
   if(_currentSpike.active){
-    if(_currentSpike.vy==0){ _currentSpike.vy=context.move(1); }
-    else{ _currentSpike.vy+=context.move(0.15); }
-    _currentSpike.y+=_currentSpike.vy;
-    if(_currentSpike.y>=context.scale(672)){ _currentSpike.disable=true; }
+    if(!context.collision(_currentSpike,_player.base)&&_currentSpike.alpha==100){
+      if(_currentSpike.vy==0){ _currentSpike.vy+=context.move(0.3); }
+      else{ _currentSpike.vy+=context.move(0.15); }
+      _currentSpike.y+=_currentSpike.vy;
+    } else{ _currentSpike.alpha-=context.frame(4); }
+    if(_currentSpike.y>=context.scale(672)||_currentSpike.alpha<=0){
+      _spike.array.splice(_spike.currentLenght,1);
+      _spike.lenght--;
+    }
   }
 
   if(context.collision(_currentSpike,_player.base)&&_player.invisible==0){

@@ -48,32 +48,32 @@ scene.levelRender=function(){
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
       } else if(_currentDecoration.current==1&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5){
         if(_currentDecoration.base.type==0){ context.render(_currentDecoration.base,_decoration.img1Locker); }
-          else if(_currentDecoration.base.type==1){ context.render(_currentDecoration.base,_decoration.img2Locker); }
-          else if(_currentDecoration.base.type==2){ context.render(_currentDecoration.base,_decoration.img3Locker); }
-          else if(_currentDecoration.base.type==3){ context.render(_currentDecoration.base,_decoration.img4Locker); }
-          else{ context.render(_currentDecoration.base,_decoration.img0Locker); }
+        else if(_currentDecoration.base.type==1){ context.render(_currentDecoration.base,_decoration.img2Locker); }
+        else if(_currentDecoration.base.type==2){ context.render(_currentDecoration.base,_decoration.img3Locker); }
+        else if(_currentDecoration.base.type==3){ context.render(_currentDecoration.base,_decoration.img4Locker); }
+        else{ context.render(_currentDecoration.base,_decoration.img0Locker); }
         if(_currentDecoration.bottom.type==0){ context.render(_currentDecoration.bottom,_decoration.img1Locker); }
-          else if(_currentDecoration.bottom.type==1){ context.render(_currentDecoration.bottom,_decoration.img2Locker); }
-          else if(_currentDecoration.bottom.type==2){ context.render(_currentDecoration.bottom,_decoration.img3Locker); }
-          else if(_currentDecoration.bottom.type==3){ context.render(_currentDecoration.bottom,_decoration.img4Locker); }
-          else{ context.render(_currentDecoration.bottom,_decoration.img0Locker); }
+        else if(_currentDecoration.bottom.type==1){ context.render(_currentDecoration.bottom,_decoration.img2Locker); }
+        else if(_currentDecoration.bottom.type==2){ context.render(_currentDecoration.bottom,_decoration.img3Locker); }
+        else if(_currentDecoration.bottom.type==3){ context.render(_currentDecoration.bottom,_decoration.img4Locker); }
+        else{ context.render(_currentDecoration.bottom,_decoration.img0Locker); }
         if(_currentDecoration.left.type==0){ context.render(_currentDecoration.left,_decoration.img1Locker); }
-          else if(_currentDecoration.left.type==1){ context.render(_currentDecoration.left,_decoration.img2Locker); }
-          else if(_currentDecoration.left.type==2){ context.render(_currentDecoration.left,_decoration.img3Locker); }
-          else if(_currentDecoration.left.type==3){ context.render(_currentDecoration.left,_decoration.img4Locker); }
-          else{ context.render(_currentDecoration.left,_decoration.img0Locker); }
+        else if(_currentDecoration.left.type==1){ context.render(_currentDecoration.left,_decoration.img2Locker); }
+        else if(_currentDecoration.left.type==2){ context.render(_currentDecoration.left,_decoration.img3Locker); }
+        else if(_currentDecoration.left.type==3){ context.render(_currentDecoration.left,_decoration.img4Locker); }
+        else{ context.render(_currentDecoration.left,_decoration.img0Locker); }
         if(_currentDecoration.bottomLeft.type==0){ context.render(_currentDecoration.bottomLeft,_decoration.img1Locker); }
-          else if(_currentDecoration.bottomLeft.type==1){ context.render(_currentDecoration.bottomLeft,_decoration.img2Locker); }
-          else if(_currentDecoration.bottomLeft.type==2){ context.render(_currentDecoration.bottomLeft,_decoration.img3Locker); }
-          else if(_currentDecoration.bottomLeft.type==3){ context.render(_currentDecoration.bottomLeft,_decoration.img4Locker); }
-          else{ context.render(_currentDecoration.bottomLeft,_decoration.img0Locker); }
+        else if(_currentDecoration.bottomLeft.type==1){ context.render(_currentDecoration.bottomLeft,_decoration.img2Locker); }
+        else if(_currentDecoration.bottomLeft.type==2){ context.render(_currentDecoration.bottomLeft,_decoration.img3Locker); }
+        else if(_currentDecoration.bottomLeft.type==3){ context.render(_currentDecoration.bottomLeft,_decoration.img4Locker); }
+        else{ context.render(_currentDecoration.bottomLeft,_decoration.img0Locker); }
 
-        if(_currentDecoration.first.active){
+        if(_currentDecoration.first!=undefined){
           if(_currentDecoration.first.type==0){ context.render(_currentDecoration.first,_decoration.img0Close); }
           else if(_currentDecoration.first.type==1){ context.render(_currentDecoration.first,_decoration.img1Close); }
           else if(_currentDecoration.first.type==2){ context.render(_currentDecoration.first,_decoration.img2Close); }
           else{ context.render(_currentDecoration.first,_decoration.img3Close); }
-        } if(_currentDecoration.second.active){
+        } if(_currentDecoration.second!=undefined){
           if(_currentDecoration.second.type==0){ context.render(_currentDecoration.second,_decoration.img0Close); }
           else if(_currentDecoration.second.type==1){ context.render(_currentDecoration.second,_decoration.img1Close); }
           else if(_currentDecoration.second.type==2){ context.render(_currentDecoration.second,_decoration.img2Close); }
@@ -105,14 +105,14 @@ scene.levelRender=function(){
         _currentDecoration.bottom.y+=scene.vy;
         _currentDecoration.left.y+=scene.vy;
         _currentDecoration.bottomLeft.y+=scene.vy;
-        _currentDecoration.first.y+=scene.vy;
-        _currentDecoration.second.y+=scene.vy;
+        if(_currentDecoration.first!=undefined){ _currentDecoration.first.y+=scene.vy; }
+        if(_currentDecoration.second!=undefined){ _currentDecoration.second.y+=scene.vy; }
         _currentDecoration.base.x+=scene.vx;
         _currentDecoration.bottom.x+=scene.vx;
         _currentDecoration.left.x+=scene.vx;
         _currentDecoration.bottomLeft.x+=scene.vx;
-        _currentDecoration.first.x+=scene.vx;
-        _currentDecoration.second.x+=scene.vx;
+        if(_currentDecoration.first!=undefined){ _currentDecoration.first.x+=scene.vx; }
+        if(_currentDecoration.second!=undefined){ _currentDecoration.second.x+=scene.vx; }
       } else if(_currentDecoration.current==2){
         _currentDecoration.y+=scene.vy;
         _currentDecoration.x+=scene.vx;
@@ -150,7 +150,7 @@ scene.levelRender=function(){
 
     while(_spike.lenght>=_spike.currentLenght&&!scene.teacher){
       _currentSpike=_spike.array[_spike.currentLenght];
-      if(_currentSpike.y<canvas.height+context.scale(32)&&_currentSpike.y>=-context.scale(32)&&!_currentSpike.disable){
+      if(_currentSpike.y<canvas.height+context.scale(32)&&_currentSpike.y>=-context.scale(32)){
         context.render(_currentSpike,_spike.img);
         if(!global.pause&&_player.hp>0){ _spike.update(); }
       }
