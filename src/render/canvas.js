@@ -41,7 +41,11 @@ canvas.setup=function(){
     render.style.borderRight=0;
     render.style.left=((window.innerWidth-canvas.width)/2)+"px";
     render.style.top=((window.innerHeight-canvas.height)/2)-context.scale(4)+"px";
-  } context.imageSmoothingEnabled=false;
+  }
+  context.imageSmoothingEnabled=false;
+  context.mozImageSmoothingEnabled=false;
+  context.webkitImageSmoothingEnabled=false;
+  context.imageSmoothingQuality="low";
 
   render.style.boxShadow="0 0 "+context.scale(8)+"px "+context.scale(2)+"px white";
   render.style.width=canvas.width+"px";

@@ -150,12 +150,10 @@ _spike.update=function(){
   else if(_currentSpike.x+_currentSpike.width<0){ _currentSpike.x+=context.scale(1280); }
 
   if(_currentSpike.rotation==180&&_player.base.x+_player.base.width+context.scale(2)>=_currentSpike.x&&_player.base.x<=_currentSpike.x+_currentSpike.width-context.scale(2)&&
-     _currentSpike.score==scene.score){ _currentSpike.active=true; }
+     _currentSpike.level==scene.score){ _currentSpike.active=true; }
   if(_currentSpike.active){
     if(!context.collision(_currentSpike,_player.base)&&_currentSpike.alpha==100){
-      if(_currentSpike.vy==0){ _currentSpike.vy+=context.move(0.3); }
-      else{ _currentSpike.vy+=context.move(0.15); }
-      _currentSpike.y+=_currentSpike.vy;
+      // _currentSpike.y+=_currentSpike.vy;
     } else{ _currentSpike.alpha-=context.frame(4); }
     if(_currentSpike.y>=context.scale(672)||_currentSpike.alpha<=0){
       _spike.array.splice(_spike.currentLenght,1);
@@ -250,11 +248,17 @@ _corner.update=function(){
   }
 
   if(_currentCorner.laser!=undefined){
-    if(_currentCorner.laser.x>canvas.width){ _currentCorner.laser.x-=context.scale(1280); }
-    else if(_currentCorner.laser.x+_currentCorner.laser.width<0){ _currentCorner.laser.x+=context.scale(1280); }
+    if(_currentCorner.laser.x>canvas.width){
+      _currentCorner.laser.x-=context.scale(1280);
+      _currentCorner.laser.ix-=context.scale(1280);
+    } else if(_currentCorner.laser.x+_currentCorner.laser.width<0){
+      _currentCorner.laser.x+=context.scale(1280);
+      _currentCorner.laser.ix+=context.scale(1280);
+    }
 
-    if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&_corner.time>=context.time(60)&&!_player.touchGround){
-      _player.hp-=1;
+    if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&(_player.base.x+_player.base.width>_currentCorner.base.x+context.scale(36)&&
+       _player.base.x<_currentCorner.base.x+context.scale(120))&&_corner.time>=context.time(20)&&_corner.time<context.time(50)){
+      _player.hp--;
       _player.damage=true;
       _player.invisible=1;
       if(global.sfx&&_player.hp>0){
@@ -268,13 +272,30 @@ _corner.update=function(){
       }
     }
 
-    if(_corner.time>=context.time(40)&&_corner.time<context.time(50)){ _currentCorner.laser.alpha+=context.frame(4); }
-    else if(_corner.time==context.time(50)){ _currentCorner.laser.alpha=50; }
-    else if(_corner.time>=context.time(60)&&_corner.time<context.time(70)){ _currentCorner.laser.alpha+=context.frame(6); }
-    else if(_corner.time==context.time(70)){ _currentCorner.laser.alpha=100; }
-    else if(_corner.time>context.time(70)){
-      _currentCorner.laser.alpha-=context.frame(8);
-      if(_currentCorner.laser.alpha<=0){ _corner.time=0; }
+    if(_corner.time==context.time(1)){
+      if(!_currentCorner.left){
+        _currentCorner.left=true;
+        _currentCorner.laser.x=_currentCorner.laser.ix;
+      } else{
+        _currentCorner.left=false;
+        _currentCorner.laser.x=_currentCorner.laser.ix+context.scale(312);
+      }
+    } if(_corner.time>=context.time(20)&&_corner.currentLenght==_corner.useLenghtLaser){
+      if(!_currentCorner.left){ _currentCorner.laser.x-=context.move(12); }
+      else{ _currentCorner.laser.x+=context.move(12); }
+    } if(_corner.time==context.time(70)){ _corner.time=0; }
+
+    if((_player.base.x+_player.base.width>_currentCorner.base.x-context.scale(64)&&_player.base.x<_currentCorner.base.x+context.scale(220))&&
+       (scene.score==_currentCorner.laser.level||scene.score==_currentCorner.laser.level+1)&&!_player.touchCorner){
+      if(_corner.array[_corner.currentLenght+1].lock!=undefined&&_corner.array[_corner.currentLenght+1].lock.alpha!=100||_corner.array[_corner.currentLenght+1].lock==undefined){
+        _player.touchCorner=true;
+        _corner.useLenghtLaser=_corner.currentLenght;
+        _corner.time=0;
+      }
+    } else if((_player.base.x+_player.base.width<_currentCorner.base.x-context.scale(64)||_player.base.x>_currentCorner.base.x+context.scale(220))&&
+              _corner.currentLenght==_corner.useLenghtLaser&&_corner.time<context.time(20)){
+      _player.touchCorner=false;
+      _corner.useLenghtLaser=-1;
     }
   }
 
@@ -296,7 +317,7 @@ _corner.update=function(){
         _player.action.y=_player.base.y;
       } if(!_player.touchLock){
         _player.touchLock=true;
-        _corner.useLenght=_corner.currentLenght;
+        _corner.useLenghtLock=_corner.currentLenght;
       }
 
       if(scene.key&&_currentCorner.lock.alpha==100){
@@ -304,13 +325,17 @@ _corner.update=function(){
         _currentCorner.lock.alpha=99;
         scene.key=false;
       }
-    } else if(!context.collision(_currentCorner.lock,_player.base)&&_corner.currentLenght==_corner.useLenght){
+    } else if(!context.collision(_currentCorner.lock,_player.base)&&_corner.currentLenght==_corner.useLenghtLock){
       _player.touchLock=false;
-      _corner.useLenght=-1;
-    } if(_currentCorner.lock.alpha<100){
+      _corner.useLenghtLock=-1;
+    }
+
+    if(_currentCorner.lock.alpha<100){
       _currentCorner.lock.alpha-=context.frame(7);
       _player.touchLock=false;
-      _corner.useLenght=-1;
+      _corner.useLenghtLock=-1;
+
+      if(_currentCorner.lock.alpha<=0){ delete(_currentCorner.lock); }
     }
   }
 
@@ -343,10 +368,10 @@ _foreground.update=function(){
   if(_currentForeground.x>_currentForeground.width){ _currentForeground.x-=_currentForeground.width*2; }
   else if(_currentForeground.x+_currentForeground.width<0){ _currentForeground.x+=_currentForeground.width*2; }
 
-  if(_currentForeground.score==scene.score&&!_currentForeground.on){
+  if(_currentForeground.level==scene.score&&!_currentForeground.on){
     _currentForeground.on=true;
     _currentForeground.change=true;
-  } else if(_currentForeground.score!=scene.score&&_currentForeground.on){
+  } else if(_currentForeground.level!=scene.score&&_currentForeground.on){
     _currentForeground.on=false;
     _currentForeground.change=true;
   }

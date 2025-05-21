@@ -159,8 +159,8 @@ const _title={
     width:96,
     height:96,
 
-    imgOff:Object.assign(new Image(),{src:"tex/ui/menu/title/teb.png"}),
-    imgOn:Object.assign(new Image(),{src:"tex/ui/menu/title/tebHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/menu/title/TEBOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/menu/title/TEBOff.png"}),
   },
 };
 
@@ -195,7 +195,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Gałęź Niestabilna: 19-05-2025",
+    value:"Gałęź Niestabilna: 21-05-2025",
     size:16,
   }, github:{
     x:318,
@@ -871,8 +871,8 @@ const _clipboard={
 
     hover:false,
 
-    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/backHover.png"}),
-    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/back.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/backOff.png"}),
   }, icon:{
     x:820,
     y:104,
@@ -931,8 +931,8 @@ const _clipboard={
       },
     },
 
-    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/checked.png"}),
-    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/unChecked.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/checkOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/checkOff.png"}),
   },
 
   on:false,
@@ -971,8 +971,8 @@ const _blueprint={
 
     hover:false,
 
-    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
-    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/backOff.png"}),
   }, left:{
     x:808,
     y:266,
@@ -982,8 +982,8 @@ const _blueprint={
 
     hover:false,
 
-    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
-    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/backOff.png"}),
   }, right:{
     x:924,
     y:266,
@@ -994,8 +994,8 @@ const _blueprint={
 
     hover:false,
 
-    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
-    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/backOff.png"}),
   }, title:{
     x:842,
     y:120,
@@ -1260,6 +1260,7 @@ const _player={
   touchDoor:false,
   touchLock:false,
   touchGround:false,
+  touchCorner:false,
   active:false,
   ground:false,
   fly:false,
@@ -1295,7 +1296,8 @@ const _corner={
 
   lenght:-1,
   currentLenght:0,
-  useLenght:-1,
+  useLenghtLock:-1,
+  useLenghtLaser:-1,
   time:0,
 
   imgCorner:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),
@@ -1361,8 +1363,8 @@ const _tebox={
     second:-1,
     third:-1,
 
-    imgOn:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/activated.png"}),
-    imgOff:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/unActivated.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/obj/map/tebox/baseOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/obj/map/tebox/baseOff.png"}),
   }, loot:{
     x:0,
     y:0,
@@ -1456,11 +1458,11 @@ const _attack={
     height:48,
     rotation:0,
 
-    unused:true,
+    use:false,
     left:true,
     touch:false,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/teacher/attack/tebulinek.png"}),
+    img:Object.assign(new Image(),{src:"tex/obj/teacher/attack/TEBulinek.png"}),
     alpha:100,
   }, object0:{
     x:0,
@@ -1470,13 +1472,11 @@ const _attack={
     height:48,
     rotation:0,
 
-    current:0,
-    unused:true,
+    current:-1,
     left:true,
-    touch:false,
 
-    img0Computer:Object.assign(new Image(),{src:"tex/obj/teacher/attack/computer.png"}),
-    img0Keyboard:Object.assign(new Image(),{src:"tex/obj/teacher/attack/keyboard.png"}),
+    imgComputer:Object.assign(new Image(),{src:"tex/obj/teacher/attack/computer.png"}),
+    imgKeyboard:Object.assign(new Image(),{src:"tex/obj/teacher/attack/keyboard.png"}),
     alpha:100,
   }, object1:{
     x:0,
@@ -1486,16 +1486,15 @@ const _attack={
     height:48,
     rotation:0,
 
-    current:0,
-    unused:true,
+    current:-1,
     left:true,
-    touch:false,
 
-    img0Coffe:Object.assign(new Image(),{src:"tex/obj/teacher/attack/coffe.png"}),
-    img0Pigeon:Object.assign(new Image(),{src:"tex/obj/teacher/attack/pigeon.png"}),
+    imgCoffe:Object.assign(new Image(),{src:"tex/obj/teacher/attack/coffe.png"}),
+    imgPigeon:Object.assign(new Image(),{src:"tex/obj/teacher/attack/pigeon.png"}),
     alpha:100,
   },
 
+  render:function(){},
   update:function(){},
   handle:function(){},
 };

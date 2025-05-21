@@ -107,7 +107,7 @@ scene.levelUpdate=function(){
     else{ scene.vy=-context.move(4); }
   } else{ scene.vy=0; }
 
-  if(_corner.time==context.time(70)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
+  if(_corner.time==context.time(20)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
     if(audio.laser==0){
       audio.laser_sfx.play();
       audio.laser++;

@@ -54,7 +54,7 @@ scene.foregroundGenerator=function(){
     width:5120,
     height:context.scale(166),
 
-    score:_platform.currentLoad-1,
+    level:_platform.currentLoad-1,
     on:true,
     change:false,
 
@@ -74,7 +74,7 @@ scene.foregroundGenerator=function(){
     width:5120,
     height:context.scale(166),
 
-    score:_platform.currentLoad-1,
+    level:_platform.currentLoad-1,
     on:true,
     change:false,
 
@@ -92,19 +92,21 @@ scene.cornerGenerator=function(){
   if(_platform.currentLoad!=_platform.load){
     _currentCorner={
       base:{
-        x:_platform.random-context.scale(2),
-        y:_currentPlatform.y,
+        x:_platform.random-context.scale(4),
+        y:_currentPlatform.y-context.scale(2),
 
-        width:context.scale(8),
-        height:context.scale(14),
+        width:context.scale(12),
+        height:context.scale(18),
       }, laser:{
-        x:_platform.random+context.scale(4.5),
+        x:0,
         y:_currentPlatform.y+context.scale(4),
+        ix:_platform.random-context.scale(156),
 
-        width:context.scale(148),
+        left:false,
+        level:_platform.currentLoad-1,
+
+        width:context.scale(156),
         height:context.scale(6),
-
-        alpha:0,
       },
     };
 
@@ -114,10 +116,10 @@ scene.cornerGenerator=function(){
     _currentCorner={
       base:{
         x:(_platform.random+context.scale(156))-context.scale(7.5),
-        y:_currentPlatform.y,
+        y:_currentPlatform.y-context.scale(2),
 
-        width:context.scale(8),
-        height:context.scale(14),
+        width:context.scale(12),
+        height:context.scale(18),
 
         rotation:180,
       }, lock:{
@@ -125,10 +127,10 @@ scene.cornerGenerator=function(){
         y:_currentPlatform.y,
 
         width:context.scale(148),
-        height:context.scale(16),
+        height:context.scale(14),
 
         alpha:100,
-      }
+      },
     };
 
     _corner.array.push(_currentCorner);

@@ -21,14 +21,8 @@ scene.levelRender=function(){
   } else{
     context.render(_background.base,_background.imgTeacher);
 
-    if(!_attack.tebulinek.unused){ context.render(_attack.tebulinek,_attack.tebulinek.img0); }
-    if(!_attack.object0.unused){
-      if(_attack.object0.current==0){ context.render(_attack.object0,_attack.object0.img0Computer); }
-      else{ context.render(_attack.object0,_attack.object0.img0Keyboard); }
-    } if(!_attack.object1.unused){
-      if(_attack.object1.current==0){ context.render(_attack.object1,_attack.object1.img0Coffe); }
-      else{ context.render(_attack.object1,_attack.object1.img0Pigeon); }
-    } _teacher.render();
+    _attack.render();
+    _teacher.render();
   }
 
   if(scene.generated){
@@ -160,6 +154,37 @@ scene.levelRender=function(){
       _spike.currentLenght+=1;
     }
 
+    while(_foreground.lenght>=_foreground.currentLenght&&!scene.teacher){
+      _currentForeground=_foreground.array[_foreground.currentLenght];
+      context.render(_currentForeground,"rgb(0,0,55)");
+      if(!global.pause&&_player.hp>0){ _foreground.update(); }
+
+      _currentForeground.y+=scene.vy;
+      _currentForeground.x+=scene.vx;
+      _foreground.currentLenght+=1;
+    }
+
+    while(_corner.lenght>=_corner.currentLenght&&!scene.teacher){
+      _currentCorner=_corner.array[_corner.currentLenght];
+      if(_currentCorner.base.y<canvas.height*1.5&&_currentCorner.base.y>=-canvas.height*0.5){
+        context.render(_currentCorner.base,_corner.imgCorner);
+        if(_currentCorner.laser!=undefined&&_corner.time>=context.time(20)&&_corner.time<context.time(50)){ context.render(_currentCorner.laser,"rgb(255,255,255)"); }
+        else if(_currentCorner.lock!=undefined){ context.render(_currentCorner.lock,_corner.imgLock); }
+      } if(!global.pause&&_player.hp>0){ _corner.update(); }
+
+      if(_currentCorner.laser!=undefined){
+        _currentCorner.laser.y+=scene.vy;
+        _currentCorner.laser.x+=scene.vx;
+        _currentCorner.laser.ix+=scene.vx;
+      } else if(_currentCorner.lock!=undefined){
+        _currentCorner.lock.y+=scene.vy;
+        _currentCorner.lock.x+=scene.vx;
+      }
+      _currentCorner.base.y+=scene.vy;
+      _currentCorner.base.x+=scene.vx;
+      _corner.currentLenght+=1;
+    } if(!global.pause&&_player.hp>0&&!(_corner.time<context.time(20)&&!_player.touchCorner)){ _corner.time++; }
+
     while(_platform.lenght>=_platform.currentLenght){
       _currentPlatform=_platform.array[_platform.currentLenght];
       if(_currentPlatform.y<canvas.height*1.5&&_currentPlatform.y>=-canvas.height*0.5){
@@ -171,36 +196,6 @@ scene.levelRender=function(){
       _currentPlatform.x+=scene.vx;
       _platform.hy=scene.vy;
       _platform.currentLenght+=1;
-    }
-
-    while(_corner.lenght>=_corner.currentLenght&&!scene.teacher){
-      _currentCorner=_corner.array[_corner.currentLenght];
-      context.render(_currentCorner.base,_corner.imgCorner);
-      if(_currentCorner.laser!=undefined){ context.render(_currentCorner.laser,"rgb(255,255,255)"); }
-      else if(_currentCorner.lock!=undefined){ context.render(_currentCorner.lock,_corner.imgLock); }
-
-      if(!global.pause&&_player.hp>0){ _corner.update(); }
-
-      if(_currentCorner.laser!=undefined){
-        _currentCorner.laser.y+=scene.vy;
-        _currentCorner.laser.x+=scene.vx;
-      } else if(_currentCorner.lock!=undefined){
-        _currentCorner.lock.y+=scene.vy;
-        _currentCorner.lock.x+=scene.vx;
-      }
-      _currentCorner.base.y+=scene.vy;
-      _currentCorner.base.x+=scene.vx;
-      _corner.currentLenght+=1;
-    } if(!global.pause&&_player.hp>0){ _corner.time++; }
-
-    while(_foreground.lenght>=_foreground.currentLenght&&!scene.teacher){
-      _currentForeground=_foreground.array[_foreground.currentLenght];
-      context.render(_currentForeground,"rgb(0,0,55)");
-      if(!global.pause&&_player.hp>0){ _foreground.update(); }
-
-      _currentForeground.y+=scene.vy;
-      _currentForeground.x+=scene.vx;
-      _foreground.currentLenght+=1;
     }
 
     _player.lateUpdate();

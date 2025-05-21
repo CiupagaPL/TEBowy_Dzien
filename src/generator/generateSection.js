@@ -16,9 +16,7 @@ scene.sectionGenerator=function(){
   if(_platform.currentLoad==1){
     scene.current=7;
     scene.last=7;
-  }
-
-  if(_platform.currentLoad!=_platform.load){
+  } if(_platform.currentLoad!=_platform.load){
     if(scene.current<=1){ scene.current=Math.floor(Math.random()*3)+4; }
     else if(scene.current==2){ scene.current=Math.floor(Math.random()*2)+5; }
     else if(scene.current==4){ scene.current=Math.floor(Math.random()*2); }

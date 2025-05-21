@@ -15,7 +15,7 @@ Głównym jej celem jest ułatwienie rozgrywki i przygotowanie gry do kolejnego 
 
 ## Status
 > Newest Version: **Unstable(U)**;
-> Last Updated: **19-05-2025**;
+> Last Updated: **21-05-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

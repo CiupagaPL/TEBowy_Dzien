@@ -25,6 +25,10 @@ const context=render.getContext("2d",{
   alpha:true,
   willReadFrequently:true,
   powerPreference:"high-performance",
+  imageSmoothingEnabled:false,
+  mozImageSmoothingEnabled:false,
+  webkitImageSmoothingEnabled:false,
+  imageSmoothingQuality:"low",
 
   collision:function(){},
   scale:function(){},

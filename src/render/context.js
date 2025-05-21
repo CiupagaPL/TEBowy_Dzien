@@ -29,7 +29,7 @@ context.collision=function(object0,object1){
 context.scale=function(value){ return value*canvas.scale; }
 context.time=function(value){ return Math.round(value*canvas.timeScale); }
 context.frame=function(value){ return Math.round(value/canvas.timeScale); }
-context.move=function(value){ return Math.floor(((value*canvas.scale)/canvas.timeScale)*100)/100; }
+context.move=function(value){ return Math.floor((context.scale(value)/canvas.timeScale)*100)/100; }
 context.limit=function(value){ return Math.round(Math.floor(((value*canvas.timeScale)/canvas.prevTimeScale)*100)/100); }
 
 context.setup=function(object){
@@ -225,9 +225,9 @@ context.default=function(){
   _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(30);
   _teacher.left=true;
 
-  _attack.tebulinek.unused=true;
-  _attack.object0.unused=true;
-  _attack.object1.unused=true;
+  _attack.tebulinek.use=false;
+  _attack.object0.current=-1;
+  _attack.object1.current=-1;
   _attack.tebulinek.alpha=100;
   _attack.object0.alpha=100;
   _attack.object1.alpha=100;
