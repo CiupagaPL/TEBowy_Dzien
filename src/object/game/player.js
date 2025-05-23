@@ -127,7 +127,7 @@ _player.update=function(){
       if(!_player.ammo.left){ _player.ammo.x+=context.move(12); }
       else{ _player.ammo.x-=context.move(12); }
 
-      if(_player.ammo.x+_player.ammo.width-scene.vx>=canvas.width||_player.ammo.x<scene.vx){ _player.ammo.unused=true; }
+      if(_player.ammo.x+_player.ammo.width-scene.vx>=context.scale(800)||_player.ammo.x<-context.scale(160)){ _player.ammo.unused=true; }
     }
 
     if(!_player.ground){
@@ -199,7 +199,7 @@ _player.lateUpdate=function(){
   if(!global.pause&&_player.hp>0){
     if(context.collision(_player.base,_player.cloud)&&!scene.load&&scene.teacher&&!_player.cloud.on||_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&scene.key||
        _player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&!scene.key||_player.touchLock&&!scene.key){ _player.action.alpha=100; }
-    else if(_player.touchTebox&&_tebox.base.third!=-1&&_player.base.vy==0){
+    else if(_player.touchTebox&&!_tebox.base.key&&_player.base.vy==0||_player.action.time>0){
       if(_player.action.time>=1){
         _player.action.time++;
         _player.action.alpha=100;
@@ -214,7 +214,7 @@ _player.lateUpdate=function(){
     }
 
     if(_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&!scene.key||_player.touchLock&&!scene.key){ _player.action.current=0; }
-    else if(_player.touchTebox&&_tebox.base.third!=-1&&_player.base.vy==0||context.collision(_player.base,_player.cloud)&&!scene.load&&
+    else if(_player.touchTebox&&!_tebox.base.key&&_player.base.vy==0||context.collision(_player.base,_player.cloud)&&!scene.load&&
             scene.teacher&&!_player.cloud.on||_player.touchDoor&&!scene.load&&_player.base.vy==0&&!_player.fly&&scene.key){ _player.action.current=1; }
     else{ _player.action.current=-1; }
   } else{ _player.action.current=-1; }

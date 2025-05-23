@@ -39,7 +39,7 @@ window.addEventListener("keydown",function(event){
 });
 
 window.addEventListener("keyup",function(event){
-  if(!scene.blocked&&!canvas.error){
+  if(!scene.block&&!canvas.error){
     if(event.key=="Enter"&&scene.value==0&&!render.error&&scene.time<context.time(100)){
       scene.time=context.time(100);
       _start.base.alpha=100;
@@ -47,7 +47,7 @@ window.addEventListener("keyup",function(event){
 
     else if(scene.value==1){
       if(event.key=="Enter"){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click3_sfx.play(); }
 
         if(_clipboard.on){
@@ -72,7 +72,7 @@ window.addEventListener("keyup",function(event){
       }
 
       else if(event.key=="Escape"&&(_clipboard.on||_blueprint.on)){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click2_sfx.play(); }
 
         if(_clipboard.on){ _clipboard.close=true; }
@@ -88,7 +88,7 @@ window.addEventListener("keyup",function(event){
       if(event.key=="Escape"&&!scene.change){
         if(global.pause){
           if(global.sfx){ audio.click1_sfx.play(); }
-          scene.blocked=true;
+          scene.block=true;
 
           if(_clipboard.on){
             _clipboard.close=true;
@@ -152,58 +152,54 @@ window.addEventListener("keyup",function(event){
           if(_player.gun.type==3){ _player.gun.type=0; }
         }
 
-        if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_tebox.loot.time==0){
-          if(_tebox.base.first!=-1){
+        if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_tebox.loot.time==0&&!_tebox.base.key){
+          if(!_tebox.base.ammo){
             if(global.sfx){ audio.chest_sfx.play(); }
             _player.action.time=1;
 
-            _tebox.loot.current=_tebox.base.first;
-            if(_tebox.loot.current==3&&_player.hp>=4){ _tebox.loot.current=Math.floor(Math.random()*3); }
-            else if(_tebox.loot.current==3&&_player.hp<4){ _tebox.loot.current=Math.floor(Math.random()*6); }
-
-            if(_tebox.loot.current==1){ _player.gun.ammo1++; }
-            else if(_tebox.loot.current==2||_tebox.loot.current==0){
-              _tebox.loot.current=2;
-              _player.gun.ammo2++;
+            if(_player.gun.ammo1>_player.gun.ammo2*2){
+              _tebox.base.ammo1=0;
+              _tebox.base.ammo2=3;
+              _player.gun.ammo2+=3;
+            } else if(_player.gun.ammo2>_player.gun.ammo1*4){
+              _tebox.base.ammo1=3;
+              _tebox.base.ammo2=0;
+              _player.gun.ammo1+=3;
             } else{
-              _player.hp++;
+              if(Math.floor(Math.random()*3)==0){
+                _tebox.base.ammo1=2;
+                _tebox.base.ammo2=1;
+                _player.gun.ammo1+=2;
+                _player.gun.ammo2+=1;
+              } else{
+                _tebox.base.ammo1=1;
+                _tebox.base.ammo2=2;
+                _player.gun.ammo1+=1;
+                _player.gun.ammo2+=2;
+              }
+            }
+
+            _tebox.base.ammo=true;
+            _tebox.loot.alpha=100;
+          } else{
+            if(global.sfx){ audio.chest_sfx.play(); }
+
+            if(_player.hp<5&&(Math.floor(Math.random()*7)==0||_tebox.base.loop==3)&&!_tebox.base.hp){
+              _tebox.base.hp=true;
+              _tebox.base.loop=0;
               _player.heal=true;
-            }
-
-            _tebox.loot.alpha=100;
-            _tebox.base.first=-1;
-          } else if(_tebox.base.second!=-1){
-            if(global.sfx){ audio.chest_sfx.play(); }
-            _player.action.time=1;
-
-            _tebox.loot.current=_tebox.base.second;
-            if(_tebox.loot.current==1){ _player.gun.ammo1++; }
-            else if(_tebox.loot.current==2||_tebox.loot.current==0){
-              _tebox.loot.current=2;
-              _player.gun.ammo2++;
-            }
-
-            _tebox.loot.alpha=100;
-            _tebox.base.second=-1;
-          } else if(_tebox.base.third!=-1){
-            if(global.sfx){ audio.chest_sfx.play(); }
-
-            _tebox.loot.current=_tebox.base.third;
-            if(_tebox.loot.current!=0){
-              if(_tebox.loot.current==1&&_player.gun.ammo1-10>_player.gun.ammo2){ _tebox.loot.current=2 }
-              else if(_tebox.loot.current==2&&_player.gun.ammo2-10>_player.gun.ammo1){ _tebox.loot.current=1; }
-            } if(_tebox.loot.current==0){ scene.key=true; }
-            else if(_tebox.loot.current==1){ _player.gun.ammo1++; }
-            else if(_tebox.loot.current==2){ _player.gun.ammo2++; }
-
-            _tebox.loot.alpha=100;
-            _tebox.base.third=-1;
+              _player.hp++;
+            } else{
+              _tebox.base.key=true;
+              _tebox.base.loop++;
+              scene.key=true;
+            } _tebox.loot.alpha=100;
           }
         }
 
         if(_player.touchDoor&&(event.key=="e"||event.key=="E")&&!scene.load&&!global.pause&&scene.key){
           if(global.sfx){ audio.door_sfx.play(); }
-          scene.blocked=true;
+          scene.block=true;
           scene.load=true;
         }
 

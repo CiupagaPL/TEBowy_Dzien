@@ -27,7 +27,7 @@ scene.decorationGenerator=function(){
         x:context.scale(66),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -41,8 +41,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(63);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -60,7 +59,7 @@ scene.decorationGenerator=function(){
         x:context.scale(226),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -74,8 +73,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(223);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -93,7 +91,7 @@ scene.decorationGenerator=function(){
         x:context.scale(386),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -107,8 +105,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(383);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -126,7 +123,7 @@ scene.decorationGenerator=function(){
         x:context.scale(546),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -140,8 +137,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(543);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -159,7 +155,7 @@ scene.decorationGenerator=function(){
         x:context.scale(706),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -173,8 +169,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(703);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -192,7 +187,7 @@ scene.decorationGenerator=function(){
         x:context.scale(866),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -206,8 +201,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(863);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -225,7 +219,7 @@ scene.decorationGenerator=function(){
         x:context.scale(1026),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -239,8 +233,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(1023);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -258,7 +251,7 @@ scene.decorationGenerator=function(){
         x:context.scale(1186),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -272,8 +265,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(1183);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);

@@ -13,7 +13,7 @@
  *  (_(_)--(_(_) */
 
 _transition.sceneOff=function(){
-  scene.blocked=true;
+  scene.block=true;
   scene.change=true;
   _indicator.time++;
   _indicator.alpha=100;
@@ -80,9 +80,11 @@ _transition.sceneOn=function(){
     scene.vy=(canvas.height-_platform.array[_platform.lenght].y)-context.scale(12);
     _player.base.alpha=100;
     _player.invisible=0;
+
     _background.base.x=0;
     _background.base.y=0;
     scene.teacher=true;
+    _tebox.base.key=false;
     _player.touchDoor=false;
   } if(_platform.array[_platform.lenght].y>context.scale(300)){
     _player.base.y=canvas.height-_player.base.height-context.scale(14);
@@ -91,6 +93,15 @@ _transition.sceneOn=function(){
     _player.collisionTop.y=_player.base.y-context.scale(4);
     _player.collisionBottom.y=_player.base.y+context.scale(90);
     _player.gun.y=_player.base.y+context.scale(32);
+    _player.base.x=(canvas.width/2)-(_player.base.width/2);
+    _player.collisionLeft.x=_player.base.x+context.scale(4);
+    _player.collisionRight.x=_player.base.x+context.scale(52);
+    _player.collisionTop.x=_player.base.x+context.scale(14);
+    _player.collisionBottom.x=_player.base.x+context.scale(12);
+    _player.gun.x=_player.base.x;
+    _player.cloud.x=_player.base.x-context.scale(6);
+    _player.action.x=_player.base.x+_player.base.width;
+
     _player.base.vx=0;
     scene.vy=0;
   }
@@ -109,7 +120,7 @@ _transition.sceneOn=function(){
 
     if(!scene.load){ scene.change=false; }
     else{ scene.load=false; }
-    scene.blocked=false;
+    scene.block=false;
     audio.current=0;
     _indicator.time=0;
 
@@ -135,11 +146,11 @@ _transition.sceneOn=function(){
 }
 
 _transition.pauseOff=function(){
-  scene.blocked=true;
+  scene.block=true;
   _transition.overlay.alpha-=context.frame(5);
 
   if(_transition.overlay.alpha<=0){
-    scene.blocked=false;
+    scene.block=false;
     global.pauseChange=false;
     global.pause=false;
     global.autoUnpause=false;
@@ -151,12 +162,12 @@ _transition.pauseOff=function(){
 }
 
 _transition.pauseOn=function(){
-  scene.blocked=true;
+  scene.block=true;
   global.pause=true;
   _transition.overlay.alpha+=context.frame(5);
 
   if(_transition.overlay.alpha>=60){
-    scene.blocked=false;
+    scene.block=false;
     global.pauseChange=false;
     keyDown.up=false;
     keyDown.down=false;

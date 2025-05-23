@@ -13,78 +13,82 @@
  *  (_(_)--(_(_) */
 
 _ui.levelRender=function(){
-  context.render(_ui.game.heart.background,"rgb(255,255,255)");
-  context.render(_ui.game.heart.main,"rgb(0,0,65)");
-  if(_player.hp==0){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img0); }
-  else if(_player.hp==1){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img1); }
-  else if(_player.hp==2){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img2); }
-  else if(_player.hp==3){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img3); }
-  else if(_player.hp==4){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img4); }
-  else{ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img5); }
-  context.text(_ui.game.heart.text,"rgb(255,255,255)",_ui.game.heart.text.value);
+  if(_ui.show||!global.pause&&!_ui.show){
+    context.render(_ui.game.heart.background,"rgb(255,255,255)");
+    context.render(_ui.game.heart.main,"rgb(0,0,65)");
+    if(_player.hp==0){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img0); }
+    else if(_player.hp==1){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img1); }
+    else if(_player.hp==2){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img2); }
+    else if(_player.hp==3){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img3); }
+    else if(_player.hp==4){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img4); }
+    else{ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img5); }
+    context.text(_ui.game.heart.text,"rgb(255,255,255)",_ui.game.heart.text.value);
 
-  context.render(_ui.game.ammo.background,"rgb(255,255,255)");
-  context.render(_ui.game.ammo.main,"rgb(0,0,65)");
-  if(_player.gun.type==0){
-    if(_player.gun.time<context.time(18)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
-    else if(_player.gun.time>=context.time(18)&&_player.gun.time<context.time(36)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Normal); }
-    else if(_player.gun.time>=context.time(36)&&_player.gun.time<context.time(54)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2Normal); }
-    else if(_player.gun.time>=context.time(54)&&_player.gun.time<context.time(72)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Normal); }
-    else if(_player.gun.time>=context.time(72)&&_player.gun.time<context.time(90)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Normal); }
-    else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Normal); }
-  } else if(_player.gun.type==1){
-    if(_player.gun.time<context.time(24)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
-    else if(_player.gun.time>=context.time(24)&&_player.gun.time<context.time(48)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Strong); }
-    else if(_player.gun.time>=context.time(48)&&_player.gun.time<context.time(72)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2Strong); }
-    else if(_player.gun.time>=context.time(72)&&_player.gun.time<context.time(96)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Strong); }
-    else if(_player.gun.time>=context.time(96)&&_player.gun.time<context.time(120)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Strong); }
-    else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Strong); }
-  } else{
-    if(_player.gun.time<context.time(12)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
-    else if(_player.gun.time>=context.time(12)&&_player.gun.time<context.time(24)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Fast); }
-    else if(_player.gun.time>=context.time(24)&&_player.gun.time<context.time(36)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2Fast); }
-    else if(_player.gun.time>=context.time(36)&&_player.gun.time<context.time(48)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Fast); }
-    else if(_player.gun.time>=context.time(48)&&_player.gun.time<context.time(60)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Fast); }
-    else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Fast); }
-  } context.text(_ui.game.ammo.text,"rgb(255,255,255)",_ui.game.ammo.text.value);
+    context.render(_ui.game.ammo.background,"rgb(255,255,255)");
+    context.render(_ui.game.ammo.main,"rgb(0,0,65)");
+    if(_player.gun.type==0){
+      if(_player.gun.time<context.time(18)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
+      else if(_player.gun.time>=context.time(18)&&_player.gun.time<context.time(36)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Normal); }
+      else if(_player.gun.time>=context.time(36)&&_player.gun.time<context.time(54)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2Normal); }
+      else if(_player.gun.time>=context.time(54)&&_player.gun.time<context.time(72)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Normal); }
+      else if(_player.gun.time>=context.time(72)&&_player.gun.time<context.time(90)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Normal); }
+      else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Normal); }
+    } else if(_player.gun.type==1){
+      if(_player.gun.time<context.time(24)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
+      else if(_player.gun.time>=context.time(24)&&_player.gun.time<context.time(48)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Strong); }
+      else if(_player.gun.time>=context.time(48)&&_player.gun.time<context.time(72)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2Strong); }
+      else if(_player.gun.time>=context.time(72)&&_player.gun.time<context.time(96)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Strong); }
+      else if(_player.gun.time>=context.time(96)&&_player.gun.time<context.time(120)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Strong); }
+      else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Strong); }
+    } else{
+      if(_player.gun.time<context.time(12)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
+      else if(_player.gun.time>=context.time(12)&&_player.gun.time<context.time(24)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1Fast); }
+      else if(_player.gun.time>=context.time(24)&&_player.gun.time<context.time(36)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2Fast); }
+      else if(_player.gun.time>=context.time(36)&&_player.gun.time<context.time(48)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3Fast); }
+      else if(_player.gun.time>=context.time(48)&&_player.gun.time<context.time(60)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4Fast); }
+      else{ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img5Fast); }
+    } context.text(_ui.game.ammo.text,"rgb(255,255,255)",_ui.game.ammo.text.value);
 
-  if(!scene.teacher){
-    context.render(_ui.game.key.background,"rgb(255,255,255)");
-    context.render(_ui.game.key.main,"rgb(0,0,65)");
-    if(!scene.key){ context.render(_ui.game.key.icon,_ui.game.key.icon.imgOff); }
-    else{ context.render(_ui.game.key.icon,_ui.game.key.icon.imgOn); }
-    context.text(_ui.game.key.text,"rgb(255,255,255)",_ui.game.key.text.value);
-  }
+    if(!scene.teacher){
+      context.render(_ui.game.key.background,"rgb(255,255,255)");
+      context.render(_ui.game.key.main,"rgb(0,0,65)");
+      if(!scene.key){ context.render(_ui.game.key.icon,_ui.game.key.icon.imgOff); }
+      else{ context.render(_ui.game.key.icon,_ui.game.key.icon.imgOn); }
+      context.text(_ui.game.key.text,"rgb(255,255,255)",_ui.game.key.text.value);
+    }
 
-  context.render(_ui.game.pause.background,"rgb(255,255,255)");
-  context.render(_ui.game.pause.main,"rgb(0,0,65)");
-  context.text(_ui.game.pause.icon,"rgb(255,255,255)",_ui.game.pause.icon.value);
-  context.text(_ui.game.pause.text,"rgb(255,255,255)",_ui.game.pause.text.value);
+    context.render(_ui.game.pause.background,"rgb(255,255,255)");
+    context.render(_ui.game.pause.main,"rgb(0,0,65)");
+    context.text(_ui.game.pause.icon,"rgb(255,255,255)",_ui.game.pause.icon.value);
+    context.text(_ui.game.pause.text,"rgb(255,255,255)",_ui.game.pause.text.value);
 
-  context.render(_ui.game.info.background,"rgb(255,255,255)");
-  context.render(_ui.game.info.main,"rgb(0,0,65)");
-  context.render(_ui.game.info.icon,_ui.game.info.icon.img);
-  context.text(_ui.game.info.text,"rgb(255,255,255)",_ui.game.info.text.value);
-  context.text(_ui.game.info.score,"rgb(255,255,255)",_ui.game.info.score.value);
-  context.text(_ui.game.info.level,"rgb(255,255,255)",_ui.game.info.level.value);
-  context.text(_ui.game.info.time,"rgb(255,255,255)",_ui.game.info.time.value);
+    context.render(_ui.game.info.background,"rgb(255,255,255)");
+    context.render(_ui.game.info.main,"rgb(0,0,65)");
+    context.render(_ui.game.info.icon,_ui.game.info.icon.img);
+    context.text(_ui.game.info.text,"rgb(255,255,255)",_ui.game.info.text.value);
+    context.text(_ui.game.info.score,"rgb(255,255,255)",_ui.game.info.score.value);
+    context.text(_ui.game.info.level,"rgb(255,255,255)",_ui.game.info.level.value);
+    context.text(_ui.game.info.time,"rgb(255,255,255)",_ui.game.info.time.value);
 
-  context.render(_ui.game.notification.background,"rgb(255,255,255)");
-  context.render(_ui.game.notification.main,"rgb(0,0,65)");
-  context.text(_ui.game.notification.icon,"rgb(255,255,255)",_ui.game.notification.icon.value);
-  context.text(_ui.game.notification.text,"rgb(255,255,255)",_ui.game.notification.text.value);
-  context.text(_ui.game.notification.info,"rgb(255,255,255)",_ui.game.notification.info.value);
+    if(_player.damage||_player.heal||_ui.message||global.teboxNotification||global.lockerNotification||global.lockNotification||global.doorNotification){
+      context.render(_ui.game.notification.background,"rgb(255,255,255)");
+      context.render(_ui.game.notification.main,"rgb(0,0,65)");
+      context.text(_ui.game.notification.icon,"rgb(255,255,255)",_ui.game.notification.icon.value);
+      context.text(_ui.game.notification.text,"rgb(255,255,255)",_ui.game.notification.text.value);
+      context.text(_ui.game.notification.info,"rgb(255,255,255)",_ui.game.notification.info.value);
+    }
 
-  if(scene.teacher){
-    context.render(_ui.game.teacher.background,"rgb(255,255,255)");
-    context.render(_ui.game.teacher.main,"rgb(0,0,65)");
-    if(_teacher.hp==0){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img0); }
-    else if(_teacher.hp>0&&_teacher.hp<=4){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img1); }
-    else if(_teacher.hp>4&&_teacher.hp<=8){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img2); }
-    else if(_teacher.hp>8&&_teacher.hp<=12){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img3); }
-    else if(_teacher.hp>12&&_teacher.hp<=16){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img4); }
-    else{ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img5); }
-    context.text(_ui.game.teacher.text,"rgb(255,255,255)",_ui.game.teacher.text.value);
+    if(scene.teacher){
+      context.render(_ui.game.teacher.background,"rgb(255,255,255)");
+      context.render(_ui.game.teacher.main,"rgb(0,0,65)");
+      if(_teacher.hp==0){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img0); }
+      else if(_teacher.hp>0&&_teacher.hp<=4){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img1); }
+      else if(_teacher.hp>4&&_teacher.hp<=8){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img2); }
+      else if(_teacher.hp>8&&_teacher.hp<=12){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img3); }
+      else if(_teacher.hp>12&&_teacher.hp<=16){ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img4); }
+      else{ context.render(_ui.game.teacher.icon,_ui.game.teacher.icon.img5); }
+      context.text(_ui.game.teacher.text,"rgb(255,255,255)",_ui.game.teacher.text.value);
+    }
   }
 }
 
@@ -316,18 +320,25 @@ _ui.update=function(){
     else if(_player.gun.ammo2>9){ _ui.game.ammo.text.x=context.scale(578); }
   }
 
-  if(_player.damage||_player.heal||_ui.message){
+  if(_player.damage||_player.heal||_ui.message||global.teboxNotification||global.lockerNotification||global.lockNotification||global.doorNotification){
     if(!_ui.message){
-      if(_player.damage){ _ui.game.notification.info.value="-25 punktów z\nzachowania!"; }
-      else if(_player.heal){ _ui.game.notification.info.value="+25 punktów z\nzachowania!"; }
+      if(_player.damage){ _ui.game.notification.info.value="-25 punktów z\nzachowania! x.x"; }
+      else if(_player.heal){ _ui.game.notification.info.value="+25 punktów z\nzachowania! ^.^"; }
+      else if(global.teboxNotification){ _ui.game.notification.info.value="Użyj przycisku interakcji,\naby otworzyć TEBoxa! c.c"; }
+      else if(global.lockerNotification){ _ui.game.notification.info.value="Użyj przycisku strzału,\naby zamknąć szafkę! c.c"; }
+      else if(global.lockNotification){ _ui.game.notification.info.value="Zdobądź klucz w celu\notwarcia kłódki! c.c"; }
+      else if(global.doorNotification){ _ui.game.notification.info.value="Użyj klucza w celu\notwarcia drzwi! c.c"; }
 
-      if(_ui.game.notification.main.x<context.scale(-5)&&!global.pause&&_player.hp>0){
+      if(_player.damage||_player.heal){ _ui.game.notification.icon.value="!"; }
+      else{ _ui.game.notification.icon.value="?"; }
+
+      if(_ui.game.notification.background.x<context.scale(-5)&&!global.pause&&_player.hp>0){
         _ui.game.notification.main.x+=context.move(10);
         _ui.game.notification.background.x+=context.move(10);
         _ui.game.notification.icon.x+=context.move(10);
         _ui.game.notification.text.x+=context.move(10);
         _ui.game.notification.info.x+=context.move(10);
-      } else if(_ui.game.notification.main.x<context.scale(-5)&&(global.pause||_player.hp==0)){
+      } else if(_ui.game.notification.background.x<context.scale(-5)&&(global.pause||_player.hp==0)){
         if(_ui.game.notification.main.x>context.scale(-130)){
           _ui.game.notification.main.x-=context.move(10);
           _ui.game.notification.background.x-=context.move(10);
@@ -336,25 +347,30 @@ _ui.update=function(){
           _ui.game.notification.info.x-=context.move(10);
         } else{
           _ui.message=false;
-          if(_ui.game.notification.info.value=="-25 punktów z\nzachowania!"){ _player.damage=false; }
-          if(_ui.game.notification.info.value=="+25 punktów z\nzachowania!"){ _player.heal=false; }
+          if(_ui.game.notification.info.value=="-25 punktów z\nzachowania! x.x"){ _player.damage=false; }
+          else if(_ui.game.notification.info.value=="+25 punktów z\nzachowania! ^.^"){ _player.heal=false; }
+          else if(_ui.game.notification.info.value=="Użyj przycisku interakcji,\naby otworzyć TEBoxa! c.c"){ global.teboxNotification=false; }
+          else if(_ui.game.notification.info.value=="Użyj przycisku strzału,\naby zamknąć szafkę! c.c"){ global.lockerNotification=false; }
+          else if(_ui.game.notification.info.value=="Zdobądź klucz w celu\notwarcia kłódki! c.c"){ global.lockNotification=false; }
+          else if(_ui.game.notification.info.value=="Użyj klucza w celu\notwarcia drzwi! c.c"){ global.doorNotification=false; }
         }  
       } else if(_ui.game.notification.main.x>=context.scale(-5)&&!global.pause&&_player.hp>0){
         _ui.game.notification.main.x=context.scale(6);
         _ui.game.notification.background.x=context.scale(4);
-        _ui.game.notification.icon.x=context.scale(18);
+        if(_ui.game.notification.icon.value=="!"){ _ui.game.notification.icon.x=context.scale(18); }
+        else{ _ui.game.notification.icon.x=context.scale(16); }
         _ui.game.notification.text.x=context.scale(14);
-        _ui.game.notification.info.x=context.scale(38);
+        _ui.game.notification.info.x=context.scale(34);
 
         _ui.message=true;
         _ui.time=context.time(60);
       }
-    } else{ 
+    } else{
       if(_ui.time>0){ _ui.time--; }
       if(global.pause||_player.hp==0){ _ui.time=0; }
 
-      if(_ui.game.notification.info.value=="-25 punktów z\nzachowania!"&&_player.heal&&_ui.time>context.time(15)){ _ui.time=context.time(15); }
-      if(_ui.game.notification.info.value=="+25 punktów z\nzachowania!"&&_player.damage&&_ui.time>context.time(15)){ _ui.time=context.time(15); }
+      if(_ui.game.notification.info.value=="-25 punktów z\nzachowania! x.x"&&_player.heal&&_ui.time>context.time(15)){ _ui.time=context.time(15); }
+      else if(_ui.game.notification.info.value=="+25 punktów z\nzachowania! ^.^"&&_player.damage&&_ui.time>context.time(15)){ _ui.time=context.time(15); }
 
       if(_ui.time<=0){
         if(_ui.game.notification.main.x>context.scale(-130)){
@@ -365,8 +381,12 @@ _ui.update=function(){
           _ui.game.notification.info.x-=context.move(10);
         } else{
           _ui.message=false;
-          if(_ui.game.notification.info.value=="-25 punktów z\nzachowania!"){ _player.damage=false; }
-          if(_ui.game.notification.info.value=="+25 punktów z\nzachowania!"){ _player.heal=false; }
+          if(_ui.game.notification.info.value=="-25 punktów z\nzachowania! x.x"){ _player.damage=false; }
+          else if(_ui.game.notification.info.value=="+25 punktów z\nzachowania! ^.^"){ _player.heal=false; }
+          else if(_ui.game.notification.info.value=="Użyj przycisku interakcji,\naby otworzyć TEBoxa! c.c"){ global.teboxNotification=false; }
+          else if(_ui.game.notification.info.value=="Użyj przycisku strzału,\naby zamknąć szafkę! c.c"){ global.lockerNotification=false; }
+          else if(_ui.game.notification.info.value=="Zdobądź klucz w celu\notwarcia kłódki! c.c"){ global.lockNotification=false; }
+          else if(_ui.game.notification.info.value=="Użyj klucza w celu\notwarcia drzwi! c.c"){ global.doorNotification=false; }
         }  
       }
     }

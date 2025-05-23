@@ -138,6 +138,7 @@ canvas.animate=function(current){
           _tebox.loot.time=context.limit(_tebox.loot.time);
           _corner.time=context.limit(_corner.time);
 
+          _ui.time=context.limit(_ui.time);
           _ui.elapsed=context.limit(_ui.elapsed);
           _teacher.invisible=context.limit(_teacher.invisible);
 

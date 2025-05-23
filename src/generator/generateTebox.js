@@ -21,15 +21,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -43,15 +38,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -65,15 +55,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -87,15 +72,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -109,15 +89,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -131,15 +106,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -153,15 +123,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;
@@ -175,15 +140,10 @@ scene.teboxGenerator=function(){
       width:context.scale(48),
       height:context.scale(48),
 
-      first:0,
-      second:Math.floor(Math.random()*3),
-      third:Math.floor(Math.random()*2),
+      ammo:false,
+      hp:false,
+      key:false,
     };
-
-    if(!scene.key){
-      _currentTebox.third=0;
-      scene.key=true;
-    }
 
     _tebox.array.push(_currentTebox);
     _tebox.lenght++;

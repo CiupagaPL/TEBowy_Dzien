@@ -26,7 +26,7 @@ scene.generateLevel=function(){
 
     scene.key=false;
     _platform.currentLoad+=1;
-  } if(_platform.currentLoad>_platform.load){ scene.generated=true; }
+  } if(_platform.currentLoad>_platform.load){ scene.generate=true; }
 }
 
 scene.resetLevel=function(){

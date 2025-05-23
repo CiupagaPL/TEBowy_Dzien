@@ -13,7 +13,7 @@
  *  (_(_)--(_(_) */
 
 window.addEventListener("click",function(){
-  if(!scene.blocked&&!canvas.error){
+  if(!scene.block&&!canvas.error){
     if((context.collision(_title.base,_mouse.collision)||context.collision(_title.teb,_mouse.collision))&&(scene.value==1||scene.value>=2&&global.pause)){
       if(global.sfx){ audio.click1_sfx.play(); }
       window.open("https://teb.pl/oddzialy/d/torun","_blank").focus();
@@ -42,9 +42,9 @@ window.addEventListener("click",function(){
     }
 
     if(scene.value==1||global.pause){
-      if((context.collision(_button.start.base,_mouse.collision)||context.collision(_button.start.text,_mouse.collision))&&!scene.blocked&&
+      if((context.collision(_button.start.base,_mouse.collision)||context.collision(_button.start.text,_mouse.collision))&&!scene.block&&
          (scene.value==1||scene.value>=2&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){
           if(scene.value==1){ audio.click3_sfx.play(); }
           else{ audio.click1_sfx.play(); }
@@ -86,7 +86,7 @@ window.addEventListener("click",function(){
       }
 
       else if((context.collision(_button.level.base,_mouse.collision)||context.collision(_button.level.text,_mouse.collision))&&scene.value==1){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
         if(_button.level.on){
@@ -112,7 +112,7 @@ window.addEventListener("click",function(){
 
       else if((context.collision(_button.menu.base,_mouse.collision)||context.collision(_button.menu.text,_mouse.collision))&&scene.value>=2&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click4_sfx.play(); }
 
         if(_clipboard.on){
@@ -131,7 +131,7 @@ window.addEventListener("click",function(){
       }
 
       else if((context.collision(_button.custom.base,_mouse.collision)||context.collision(_button.custom.text,_mouse.collision))&&scene.value==1){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
         if(_button.custom.on){
@@ -157,7 +157,7 @@ window.addEventListener("click",function(){
 
       else if((context.collision(_button.restart.base,_mouse.collision)||context.collision(_button.restart.text,_mouse.collision))&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click4_sfx.play(); }
 
         if(_clipboard.on){
@@ -175,7 +175,7 @@ window.addEventListener("click",function(){
 
       else if((context.collision(_button.setting.base,_mouse.collision)||context.collision(_button.setting.text,_mouse.collision))&&(scene.value==1||scene.value>=2&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
         if(_button.setting.on){
@@ -203,7 +203,7 @@ window.addEventListener("click",function(){
 
       else if((context.collision(_button.about0.base,_mouse.collision)||context.collision(_button.about0.text,_mouse.collision))&&(scene.value==1||scene.value>=2&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
         if(_button.about0.on){
@@ -231,7 +231,7 @@ window.addEventListener("click",function(){
 
       else if((context.collision(_button.about1.base,_mouse.collision)||context.collision(_button.about1.text,_mouse.collision))&&(scene.value==1||scene.value>=2&&
               global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
-        scene.blocked=true;
+        scene.block=true;
         if(global.sfx){ audio.click1_sfx.play(); }
 
         if(_button.about1.on){
@@ -262,7 +262,7 @@ window.addEventListener("click",function(){
       if(global.sfx){ audio.click1_sfx.play(); }
 
       _clipboard.close=true;
-      scene.blocked=true;
+      scene.block=true;
 
       if(_button.setting.on){ _button.setting.animation=true; }
       else if(_button.about0.on){ _button.about0.animation=true; }
@@ -270,7 +270,7 @@ window.addEventListener("click",function(){
     }
 
     if(context.collision(_footer.next,_mouse.collision)&&(global.currentReward||global.currentTeacher||global.currentTutorial)){
-      scene.blocked=true;
+      scene.block=true;
       if(global.sfx){ audio.click1_sfx.play(); }
 
       global.pauseChange=true;
@@ -284,7 +284,7 @@ window.addEventListener("click",function(){
         if(global.sfx){ audio.click1_sfx.play(); }
 
         _blueprint.close=true;
-        scene.blocked=true;
+        scene.block=true;
 
         if(_button.level.on){ _button.level.animation=true; }
         else{ _button.custom.animation=true; }
@@ -307,7 +307,7 @@ window.addEventListener("click",function(){
        context.collision(_blueprint.level.button5,_mouse.collision)||context.collision(_blueprint.level.button6,_mouse.collision)||
        context.collision(_blueprint.level.button7,_mouse.collision)||context.collision(_blueprint.level.button8,_mouse.collision)||
        context.collision(_blueprint.level.buttonF,_mouse.collision))){
-      scene.blocked=true;
+      scene.block=true;
       if(global.sfx){ audio.click2_sfx.play(); }
 
       if(context.collision(_blueprint.level.button1,_mouse.collision)){ scene.nextAuto=2; }

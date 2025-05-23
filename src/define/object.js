@@ -27,9 +27,7 @@ const _mouse={
 
     width:2,
     height:8,
-  },
-  
-  use:false,
+  }, use:false,
 
   img:Object.assign(new Image(),{src:"tex/icon/general/mouse.png"}),
 };
@@ -195,7 +193,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Gałęź Niestabilna: 21-05-2025",
+    value:"Gałęź Niestabilna: 23-05-2025",
     size:16,
   }, github:{
     x:318,
@@ -607,7 +605,7 @@ const _ui={
         value:"Info",
         size:12,
       }, info:{
-        x:-100,
+        x:-104,
         y:56,
 
         value:"",
@@ -1359,9 +1357,12 @@ const _decoration={
 
 const _tebox={
   base:{
-    first:-1,
-    second:-1,
-    third:-1,
+    ammo1:-1,
+    ammo2:-1,
+    loop:0,
+    ammo:false,
+    hp:false,
+    key:false,
 
     imgOn:Object.assign(new Image(),{src:"tex/obj/map/tebox/baseOn.png"}),
     imgOff:Object.assign(new Image(),{src:"tex/obj/map/tebox/baseOff.png"}),
@@ -1370,17 +1371,18 @@ const _tebox={
     y:0,
     iy:0,
 
-    width:21,
-    height:21,
+    width:28,
+    height:28,
 
-    current:-1,
     time:0,
 
-    imgKey:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
     imgStrong:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strong.png"}),
+    imgStrongFast:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strongFast.png"}),
     imgFast:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fast.png"}),
-    imgHeart:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
-    alpha:100,
+    imgFastStrong:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fastStrong.png"}),
+    imgKey:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
+    imgHp:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
+    alpha:0,
   },
 
   array:[],

@@ -16,8 +16,8 @@ _clipboard.render=function(){
   if(scene.value==1||scene.value>=2&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward&&(_button.setting.animation||_button.setting.on||_button.about0.animation
      ||_button.about0.on||_button.about1.animation||_button.about1.on)){
     context.render(_clipboard.base,_clipboard.base.img);
-    if(_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.imgOn); }
-    else{ context.render(_clipboard.back,_clipboard.back.imgOff); }
+    if(!_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.imgOff); }
+    else{ context.render(_clipboard.back,_clipboard.back.imgOn); }
 
     if(_button.setting.animation||_button.setting.on){
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value0);
@@ -69,7 +69,7 @@ _clipboard.update=function(){
 
         _clipboard.on=false;
         _clipboard.close=false;
-        scene.blocked=false;
+        scene.block=false;
 
         if(_button.setting.animation){
           _button.setting.animation=false;
@@ -107,7 +107,7 @@ _clipboard.update=function(){
       _button.about0.animation=false;
       _button.setting.animation=false;
       _button.about1.animation=false;
-      scene.blocked=false;
+      scene.block=false;
     }
 
     else{
@@ -124,7 +124,7 @@ _clipboard.update=function(){
         _clipboard.setting.music.text.x-=context.move(20);
       } else{
         _clipboard.on=true;
-        scene.blocked=false;
+        scene.block=false;
 
         if(_button.setting.animation){
           _button.setting.animation=false;

@@ -58,7 +58,6 @@ const canvas={
   then:0,
   elapsed:0,
   reset:0,
-
   error:false,
   resize:true,
   first:false,
@@ -95,10 +94,9 @@ const scene={
   section4:0,
   last:-1,
   count:10,
-
-  generated:false,
+  generate:false,
   change:false,
-  blocked:false,
+  block:false,
   auto:false,
   key:false,
   teacher:false,
@@ -135,6 +133,14 @@ const global={
   currentTutorial:false,
   currentTeacher:false,
   currentReward:false,
+  teboxNotification:false,
+  teboxActivate:false,
+  laserNotification:false,
+  lockerActivate:false,
+  lockNotification:false,
+  lockActivate:false,
+  doorNotification:false,
+  doorActivate:false,
   sfx:localStorage.getItem("sfx"),
   music:localStorage.getItem("music"),
   tutorial:true,
@@ -152,13 +158,20 @@ const keyDown={
 };
 
 const audio={
+  current:0,
+  jump:0,
+  damage1:0,
+  damage2:0,
+  fire1:0,
+  fire2:0,
+  laser:0,
+
   menu1_music:new Audio("sfx/music/menu1.mp3"),
   menu2_music:new Audio("sfx/music/menu2.mp3"),
   level1_music:new Audio("sfx/music/level1.mp3"),
   level2_music:new Audio("sfx/music/level2.mp3"),
   level3_music:new Audio("sfx/music/level3.mp3"),
   teacher_music:new Audio("sfx/music/teacher.mp3"),
-
   load_sfx:new Audio("sfx/general/load.mp3"),
   click1_sfx:new Audio("sfx/general/click.mp3"),
   click2_sfx:new Audio("sfx/general/clickAlt.mp3"),
@@ -183,14 +196,6 @@ const audio={
   unlock_sfx:new Audio("sfx/level/unlock.mp3"),
   locker_sfx:new Audio("sfx/level/locker.mp3"),
   entrance_sfx:new Audio("sfx/teacher/entrance.mp3"),
-
-  current:0,
-  jump:0,
-  damage1:0,
-  damage2:0,
-  fire1:0,
-  fire2:0,
-  laser:0,
 };
 
 audio.menu1_music.volume=0.25;

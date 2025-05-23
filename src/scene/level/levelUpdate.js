@@ -88,7 +88,7 @@ scene.levelUpdate=function(){
   _tebox.loot.y+=scene.vy;
   _tebox.loot.x+=scene.vx;
 
-  if(_tebox.loot.current!=-1&&!global.pause&&_player.hp>0){
+  if((_tebox.loot.alpha!=0||_tebox.loot.time>=1)&&!global.pause&&_player.hp>0){
     _tebox.loot.time++;
 
     if(_tebox.loot.time<=context.time(30)){
@@ -98,7 +98,6 @@ scene.levelUpdate=function(){
       _tebox.loot.y=_tebox.loot.iy;
       _tebox.loot.time=0;
       _tebox.loot.alpha=0;
-      _tebox.loot.current=-1;
     }
   }
 

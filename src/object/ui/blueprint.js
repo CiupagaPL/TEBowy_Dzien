@@ -92,7 +92,7 @@ _blueprint.update=function(){
         _button.level.on=false;
         _blueprint.on=false;
         _blueprint.close=false;
-        scene.blocked=false;
+        scene.block=false;
 
         if(_button.custom.animation){
           _button.custom.animation=false;
@@ -110,7 +110,7 @@ _blueprint.update=function(){
     }
 
     else if(_blueprint.on&&!_blueprint.close){
-      scene.blocked=false;
+      scene.block=false;
 
       if(_button.custom.animation){
         _button.level.on=false;
@@ -148,7 +148,7 @@ _blueprint.update=function(){
       } else{
         _blueprint.on=true;
         _blueprint.close=false;
-        scene.blocked=false;
+        scene.block=false;
 
         if(_button.custom.animation){
           _button.custom.animation=false;

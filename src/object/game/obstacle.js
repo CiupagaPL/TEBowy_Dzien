@@ -16,14 +16,18 @@ _decoration.update=function(){
   if(_currentDecoration.current==0){
     if(_currentDecoration.base.x>canvas.width){
       _currentDecoration.base.x-=context.scale(1280);
-      _currentDecoration.text.x-=context.scale(1280);
+      if(_currentDecoration.text!=undefined){ _currentDecoration.text.x-=context.scale(1280); }
     } else if(_currentDecoration.base.x+_currentDecoration.base.width<0){
       _currentDecoration.base.x+=context.scale(1280);
-      _currentDecoration.text.x+=context.scale(1280);
+      if(_currentDecoration.text!=undefined){ _currentDecoration.text.x+=context.scale(1280); }
     }
 
-    if(context.collision(_currentDecoration.base,_player.base)&&_currentDecoration.text.value0=="Finał"){ _player.touchDoor=true; }
-    else if(_currentDecoration.text.value0=="Finał"){ _player.touchDoor=false; }
+    if(context.collision(_currentDecoration.base,_player.base)&&_currentDecoration.type==4){
+      if(!global.doorActivate){
+        global.doorNotification=true;
+        global.doorActivate=true;
+      } _player.touchDoor=true;
+    } else{ _player.touchDoor=false; }
   } else if(_currentDecoration.current==1){
     if(_currentDecoration.base.x>canvas.width){
       _currentDecoration.base.x-=context.scale(1280);
@@ -45,6 +49,11 @@ _decoration.update=function(){
 
     if(_currentDecoration.first!=undefined){
       if(context.collision(_currentDecoration.first,_player.collisionLeft)&&context.collision(_currentDecoration.first,_player.base)&&_player.left){
+        if(!global.lockerActivate){
+          global.lockerNotification=true;
+          global.lockerActivate=true;
+        }
+
         _player.base.x=_currentDecoration.first.x+_currentDecoration.first.width-context.move(8);
         _player.collisionLeft.x=_player.base.x+context.scale(4);
         _player.collisionRight.x=_player.base.x+context.scale(52);
@@ -55,6 +64,11 @@ _decoration.update=function(){
         _player.cloud.x=_player.base.x-context.scale(6);
         _player.action.x=_player.base.x+_player.base.width;
       } else if(context.collision(_currentDecoration.first,_player.collisionRight)&&context.collision(_currentDecoration.first,_player.base)&&!_player.left){
+        if(!global.lockerActivate){
+          global.lockerNotification=true;
+          global.lockerActivate=true;
+        }
+
         _player.base.x=_currentDecoration.first.x-_player.base.width+context.move(8);
         _player.collisionLeft.x=_player.base.x+context.scale(4);
         _player.collisionRight.x=_player.base.x+context.scale(52);
@@ -76,6 +90,11 @@ _decoration.update=function(){
       }
     } if(_currentDecoration.second!=undefined){
       if(context.collision(_currentDecoration.second,_player.collisionLeft)&&context.collision(_currentDecoration.second,_player.base)&&_player.left){
+        if(!global.lockerActivate){
+          global.lockerNotification=true;
+          global.lockerActivate=true;
+        }
+
         _player.base.x=_currentDecoration.second.x+_currentDecoration.second.width-context.move(8);
         _player.collisionLeft.x=_player.base.x+context.scale(4);
         _player.collisionRight.x=_player.base.x+context.scale(52);
@@ -86,6 +105,11 @@ _decoration.update=function(){
         _player.cloud.x=_player.base.x-context.scale(6);
         _player.action.x=_player.base.x+_player.base.width;
       } else if(context.collision(_currentDecoration.second,_player.collisionRight)&&context.collision(_currentDecoration.second,_player.base)&&!_player.left){
+        if(!global.lockerActivate){
+          global.lockerNotification=true;
+          global.lockerActivate=true;
+        }
+
         _player.base.x=_currentDecoration.second.x-_player.base.width+context.move(8);
         _player.collisionLeft.x=_player.base.x+context.scale(4);
         _player.collisionRight.x=_player.base.x+context.scale(52);
@@ -126,21 +150,25 @@ _tebox.update=function(){
 
   if(context.collision(_currentTebox,_player.base)&&!_player.touchTebox){
     _player.touchTebox=true;
-    _tebox.base.first=_currentTebox.first;
-    _tebox.base.second=_currentTebox.second;
-    _tebox.base.third=_currentTebox.third;
-    _currentTebox.first=-1;
-    _currentTebox.second=-1;
-    _currentTebox.third=-1;
+    if(!global.teboxActivate){
+      global.teboxNotification=true;
+      global.teboxActivate=true;
+    }
+
+    _tebox.base.ammo=_currentTebox.ammo;
+    _tebox.base.hp=_currentTebox.hp;
+    _tebox.base.key=_currentTebox.key;
+    _tebox.base.ammo1=-1;
+    _tebox.base.ammo2=-1;
     _tebox.useLenght=_tebox.currentLenght;
-    _tebox.loot.x=_currentTebox.x+context.scale(15);
+    _tebox.loot.x=_currentTebox.x+context.scale(10);
     _tebox.loot.y=_currentTebox.y+_tebox.loot.height;
     _tebox.loot.iy=_currentTebox.y+_tebox.loot.height;
   } else if(!context.collision(_currentTebox,_player.base)&&_tebox.currentLenght==_tebox.useLenght){
     _player.touchTebox=false;
-    _currentTebox.first=_tebox.base.first;
-    _currentTebox.second=_tebox.base.second;
-    _currentTebox.third=_tebox.base.third;
+    _currentTebox.ammo=_tebox.base.ammo;
+    _currentTebox.hp=_tebox.base.hp;
+    _currentTebox.key=_tebox.base.key;
     _tebox.useLenght=-1;
   }
 }
@@ -153,7 +181,9 @@ _spike.update=function(){
      _currentSpike.level==scene.score){ _currentSpike.active=true; }
   if(_currentSpike.active){
     if(!context.collision(_currentSpike,_player.base)&&_currentSpike.alpha==100){
-      // _currentSpike.y+=_currentSpike.vy;
+      if(_currentSpike.vy==0){ _currentSpike.vy=context.move(2); }
+      else{ _currentSpike.vy+=context.move(0.1); }
+      _currentSpike.y+=_currentSpike.vy;
     } else{ _currentSpike.alpha-=context.frame(4); }
     if(_currentSpike.y>=context.scale(672)||_currentSpike.alpha<=0){
       _spike.array.splice(_spike.currentLenght,1);
@@ -272,7 +302,7 @@ _corner.update=function(){
       }
     }
 
-    if(_corner.time==context.time(1)){
+    if(_corner.time==1){
       if(!_currentCorner.left){
         _currentCorner.left=true;
         _currentCorner.laser.x=_currentCorner.laser.ix;
@@ -315,9 +345,12 @@ _corner.update=function(){
         _player.collisionBottom.y=_player.base.y+context.scale(90);
         _player.gun.y=_player.base.y+context.scale(32);
         _player.action.y=_player.base.y;
-      } if(!_player.touchLock){
+      } if(!_player.touchLock&&_currentCorner.lock.alpha==100&&!scene.key){
         _player.touchLock=true;
-        _corner.useLenghtLock=_corner.currentLenght;
+        if(!global.lockActivate){
+          global.lockNotification=true;
+          global.lockActivate=true;
+        } _corner.useLenghtLock=_corner.currentLenght;
       }
 
       if(scene.key&&_currentCorner.lock.alpha==100){

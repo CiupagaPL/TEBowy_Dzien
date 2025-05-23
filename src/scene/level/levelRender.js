@@ -25,7 +25,7 @@ scene.levelRender=function(){
     _teacher.render();
   }
 
-  if(scene.generated){
+  if(scene.generate){
     while(_decoration.lenght>=_decoration.currentLenght&&!scene.teacher){
       _currentDecoration=_decoration.array[_decoration.currentLenght];
 
@@ -36,8 +36,7 @@ scene.levelRender=function(){
         else if(_currentDecoration.type==3){ context.render(_currentDecoration.base,_decoration.img3Door); }
         else{ context.render(_currentDecoration.base,_decoration.img4Door); }
 
-        if(_currentDecoration.text.value0!="Finał"){ context.text(_currentDecoration.text,"rgb(140,140,196)",_currentDecoration.text.value0); }
-        else{ context.text(_currentDecoration.text,"rgb(255,255,255)",_currentDecoration.text.value0); }
+        if(_currentDecoration.type!=4){ context.text(_currentDecoration.text,"rgb(140,140,196)",_currentDecoration.text.value); }
 
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
       } else if(_currentDecoration.current==1&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5){
@@ -91,9 +90,11 @@ scene.levelRender=function(){
 
       if(_currentDecoration.current==0){
         _currentDecoration.base.y+=scene.vy;
-        _currentDecoration.text.y+=scene.vy;
         _currentDecoration.base.x+=scene.vx;
-        _currentDecoration.text.x+=scene.vx;
+        if(_currentDecoration.text!=undefined){
+          _currentDecoration.text.y+=scene.vy;
+          _currentDecoration.text.x+=scene.vx;
+        }
       } else if(_currentDecoration.current==1){
         _currentDecoration.base.y+=scene.vy;
         _currentDecoration.bottom.y+=scene.vy;
@@ -121,17 +122,20 @@ scene.levelRender=function(){
     _player.update();
     _player.render();
 
-    if(_tebox.loot.current!=-1){
-      if(_tebox.loot.current==0){ context.render(_tebox.loot,_tebox.loot.imgKey); }
-      else if(_tebox.loot.current==1){ context.render(_tebox.loot,_tebox.loot.imgStrong); }
-      else if(_tebox.loot.current==2){ context.render(_tebox.loot,_tebox.loot.imgFast); }
-      else{ context.render(_tebox.loot,_tebox.loot.imgHeart); }
+    if(_tebox.loot.alpha!=0){
+      if(_tebox.base.ammo&&!_tebox.base.hp&&!_tebox.base.key){
+        if(_tebox.base.ammo1==3){ context.render(_tebox.loot,_tebox.loot.imgStrong); }
+        else if(_tebox.base.ammo2==3){ context.render(_tebox.loot,_tebox.loot.imgFast); }
+        else if(_tebox.base.ammo1==2&&_tebox.base.ammo2==1){ context.render(_tebox.loot,_tebox.loot.imgStrongFast); }
+        else{ context.render(_tebox.loot,_tebox.loot.imgFastStrong); }
+      } else if(_tebox.base.hp&&!_tebox.base.key){ context.render(_tebox.loot,_tebox.loot.imgHp); }
+      else{ context.render(_tebox.loot,_tebox.loot.imgKey); }
     }
 
     while(_tebox.lenght>=_tebox.currentLenght&&!scene.teacher){
       _currentTebox=_tebox.array[_tebox.currentLenght];
       if(_currentTebox.y<canvas.height*1.5&&_currentTebox.y>=-canvas.height*0.5){
-        if(_currentTebox.third!=-1||_tebox.useLenght==_tebox.currentLenght&&_tebox.base.third!=-1){ context.render(_currentTebox,_tebox.base.imgOn); }
+        if(_tebox.useLenght!=_tebox.currentLenght&&!_currentTebox.key||_tebox.useLenght==_tebox.currentLenght&&!_tebox.base.key){ context.render(_currentTebox,_tebox.base.imgOn); }
         else{ context.render(_currentTebox,_tebox.base.imgOff); }
 
         if(!global.pause&&_player.hp>0){ _tebox.update(); }
