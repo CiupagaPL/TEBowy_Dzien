@@ -1,4 +1,4 @@
-![banner](https://github.com/CiupagaPL/CiupagaPL/blob/main/src/tebowy_dzien.png)
+![banner](https://github.com/CiupagaPL/CiupagaPL/blob/main/src/TEBowy_dzien.png)
 # TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka [PL]
