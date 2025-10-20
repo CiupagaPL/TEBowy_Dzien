@@ -11,8 +11,8 @@ Na ten moment skupie się tylko i wyłącznie na drobnych poprawkach i wypoczynk
 Do regularnej pracy nad projektem wrócę po jakimś czasie :-PP
 
 ## Status
-> Newest Version: **Beta (B)1.010**;
-> Last Updated: **24-05-2025**;
+> Newest Version: **(B)1.011**;
+> Last Updated: **20-10-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>
