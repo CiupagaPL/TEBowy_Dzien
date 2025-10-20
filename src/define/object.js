@@ -193,7 +193,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Wersja: Beta (B)1.010",
+    value:"Wersja: Beta (B)1.011",
     size:16,
   }, github:{
     x:318,
